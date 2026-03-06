@@ -27,5 +27,7 @@ Investment_Data/macro/backups/
 # ── Claude internal ───────────────────────────────────
 .claude/
 
-# ── Archive ───────────────────────────────────────────
+# ── 不進 repo 的目錄 ──────────────────────────────────
 Archive/
+Claude_Project/
+Tools/
