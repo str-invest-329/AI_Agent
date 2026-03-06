@@ -252,48 +252,48 @@
       "Q3_FY2026": 156.0
     },
     "gross_margin_pct": {
-      "Q2_FY2026": 0.2977,
-      "Q3_FY2026": 0.5094,
-      "Q4_FY2025": 0.262,
+      "Q2_FY2024": 0.0967,
       "Q2_FY2025": 0.323,
       "Q3_FY2024": 0.2716,
-      "Q2_FY2024": 0.0967,
-      "Q3_FY2025": 0.2254,
+      "Q1_FY2025": 0.3856,
+      "Q3_FY2026": 0.5094,
+      "Q2_FY2026": 0.2977,
+      "Q4_FY2025": 0.262,
       "Q4_FY2024": 0.3614,
-      "Q1_FY2025": 0.3856
+      "Q3_FY2025": 0.2254
     },
     "operating_margin_pct": {
-      "Q2_FY2026": 0.0763,
-      "Q3_FY2026": 0.3521,
-      "Q4_FY2025": 0.0095,
+      "Q2_FY2024": -0.1471,
       "Q2_FY2025": 0.1039,
       "Q3_FY2024": 0.0381,
-      "Q2_FY2024": -0.1471,
-      "Q3_FY2025": -1.1097,
+      "Q1_FY2025": 0.1545,
+      "Q3_FY2026": 0.3521,
+      "Q2_FY2026": 0.0763,
+      "Q4_FY2025": 0.0095,
       "Q4_FY2024": 0.1131,
-      "Q1_FY2025": 0.1545
+      "Q3_FY2025": -1.1097
     },
     "net_margin_pct": {
-      "Q2_FY2026": 0.0485,
-      "Q3_FY2026": 0.2655,
-      "Q4_FY2025": -0.0121,
+      "Q2_FY2024": -0.1808,
       "Q2_FY2025": 0.0554,
       "Q3_FY2024": 0.0158,
-      "Q2_FY2024": -0.1808,
-      "Q3_FY2025": -1.1404,
+      "Q1_FY2025": 0.1121,
+      "Q3_FY2026": 0.2655,
+      "Q2_FY2026": 0.0485,
+      "Q4_FY2025": -0.0121,
       "Q4_FY2024": 0.0682,
-      "Q1_FY2025": 0.1121
+      "Q3_FY2025": -1.1404
     },
     "effective_tax_rate": {
-      "Q2_FY2026": 0.0968,
-      "Q3_FY2026": 0.143,
-      "Q4_FY2025": -0.2778,
+      "Q2_FY2024": -0.1577,
       "Q2_FY2025": 0.3988,
       "Q3_FY2024": 0.5,
-      "Q2_FY2024": -0.1577,
-      "Q3_FY2025": -0.0168,
+      "Q1_FY2025": 0.2097,
+      "Q3_FY2026": 0.143,
+      "Q2_FY2026": 0.0968,
+      "Q4_FY2025": -0.2778,
       "Q4_FY2024": 0.3909,
-      "Q1_FY2025": 0.2097
+      "Q3_FY2025": -0.0168
     }
   },
   "balance_sheet": {
@@ -675,6 +675,58 @@
       "debt_to_equity": 0.27,
       "net_debt_to_equity": -0.09,
       "equity_ratio": 0.7857
+    }
+  },
+  "classification_audit": {
+    "interest_expense": {
+      "tags": [
+        {
+          "tag": "InterestExpenseNonoperating",
+          "label": "InterestExpenseNonoperating",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2025",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q2_FY2026",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q3_FY2026",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "share_based_compensation": {
+      "tags": [
+        {
+          "tag": "AllocatedShareBasedCompensationExpense",
+          "label": "Share-based Payment Arrangement, Expense",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q2_FY2024",
+            "Q3_FY2026"
+          ]
+        },
+        {
+          "tag": "ShareBasedCompensation",
+          "label": "Share-based Payment Arrangement, Noncash Expense",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2025",
+            "Q2_FY2025",
+            "Q2_FY2026",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
     }
   },
   "tag_history": {

@@ -528,87 +528,87 @@
       "Q1_FY2026": 1138.0
     },
     "gross_margin_pct": {
-      "Q4_FY2024": 0.3532,
-      "Q3_FY2021": 0.2644,
-      "Q2_FY2021": 0.3007,
+      "Q1_FY2026": 0.5604,
       "Q3_FY2025": 0.3772,
-      "Q4_FY2022": 0.4669,
+      "Q3_FY2024": 0.269,
       "Q2_FY2024": 0.1853,
       "Q1_FY2025": 0.3844,
+      "Q2_FY2022": 0.4638,
+      "Q4_FY2021": 0.4212,
+      "Q2_FY2021": 0.3007,
+      "Q3_FY2021": 0.2644,
+      "Q4_FY2022": 0.4669,
+      "Q1_FY2024": -0.0074,
+      "Q2_FY2023": 0.2186,
+      "Q4_FY2024": 0.3532,
       "Q4_FY2025": 0.4467,
       "Q3_FY2022": 0.4721,
-      "Q3_FY2023": -0.3266,
       "Q1_FY2021": 0.3415,
-      "Q2_FY2023": 0.2186,
-      "Q2_FY2022": 0.4638,
-      "Q1_FY2024": -0.0074,
       "Q2_FY2025": 0.3679,
       "Q4_FY2023": -0.178,
-      "Q4_FY2021": 0.4212,
-      "Q1_FY2026": 0.5604,
-      "Q3_FY2024": 0.269
+      "Q3_FY2023": -0.3266
     },
     "operating_margin_pct": {
-      "Q4_FY2024": 0.1964,
-      "Q3_FY2021": 0.1063,
-      "Q2_FY2021": 0.15,
+      "Q1_FY2026": 0.4498,
       "Q3_FY2025": 0.2332,
-      "Q4_FY2022": 0.3476,
+      "Q3_FY2024": 0.1056,
       "Q2_FY2024": 0.0328,
       "Q1_FY2025": 0.2496,
+      "Q2_FY2022": 0.3423,
+      "Q4_FY2021": 0.2424,
+      "Q2_FY2021": 0.15,
+      "Q3_FY2021": 0.1063,
+      "Q4_FY2022": 0.3476,
+      "Q1_FY2024": -0.2387,
+      "Q2_FY2023": -0.0512,
+      "Q4_FY2024": 0.1964,
       "Q4_FY2025": 0.3229,
       "Q3_FY2022": 0.327,
-      "Q3_FY2023": -0.6236,
       "Q1_FY2021": 0.1911,
-      "Q2_FY2023": -0.0512,
-      "Q2_FY2022": 0.3423,
-      "Q1_FY2024": -0.2387,
       "Q2_FY2025": 0.2202,
       "Q4_FY2023": -0.4693,
-      "Q4_FY2021": 0.2424,
-      "Q1_FY2026": 0.4498,
-      "Q3_FY2024": 0.1056
+      "Q3_FY2023": -0.6236
     },
     "net_margin_pct": {
-      "Q4_FY2024": 0.1145,
-      "Q3_FY2021": 0.0967,
-      "Q2_FY2021": 0.1391,
+      "Q1_FY2026": 0.3841,
       "Q3_FY2025": 0.2027,
-      "Q4_FY2022": 0.3039,
+      "Q3_FY2024": 0.0487,
       "Q2_FY2024": 0.1362,
       "Q1_FY2025": 0.2147,
+      "Q2_FY2022": 0.3,
+      "Q4_FY2021": 0.2338,
+      "Q2_FY2021": 0.1391,
+      "Q3_FY2021": 0.0967,
+      "Q4_FY2022": 0.3039,
+      "Q1_FY2024": -0.2611,
+      "Q2_FY2023": -0.0477,
+      "Q4_FY2024": 0.1145,
       "Q4_FY2025": 0.2829,
       "Q3_FY2022": 0.2906,
-      "Q3_FY2023": -0.626,
       "Q1_FY2021": 0.1631,
-      "Q2_FY2023": -0.0477,
-      "Q2_FY2022": 0.3,
-      "Q1_FY2024": -0.2611,
       "Q2_FY2025": 0.1966,
       "Q4_FY2023": -0.5053,
-      "Q4_FY2021": 0.2338,
-      "Q1_FY2026": 0.3841,
-      "Q3_FY2024": 0.0487
+      "Q3_FY2023": -0.626
     },
     "effective_tax_rate": {
-      "Q4_FY2024": 0.4126,
-      "Q3_FY2021": 0.0756,
-      "Q2_FY2021": 0.0606,
-      "Q3_FY2025": 0.1112,
       "Q4_FY2022": 0.1198,
-      "Q2_FY2024": -3.6588,
-      "Q1_FY2025": 0.1315,
-      "Q4_FY2025": 0.1181,
-      "Q3_FY2022": 0.1016,
-      "Q2_FY2022": 0.0869,
       "Q1_FY2024": -0.0632,
-      "Q2_FY2025": 0.1007,
-      "Q3_FY2023": -0.0238,
-      "Q4_FY2023": -0.0793,
-      "Q4_FY2021": 0.036,
       "Q1_FY2026": 0.1368,
       "Q2_FY2023": -0.0455,
-      "Q3_FY2024": 0.5273
+      "Q3_FY2025": 0.1112,
+      "Q3_FY2021": 0.0756,
+      "Q3_FY2024": 0.5273,
+      "Q3_FY2023": -0.0238,
+      "Q4_FY2024": 0.4126,
+      "Q2_FY2024": -3.6588,
+      "Q1_FY2025": 0.1315,
+      "Q2_FY2022": 0.0869,
+      "Q4_FY2025": 0.1181,
+      "Q3_FY2022": 0.1016,
+      "Q4_FY2021": 0.036,
+      "Q2_FY2025": 0.1007,
+      "Q4_FY2023": -0.0793,
+      "Q2_FY2021": 0.0606
     }
   },
   "balance_sheet": {
@@ -891,6 +891,52 @@
       }
     },
     "liabilities": {
+      "accounts_payable": {
+        "Q1_FY2021": 5817.0,
+        "Q2_FY2021": 4856.0,
+        "Q3_FY2021": 4550.0,
+        "Q4_FY2021": 4427.0,
+        "Q1_FY2022": 5325.0,
+        "Q2_FY2022": 5470.0,
+        "Q3_FY2022": 5650.0,
+        "Q4_FY2022": 5788.0,
+        "Q1_FY2023": 6090.0,
+        "Q2_FY2023": 5438.0,
+        "Q3_FY2023": 4310.0,
+        "Q4_FY2023": 3958.0,
+        "Q1_FY2024": 3946.0,
+        "Q2_FY2024": 4680.0,
+        "Q3_FY2024": 5145.0,
+        "Q4_FY2024": 7299.0,
+        "Q1_FY2025": 7126.0,
+        "Q2_FY2025": 6176.0,
+        "Q3_FY2025": 8761.0,
+        "Q4_FY2025": 9649.0,
+        "Q1_FY2026": 9796.0
+      },
+      "accrued_liabilities": {
+        "Q1_FY2021": 5817.0,
+        "Q2_FY2021": 4856.0,
+        "Q3_FY2021": 4550.0,
+        "Q4_FY2021": 4427.0,
+        "Q1_FY2022": 5325.0,
+        "Q2_FY2022": 5470.0,
+        "Q3_FY2022": 5650.0,
+        "Q4_FY2022": 5788.0,
+        "Q1_FY2023": 6090.0,
+        "Q2_FY2023": 5438.0,
+        "Q3_FY2023": 4310.0,
+        "Q4_FY2023": 3958.0,
+        "Q1_FY2024": 3946.0,
+        "Q2_FY2024": 4680.0,
+        "Q3_FY2024": 5145.0,
+        "Q4_FY2024": 7299.0,
+        "Q1_FY2025": 7126.0,
+        "Q2_FY2025": 6176.0,
+        "Q3_FY2025": 8761.0,
+        "Q4_FY2025": 9649.0,
+        "Q1_FY2026": 9796.0
+      },
       "other_current_liabilities": {
         "Q1_FY2021": 548.0,
         "Q2_FY2021": 559.0,
@@ -1236,7 +1282,10 @@
         "Q4_FY2023": 1.0,
         "Q2_FY2024": 0.0,
         "Q3_FY2024": 0.0,
-        "Q4_FY2024": 0.0
+        "Q4_FY2024": 0.0,
+        "Q3_FY2022": 5.0,
+        "Q4_FY2022": 0.0,
+        "Q4_FY2021": 8.0
       },
       "change_in_inventories": {
         "Q2_FY2021": -86.0,
@@ -1257,6 +1306,26 @@
         "Q4_FY2023": 149.0,
         "Q4_FY2024": 363.0,
         "Q4_FY2025": -372.0
+      },
+      "change_in_accounts_payable": {
+        "Q2_FY2021": -753.0,
+        "Q2_FY2022": -42.0,
+        "Q2_FY2023": -1056.0,
+        "Q1_FY2024": 271.0,
+        "Q1_FY2025": -241.0,
+        "Q1_FY2026": 156.0,
+        "Q2_FY2024": 302.0,
+        "Q2_FY2025": -473.0,
+        "Q3_FY2021": 468.0,
+        "Q3_FY2022": 275.0,
+        "Q3_FY2023": 31.0,
+        "Q3_FY2024": 273.0,
+        "Q3_FY2025": 752.0,
+        "Q4_FY2021": 519.0,
+        "Q4_FY2022": 362.0,
+        "Q4_FY2023": -340.0,
+        "Q4_FY2024": 1069.0,
+        "Q4_FY2025": 824.0
       },
       "net_cash_from_operating": {
         "Q2_FY2021": 1967.0,
@@ -1593,6 +1662,378 @@
       "equity_ratio": 0.684
     }
   },
+  "classification_audit": {
+    "restructuring_charges": {
+      "tags": [
+        {
+          "tag": "RestructuringSettlementAndImpairmentProvisions",
+          "label": "Restructuring, Settlement and Impairment Provisions",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2024",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024"
+          ]
+        }
+      ]
+    },
+    "interest_expense": {
+      "tags": [
+        {
+          "tag": "InterestExpense",
+          "label": "Interest Expense",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2024",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023"
+          ]
+        },
+        {
+          "tag": "InterestExpenseNonoperating",
+          "label": "InterestExpenseNonoperating",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2025",
+            "Q3_FY2025",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "income_before_taxes": {
+      "tags": [
+        {
+          "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+          "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "short_term_investments": {
+      "tags": [
+        {
+          "tag": "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+          "label": "Debt Securities, Available-for-sale, Current",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "accounts_payable": {
+      "tags": [
+        {
+          "tag": "AccountsPayableAndAccruedLiabilitiesCurrent",
+          "label": "Accounts Payable and Accrued Liabilities, Current",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "accrued_liabilities": {
+      "tags": [
+        {
+          "tag": "AccountsPayableAndAccruedLiabilitiesCurrent",
+          "label": "Accounts Payable and Accrued Liabilities, Current",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "long_term_debt": {
+      "tags": [
+        {
+          "tag": "LongTermDebt",
+          "label": "Long-term Debt",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "additional_paid_in_capital": {
+      "tags": [
+        {
+          "tag": "AdditionalPaidInCapitalCommonStock",
+          "label": "Additional Paid in Capital, Common Stock",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "depreciation_and_amortization": {
+      "tags": [
+        {
+          "tag": "DepreciationDepletionAndAmortization",
+          "label": "Depreciation, Depletion and Amortization",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "other_asset_impairment": {
+      "tags": [
+        {
+          "tag": "OtherAssetImpairmentCharges",
+          "label": "Other Asset Impairment Charges",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q2_FY2024",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q4_FY2023",
+            "Q4_FY2024"
+          ]
+        },
+        {
+          "tag": "RestructuringCostsAndAssetImpairmentCharges",
+          "label": "Restructuring Costs and Asset Impairment Charges",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q3_FY2022",
+            "Q4_FY2021",
+            "Q4_FY2022"
+          ]
+        }
+      ]
+    },
+    "change_in_accounts_payable": {
+      "tags": [
+        {
+          "tag": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+          "label": "Increase (Decrease) in Accounts Payable and Accrued Liabilities",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q1_FY2026",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "proceeds_from_debt": {
+      "tags": [
+        {
+          "tag": "ProceedsFromIssuanceOfLongTermDebt",
+          "label": "Proceeds from Issuance of Long-term Debt",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2024",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    }
+  },
   "tag_history": {
     "restructuring_charges": {
       "tags_used": [
@@ -1693,6 +2134,62 @@
         "Q1_FY2026": "AvailableForSaleSecuritiesDebtSecuritiesCurrent"
       }
     },
+    "accounts_payable": {
+      "tags_used": [
+        "AccountsPayableAndAccruedLiabilitiesCurrent"
+      ],
+      "tag_by_period": {
+        "Q1_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2026": "AccountsPayableAndAccruedLiabilitiesCurrent"
+      }
+    },
+    "accrued_liabilities": {
+      "tags_used": [
+        "AccountsPayableAndAccruedLiabilitiesCurrent"
+      ],
+      "tag_by_period": {
+        "Q1_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2021": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2022": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2023": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2024": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q2_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q3_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q4_FY2025": "AccountsPayableAndAccruedLiabilitiesCurrent",
+        "Q1_FY2026": "AccountsPayableAndAccruedLiabilitiesCurrent"
+      }
+    },
     "long_term_debt": {
       "tags_used": [
         "LongTermDebt"
@@ -1769,6 +2266,47 @@
         "Q4_FY2023": "DepreciationDepletionAndAmortization",
         "Q4_FY2024": "DepreciationDepletionAndAmortization",
         "Q4_FY2025": "DepreciationDepletionAndAmortization"
+      }
+    },
+    "other_asset_impairment": {
+      "tags_used": [
+        "OtherAssetImpairmentCharges",
+        "RestructuringCostsAndAssetImpairmentCharges"
+      ],
+      "tag_by_period": {
+        "Q3_FY2023": "OtherAssetImpairmentCharges",
+        "Q4_FY2023": "OtherAssetImpairmentCharges",
+        "Q2_FY2024": "OtherAssetImpairmentCharges",
+        "Q3_FY2024": "OtherAssetImpairmentCharges",
+        "Q4_FY2024": "OtherAssetImpairmentCharges",
+        "Q3_FY2022": "RestructuringCostsAndAssetImpairmentCharges",
+        "Q4_FY2022": "RestructuringCostsAndAssetImpairmentCharges",
+        "Q4_FY2021": "RestructuringCostsAndAssetImpairmentCharges"
+      }
+    },
+    "change_in_accounts_payable": {
+      "tags_used": [
+        "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities"
+      ],
+      "tag_by_period": {
+        "Q2_FY2021": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q2_FY2022": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q2_FY2023": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q1_FY2024": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q1_FY2025": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q1_FY2026": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q2_FY2024": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q2_FY2025": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q3_FY2021": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q3_FY2022": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q3_FY2023": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q3_FY2024": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q3_FY2025": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q4_FY2021": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q4_FY2022": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q4_FY2023": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q4_FY2024": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities",
+        "Q4_FY2025": "IncreaseDecreaseInAccountsPayableAndAccruedLiabilities"
       }
     },
     "proceeds_from_debt": {
@@ -6706,6 +7244,342 @@
       "statement": "balance_sheet_assets",
       "metric": "total_assets",
       "value": 85971.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2021",
+      "period_end": "2020-09-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 5817.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2021",
+      "period_end": "2020-12-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 4856.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2021",
+      "period_end": "2021-03-04",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 4550.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2021",
+      "period_end": "2021-06-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 4427.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2022",
+      "period_end": "2021-09-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 5325.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2022",
+      "period_end": "2021-12-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 5470.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2022",
+      "period_end": "2022-03-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 5650.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-06-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 5788.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2023",
+      "period_end": "2022-09-01",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 6090.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2023",
+      "period_end": "2022-12-01",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 5438.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2023",
+      "period_end": "2023-03-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 4310.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2023",
+      "period_end": "2023-08-31",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 3958.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2024",
+      "period_end": "2023-11-30",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 3946.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2024",
+      "period_end": "2024-02-29",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 4680.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2024",
+      "period_end": "2024-05-30",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 5145.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2024",
+      "period_end": "2024-08-29",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 7299.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2025",
+      "period_end": "2024-11-28",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 7126.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2025",
+      "period_end": "2025-02-27",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 6176.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2025",
+      "period_end": "2025-05-29",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 8761.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-08-28",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 9649.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2026",
+      "period_end": "2025-11-27",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accounts_payable",
+      "value": 9796.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2021",
+      "period_end": "2020-09-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 5817.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2021",
+      "period_end": "2020-12-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 4856.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2021",
+      "period_end": "2021-03-04",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 4550.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2021",
+      "period_end": "2021-06-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 4427.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2022",
+      "period_end": "2021-09-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 5325.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2022",
+      "period_end": "2021-12-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 5470.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2022",
+      "period_end": "2022-03-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 5650.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-06-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 5788.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2023",
+      "period_end": "2022-09-01",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 6090.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2023",
+      "period_end": "2022-12-01",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 5438.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2023",
+      "period_end": "2023-03-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 4310.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2023",
+      "period_end": "2023-08-31",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 3958.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2024",
+      "period_end": "2023-11-30",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 3946.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2024",
+      "period_end": "2024-02-29",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 4680.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2024",
+      "period_end": "2024-05-30",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 5145.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2024",
+      "period_end": "2024-08-29",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 7299.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2025",
+      "period_end": "2024-11-28",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 7126.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2025",
+      "period_end": "2025-02-27",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 6176.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2025",
+      "period_end": "2025-05-29",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 8761.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-08-28",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 9649.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q1_FY2026",
+      "period_end": "2025-11-27",
+      "statement": "balance_sheet_liabilities",
+      "metric": "accrued_liabilities",
+      "value": 9796.0,
       "unit": "USD_millions"
     },
     {

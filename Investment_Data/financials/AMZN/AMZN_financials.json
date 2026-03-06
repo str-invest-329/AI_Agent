@@ -488,70 +488,70 @@
     },
     "gross_margin_pct": {},
     "operating_margin_pct": {
-      "Q1_FY2022": 0.0315,
-      "Q1_FY2024": 0.1068,
-      "Q2_FY2025": 0.1143,
-      "Q1_FY2023": 0.0375,
       "Q2_FY2023": 0.0572,
-      "Q2_FY2022": 0.0274,
+      "Q3_FY2024": 0.1096,
       "Q2_FY2021": 0.0681,
+      "Q4_FY2022": 0.0183,
+      "Q4_FY2023": 0.0777,
+      "Q1_FY2022": 0.0315,
+      "Q3_FY2021": 0.0438,
+      "Q1_FY2023": 0.0375,
+      "Q4_FY2021": 0.0252,
+      "Q2_FY2025": 0.1143,
       "Q3_FY2025": 0.0967,
       "Q4_FY2024": 0.1129,
-      "Q3_FY2022": 0.0199,
-      "Q4_FY2021": 0.0252,
-      "Q2_FY2024": 0.0992,
-      "Q3_FY2024": 0.1096,
-      "Q4_FY2022": 0.0183,
-      "Q3_FY2023": 0.0782,
-      "Q1_FY2021": 0.0817,
-      "Q4_FY2023": 0.0777,
       "Q1_FY2025": 0.1182,
-      "Q4_FY2025": 0.1171,
-      "Q3_FY2021": 0.0438
+      "Q3_FY2023": 0.0782,
+      "Q1_FY2024": 0.1068,
+      "Q2_FY2022": 0.0274,
+      "Q2_FY2024": 0.0992,
+      "Q1_FY2021": 0.0817,
+      "Q3_FY2022": 0.0199,
+      "Q4_FY2025": 0.1171
     },
     "net_margin_pct": {
-      "Q1_FY2022": -0.033,
-      "Q1_FY2024": 0.0728,
-      "Q2_FY2025": 0.1083,
-      "Q1_FY2023": 0.0249,
       "Q2_FY2023": 0.0502,
-      "Q2_FY2022": -0.0167,
+      "Q3_FY2024": 0.0965,
       "Q2_FY2021": 0.0688,
+      "Q4_FY2022": 0.0019,
+      "Q4_FY2023": 0.0625,
+      "Q1_FY2022": -0.033,
+      "Q3_FY2021": 0.0285,
+      "Q1_FY2023": 0.0249,
+      "Q4_FY2021": 0.1042,
+      "Q2_FY2025": 0.1083,
       "Q3_FY2025": 0.1176,
       "Q4_FY2024": 0.1065,
-      "Q3_FY2022": 0.0226,
-      "Q4_FY2021": 0.1042,
-      "Q2_FY2024": 0.0911,
-      "Q3_FY2024": 0.0965,
-      "Q4_FY2022": 0.0019,
-      "Q3_FY2023": 0.069,
-      "Q1_FY2021": 0.0747,
-      "Q4_FY2023": 0.0625,
       "Q1_FY2025": 0.11,
-      "Q4_FY2025": 0.0993,
-      "Q3_FY2021": 0.0285
+      "Q3_FY2023": 0.069,
+      "Q1_FY2024": 0.0728,
+      "Q2_FY2022": -0.0167,
+      "Q2_FY2024": 0.0911,
+      "Q1_FY2021": 0.0747,
+      "Q3_FY2022": 0.0226,
+      "Q4_FY2025": 0.0993
     },
     "effective_tax_rate": {
-      "Q1_FY2022": 0.2701,
-      "Q1_FY2024": 0.19,
-      "Q2_FY2025": 0.1284,
-      "Q1_FY2023": 0.2302,
       "Q2_FY2023": 0.1063,
-      "Q2_FY2022": 0.2401,
+      "Q3_FY2024": 0.15,
       "Q2_FY2021": 0.1005,
+      "Q4_FY2022": 1.2755,
+      "Q4_FY2023": 0.2237,
+      "Q1_FY2022": 0.2701,
+      "Q3_FY2021": 0.2677,
+      "Q1_FY2023": 0.2302,
+      "Q4_FY2021": 0.041,
+      "Q2_FY2025": 0.1284,
       "Q3_FY2025": 0.2453,
       "Q4_FY2024": 0.104,
-      "Q3_FY2022": 0.0234,
-      "Q4_FY2021": 0.041,
-      "Q2_FY2024": 0.1159,
-      "Q3_FY2024": 0.15,
-      "Q4_FY2022": 1.2755,
-      "Q3_FY2023": 0.1892,
-      "Q1_FY2021": 0.21,
-      "Q4_FY2023": 0.2237,
       "Q1_FY2025": 0.21,
-      "Q4_FY2025": 0.1859,
-      "Q3_FY2021": 0.2677
+      "Q3_FY2023": 0.1892,
+      "Q1_FY2024": 0.19,
+      "Q2_FY2022": 0.2401,
+      "Q2_FY2024": 0.1159,
+      "Q1_FY2021": 0.21,
+      "Q3_FY2022": 0.0234,
+      "Q4_FY2025": 0.1859
     }
   },
   "balance_sheet": {
@@ -1178,6 +1178,28 @@
         "Q3_FY2023": 170.0,
         "Q4_FY2022": 750.0
       },
+      "change_in_receivables": {
+        "Q1_FY2021": 2255.0,
+        "Q2_FY2021": 4462.0,
+        "Q3_FY2021": 4890.0,
+        "Q1_FY2022": 1516.0,
+        "Q2_FY2022": 6799.0,
+        "Q3_FY2022": 4794.0,
+        "Q1_FY2023": -1521.0,
+        "Q2_FY2023": 5167.0,
+        "Q3_FY2023": 6718.0,
+        "Q1_FY2024": -3684.0,
+        "Q2_FY2024": 2209.0,
+        "Q3_FY2024": 701.0,
+        "Q1_FY2025": -1247.0,
+        "Q2_FY2025": 1125.0,
+        "Q3_FY2025": 1977.0,
+        "Q4_FY2021": 6556.0,
+        "Q4_FY2022": 8788.0,
+        "Q4_FY2023": -2016.0,
+        "Q4_FY2024": 4023.0,
+        "Q4_FY2025": 5478.0
+      },
       "change_in_inventories": {
         "Q1_FY2021": 304.0,
         "Q2_FY2021": 209.0,
@@ -1221,6 +1243,28 @@
         "Q4_FY2023": 10888.0,
         "Q4_FY2024": 8726.0,
         "Q4_FY2025": 11065.0
+      },
+      "change_in_accrued_liabilities": {
+        "Q1_FY2021": -4060.0,
+        "Q2_FY2021": -1685.0,
+        "Q3_FY2021": -1465.0,
+        "Q1_FY2022": -5903.0,
+        "Q2_FY2022": -1412.0,
+        "Q3_FY2022": -20.0,
+        "Q1_FY2023": -5763.0,
+        "Q2_FY2023": -1938.0,
+        "Q3_FY2023": -1321.0,
+        "Q1_FY2024": -2928.0,
+        "Q2_FY2024": -4147.0,
+        "Q3_FY2024": 129.0,
+        "Q1_FY2025": -4061.0,
+        "Q2_FY2025": -4952.0,
+        "Q3_FY2025": -1999.0,
+        "Q4_FY2021": 9333.0,
+        "Q4_FY2022": 5777.0,
+        "Q4_FY2023": 6594.0,
+        "Q4_FY2024": 4042.0,
+        "Q4_FY2025": 5993.0
       },
       "net_cash_from_operating": {
         "Q1_FY2021": 4213.0,
@@ -1362,7 +1406,10 @@
     "free_cash_flow": {},
     "fx_effect": {
       "Q1_FY2021": -293.0,
-      "Q1_FY2022": 16.0
+      "Q1_FY2022": 16.0,
+      "Q2_FY2021": 234.0,
+      "Q3_FY2021": -199.0,
+      "Q4_FY2021": -106.0
     },
     "net_change_in_cash": {
       "Q1_FY2021": -8222.0,
@@ -1509,6 +1556,385 @@
       "equity_ratio": 0.5025
     }
   },
+  "classification_audit": {
+    "interest_expense": {
+      "tags": [
+        {
+          "tag": "InterestExpense",
+          "label": "Interest Expense",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023"
+          ]
+        },
+        {
+          "tag": "InterestExpenseNonoperating",
+          "label": "InterestExpenseNonoperating",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2025",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "income_before_taxes": {
+      "tags": [
+        {
+          "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+          "label": "Income (Loss) from Continuing Operations before Equity Method Investments, Income Taxes, Noncontrolling Interest",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "short_term_investments": {
+      "tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "label": "Marketable Securities, Current",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "other_current_assets": {
+      "tags": [
+        {
+          "tag": "PrepaidExpenseAndOtherAssetsCurrent",
+          "label": "Prepaid Expense and Other Assets, Current",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "depreciation_and_amortization": {
+      "tags": [
+        {
+          "tag": "DepreciationDepletionAndAmortization",
+          "label": "Depreciation, Depletion and Amortization",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "other_asset_impairment": {
+      "tags": [
+        {
+          "tag": "AssetImpairmentCharges",
+          "label": "Asset Impairment Charges",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q4_FY2022"
+          ]
+        }
+      ]
+    },
+    "change_in_receivables": {
+      "tags": [
+        {
+          "tag": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+          "label": "Increase (Decrease) in Accounts Receivable and Other Operating Assets",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "change_in_accounts_payable": {
+      "tags": [
+        {
+          "tag": "IncreaseDecreaseInAccountsPayable",
+          "label": "Increase (Decrease) in Accounts Payable",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "change_in_accrued_liabilities": {
+      "tags": [
+        {
+          "tag": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+          "label": "Increase (Decrease) in Accrued Liabilities and Other Operating Liabilities",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "proceeds_from_debt": {
+      "tags": [
+        {
+          "tag": "ProceedsFromIssuanceOfLongTermDebt",
+          "label": "Proceeds from Issuance of Long-term Debt",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "repayments_of_debt": {
+      "tags": [
+        {
+          "tag": "RepaymentsOfLongTermDebt",
+          "label": "Repayments of Long-term Debt",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "fx_effect": {
+      "tags": [
+        {
+          "tag": "EffectOfExchangeRateOnCashAndCashEquivalents",
+          "label": "Effect of Exchange Rate on Cash and Cash Equivalents",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q2_FY2021",
+            "Q3_FY2021",
+            "Q4_FY2021"
+          ]
+        },
+        {
+          "tag": "EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+          "label": "Effect of Exchange Rate on Cash, Cash Equivalents, Restricted Cash and Restricted Cash Equivalents",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022"
+          ]
+        }
+      ]
+    },
+    "total_liabilities": {
+      "tags": [
+        {
+          "tag": "AccruedLiabilities",
+          "label": "Accrued Liabilities (Deprecated 2009-01-31)",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "all"
+          ]
+        }
+      ]
+    }
+  },
   "tag_history": {
     "interest_expense": {
       "tags_used": [
@@ -1652,6 +2078,33 @@
         "Q4_FY2022": "AssetImpairmentCharges"
       }
     },
+    "change_in_receivables": {
+      "tags_used": [
+        "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets"
+      ],
+      "tag_by_period": {
+        "Q1_FY2021": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q2_FY2021": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q3_FY2021": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q1_FY2022": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q2_FY2022": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q3_FY2022": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q1_FY2023": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q2_FY2023": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q3_FY2023": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q1_FY2024": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q2_FY2024": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q3_FY2024": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q1_FY2025": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q2_FY2025": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q3_FY2025": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q4_FY2021": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q4_FY2022": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q4_FY2023": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q4_FY2024": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets",
+        "Q4_FY2025": "IncreaseDecreaseInAccountsReceivableAndOtherOperatingAssets"
+      }
+    },
     "change_in_accounts_payable": {
       "tags_used": [
         "IncreaseDecreaseInAccountsPayable"
@@ -1677,6 +2130,33 @@
         "Q4_FY2023": "IncreaseDecreaseInAccountsPayable",
         "Q4_FY2024": "IncreaseDecreaseInAccountsPayable",
         "Q4_FY2025": "IncreaseDecreaseInAccountsPayable"
+      }
+    },
+    "change_in_accrued_liabilities": {
+      "tags_used": [
+        "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities"
+      ],
+      "tag_by_period": {
+        "Q1_FY2021": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q2_FY2021": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q3_FY2021": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q1_FY2022": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q2_FY2022": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q3_FY2022": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q1_FY2023": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q2_FY2023": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q3_FY2023": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q1_FY2024": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q2_FY2024": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q3_FY2024": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q1_FY2025": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q2_FY2025": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q3_FY2025": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q4_FY2021": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q4_FY2022": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q4_FY2023": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q4_FY2024": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities",
+        "Q4_FY2025": "IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities"
       }
     },
     "proceeds_from_debt": {
@@ -1731,6 +2211,19 @@
         "Q4_FY2023": "RepaymentsOfLongTermDebt",
         "Q4_FY2024": "RepaymentsOfLongTermDebt",
         "Q4_FY2025": "RepaymentsOfLongTermDebt"
+      }
+    },
+    "fx_effect": {
+      "tags_used": [
+        "EffectOfExchangeRateOnCashAndCashEquivalents",
+        "EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+      ],
+      "tag_by_period": {
+        "Q1_FY2021": "EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+        "Q1_FY2022": "EffectOfExchangeRateOnCashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+        "Q2_FY2021": "EffectOfExchangeRateOnCashAndCashEquivalents",
+        "Q3_FY2021": "EffectOfExchangeRateOnCashAndCashEquivalents",
+        "Q4_FY2021": "EffectOfExchangeRateOnCashAndCashEquivalents"
       }
     }
   },
