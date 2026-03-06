@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Financials Viewer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
 :root {
   --bg: #f7f8fa;
@@ -143,6 +144,33 @@ tr:nth-child(odd):not(.section-row):not(.total-row) td.metric-name { background:
   border-bottom: 1px solid var(--border); margin-bottom: 12px;
 }
 .audit-legend-item { display: flex; align-items: center; gap: 4px; }
+
+/* Ratio tooltip */
+.ratio-metric-name { position: relative; cursor: help; }
+.ratio-metric-name .ratio-tip {
+  display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%);
+  margin-left: 8px; background: #2c3e50; color: #fff; padding: 6px 10px;
+  border-radius: 4px; font-size: 11px; font-weight: 400; white-space: nowrap;
+  z-index: 50; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.ratio-metric-name:hover .ratio-tip { display: block; }
+
+/* Chart area */
+.ratio-chart-wrapper {
+  background: var(--card); border-radius: 6px; padding: 16px;
+  margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.ratio-chart-controls {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; align-items: center;
+}
+.ratio-chip {
+  padding: 4px 12px; border-radius: 14px; font-size: 12px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text);
+  transition: all 0.15s; user-select: none;
+}
+.ratio-chip.active { background: var(--header-bg); color: #fff; border-color: var(--header-bg); }
+.ratio-chip:hover:not(.active) { border-color: var(--tab-hover); color: var(--tab-hover); }
+#ratioChart { max-height: 340px; }
 
 @media (max-width: 768px) {
   .topbar { padding: 8px 12px; }
@@ -305,6 +333,14 @@ const LABEL_MAP = {
   debt_to_equity: 'Debt-to-Equity',
   net_debt_to_equity: 'Net Debt-to-Equity',
   equity_ratio: 'Equity Ratio',
+  gross_margin_pct: 'Gross Margin %',
+  operating_margin_pct: 'Operating Margin %',
+  net_margin_pct: 'Net Margin %',
+  roe: 'ROE',
+  roa: 'ROA',
+  asset_turnover: 'Asset Turnover',
+  interest_coverage: 'Interest Coverage',
+  fcf_margin_pct: 'FCF Margin %',
 };
 
 const TOTAL_KEYS = new Set([
@@ -319,7 +355,7 @@ const TOTAL_KEYS = new Set([
   'eps_diluted',
 ]);
 
-const isPct = (key) => key.includes('pct') || key.includes('rate') || key === 'equity_ratio';
+const isPct = (key) => key.includes('pct') || key.includes('rate') || key === 'equity_ratio' || key === 'roe' || key === 'roa' || key === 'asset_turnover';
 const isEps = (key) => key.startsWith('eps');
 
 function fmtVal(val, key) {
@@ -425,18 +461,146 @@ function renderCashFlow(data) {
   return buildTable(periods, rows, data);
 }
 
+const RATIO_DEFINITIONS = {
+  current_ratio: 'Current Assets ÷ Current Liabilities — measures short-term liquidity',
+  quick_ratio: '(Current Assets − Inventory) ÷ Current Liabilities — liquidity excluding inventory',
+  debt_to_equity: 'Total Liabilities ÷ Total Equity — overall leverage',
+  net_debt_to_equity: '(Total Debt − Cash) ÷ Total Equity — net leverage',
+  equity_ratio: 'Total Equity ÷ Total Assets — proportion funded by shareholders',
+  gross_margin_pct: 'Gross Profit ÷ Revenue — profitability after direct costs',
+  operating_margin_pct: 'Operating Income ÷ Revenue — profitability after all opex',
+  net_margin_pct: 'Net Income ÷ Revenue — bottom-line profitability',
+  roe: 'Net Income ÷ Total Equity — return on shareholders\' equity (quarterly, not annualized)',
+  roa: 'Net Income ÷ Total Assets — return on total assets (quarterly, not annualized)',
+  asset_turnover: 'Revenue ÷ Total Assets — asset efficiency (quarterly, not annualized)',
+  interest_coverage: 'Operating Income ÷ Interest Expense — ability to service debt',
+  fcf_margin_pct: 'Free Cash Flow ÷ Revenue — cash generation efficiency',
+};
+
+const RATIO_ORDER = [
+  'gross_margin_pct', 'operating_margin_pct', 'net_margin_pct',
+  'roe', 'roa', 'asset_turnover', 'interest_coverage', 'fcf_margin_pct',
+  'current_ratio', 'quick_ratio', 'debt_to_equity', 'net_debt_to_equity', 'equity_ratio',
+];
+
+let ratioChart = null;
+let ratioSelected = new Set(['gross_margin_pct', 'operating_margin_pct', 'net_margin_pct']);
+
+const CHART_COLORS = [
+  '#1f4e79','#c0392b','#27ae60','#8e44ad','#e67e22',
+  '#2980b9','#d35400','#16a085','#7f8c8d','#f39c12',
+  '#6c3483','#1abc9c','#e74c3c',
+];
+
+function renderRatioChart(ratios, periods) {
+  const canvas = document.getElementById('ratioChart');
+  if (!canvas) return;
+  if (ratioChart) { ratioChart.destroy(); ratioChart = null; }
+  const selected = [...ratioSelected];
+  if (!selected.length) return;
+  const datasets = selected.map((key, i) => ({
+    label: labelFor(key),
+    data: periods.map(p => ratios[p]?.[key] ?? null),
+    borderColor: CHART_COLORS[i % CHART_COLORS.length],
+    backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + '22',
+    tension: 0.3,
+    pointRadius: 3,
+    spanGaps: true,
+  }));
+  const usePercent = selected.some(k => k.includes('pct') || k === 'roe' || k === 'roa' || k === 'equity_ratio' || k === 'asset_turnover');
+  ratioChart = new Chart(canvas, {
+    type: 'line',
+    data: { labels: periods, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const key = selected[ctx.datasetIndex];
+              const v = ctx.parsed.y;
+              if (v === null) return `${ctx.dataset.label}: —`;
+              if (key.includes('pct') || key === 'roe' || key === 'roa' || key === 'equity_ratio' || key === 'asset_turnover')
+                return `${ctx.dataset.label}: ${(v * 100).toFixed(1)}%`;
+              return `${ctx.dataset.label}: ${v.toFixed(2)}`;
+            }
+          }
+        },
+        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+      },
+      scales: {
+        x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
+        y: {
+          ticks: {
+            font: { size: 10 },
+            callback: (v) => usePercent ? (v * 100).toFixed(0) + '%' : v.toFixed(2),
+          }
+        }
+      }
+    }
+  });
+}
+
 function renderRatios(data) {
   const ratios = data.financial_ratios;
   if (!ratios || !Object.keys(ratios).length) return '<div class="empty">No financial ratios computed for this ticker.</div>';
   const periods = sortPeriods(Object.keys(ratios));
   const metricKeys = new Set();
   for (const p of periods) for (const k of Object.keys(ratios[p])) metricKeys.add(k);
-  const rows = [...metricKeys].map(key => ({
-    key,
-    label: labelFor(key),
-    vals: Object.fromEntries(periods.map(p => [p, ratios[p]?.[key] ?? null])),
-  }));
-  return buildTable(periods, rows, data);
+  // Order metrics: RATIO_ORDER first, then any extras
+  const ordered = RATIO_ORDER.filter(k => metricKeys.has(k));
+  for (const k of metricKeys) if (!ordered.includes(k)) ordered.push(k);
+
+  // Chart area
+  let html = '<div class="ratio-chart-wrapper">';
+  html += '<div class="ratio-chart-controls">';
+  for (const key of ordered) {
+    const active = ratioSelected.has(key) ? ' active' : '';
+    html += `<span class="ratio-chip${active}" data-metric="${key}">${labelFor(key)}</span>`;
+  }
+  html += '</div>';
+  html += '<div style="position:relative;height:320px"><canvas id="ratioChart"></canvas></div>';
+  html += '</div>';
+
+  // Table with tooltip
+  const rows = ordered.map(key => ({ key, label: labelFor(key), vals: Object.fromEntries(periods.map(p => [p, ratios[p]?.[key] ?? null])) }));
+  // Custom table with tooltip in metric name
+  html += '<div class="table-wrapper"><table><thead><tr>';
+  html += '<th class="metric-col">Metric</th>';
+  for (const p of periods) {
+    const end = getPeriodEnd(data, p);
+    html += `<th>${p}${end ? `<span class="period-end">${end}</span>` : ''}</th>`;
+  }
+  html += '</tr></thead><tbody>';
+  for (const row of rows) {
+    const def = RATIO_DEFINITIONS[row.key] || '';
+    const isTotal = TOTAL_KEYS.has(row.key);
+    html += `<tr class="${isTotal ? 'total-row' : ''}">`;
+    html += `<td class="metric-name ratio-metric-name">${row.label}${def ? `<span class="ratio-tip">${def}</span>` : ''}</td>`;
+    for (const p of periods) {
+      const v = row.vals?.[p];
+      const f = fmtVal(v, row.key);
+      html += `<td class="val ${f.cls}">${f.text}</td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
+
+  // After DOM update, init chart & chip listeners
+  setTimeout(() => {
+    renderRatioChart(ratios, periods);
+    document.querySelectorAll('.ratio-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const m = chip.dataset.metric;
+        if (ratioSelected.has(m)) ratioSelected.delete(m); else ratioSelected.add(m);
+        chip.classList.toggle('active');
+        renderRatioChart(ratios, periods);
+      });
+    });
+  }, 0);
+
+  return html;
 }
 
 function renderTagAudit(data) {
