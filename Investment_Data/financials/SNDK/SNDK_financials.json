@@ -225,7 +225,9 @@
       "Q2_FY2025": 0.72,
       "Q3_FY2025": -13.33,
       "Q2_FY2026": 0.77,
-      "Q3_FY2026": 5.46
+      "Q3_FY2026": 5.46,
+      "Q4_FY2024": 0.83,
+      "Q4_FY2025": -0.16
     },
     "eps_diluted": {
       "Q3_FY2024": 0.19,
@@ -233,7 +235,9 @@
       "Q2_FY2025": 0.72,
       "Q3_FY2025": -13.33,
       "Q2_FY2026": 0.75,
-      "Q3_FY2026": 5.15
+      "Q3_FY2026": 5.15,
+      "Q4_FY2024": 0.83,
+      "Q4_FY2025": -0.16
     },
     "shares_basic_millions": {
       "Q3_FY2024": 145.0,
@@ -241,7 +245,9 @@
       "Q2_FY2025": 145.0,
       "Q3_FY2025": 145.0,
       "Q2_FY2026": 146.0,
-      "Q3_FY2026": 147.0
+      "Q3_FY2026": 147.0,
+      "Q4_FY2024": 145.0,
+      "Q4_FY2025": 145.0
     },
     "shares_diluted_millions": {
       "Q3_FY2024": 145.0,
@@ -249,51 +255,53 @@
       "Q2_FY2025": 145.0,
       "Q3_FY2025": 145.0,
       "Q2_FY2026": 149.0,
-      "Q3_FY2026": 156.0
+      "Q3_FY2026": 156.0,
+      "Q4_FY2024": 145.0,
+      "Q4_FY2025": 145.0
     },
     "gross_margin_pct": {
-      "Q2_FY2024": 0.0967,
       "Q2_FY2025": 0.323,
-      "Q3_FY2024": 0.2716,
-      "Q1_FY2025": 0.3856,
-      "Q3_FY2026": 0.5094,
       "Q2_FY2026": 0.2977,
-      "Q4_FY2025": 0.262,
+      "Q3_FY2026": 0.5094,
+      "Q3_FY2025": 0.2254,
+      "Q2_FY2024": 0.0967,
+      "Q1_FY2025": 0.3856,
       "Q4_FY2024": 0.3614,
-      "Q3_FY2025": 0.2254
+      "Q3_FY2024": 0.2716,
+      "Q4_FY2025": 0.262
     },
     "operating_margin_pct": {
-      "Q2_FY2024": -0.1471,
       "Q2_FY2025": 0.1039,
-      "Q3_FY2024": 0.0381,
-      "Q1_FY2025": 0.1545,
-      "Q3_FY2026": 0.3521,
       "Q2_FY2026": 0.0763,
-      "Q4_FY2025": 0.0095,
+      "Q3_FY2026": 0.3521,
+      "Q3_FY2025": -1.1097,
+      "Q2_FY2024": -0.1471,
+      "Q1_FY2025": 0.1545,
       "Q4_FY2024": 0.1131,
-      "Q3_FY2025": -1.1097
+      "Q3_FY2024": 0.0381,
+      "Q4_FY2025": 0.0095
     },
     "net_margin_pct": {
-      "Q2_FY2024": -0.1808,
       "Q2_FY2025": 0.0554,
-      "Q3_FY2024": 0.0158,
-      "Q1_FY2025": 0.1121,
-      "Q3_FY2026": 0.2655,
       "Q2_FY2026": 0.0485,
-      "Q4_FY2025": -0.0121,
+      "Q3_FY2026": 0.2655,
+      "Q3_FY2025": -1.1404,
+      "Q2_FY2024": -0.1808,
+      "Q1_FY2025": 0.1121,
       "Q4_FY2024": 0.0682,
-      "Q3_FY2025": -1.1404
+      "Q3_FY2024": 0.0158,
+      "Q4_FY2025": -0.0121
     },
     "effective_tax_rate": {
-      "Q2_FY2024": -0.1577,
       "Q2_FY2025": 0.3988,
-      "Q3_FY2024": 0.5,
-      "Q1_FY2025": 0.2097,
-      "Q3_FY2026": 0.143,
       "Q2_FY2026": 0.0968,
-      "Q4_FY2025": -0.2778,
+      "Q3_FY2026": 0.143,
+      "Q3_FY2025": -0.0168,
+      "Q2_FY2024": -0.1577,
+      "Q1_FY2025": 0.2097,
       "Q4_FY2024": 0.3909,
-      "Q3_FY2025": -0.0168
+      "Q3_FY2024": 0.5,
+      "Q4_FY2025": -0.2778
     }
   },
   "balance_sheet": {
@@ -389,6 +397,13 @@
         "Q4_FY2025": 20.0,
         "Q2_FY2026": 20.0,
         "Q3_FY2026": 20.0
+      },
+      "other_current_liabilities": {
+        "Q2_FY2025": 188.0,
+        "Q3_FY2025": 114.0,
+        "Q4_FY2025": 173.0,
+        "Q2_FY2026": 208.0,
+        "Q3_FY2026": 273.0
       },
       "total_current_liabilities": {
         "Q2_FY2025": 1873.0,
@@ -699,6 +714,24 @@
         }
       ]
     },
+    "other_current_liabilities": {
+      "tags": [
+        {
+          "tag": "EmployeeRelatedLiabilitiesCurrent",
+          "label": "Employee-related Liabilities, Current",
+          "method": "llm_inference",
+          "confidence": 0.7,
+          "periods": [
+            "Q2_FY2025",
+            "Q2_FY2026",
+            "Q3_FY2025",
+            "Q3_FY2026",
+            "Q4_FY2025"
+          ],
+          "reasoning": "Employee-related liabilities are a common component of other current liabilities on balance sheets"
+        }
+      ]
+    },
     "share_based_compensation": {
       "tags": [
         {
@@ -744,6 +777,18 @@
         "Q3_FY2026": "InterestExpenseNonoperating",
         "Q4_FY2024": "InterestExpenseNonoperating",
         "Q4_FY2025": "InterestExpenseNonoperating"
+      }
+    },
+    "other_current_liabilities": {
+      "tags_used": [
+        "EmployeeRelatedLiabilitiesCurrent"
+      ],
+      "tag_by_period": {
+        "Q2_FY2025": "EmployeeRelatedLiabilitiesCurrent",
+        "Q3_FY2025": "EmployeeRelatedLiabilitiesCurrent",
+        "Q4_FY2025": "EmployeeRelatedLiabilitiesCurrent",
+        "Q2_FY2026": "EmployeeRelatedLiabilitiesCurrent",
+        "Q3_FY2026": "EmployeeRelatedLiabilitiesCurrent"
       }
     },
     "share_based_compensation": {
@@ -1767,6 +1812,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 0.83,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "",
       "statement": "income_statement",
@@ -1788,6 +1841,14 @@
       "statement": "income_statement",
       "metric": "eps_basic",
       "value": -13.33,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-06-27",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": -0.16,
       "unit": "USD_per_share"
     },
     {
@@ -1815,6 +1876,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 0.83,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "",
       "statement": "income_statement",
@@ -1836,6 +1905,14 @@
       "statement": "income_statement",
       "metric": "eps_diluted",
       "value": -13.33,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-06-27",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": -0.16,
       "unit": "USD_per_share"
     },
     {
@@ -1863,6 +1940,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 145.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "",
       "statement": "income_statement",
@@ -1881,6 +1966,14 @@
     {
       "period": "Q3_FY2025",
       "period_end": "2025-03-28",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 145.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-06-27",
       "statement": "income_statement",
       "metric": "shares_basic_millions",
       "value": 145.0,
@@ -1911,6 +2004,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 145.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "",
       "statement": "income_statement",
@@ -1929,6 +2030,14 @@
     {
       "period": "Q3_FY2025",
       "period_end": "2025-03-28",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 145.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-06-27",
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
       "value": 145.0,
@@ -2748,6 +2857,46 @@
       "statement": "balance_sheet_liabilities",
       "metric": "current_debt",
       "value": 20.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2025",
+      "period_end": "2024-12-27",
+      "statement": "balance_sheet_liabilities",
+      "metric": "other_current_liabilities",
+      "value": 188.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2025",
+      "period_end": "2025-03-28",
+      "statement": "balance_sheet_liabilities",
+      "metric": "other_current_liabilities",
+      "value": 114.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-06-27",
+      "statement": "balance_sheet_liabilities",
+      "metric": "other_current_liabilities",
+      "value": 173.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2026",
+      "period_end": "2025-10-03",
+      "statement": "balance_sheet_liabilities",
+      "metric": "other_current_liabilities",
+      "value": 208.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q3_FY2026",
+      "period_end": "2026-01-02",
+      "statement": "balance_sheet_liabilities",
+      "metric": "other_current_liabilities",
+      "value": 273.0,
       "unit": "USD_millions"
     },
     {

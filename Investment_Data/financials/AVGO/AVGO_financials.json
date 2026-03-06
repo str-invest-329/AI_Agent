@@ -469,7 +469,12 @@
       "Q3_FY2024": -0.4,
       "Q1_FY2025": 1.17,
       "Q2_FY2025": 1.05,
-      "Q3_FY2025": 0.88
+      "Q3_FY2025": 0.88,
+      "Q4_FY2021": 4.64,
+      "Q4_FY2022": 8.05,
+      "Q4_FY2023": 8.49,
+      "Q4_FY2024": 0.93,
+      "Q4_FY2025": 1.81
     },
     "eps_diluted": {
       "Q1_FY2021": 3.05,
@@ -486,7 +491,12 @@
       "Q3_FY2024": -0.4,
       "Q1_FY2025": 1.14,
       "Q2_FY2025": 1.03,
-      "Q3_FY2025": 0.85
+      "Q3_FY2025": 0.85,
+      "Q4_FY2021": 4.46,
+      "Q4_FY2022": 7.83,
+      "Q4_FY2023": 8.25,
+      "Q4_FY2024": 0.9,
+      "Q4_FY2025": 1.75
     },
     "shares_basic_millions": {
       "Q1_FY2021": 407.0,
@@ -503,7 +513,12 @@
       "Q3_FY2024": 4663.0,
       "Q1_FY2025": 4695.0,
       "Q2_FY2025": 4707.0,
-      "Q3_FY2025": 4714.0
+      "Q3_FY2025": 4714.0,
+      "Q4_FY2021": 410.0,
+      "Q4_FY2022": 409.0,
+      "Q4_FY2023": 415.0,
+      "Q4_FY2024": 4624.0,
+      "Q4_FY2025": 4712.0
     },
     "shares_diluted_millions": {
       "Q1_FY2021": 428.0,
@@ -520,88 +535,93 @@
       "Q3_FY2024": 4663.0,
       "Q1_FY2025": 4836.0,
       "Q2_FY2025": 4826.0,
-      "Q3_FY2025": 4860.0
+      "Q3_FY2025": 4860.0,
+      "Q4_FY2021": 429.0,
+      "Q4_FY2022": 423.0,
+      "Q4_FY2023": 427.0,
+      "Q4_FY2024": 4778.0,
+      "Q4_FY2025": 4853.0
     },
     "gross_margin_pct": {
-      "Q4_FY2021": 0.6262,
-      "Q1_FY2023": 0.6735,
-      "Q2_FY2024": 0.6227,
-      "Q4_FY2023": 0.6893,
-      "Q4_FY2022": 0.6636,
       "Q1_FY2024": 0.6166,
+      "Q4_FY2022": 0.6636,
+      "Q2_FY2025": 0.6796,
+      "Q4_FY2021": 0.6262,
+      "Q4_FY2023": 0.6893,
+      "Q1_FY2023": 0.6735,
+      "Q4_FY2025": 0.6799,
+      "Q3_FY2024": 0.6392,
+      "Q2_FY2022": 0.6712,
+      "Q1_FY2025": 0.6801,
+      "Q2_FY2021": 0.6138,
       "Q3_FY2023": 0.6945,
       "Q4_FY2024": 0.6405,
-      "Q2_FY2021": 0.6138,
-      "Q4_FY2025": 0.6799,
-      "Q3_FY2025": 0.671,
-      "Q3_FY2022": 0.6712,
+      "Q2_FY2024": 0.6227,
       "Q1_FY2021": 0.5938,
-      "Q3_FY2024": 0.6392,
+      "Q3_FY2022": 0.6712,
+      "Q1_FY2022": 0.6552,
       "Q3_FY2021": 0.6192,
-      "Q2_FY2022": 0.6712,
       "Q2_FY2023": 0.7002,
-      "Q2_FY2025": 0.6796,
-      "Q1_FY2025": 0.6801,
-      "Q1_FY2022": 0.6552
+      "Q3_FY2025": 0.671
     },
     "operating_margin_pct": {
-      "Q4_FY2021": 0.3485,
-      "Q1_FY2023": 0.4602,
-      "Q2_FY2024": 0.2374,
-      "Q4_FY2023": 0.4562,
-      "Q4_FY2022": 0.4464,
       "Q1_FY2024": 0.1741,
+      "Q4_FY2022": 0.4464,
+      "Q2_FY2025": 0.3885,
+      "Q4_FY2021": 0.3485,
+      "Q4_FY2023": 0.4562,
+      "Q1_FY2023": 0.4602,
+      "Q4_FY2025": 0.4168,
+      "Q3_FY2024": 0.2898,
+      "Q2_FY2022": 0.4189,
+      "Q1_FY2025": 0.4197,
+      "Q2_FY2021": 0.2988,
       "Q3_FY2023": 0.4344,
       "Q4_FY2024": 0.3292,
-      "Q2_FY2021": 0.2988,
-      "Q4_FY2025": 0.4168,
-      "Q3_FY2025": 0.369,
-      "Q3_FY2022": 0.4415,
+      "Q2_FY2024": 0.2374,
       "Q1_FY2021": 0.276,
-      "Q3_FY2024": 0.2898,
+      "Q3_FY2022": 0.4415,
+      "Q1_FY2022": 0.4033,
       "Q3_FY2021": 0.3137,
-      "Q2_FY2022": 0.4189,
       "Q2_FY2023": 0.4589,
-      "Q2_FY2025": 0.3885,
-      "Q1_FY2025": 0.4197,
-      "Q1_FY2022": 0.4033
+      "Q3_FY2025": 0.369
     },
     "net_margin_pct": {
-      "Q4_FY2021": 0.2584,
-      "Q1_FY2023": 0.4233,
-      "Q4_FY2023": 0.3791,
-      "Q4_FY2022": 0.3708,
       "Q1_FY2024": 0.1108,
-      "Q3_FY2023": 0.3721,
-      "Q2_FY2021": 0.2144,
-      "Q3_FY2022": 0.3543,
-      "Q1_FY2021": 0.1959,
-      "Q3_FY2021": 0.2659,
+      "Q4_FY2022": 0.3708,
+      "Q4_FY2021": 0.2584,
+      "Q4_FY2023": 0.3791,
+      "Q1_FY2023": 0.4233,
       "Q2_FY2022": 0.3104,
-      "Q2_FY2023": 0.3986,
-      "Q1_FY2022": 0.3112
+      "Q2_FY2021": 0.2144,
+      "Q3_FY2023": 0.3721,
+      "Q1_FY2021": 0.1959,
+      "Q3_FY2022": 0.3543,
+      "Q1_FY2022": 0.3112,
+      "Q3_FY2021": 0.2659,
+      "Q2_FY2023": 0.3986
     },
     "effective_tax_rate": {
-      "Q4_FY2021": 0.083,
-      "Q1_FY2023": 0.0172,
-      "Q2_FY2024": -0.0579,
-      "Q4_FY2023": 0.1117,
-      "Q4_FY2022": 0.0721,
       "Q1_FY2024": 0.0507,
+      "Q4_FY2022": 0.0721,
+      "Q2_FY2025": 0.0236,
+      "Q4_FY2021": 0.083,
+      "Q4_FY2023": 0.1117,
+      "Q1_FY2023": 0.0172,
+      "Q4_FY2025": -0.2401,
+      "Q3_FY2024": 1.5103,
+      "Q2_FY2022": 0.0717,
+      "Q1_FY2025": -0.0024,
+      "Q2_FY2021": -0.0047,
       "Q3_FY2023": 0.0758,
       "Q4_FY2024": -0.1175,
-      "Q2_FY2021": -0.0047,
-      "Q4_FY2025": -0.2401,
-      "Q3_FY2025": 0.2167,
-      "Q3_FY2022": 0.0788,
+      "Q2_FY2024": -0.0579,
       "Q1_FY2021": 0.0043,
-      "Q3_FY2024": 1.5103,
+      "Q3_FY2022": 0.0788,
+      "Q1_FY2022": 0.08,
       "Q3_FY2021": -0.0869,
-      "Q2_FY2022": 0.0717,
       "Q2_FY2023": 0.0632,
-      "Q2_FY2025": 0.0236,
-      "Q1_FY2025": -0.0024,
-      "Q1_FY2022": 0.08
+      "Q3_FY2025": 0.2167
     }
   },
   "balance_sheet": {
@@ -1876,7 +1896,7 @@
             "Q4_FY2024",
             "Q4_FY2025"
           ],
-          "reasoning": "Changes in accrued liabilities would be captured in the net change of other current assets and liabilities on the cash flow statement"
+          "reasoning": "Changes in accrued liabilities are typically captured in the net change of other current assets and liabilities on the cash flow statement"
         }
       ]
     },
@@ -1922,7 +1942,7 @@
           "periods": [
             "all"
           ],
-          "reasoning": "This represents proceeds from investment activities which indicates the presence of short-term marketable securities being liquidated"
+          "reasoning": "This tag captures proceeds from short-term marketable securities when they mature or are sold, which is a common way short-term investments appear in cash flow statements"
         }
       ]
     }
@@ -4036,6 +4056,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2021",
+      "period_end": "2021-10-31",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 4.64,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2022",
       "period_end": "2022-01-30",
       "statement": "income_statement",
@@ -4057,6 +4085,14 @@
       "statement": "income_statement",
       "metric": "eps_basic",
       "value": 7.4,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-10-30",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 8.05,
       "unit": "USD_per_share"
     },
     {
@@ -4084,6 +4120,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2023",
+      "period_end": "2023-10-29",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 8.49,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2024",
       "period_end": "2024-02-04",
       "statement": "income_statement",
@@ -4105,6 +4149,14 @@
       "statement": "income_statement",
       "metric": "eps_basic",
       "value": -0.4,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2024",
+      "period_end": "2024-11-03",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 0.93,
       "unit": "USD_per_share"
     },
     {
@@ -4132,6 +4184,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2025",
+      "period_end": "2025-11-02",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 1.81,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2021",
       "period_end": "2021-01-31",
       "statement": "income_statement",
@@ -4153,6 +4213,14 @@
       "statement": "income_statement",
       "metric": "eps_diluted",
       "value": 4.2,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2021",
+      "period_end": "2021-10-31",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 4.46,
       "unit": "USD_per_share"
     },
     {
@@ -4180,6 +4248,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2022",
+      "period_end": "2022-10-30",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 7.83,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2023",
       "period_end": "2023-01-29",
       "statement": "income_statement",
@@ -4201,6 +4277,14 @@
       "statement": "income_statement",
       "metric": "eps_diluted",
       "value": 7.74,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2023",
+      "period_end": "2023-10-29",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 8.25,
       "unit": "USD_per_share"
     },
     {
@@ -4228,6 +4312,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "2024-11-03",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 0.9,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "2025-02-02",
       "statement": "income_statement",
@@ -4249,6 +4341,14 @@
       "statement": "income_statement",
       "metric": "eps_diluted",
       "value": 0.85,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-11-02",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 1.75,
       "unit": "USD_per_share"
     },
     {
@@ -4276,6 +4376,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2021",
+      "period_end": "2021-10-31",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 410.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2022",
       "period_end": "2022-01-30",
       "statement": "income_statement",
@@ -4297,6 +4405,14 @@
       "statement": "income_statement",
       "metric": "shares_basic_millions",
       "value": 405.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-10-30",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 409.0,
       "unit": "millions_shares"
     },
     {
@@ -4324,6 +4440,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2023",
+      "period_end": "2023-10-29",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 415.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2024",
       "period_end": "2024-02-04",
       "statement": "income_statement",
@@ -4345,6 +4469,14 @@
       "statement": "income_statement",
       "metric": "shares_basic_millions",
       "value": 4663.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2024",
+      "period_end": "2024-11-03",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 4624.0,
       "unit": "millions_shares"
     },
     {
@@ -4372,6 +4504,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2025",
+      "period_end": "2025-11-02",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 4712.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2021",
       "period_end": "2021-01-31",
       "statement": "income_statement",
@@ -4390,6 +4530,14 @@
     {
       "period": "Q3_FY2021",
       "period_end": "2021-08-01",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 429.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2021",
+      "period_end": "2021-10-31",
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
       "value": 429.0,
@@ -4420,6 +4568,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2022",
+      "period_end": "2022-10-30",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 423.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2023",
       "period_end": "2023-01-29",
       "statement": "income_statement",
@@ -4438,6 +4594,14 @@
     {
       "period": "Q3_FY2023",
       "period_end": "2023-07-30",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 427.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2023",
+      "period_end": "2023-10-29",
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
       "value": 427.0,
@@ -4468,6 +4632,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "2024-11-03",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 4778.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "2025-02-02",
       "statement": "income_statement",
@@ -4489,6 +4661,14 @@
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
       "value": 4860.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-11-02",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 4853.0,
       "unit": "millions_shares"
     },
     {

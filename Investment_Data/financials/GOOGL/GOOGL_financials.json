@@ -413,7 +413,12 @@
       "Q3_FY2024": 2.14,
       "Q1_FY2025": 2.84,
       "Q2_FY2025": 2.33,
-      "Q3_FY2025": 2.89
+      "Q3_FY2025": 2.89,
+      "Q4_FY2021": 31.12,
+      "Q4_FY2022": 1.06,
+      "Q4_FY2023": 1.65,
+      "Q4_FY2024": 2.17,
+      "Q4_FY2025": 2.85
     },
     "eps_diluted": {
       "Q1_FY2021": 26.29,
@@ -430,7 +435,12 @@
       "Q3_FY2024": 2.12,
       "Q1_FY2025": 2.81,
       "Q2_FY2025": 2.31,
-      "Q3_FY2025": 2.87
+      "Q3_FY2025": 2.87,
+      "Q4_FY2021": 30.67,
+      "Q4_FY2022": 1.06,
+      "Q4_FY2023": 1.64,
+      "Q4_FY2024": 2.14,
+      "Q4_FY2025": 2.82
     },
     "shares_basic_millions": {
       "Q2_FY2023": 12668.0,
@@ -440,7 +450,11 @@
       "Q3_FY2024": 12290.0,
       "Q1_FY2025": 12183.0,
       "Q2_FY2025": 12122.0,
-      "Q3_FY2025": 12086.0
+      "Q3_FY2025": 12086.0,
+      "Q4_FY2022": 13063.0,
+      "Q4_FY2023": 12630.0,
+      "Q4_FY2024": 12319.0,
+      "Q4_FY2025": 12116.0
     },
     "shares_diluted_millions": {
       "Q2_FY2023": 12764.0,
@@ -450,74 +464,78 @@
       "Q3_FY2024": 12419.0,
       "Q1_FY2025": 12291.0,
       "Q2_FY2025": 12198.0,
-      "Q3_FY2025": 12203.0
+      "Q3_FY2025": 12203.0,
+      "Q4_FY2022": 13159.0,
+      "Q4_FY2023": 12722.0,
+      "Q4_FY2024": 12447.0,
+      "Q4_FY2025": 12230.0
     },
     "gross_margin_pct": {},
     "operating_margin_pct": {
-      "Q2_FY2021": 0.3129,
-      "Q3_FY2022": 0.248,
-      "Q4_FY2021": 0.2905,
-      "Q1_FY2024": 0.3163,
-      "Q2_FY2025": 0.3243,
-      "Q4_FY2025": 0.3157,
-      "Q2_FY2023": 0.2927,
-      "Q2_FY2024": 0.3236,
-      "Q4_FY2023": 0.2746,
-      "Q1_FY2023": 0.2495,
-      "Q3_FY2025": 0.3051,
-      "Q3_FY2023": 0.2783,
-      "Q1_FY2025": 0.3392,
-      "Q3_FY2024": 0.3231,
-      "Q3_FY2021": 0.323,
       "Q1_FY2021": 0.2972,
-      "Q1_FY2022": 0.2955,
-      "Q4_FY2022": 0.2388,
+      "Q1_FY2024": 0.3163,
       "Q2_FY2022": 0.2792,
-      "Q4_FY2024": 0.3211
+      "Q4_FY2022": 0.2388,
+      "Q1_FY2023": 0.2495,
+      "Q4_FY2025": 0.3157,
+      "Q1_FY2025": 0.3392,
+      "Q3_FY2025": 0.3051,
+      "Q4_FY2023": 0.2746,
+      "Q3_FY2023": 0.2783,
+      "Q3_FY2024": 0.3231,
+      "Q4_FY2024": 0.3211,
+      "Q3_FY2022": 0.248,
+      "Q2_FY2024": 0.3236,
+      "Q2_FY2025": 0.3243,
+      "Q3_FY2021": 0.323,
+      "Q2_FY2023": 0.2927,
+      "Q1_FY2022": 0.2955,
+      "Q2_FY2021": 0.3129,
+      "Q4_FY2021": 0.2905
     },
     "net_margin_pct": {
-      "Q2_FY2021": 0.2994,
-      "Q3_FY2022": 0.2013,
-      "Q4_FY2021": 0.274,
-      "Q1_FY2024": 0.2938,
-      "Q2_FY2025": 0.2924,
-      "Q4_FY2025": 0.3027,
-      "Q2_FY2023": 0.2462,
-      "Q2_FY2024": 0.2787,
-      "Q4_FY2023": 0.2397,
-      "Q1_FY2023": 0.2157,
-      "Q3_FY2025": 0.3418,
-      "Q3_FY2023": 0.2567,
-      "Q1_FY2025": 0.3828,
-      "Q3_FY2024": 0.298,
-      "Q3_FY2021": 0.2908,
       "Q1_FY2021": 0.3241,
-      "Q1_FY2022": 0.2417,
-      "Q4_FY2022": 0.1792,
+      "Q1_FY2024": 0.2938,
       "Q2_FY2022": 0.2296,
-      "Q4_FY2024": 0.2751
+      "Q4_FY2022": 0.1792,
+      "Q1_FY2023": 0.2157,
+      "Q4_FY2025": 0.3027,
+      "Q1_FY2025": 0.3828,
+      "Q3_FY2025": 0.3418,
+      "Q4_FY2023": 0.2397,
+      "Q3_FY2023": 0.2567,
+      "Q3_FY2024": 0.298,
+      "Q4_FY2024": 0.2751,
+      "Q3_FY2022": 0.2013,
+      "Q2_FY2024": 0.2787,
+      "Q2_FY2025": 0.2924,
+      "Q3_FY2021": 0.2908,
+      "Q2_FY2023": 0.2462,
+      "Q1_FY2022": 0.2417,
+      "Q2_FY2021": 0.2994,
+      "Q4_FY2021": 0.274
     },
     "effective_tax_rate": {
-      "Q2_FY2021": 0.1574,
-      "Q3_FY2022": 0.1431,
-      "Q4_FY2021": 0.1541,
-      "Q1_FY2024": 0.1643,
-      "Q2_FY2025": 0.1691,
-      "Q4_FY2025": 0.1192,
-      "Q2_FY2023": 0.1614,
-      "Q2_FY2024": 0.1427,
-      "Q4_FY2023": 0.1526,
-      "Q1_FY2023": 0.1732,
-      "Q3_FY2025": 0.2048,
-      "Q3_FY2023": 0.0711,
-      "Q1_FY2025": 0.1735,
-      "Q3_FY2024": 0.1705,
-      "Q3_FY2021": 0.179,
       "Q1_FY2021": 0.1575,
-      "Q1_FY2022": 0.1319,
-      "Q4_FY2022": 0.2055,
+      "Q1_FY2024": 0.1643,
       "Q2_FY2022": 0.1584,
-      "Q4_FY2024": 0.177
+      "Q4_FY2022": 0.2055,
+      "Q1_FY2023": 0.1732,
+      "Q4_FY2025": 0.1192,
+      "Q1_FY2025": 0.1735,
+      "Q3_FY2025": 0.2048,
+      "Q4_FY2023": 0.1526,
+      "Q3_FY2023": 0.0711,
+      "Q3_FY2024": 0.1705,
+      "Q4_FY2024": 0.177,
+      "Q3_FY2022": 0.1431,
+      "Q2_FY2024": 0.1427,
+      "Q2_FY2025": 0.1691,
+      "Q3_FY2021": 0.179,
+      "Q2_FY2023": 0.1614,
+      "Q1_FY2022": 0.1319,
+      "Q2_FY2021": 0.1574,
+      "Q4_FY2021": 0.1541
     }
   },
   "balance_sheet": {
@@ -956,6 +974,13 @@
         "Q4_FY2023": 5659.0,
         "Q4_FY2024": 5810.0,
         "Q4_FY2025": 7071.0
+      },
+      "other_asset_impairment": {
+        "Q1_FY2021": 0.0,
+        "Q2_FY2021": 0.0,
+        "Q1_FY2022": 0.0,
+        "Q2_FY2022": 0.0,
+        "Q3_FY2021": 0.0
       },
       "change_in_receivables": {
         "Q1_FY2021": -2794.0,
@@ -1433,7 +1458,7 @@
             "Q4_FY2024",
             "Q4_FY2025"
           ],
-          "reasoning": "This is the General and Administrative component of SG&A expenses, though it doesn't include the selling component which may be captured elsewhere"
+          "reasoning": "Represents G&A expenses which is part of SG&A, though may not include selling expenses"
         }
       ]
     },
@@ -1585,7 +1610,25 @@
             "Q4_FY2024",
             "Q4_FY2025"
           ],
-          "reasoning": "This represents common stock including additional paid-in capital, which is the standard way APIC is reported on balance sheets"
+          "reasoning": "Represents common stock including additional paid-in capital combined"
+        }
+      ]
+    },
+    "other_asset_impairment": {
+      "tags": [
+        {
+          "tag": "ImpairmentOfInvestments",
+          "label": "Other than Temporary Impairment Losses, Investments",
+          "method": "llm_inference",
+          "confidence": 0.8,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q3_FY2021"
+          ],
+          "reasoning": "Represents impairment losses on investments, which is a form of asset impairment"
         }
       ]
     },
@@ -1650,7 +1693,7 @@
             "Q4_FY2024",
             "Q4_FY2025"
           ],
-          "reasoning": "This directly represents proceeds from debt issuance, net of costs, which matches the proceeds from debt metric"
+          "reasoning": "Directly represents proceeds from debt issuance net of costs"
         }
       ]
     },
@@ -1683,6 +1726,20 @@
             "Q4_FY2024",
             "Q4_FY2025"
           ]
+        }
+      ]
+    },
+    "treasury_stock": {
+      "tags": [
+        {
+          "tag": "StockRepurchasedAndRetiredDuringPeriodValue",
+          "label": "Stock Repurchased and Retired During Period, Value",
+          "method": "llm_inference",
+          "confidence": 0.7,
+          "periods": [
+            "all"
+          ],
+          "reasoning": "Represents stock repurchases which reduces outstanding shares similar to treasury stock"
         }
       ]
     }
@@ -1880,6 +1937,18 @@
         "Q2_FY2025": "CommonStocksIncludingAdditionalPaidInCapital",
         "Q3_FY2025": "CommonStocksIncludingAdditionalPaidInCapital",
         "Q4_FY2025": "CommonStocksIncludingAdditionalPaidInCapital"
+      }
+    },
+    "other_asset_impairment": {
+      "tags_used": [
+        "ImpairmentOfInvestments"
+      ],
+      "tag_by_period": {
+        "Q1_FY2021": "ImpairmentOfInvestments",
+        "Q2_FY2021": "ImpairmentOfInvestments",
+        "Q1_FY2022": "ImpairmentOfInvestments",
+        "Q2_FY2022": "ImpairmentOfInvestments",
+        "Q3_FY2021": "ImpairmentOfInvestments"
       }
     },
     "change_in_accounts_payable": {
@@ -3783,6 +3852,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2021",
+      "period_end": "",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 31.12,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2022",
       "period_end": "",
       "statement": "income_statement",
@@ -3804,6 +3881,14 @@
       "statement": "income_statement",
       "metric": "eps_basic",
       "value": 1.07,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-12-31",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 1.06,
       "unit": "USD_per_share"
     },
     {
@@ -3831,6 +3916,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2023",
+      "period_end": "2023-12-31",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 1.65,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2024",
       "period_end": "2024-03-31",
       "statement": "income_statement",
@@ -3852,6 +3945,14 @@
       "statement": "income_statement",
       "metric": "eps_basic",
       "value": 2.14,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2024",
+      "period_end": "2024-12-31",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 2.17,
       "unit": "USD_per_share"
     },
     {
@@ -3879,6 +3980,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2025",
+      "period_end": "2025-12-31",
+      "statement": "income_statement",
+      "metric": "eps_basic",
+      "value": 2.85,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2021",
       "period_end": "",
       "statement": "income_statement",
@@ -3903,6 +4012,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2021",
+      "period_end": "",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 30.67,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2022",
       "period_end": "",
       "statement": "income_statement",
@@ -3921,6 +4038,14 @@
     {
       "period": "Q3_FY2022",
       "period_end": "2022-09-30",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 1.06,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-12-31",
       "statement": "income_statement",
       "metric": "eps_diluted",
       "value": 1.06,
@@ -3951,6 +4076,14 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2023",
+      "period_end": "2023-12-31",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 1.64,
+      "unit": "USD_per_share"
+    },
+    {
       "period": "Q1_FY2024",
       "period_end": "2024-03-31",
       "statement": "income_statement",
@@ -3972,6 +4105,14 @@
       "statement": "income_statement",
       "metric": "eps_diluted",
       "value": 2.12,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2024",
+      "period_end": "2024-12-31",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 2.14,
       "unit": "USD_per_share"
     },
     {
@@ -3999,6 +4140,22 @@
       "unit": "USD_per_share"
     },
     {
+      "period": "Q4_FY2025",
+      "period_end": "2025-12-31",
+      "statement": "income_statement",
+      "metric": "eps_diluted",
+      "value": 2.82,
+      "unit": "USD_per_share"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-12-31",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 13063.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q2_FY2023",
       "period_end": "2023-06-30",
       "statement": "income_statement",
@@ -4012,6 +4169,14 @@
       "statement": "income_statement",
       "metric": "shares_basic_millions",
       "value": 12581.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2023",
+      "period_end": "2023-12-31",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 12630.0,
       "unit": "millions_shares"
     },
     {
@@ -4039,6 +4204,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "2024-12-31",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 12319.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "2025-03-31",
       "statement": "income_statement",
@@ -4063,6 +4236,22 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2025",
+      "period_end": "2025-12-31",
+      "statement": "income_statement",
+      "metric": "shares_basic_millions",
+      "value": 12116.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2022",
+      "period_end": "2022-12-31",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 13159.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q2_FY2023",
       "period_end": "2023-06-30",
       "statement": "income_statement",
@@ -4076,6 +4265,14 @@
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
       "value": 12696.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2023",
+      "period_end": "2023-12-31",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 12722.0,
       "unit": "millions_shares"
     },
     {
@@ -4103,6 +4300,14 @@
       "unit": "millions_shares"
     },
     {
+      "period": "Q4_FY2024",
+      "period_end": "2024-12-31",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 12447.0,
+      "unit": "millions_shares"
+    },
+    {
       "period": "Q1_FY2025",
       "period_end": "2025-03-31",
       "statement": "income_statement",
@@ -4124,6 +4329,14 @@
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
       "value": 12203.0,
+      "unit": "millions_shares"
+    },
+    {
+      "period": "Q4_FY2025",
+      "period_end": "2025-12-31",
+      "statement": "income_statement",
+      "metric": "shares_diluted_millions",
+      "value": 12230.0,
       "unit": "millions_shares"
     },
     {
