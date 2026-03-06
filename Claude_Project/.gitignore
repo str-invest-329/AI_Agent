@@ -1,0 +1,13 @@
+# 排除大型 Docker 硬碟檔
+*.raw
+*.vmdk
+
+# 排除敏感設定
+settings.local.json
+
+# 排除系統暫存
+.DS_Store
+**/.DS_Store
+
+# 排除財務資料備份檔
+*_backup_*.json

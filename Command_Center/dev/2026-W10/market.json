@@ -1,0 +1,70 @@
+{
+  "fetched_at": "2026-03-05T10:19:03Z",
+  "indices": [
+    {
+      "id": "dow_jones",
+      "name": "Dow Jones",
+      "symbol": "DIA",
+      "price": 487.74,
+      "change": 2.22,
+      "change_pct": 0.46,
+      "prev_close": 485.52,
+      "high": 489.03,
+      "low": 483.95,
+      "open": 486.56,
+      "timestamp": 1772658000
+    },
+    {
+      "id": "sp500",
+      "name": "S&P 500",
+      "symbol": "SPY",
+      "price": 685.13,
+      "change": 4.8,
+      "change_pct": 0.71,
+      "prev_close": 680.33,
+      "high": 687.09,
+      "low": 679.62,
+      "open": 681.63,
+      "timestamp": 1772658000
+    },
+    {
+      "id": "nasdaq",
+      "name": "NASDAQ",
+      "symbol": "QQQ",
+      "price": 610.75,
+      "change": 9.17,
+      "change_pct": 1.52,
+      "prev_close": 601.58,
+      "high": 612.88,
+      "low": 603.43,
+      "open": 604.16,
+      "timestamp": 1772658000
+    },
+    {
+      "id": "russell2000",
+      "name": "Russell 2000",
+      "symbol": "IWM",
+      "price": 261.76,
+      "change": 2.52,
+      "change_pct": 0.97,
+      "prev_close": 259.24,
+      "high": 262.96,
+      "low": 258.82,
+      "open": 261.2,
+      "timestamp": 1772658000
+    },
+    {
+      "id": "dxy",
+      "name": "US Dollar Index",
+      "symbol": "UUP",
+      "price": 27.41,
+      "change": -0.05,
+      "change_pct": -0.18,
+      "prev_close": 27.46,
+      "high": 27.455,
+      "low": 27.39,
+      "open": 27.42,
+      "timestamp": 1772658000
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "_comment": "共用色彩主題設定。供所有報告、網頁輸出引用。",
+  "khouse": {
+    "primary":     "#C02734",
+    "dark":        "#8B1A22",
+    "light":       "#E05562",
+    "white":       "#FFFFFF"
+  },
+  "themes": {
+    "foggy_white": {
+      "_name": "霧白典雅",
+      "page":        "#F8F4F4",
+      "card":        "#FFFFFF",
+      "primary":     "#C02734",
+      "dark":        "#8B1A22",
+      "text":        "#2C1517",
+      "tag_bg":      "#FDE8EA"
+    },
+    "charcoal": {
+      "_name": "炭灰商務",
+      "page":        "#1C1C1E",
+      "card":        "#2C2C2E",
+      "primary":     "#C02734",
+      "border":      "#3A3A3C",
+      "text":        "#EBEBF0",
+      "muted":       "#8E8E93"
+    },
+    "deep_red": {
+      "_name": "深紅奢華",
+      "page":        "#1A0A0C",
+      "card":        "#2D1216",
+      "primary":     "#C02734",
+      "border":      "#4A1F25",
+      "gold":        "#C9A96E",
+      "text":        "#F5E0E2"
+    }
+  },
+  "brand": {
+    "primary":     "#C02734",
+    "secondary":   "#8B1A22",
+    "accent":      "#E05562",
+    "highlight":   "#FFFFFF"
+  },
+  "chart": {
+    "positive":    "#26A69A",
+    "negative":    "#EF5350",
+    "neutral":     "#78909C",
+    "series": [
+      "#5C6BC0",
+      "#26A69A",
+      "#FFA726",
+      "#EC407A",
+      "#AB47BC",
+      "#29B6F6",
+      "#D4E157",
+      "#FF7043"
+    ]
+  },
+  "text": {
+    "primary":     "#FFFFFF",
+    "secondary":   "#B0BEC5",
+    "muted":       "#607D8B",
+    "on_light":    "#1A1A2E"
+  },
+  "background": {
+    "page":        "#0D1117",
+    "card":        "#161B22",
+    "border":      "#30363D",
+    "hover":       "#1F2937"
+  },
+  "status": {
+    "success":     "#2EA043",
+    "warning":     "#D29922",
+    "danger":      "#DA3633",
+    "info":        "#388BFD"
+  }
+}

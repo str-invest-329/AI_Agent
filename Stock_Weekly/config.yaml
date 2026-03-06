@@ -1,0 +1,26 @@
+# 個股週報設定檔
+
+# 要追蹤的股票清單
+watchlist:
+  tw:           # 台股（不含 .TW 後綴）
+    - "2330"    # 台積電
+    - "2317"    # 鴻海
+  us:           # 美股
+    - "NVDA"
+    - "AAPL"
+
+# 報告週期（往回幾天）
+report_period_days: 7
+
+# 技術指標設定
+technical:
+  ma_periods: [5, 20, 60]   # 均線週期
+  rsi_period: 14
+  macd:
+    fast: 12
+    slow: 26
+    signal: 9
+  bollinger:
+    period: 20
+    std_dev: 2
+

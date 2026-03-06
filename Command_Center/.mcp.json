@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "fred": {
+      "command": "npx",
+      "args": ["-y", "fred-mcp-server"],
+      "env": {
+        "FRED_API_KEY": "${FRED_API_KEY}"
+      }
+    },
+    "macro": {
+      "command": "uvx",
+      "args": ["macroeconomic-mcp-server"],
+      "env": {
+        "FRED_API_KEY": "${FRED_API_KEY}"
+      }
+    }
+  }
+}
