@@ -172,6 +172,19 @@ tr:nth-child(odd):not(.section-row):not(.total-row) td.metric-name { background:
 .ratio-chip:hover:not(.active) { border-color: var(--tab-hover); color: var(--tab-hover); }
 #ratioChart { max-height: 340px; }
 
+/* View mode toggle */
+.view-toggle {
+  display: flex; gap: 0; margin-left: 16px;
+}
+.view-toggle button {
+  padding: 4px 14px; font-size: 12px; font-weight: 600; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.3); background: transparent; color: rgba(255,255,255,0.7);
+  transition: all 0.15s;
+}
+.view-toggle button:first-child { border-radius: 4px 0 0 4px; }
+.view-toggle button:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+.view-toggle button.active { background: rgba(255,255,255,0.2); color: #fff; }
+
 @media (max-width: 768px) {
   .topbar { padding: 8px 12px; }
   .tabs { padding: 0 12px; }
@@ -186,6 +199,10 @@ tr:nth-child(odd):not(.section-row):not(.total-row) td.metric-name { background:
 <div class="topbar">
   <h1>Financials Viewer</h1>
   <select id="ticker-select"><option value="">-- Select Ticker --</option></select>
+  <div class="view-toggle" id="view-toggle">
+    <button class="active" data-mode="quarterly">Quarterly</button>
+    <button data-mode="annual">Annual</button>
+  </div>
   <div class="meta" id="meta-info"></div>
 </div>
 
@@ -198,11 +215,11 @@ tr:nth-child(odd):not(.section-row):not(.total-row) td.metric-name { background:
 <script>
 const PERIOD_ORDER_WEIGHT = (p) => {
   const m = p.match(/Q(\d+)_FY(\d+)/);
-  if (!m) {
-    if (p.includes('START')) return -1;
-    return 0;
-  }
-  return parseInt(m[2]) * 10 + parseInt(m[1]);
+  if (m) return parseInt(m[2]) * 10 + parseInt(m[1]);
+  const fy = p.match(/^FY(\d+)$/);
+  if (fy) return parseInt(fy[1]) * 10 + 5; // sort after Q4 of previous FY
+  if (p.includes('START')) return -1;
+  return 0;
 };
 
 const sortPeriods = (periods) => [...periods].sort((a, b) => PERIOD_ORDER_WEIGHT(a) - PERIOD_ORDER_WEIGHT(b));
@@ -678,9 +695,180 @@ function renderTagAudit(data) {
   return html;
 }
 
+// ── Annual aggregation ──
+const SUM_EXCLUDE = new Set(['eps_basic', 'eps_diluted', 'shares_basic', 'shares_diluted',
+  'shares_basic_millions', 'shares_diluted_millions']);
+const AVG_KEYS = new Set(['shares_basic', 'shares_diluted', 'shares_basic_millions', 'shares_diluted_millions']);
+
+function groupByFY(periods) {
+  const map = {};
+  for (const p of periods) {
+    const m = p.match(/Q(\d+)_FY(\d+)/);
+    if (!m) continue;
+    const fy = `FY${m[2]}`;
+    if (!map[fy]) map[fy] = [];
+    map[fy].push(p);
+  }
+  return map;
+}
+
+function aggVals(valObj, fyMap, mode) {
+  // mode: 'sum', 'avg', 'last' (Q4 snapshot)
+  const result = {};
+  for (const [fy, quarters] of Object.entries(fyMap)) {
+    const vals = quarters.map(q => valObj[q]).filter(v => v !== null && v !== undefined);
+    if (!vals.length) continue;
+    if (mode === 'sum') result[fy] = Math.round(vals.reduce((a, b) => a + b, 0) * 100) / 100;
+    else if (mode === 'avg') result[fy] = Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 100) / 100;
+    else { // last — use Q4 value
+      const q4 = quarters.find(q => q.startsWith('Q4'));
+      if (q4 && valObj[q4] !== null && valObj[q4] !== undefined) result[fy] = valObj[q4];
+    }
+  }
+  return result;
+}
+
+function toAnnualData(data) {
+  const isFyMap = groupByFY(data.metadata.periods_income_statement || []);
+  const bsFyMap = groupByFY(data.metadata.periods_balance_sheet || []);
+  const fys = [...new Set([...Object.keys(isFyMap), ...Object.keys(bsFyMap)])].sort();
+
+  // IS: sum (except EPS → derive, shares → avg)
+  const annIS = {};
+  const srcIS = data.income_statement || {};
+  for (const [key, vals] of Object.entries(srcIS)) {
+    if (SUM_EXCLUDE.has(key)) {
+      if (AVG_KEYS.has(key)) annIS[key] = aggVals(vals, isFyMap, 'avg');
+    } else {
+      annIS[key] = aggVals(vals, isFyMap, 'sum');
+    }
+  }
+  // Derive EPS from annual net_income / shares
+  for (const epsKey of ['eps_basic', 'eps_diluted']) {
+    const sharesKey = epsKey === 'eps_basic' ? 'shares_basic' : 'shares_diluted';
+    const altSharesKey = sharesKey + '_millions';
+    const ni = annIS.net_income || {};
+    const sh = annIS[sharesKey] || annIS[altSharesKey] || {};
+    if (Object.keys(ni).length && Object.keys(sh).length) {
+      annIS[epsKey] = {};
+      for (const fy of fys) {
+        if (ni[fy] !== undefined && sh[fy] && sh[fy] !== 0) {
+          annIS[epsKey][fy] = Math.round((ni[fy] / sh[fy]) * 100) / 100;
+        }
+      }
+    }
+  }
+
+  // BS: Q4 snapshot
+  const annBS = { assets: {}, liabilities: {}, equity: {} };
+  const srcBS = data.balance_sheet || {};
+  for (const sec of ['assets', 'liabilities', 'equity']) {
+    if (!srcBS[sec]) continue;
+    for (const [key, vals] of Object.entries(srcBS[sec])) {
+      annBS[sec][key] = aggVals(vals, bsFyMap, 'last');
+    }
+  }
+
+  // CF: sum
+  const annCF = {};
+  const srcCF = data.cash_flow_statement || {};
+  for (const secKey of ['operating_activities', 'investing_activities', 'financing_activities']) {
+    if (!srcCF[secKey]) continue;
+    annCF[secKey] = {};
+    for (const [key, vals] of Object.entries(srcCF[secKey])) {
+      if (typeof vals === 'object' && vals !== null && !Array.isArray(vals)) {
+        annCF[secKey][key] = aggVals(vals, isFyMap, 'sum');
+      }
+    }
+  }
+  // CF summary items
+  for (const key of ['fx_effect_on_cash', 'net_change_in_cash', 'free_cash_flow']) {
+    if (srcCF[key] && typeof srcCF[key] === 'object') {
+      annCF[key] = aggVals(srcCF[key], isFyMap, 'sum');
+    }
+  }
+  // beginning_cash = Q1 value, ending_cash = Q4 value
+  for (const key of ['beginning_cash', 'ending_cash']) {
+    if (srcCF[key] && typeof srcCF[key] === 'object') {
+      annCF[key] = aggVals(srcCF[key], isFyMap, key === 'ending_cash' ? 'last' : 'sum');
+    }
+  }
+  // For beginning_cash, pick Q1 of each FY
+  if (srcCF.beginning_cash) {
+    const bc = {};
+    for (const [fy, quarters] of Object.entries(isFyMap)) {
+      const q1 = quarters.find(q => q.startsWith('Q1'));
+      if (q1 && srcCF.beginning_cash[q1] !== undefined) bc[fy] = srcCF.beginning_cash[q1];
+    }
+    annCF.beginning_cash = bc;
+  }
+
+  // Ratios: recompute from annual IS + Q4 BS
+  const annRatios = {};
+  for (const fy of fys) {
+    const r = {};
+    const ca = annBS.assets?.total_current_assets?.[fy];
+    const cl = annBS.liabilities?.total_current_liabilities?.[fy];
+    const inv = annBS.assets?.inventories?.[fy];
+    const cash = annBS.assets?.cash_and_cash_equivalents?.[fy];
+    const ta = annBS.assets?.total_assets?.[fy];
+    const tl = annBS.liabilities?.total_liabilities?.[fy];
+    const te = annBS.equity?.total_equity?.[fy];
+    const ltd = annBS.liabilities?.long_term_debt?.[fy] || 0;
+    const cd = annBS.liabilities?.current_debt?.[fy] || 0;
+    const totalDebt = ltd + cd;
+    const rev = annIS.revenue?.[fy];
+    const gp = annIS.gross_profit?.[fy];
+    const oi = annIS.operating_income?.[fy];
+    const ni = annIS.net_income?.[fy];
+    const intExp = annIS.interest_expense?.[fy];
+    const ocf = annCF.operating_activities?.net_cash_from_operating?.[fy];
+    const capex = annCF.investing_activities?.capital_expenditures?.[fy];
+    const fcfVal = (ocf != null && capex != null) ? ocf - capex : annCF.free_cash_flow?.[fy];
+
+    if (ca && cl && cl !== 0) r.current_ratio = Math.round(ca / cl * 100) / 100;
+    if (ca != null && inv != null && cl && cl !== 0) r.quick_ratio = Math.round((ca - (inv || 0)) / cl * 100) / 100;
+    if (tl != null && te && te !== 0) r.debt_to_equity = Math.round(tl / te * 100) / 100;
+    if (totalDebt && te && te !== 0) r.net_debt_to_equity = Math.round((totalDebt - (cash || 0)) / te * 100) / 100;
+    if (ta && ta !== 0 && te != null) r.equity_ratio = Math.round(te / ta * 10000) / 10000;
+    if (gp != null && rev && rev !== 0) r.gross_margin_pct = Math.round(gp / rev * 10000) / 10000;
+    if (oi != null && rev && rev !== 0) r.operating_margin_pct = Math.round(oi / rev * 10000) / 10000;
+    if (ni != null && rev && rev !== 0) r.net_margin_pct = Math.round(ni / rev * 10000) / 10000;
+    if (ni != null && te && te !== 0) r.roe = Math.round(ni / te * 10000) / 10000;
+    if (ni != null && ta && ta !== 0) r.roa = Math.round(ni / ta * 10000) / 10000;
+    if (rev != null && ta && ta !== 0) r.asset_turnover = Math.round(rev / ta * 10000) / 10000;
+    if (oi != null && intExp && intExp !== 0) r.interest_coverage = Math.round(oi / intExp * 100) / 100;
+    if (fcfVal != null && rev && rev !== 0) r.fcf_margin_pct = Math.round(fcfVal / rev * 10000) / 10000;
+
+    if (Object.keys(r).length) annRatios[fy] = r;
+  }
+
+  // Filings: map FY → Q4 filing
+  const annFilings = {};
+  for (const [fy, quarters] of Object.entries(bsFyMap)) {
+    const q4 = quarters.find(q => q.startsWith('Q4'));
+    if (q4 && data.filings?.[q4]) annFilings[fy] = data.filings[q4];
+  }
+
+  return {
+    metadata: {
+      ...data.metadata,
+      periods_income_statement: fys,
+      periods_balance_sheet: fys,
+    },
+    filings: annFilings,
+    income_statement: annIS,
+    balance_sheet: annBS,
+    cash_flow_statement: annCF,
+    financial_ratios: annRatios,
+    classification_audit: data.classification_audit,
+  };
+}
+
 // ── App state ──
 let currentData = null;
 let currentTab = 'is';
+let viewMode = 'quarterly';
 
 const TAB_CONFIG = [
   { id: 'is', label: 'Income Statement', render: renderIncomeStatement },
@@ -704,14 +892,20 @@ function renderTabs() {
   });
 }
 
+function getDisplayData() {
+  if (!currentData) return null;
+  return viewMode === 'annual' ? toAnnualData(currentData) : currentData;
+}
+
 function renderContent() {
   const content = document.getElementById('content');
-  if (!currentData) {
+  const displayData = getDisplayData();
+  if (!displayData) {
     content.innerHTML = '<div class="loading">Select a ticker to view financial statements.</div>';
     return;
   }
   const cfg = TAB_CONFIG.find(t => t.id === currentTab);
-  content.innerHTML = cfg.render(currentData);
+  content.innerHTML = cfg.render(displayData);
 }
 
 function updateMeta(data) {
@@ -754,6 +948,16 @@ async function init() {
     }
   }
   select.addEventListener('change', () => loadTicker(select.value));
+
+  // View mode toggle
+  document.querySelectorAll('#view-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      viewMode = btn.dataset.mode;
+      document.querySelectorAll('#view-toggle button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderContent();
+    });
+  });
 }
 
 init();
