@@ -432,70 +432,70 @@
     },
     "gross_margin_pct": {},
     "operating_margin_pct": {
-      "Q2_FY2021": 0.3129,
-      "Q3_FY2024": 0.3231,
-      "Q2_FY2023": 0.2927,
-      "Q4_FY2021": 0.2905,
-      "Q1_FY2024": 0.3163,
       "Q2_FY2024": 0.3236,
-      "Q3_FY2021": 0.323,
-      "Q3_FY2023": 0.2783,
-      "Q4_FY2023": 0.2746,
-      "Q1_FY2021": 0.2972,
-      "Q3_FY2025": 0.3051,
-      "Q4_FY2024": 0.3211,
-      "Q2_FY2022": 0.2792,
-      "Q3_FY2022": 0.248,
-      "Q4_FY2022": 0.2388,
-      "Q1_FY2022": 0.2955,
+      "Q4_FY2021": 0.2905,
+      "Q2_FY2023": 0.2927,
+      "Q1_FY2024": 0.3163,
       "Q4_FY2025": 0.3157,
-      "Q1_FY2023": 0.2495,
+      "Q3_FY2025": 0.3051,
+      "Q4_FY2022": 0.2388,
+      "Q1_FY2021": 0.2972,
+      "Q4_FY2024": 0.3211,
+      "Q4_FY2023": 0.2746,
+      "Q1_FY2022": 0.2955,
+      "Q2_FY2025": 0.3243,
       "Q1_FY2025": 0.3392,
-      "Q2_FY2025": 0.3243
+      "Q2_FY2022": 0.2792,
+      "Q1_FY2023": 0.2495,
+      "Q3_FY2024": 0.3231,
+      "Q3_FY2021": 0.323,
+      "Q3_FY2022": 0.248,
+      "Q3_FY2023": 0.2783,
+      "Q2_FY2021": 0.3129
     },
     "net_margin_pct": {
-      "Q2_FY2021": 0.2994,
-      "Q3_FY2024": 0.298,
-      "Q2_FY2023": 0.2462,
-      "Q4_FY2021": 0.274,
-      "Q1_FY2024": 0.2938,
       "Q2_FY2024": 0.2787,
-      "Q3_FY2021": 0.2908,
-      "Q3_FY2023": 0.2567,
-      "Q4_FY2023": 0.2397,
-      "Q1_FY2021": 0.3241,
-      "Q3_FY2025": 0.3418,
-      "Q4_FY2024": 0.2751,
-      "Q2_FY2022": 0.2296,
-      "Q3_FY2022": 0.2013,
-      "Q4_FY2022": 0.1792,
-      "Q1_FY2022": 0.2417,
+      "Q4_FY2021": 0.274,
+      "Q2_FY2023": 0.2462,
+      "Q1_FY2024": 0.2938,
       "Q4_FY2025": 0.3027,
-      "Q1_FY2023": 0.2157,
+      "Q3_FY2025": 0.3418,
+      "Q4_FY2022": 0.1792,
+      "Q1_FY2021": 0.3241,
+      "Q4_FY2024": 0.2751,
+      "Q4_FY2023": 0.2397,
+      "Q1_FY2022": 0.2417,
+      "Q2_FY2025": 0.2924,
       "Q1_FY2025": 0.3828,
-      "Q2_FY2025": 0.2924
+      "Q2_FY2022": 0.2296,
+      "Q1_FY2023": 0.2157,
+      "Q3_FY2024": 0.298,
+      "Q3_FY2021": 0.2908,
+      "Q3_FY2022": 0.2013,
+      "Q3_FY2023": 0.2567,
+      "Q2_FY2021": 0.2994
     },
     "effective_tax_rate": {
-      "Q2_FY2021": 0.1574,
-      "Q3_FY2024": 0.1705,
-      "Q2_FY2023": 0.1614,
-      "Q4_FY2021": 0.1541,
-      "Q1_FY2024": 0.1643,
       "Q2_FY2024": 0.1427,
-      "Q3_FY2021": 0.179,
-      "Q3_FY2023": 0.0711,
-      "Q4_FY2023": 0.1526,
-      "Q1_FY2021": 0.1575,
-      "Q3_FY2025": 0.2048,
-      "Q4_FY2024": 0.177,
-      "Q2_FY2022": 0.1584,
-      "Q3_FY2022": 0.1431,
-      "Q4_FY2022": 0.2055,
-      "Q1_FY2022": 0.1319,
+      "Q4_FY2021": 0.1541,
+      "Q2_FY2023": 0.1614,
+      "Q1_FY2024": 0.1643,
       "Q4_FY2025": 0.1192,
-      "Q1_FY2023": 0.1732,
+      "Q3_FY2025": 0.2048,
+      "Q4_FY2022": 0.2055,
+      "Q1_FY2021": 0.1575,
+      "Q4_FY2024": 0.177,
+      "Q4_FY2023": 0.1526,
+      "Q1_FY2022": 0.1319,
+      "Q2_FY2025": 0.1691,
       "Q1_FY2025": 0.1735,
-      "Q2_FY2025": 0.1691
+      "Q2_FY2022": 0.1584,
+      "Q1_FY2023": 0.1732,
+      "Q3_FY2024": 0.1705,
+      "Q3_FY2021": 0.179,
+      "Q3_FY2022": 0.1431,
+      "Q3_FY2023": 0.0711,
+      "Q2_FY2021": 0.1574
     }
   },
   "balance_sheet": {
@@ -1055,6 +1055,28 @@
       }
     },
     "financing_activities": {
+      "repayments_of_debt": {
+        "Q1_FY2021": 937.0,
+        "Q1_FY2022": 16420.0,
+        "Q1_FY2023": 6952.0,
+        "Q1_FY2024": 3079.0,
+        "Q1_FY2025": 4521.0,
+        "Q2_FY2021": 7741.0,
+        "Q2_FY2022": 13162.0,
+        "Q2_FY2023": 1255.0,
+        "Q2_FY2024": 2423.0,
+        "Q2_FY2025": 13876.0,
+        "Q3_FY2021": 6392.0,
+        "Q3_FY2022": 15768.0,
+        "Q3_FY2023": 1414.0,
+        "Q3_FY2024": 3449.0,
+        "Q3_FY2025": 7697.0,
+        "Q4_FY2021": 6365.0,
+        "Q4_FY2022": 8718.0,
+        "Q4_FY2023": 1929.0,
+        "Q4_FY2024": 3750.0,
+        "Q4_FY2025": 6333.0
+      },
       "net_cash_from_financing": {
         "Q1_FY2021": -13606.0,
         "Q1_FY2022": -16214.0,
@@ -1249,6 +1271,269 @@
       "equity_ratio": 0.6976
     }
   },
+  "classification_audit": {
+    "revenue": {
+      "tags": [
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "label": "Revenue from Contract with Customer, Excluding Assessed Tax",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024"
+          ]
+        },
+        {
+          "tag": "Revenues",
+          "label": "Revenues",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q2_FY2025",
+            "Q3_FY2025",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "cost_of_goods_sold": {
+      "tags": [
+        {
+          "tag": "CostOfRevenue",
+          "label": "Cost of Revenue",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "interest_expense": {
+      "tags": [
+        {
+          "tag": "InterestExpense",
+          "label": "Interest Expense",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023"
+          ]
+        },
+        {
+          "tag": "InterestExpenseNonoperating",
+          "label": "InterestExpenseNonoperating",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2025",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "interest_income": {
+      "tags": [
+        {
+          "tag": "InterestIncomeOther",
+          "label": "Interest Income, Other",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "short_term_investments": {
+      "tags": [
+        {
+          "tag": "MarketableSecuritiesCurrent",
+          "label": "Marketable Securities, Current",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "long_term_debt": {
+      "tags": [
+        {
+          "tag": "LongTermDebt",
+          "label": "Long-term Debt",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q4_FY2022"
+          ]
+        },
+        {
+          "tag": "LongTermDebtNoncurrent",
+          "label": "Long-term Debt, Excluding Current Maturities",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2025",
+            "Q2_FY2025",
+            "Q3_FY2025",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "change_in_accounts_payable": {
+      "tags": [
+        {
+          "tag": "IncreaseDecreaseInAccountsPayable",
+          "label": "Increase (Decrease) in Accounts Payable",
+          "method": "known",
+          "confidence": 1.0,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    },
+    "repayments_of_debt": {
+      "tags": [
+        {
+          "tag": "RepaymentsOfDebtAndCapitalLeaseObligations",
+          "label": "Repayments of Debt and Lease Obligation",
+          "method": "label_discovery",
+          "confidence": 0.95,
+          "periods": [
+            "Q1_FY2021",
+            "Q1_FY2022",
+            "Q1_FY2023",
+            "Q1_FY2024",
+            "Q1_FY2025",
+            "Q2_FY2021",
+            "Q2_FY2022",
+            "Q2_FY2023",
+            "Q2_FY2024",
+            "Q2_FY2025",
+            "Q3_FY2021",
+            "Q3_FY2022",
+            "Q3_FY2023",
+            "Q3_FY2024",
+            "Q3_FY2025",
+            "Q4_FY2021",
+            "Q4_FY2022",
+            "Q4_FY2023",
+            "Q4_FY2024",
+            "Q4_FY2025"
+          ]
+        }
+      ]
+    }
+  },
   "tag_history": {
     "revenue": {
       "tags_used": [
@@ -1421,6 +1706,33 @@
         "Q4_FY2023": "IncreaseDecreaseInAccountsPayable",
         "Q4_FY2024": "IncreaseDecreaseInAccountsPayable",
         "Q4_FY2025": "IncreaseDecreaseInAccountsPayable"
+      }
+    },
+    "repayments_of_debt": {
+      "tags_used": [
+        "RepaymentsOfDebtAndCapitalLeaseObligations"
+      ],
+      "tag_by_period": {
+        "Q1_FY2021": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q1_FY2022": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q1_FY2023": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q1_FY2024": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q1_FY2025": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q2_FY2021": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q2_FY2022": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q2_FY2023": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q2_FY2024": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q2_FY2025": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q3_FY2021": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q3_FY2022": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q3_FY2023": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q3_FY2024": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q3_FY2025": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q4_FY2021": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q4_FY2022": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q4_FY2023": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q4_FY2024": "RepaymentsOfDebtAndCapitalLeaseObligations",
+        "Q4_FY2025": "RepaymentsOfDebtAndCapitalLeaseObligations"
       }
     }
   },

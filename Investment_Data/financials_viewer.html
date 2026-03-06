@@ -107,6 +107,43 @@ tr:nth-child(odd):not(.section-row):not(.total-row) td.metric-name { background:
 .empty { text-align: center; padding: 40px; color: var(--muted); }
 .period-end { display: block; font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.7); }
 
+/* Tag Audit styles */
+.audit-card {
+  background: var(--card); border-radius: 6px; padding: 16px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-left: 4px solid var(--header-bg);
+}
+.audit-card.multi-tag { border-left-color: #e67e22; }
+.audit-card.llm-inferred { border-left-color: #8e44ad; }
+.audit-metric { font-size: 14px; font-weight: 700; color: var(--header-bg); margin-bottom: 8px; }
+.audit-tag {
+  display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px;
+  background: var(--bg); border-radius: 4px; margin-bottom: 6px; font-size: 12px;
+}
+.audit-tag:last-child { margin-bottom: 0; }
+.audit-badge {
+  display: inline-block; padding: 2px 8px; border-radius: 10px;
+  font-size: 10px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.badge-known { background: #27ae60; }
+.badge-label { background: #2980b9; }
+.badge-llm { background: #8e44ad; }
+.audit-tag-name { font-family: 'SF Mono', Menlo, monospace; font-size: 11px; color: #555; word-break: break-all; }
+.audit-label { color: var(--text); font-weight: 500; }
+.audit-periods { color: var(--muted); font-size: 11px; margin-top: 4px; }
+.audit-reasoning { color: #8e44ad; font-style: italic; font-size: 11px; margin-top: 4px; }
+.audit-confidence { color: var(--muted); font-size: 11px; }
+.audit-section-title {
+  font-size: 13px; font-weight: 700; color: var(--section-fg); background: var(--section-bg);
+  padding: 8px 16px; border-radius: 4px; margin: 16px 0 8px 0;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.audit-legend {
+  display: flex; gap: 16px; padding: 12px 0; font-size: 12px; color: var(--muted);
+  border-bottom: 1px solid var(--border); margin-bottom: 12px;
+}
+.audit-legend-item { display: flex; align-items: center; gap: 4px; }
+
 @media (max-width: 768px) {
   .topbar { padding: 8px 12px; }
   .tabs { padding: 0 12px; }
@@ -402,6 +439,81 @@ function renderRatios(data) {
   return buildTable(periods, rows, data);
 }
 
+function renderTagAudit(data) {
+  const audit = data.classification_audit || data.tag_history || {};
+  if (!Object.keys(audit).length) return '<div class="empty">No tag classification audit data available.</div>';
+
+  // Determine which format: classification_audit (new) or tag_history (legacy)
+  const isNew = !!data.classification_audit;
+
+  let html = '<div class="audit-legend">';
+  html += '<div class="audit-legend-item"><span class="audit-badge badge-known">K</span> Known candidate</div>';
+  html += '<div class="audit-legend-item"><span class="audit-badge badge-label">L</span> Label discovery</div>';
+  html += '<div class="audit-legend-item"><span class="audit-badge badge-llm">AI</span> LLM inference</div>';
+  html += '</div>';
+
+  // Group by statement type
+  const IS_METRICS = new Set(['revenue','cost_of_goods_sold','gross_profit','research_and_development',
+    'selling_general_administrative','restructuring_charges','operating_income','interest_expense',
+    'interest_income','other_nonoperating_income_expense','income_before_taxes','income_tax_expense',
+    'equity_method_investments','net_income','eps_basic','eps_diluted','shares_basic','shares_diluted']);
+  const BS_METRICS = new Set(['cash_and_cash_equivalents','short_term_investments','accounts_receivable',
+    'inventories','other_current_assets','total_current_assets','property_plant_equipment_net',
+    'operating_lease_rou_asset','goodwill','intangible_assets','deferred_tax_assets',
+    'other_noncurrent_assets','total_assets','accounts_payable','accrued_liabilities','current_debt',
+    'other_current_liabilities','total_current_liabilities','long_term_debt',
+    'operating_lease_noncurrent','other_noncurrent_liabilities','total_liabilities',
+    'common_stock','additional_paid_in_capital','retained_earnings','treasury_stock','aoci',
+    'total_equity','total_liabilities_and_equity']);
+
+  const groups = { 'Income Statement': [], 'Balance Sheet': [], 'Cash Flow': [] };
+  for (const [metric, info] of Object.entries(audit)) {
+    const bucket = IS_METRICS.has(metric) ? 'Income Statement' : BS_METRICS.has(metric) ? 'Balance Sheet' : 'Cash Flow';
+    groups[bucket].push({ metric, info });
+  }
+
+  for (const [section, items] of Object.entries(groups)) {
+    if (!items.length) continue;
+    html += `<div class="audit-section-title">${section}</div>`;
+
+    for (const { metric, info } of items) {
+      // Handle both new (classification_audit) and legacy (tag_history) formats
+      const tags = isNew ? (info.tags || []) : (info.tags_used || []).map(tag => ({
+        tag,
+        label: tag,
+        method: 'known',
+        confidence: 1.0,
+        periods: Object.entries(info.tag_by_period || {}).filter(([,t]) => t === tag).map(([p]) => p),
+      }));
+
+      const isMulti = tags.length > 1;
+      const hasLLM = tags.some(t => t.method === 'llm_inference');
+      html += `<div class="audit-card ${isMulti ? 'multi-tag' : ''} ${hasLLM ? 'llm-inferred' : ''}">`;
+      html += `<div class="audit-metric">${labelFor(metric)} <span style="font-weight:400;color:var(--muted)">(${metric})</span></div>`;
+
+      for (const t of tags) {
+        const badgeCls = t.method === 'llm_inference' ? 'badge-llm' : t.method === 'label_discovery' ? 'badge-label' : 'badge-known';
+        const badgeText = t.method === 'llm_inference' ? 'AI' : t.method === 'label_discovery' ? 'L' : 'K';
+        const periods = sortPeriods(t.periods || []);
+        const periodRange = periods.length > 0 ? `${periods[0]} → ${periods[periods.length-1]}` : '';
+
+        html += '<div class="audit-tag">';
+        html += `<span class="audit-badge ${badgeCls}">${badgeText}</span>`;
+        html += '<div>';
+        html += `<div class="audit-label">${t.label || t.tag}</div>`;
+        html += `<div class="audit-tag-name">${t.tag}</div>`;
+        if (periodRange) html += `<div class="audit-periods">${periods.length} periods: ${periodRange}</div>`;
+        if (t.confidence < 1.0) html += `<div class="audit-confidence">Confidence: ${(t.confidence * 100).toFixed(0)}%</div>`;
+        if (t.reasoning) html += `<div class="audit-reasoning">"${t.reasoning}"</div>`;
+        html += '</div></div>';
+      }
+      html += '</div>';
+    }
+  }
+
+  return html;
+}
+
 // ── App state ──
 let currentData = null;
 let currentTab = 'is';
@@ -411,6 +523,7 @@ const TAB_CONFIG = [
   { id: 'bs', label: 'Balance Sheet', render: renderBalanceSheet },
   { id: 'cf', label: 'Cash Flow', render: renderCashFlow },
   { id: 'ratios', label: 'Financial Ratios', render: renderRatios },
+  { id: 'audit', label: 'Tag Audit', render: renderTagAudit },
 ];
 
 function renderTabs() {
