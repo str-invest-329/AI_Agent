@@ -7,7 +7,7 @@
     "fiscal_year_end_month": 6,
     "currency": "USD",
     "unit": "millions_except_per_share",
-    "last_updated": "2026-03-06",
+    "last_updated": "2026-03-09",
     "data_source": "SEC EDGAR XBRL API (data.sec.gov/api/xbrl/companyfacts)",
     "periods_income_statement": [
       "Q2_FY2024",
@@ -17,15 +17,15 @@
       "Q2_FY2025",
       "Q3_FY2025",
       "Q4_FY2025",
-      "Q2_FY2026",
-      "Q3_FY2026"
+      "Q1_FY2026",
+      "Q2_FY2026"
     ],
     "periods_balance_sheet": [
       "Q2_FY2025",
       "Q3_FY2025",
       "Q4_FY2025",
-      "Q2_FY2026",
-      "Q3_FY2026"
+      "Q1_FY2026",
+      "Q2_FY2026"
     ],
     "notes": "Q4_FY2024 income statement and cash flow are DERIVED (full-year 10-K minus 9-month YTD). Q4_FY2025 income statement and cash flow are DERIVED (full-year 10-K minus 9-month YTD)."
   },
@@ -51,14 +51,14 @@
       "accession_number": "0002023554-25-000034",
       "primary_doc": "sndk-20250627.htm"
     },
-    "Q2_FY2026": {
+    "Q1_FY2026": {
       "form": "10-Q",
       "period_end": "2025-10-03",
       "filing_date": "2025-11-07",
       "accession_number": "0001628280-25-050698",
       "primary_doc": "sndk-20251003.htm"
     },
-    "Q3_FY2026": {
+    "Q2_FY2026": {
       "form": "10-Q",
       "period_end": "2026-01-02",
       "filing_date": "2026-01-30",
@@ -73,8 +73,8 @@
       "Q1_FY2025": 1883.0,
       "Q2_FY2025": 1876.0,
       "Q3_FY2025": 1695.0,
-      "Q2_FY2026": 2308.0,
-      "Q3_FY2026": 3025.0,
+      "Q1_FY2026": 2308.0,
+      "Q2_FY2026": 3025.0,
       "Q4_FY2024": 1760.0,
       "Q4_FY2025": 1901.0
     },
@@ -84,8 +84,8 @@
       "Q1_FY2025": 1157.0,
       "Q2_FY2025": 1270.0,
       "Q3_FY2025": 1313.0,
-      "Q2_FY2026": 1621.0,
-      "Q3_FY2026": 1484.0,
+      "Q1_FY2026": 1621.0,
+      "Q2_FY2026": 1484.0,
       "Q4_FY2024": 1124.0,
       "Q4_FY2025": 1403.0
     },
@@ -95,8 +95,8 @@
       "Q1_FY2025": 726.0,
       "Q2_FY2025": 606.0,
       "Q3_FY2025": 382.0,
-      "Q2_FY2026": 687.0,
-      "Q3_FY2026": 1541.0,
+      "Q1_FY2026": 687.0,
+      "Q2_FY2026": 1541.0,
       "Q4_FY2024": 636.0,
       "Q4_FY2025": 498.0
     },
@@ -106,8 +106,8 @@
       "Q1_FY2025": 283.0,
       "Q2_FY2025": 279.0,
       "Q3_FY2025": 285.0,
-      "Q2_FY2026": 316.0,
-      "Q3_FY2026": 327.0,
+      "Q1_FY2026": 316.0,
+      "Q2_FY2026": 327.0,
       "Q4_FY2024": 298.0,
       "Q4_FY2025": 285.0
     },
@@ -117,8 +117,8 @@
       "Q1_FY2025": 130.0,
       "Q2_FY2025": 142.0,
       "Q3_FY2025": 139.0,
-      "Q2_FY2026": 179.0,
-      "Q3_FY2026": 139.0,
+      "Q1_FY2026": 179.0,
+      "Q2_FY2026": 139.0,
       "Q4_FY2024": 117.0,
       "Q4_FY2025": 162.0
     },
@@ -128,8 +128,8 @@
       "Q1_FY2025": 2.0,
       "Q2_FY2025": 3.0,
       "Q3_FY2025": 0.0,
-      "Q2_FY2026": -3.0,
-      "Q3_FY2026": 1.0,
+      "Q1_FY2026": -3.0,
+      "Q2_FY2026": 1.0,
       "Q4_FY2024": 4.0,
       "Q4_FY2025": 16.0
     },
@@ -139,8 +139,8 @@
       "Q1_FY2025": 291.0,
       "Q2_FY2025": 195.0,
       "Q3_FY2025": -1881.0,
-      "Q2_FY2026": 176.0,
-      "Q3_FY2026": 1065.0,
+      "Q1_FY2026": 176.0,
+      "Q2_FY2026": 1065.0,
       "Q4_FY2024": 199.0,
       "Q4_FY2025": 18.0
     },
@@ -150,8 +150,8 @@
       "Q1_FY2025": 2.0,
       "Q2_FY2025": 4.0,
       "Q3_FY2025": 16.0,
-      "Q2_FY2026": 40.0,
-      "Q3_FY2026": 25.0,
+      "Q1_FY2026": 40.0,
+      "Q2_FY2026": 25.0,
       "Q4_FY2024": 9.0,
       "Q4_FY2025": 41.0
     },
@@ -161,8 +161,8 @@
       "Q1_FY2025": 3.0,
       "Q2_FY2025": 2.0,
       "Q3_FY2025": 6.0,
-      "Q2_FY2026": 16.0,
-      "Q3_FY2026": 12.0,
+      "Q1_FY2026": 16.0,
+      "Q2_FY2026": 12.0,
       "Q4_FY2024": 3.0,
       "Q4_FY2025": 11.0
     },
@@ -172,8 +172,8 @@
       "Q1_FY2025": -25.0,
       "Q2_FY2025": -20.0,
       "Q3_FY2025": -10.0,
-      "Q2_FY2026": -28.0,
-      "Q3_FY2026": -115.0,
+      "Q1_FY2026": -28.0,
+      "Q2_FY2026": -115.0,
       "Q4_FY2024": 4.0,
       "Q4_FY2025": -6.0
     },
@@ -183,8 +183,8 @@
       "Q1_FY2025": 267.0,
       "Q2_FY2025": 173.0,
       "Q3_FY2025": -1901.0,
-      "Q2_FY2026": 124.0,
-      "Q3_FY2026": 937.0,
+      "Q1_FY2026": 124.0,
+      "Q2_FY2026": 937.0,
       "Q4_FY2024": 197.0,
       "Q4_FY2025": -18.0
     },
@@ -194,15 +194,16 @@
       "Q1_FY2025": 56.0,
       "Q2_FY2025": 69.0,
       "Q3_FY2025": 32.0,
-      "Q2_FY2026": 12.0,
-      "Q3_FY2026": 134.0,
+      "Q1_FY2026": 12.0,
+      "Q2_FY2026": 134.0,
       "Q4_FY2024": 77.0,
       "Q4_FY2025": 5.0
     },
     "equity_method_investments": {
       "Q1_FY2025": -10.0,
-      "Q2_FY2026": -27.0,
+      "Q1_FY2026": -27.0,
       "Q2_FY2025": -49.0,
+      "Q2_FY2026": -19.0,
       "Q3_FY2024": -7.0,
       "Q3_FY2025": -9.0,
       "Q4_FY2024": -38.0,
@@ -214,8 +215,8 @@
       "Q1_FY2025": 211.0,
       "Q2_FY2025": 104.0,
       "Q3_FY2025": -1933.0,
-      "Q2_FY2026": 112.0,
-      "Q3_FY2026": 803.0,
+      "Q1_FY2026": 112.0,
+      "Q2_FY2026": 803.0,
       "Q4_FY2024": 120.0,
       "Q4_FY2025": -23.0
     },
@@ -224,8 +225,8 @@
       "Q1_FY2025": 1.46,
       "Q2_FY2025": 0.72,
       "Q3_FY2025": -13.33,
-      "Q2_FY2026": 0.77,
-      "Q3_FY2026": 5.46,
+      "Q1_FY2026": 0.77,
+      "Q2_FY2026": 5.46,
       "Q4_FY2024": 0.83,
       "Q4_FY2025": -0.16
     },
@@ -234,8 +235,8 @@
       "Q1_FY2025": 1.46,
       "Q2_FY2025": 0.72,
       "Q3_FY2025": -13.33,
-      "Q2_FY2026": 0.75,
-      "Q3_FY2026": 5.15,
+      "Q1_FY2026": 0.75,
+      "Q2_FY2026": 5.15,
       "Q4_FY2024": 0.83,
       "Q4_FY2025": -0.16
     },
@@ -244,8 +245,8 @@
       "Q1_FY2025": 145.0,
       "Q2_FY2025": 145.0,
       "Q3_FY2025": 145.0,
-      "Q2_FY2026": 146.0,
-      "Q3_FY2026": 147.0,
+      "Q1_FY2026": 146.0,
+      "Q2_FY2026": 147.0,
       "Q4_FY2024": 145.0,
       "Q4_FY2025": 145.0
     },
@@ -254,54 +255,54 @@
       "Q1_FY2025": 145.0,
       "Q2_FY2025": 145.0,
       "Q3_FY2025": 145.0,
-      "Q2_FY2026": 149.0,
-      "Q3_FY2026": 156.0,
+      "Q1_FY2026": 149.0,
+      "Q2_FY2026": 156.0,
       "Q4_FY2024": 145.0,
       "Q4_FY2025": 145.0
     },
     "gross_margin_pct": {
-      "Q2_FY2025": 0.323,
-      "Q2_FY2026": 0.2977,
-      "Q3_FY2026": 0.5094,
-      "Q3_FY2025": 0.2254,
-      "Q2_FY2024": 0.0967,
-      "Q1_FY2025": 0.3856,
-      "Q4_FY2024": 0.3614,
+      "Q4_FY2025": 0.262,
+      "Q2_FY2026": 0.5094,
       "Q3_FY2024": 0.2716,
-      "Q4_FY2025": 0.262
+      "Q3_FY2025": 0.2254,
+      "Q1_FY2026": 0.2977,
+      "Q2_FY2024": 0.0967,
+      "Q2_FY2025": 0.323,
+      "Q4_FY2024": 0.3614,
+      "Q1_FY2025": 0.3856
     },
     "operating_margin_pct": {
-      "Q2_FY2025": 0.1039,
-      "Q2_FY2026": 0.0763,
-      "Q3_FY2026": 0.3521,
-      "Q3_FY2025": -1.1097,
-      "Q2_FY2024": -0.1471,
-      "Q1_FY2025": 0.1545,
-      "Q4_FY2024": 0.1131,
+      "Q4_FY2025": 0.0095,
+      "Q2_FY2026": 0.3521,
       "Q3_FY2024": 0.0381,
-      "Q4_FY2025": 0.0095
+      "Q3_FY2025": -1.1097,
+      "Q1_FY2026": 0.0763,
+      "Q2_FY2024": -0.1471,
+      "Q2_FY2025": 0.1039,
+      "Q4_FY2024": 0.1131,
+      "Q1_FY2025": 0.1545
     },
     "net_margin_pct": {
-      "Q2_FY2025": 0.0554,
-      "Q2_FY2026": 0.0485,
-      "Q3_FY2026": 0.2655,
-      "Q3_FY2025": -1.1404,
-      "Q2_FY2024": -0.1808,
-      "Q1_FY2025": 0.1121,
-      "Q4_FY2024": 0.0682,
+      "Q4_FY2025": -0.0121,
+      "Q2_FY2026": 0.2655,
       "Q3_FY2024": 0.0158,
-      "Q4_FY2025": -0.0121
+      "Q3_FY2025": -1.1404,
+      "Q1_FY2026": 0.0485,
+      "Q2_FY2024": -0.1808,
+      "Q2_FY2025": 0.0554,
+      "Q4_FY2024": 0.0682,
+      "Q1_FY2025": 0.1121
     },
     "effective_tax_rate": {
-      "Q2_FY2025": 0.3988,
-      "Q2_FY2026": 0.0968,
-      "Q3_FY2026": 0.143,
-      "Q3_FY2025": -0.0168,
-      "Q2_FY2024": -0.1577,
-      "Q1_FY2025": 0.2097,
-      "Q4_FY2024": 0.3909,
+      "Q4_FY2025": -0.2778,
+      "Q2_FY2026": 0.143,
       "Q3_FY2024": 0.5,
-      "Q4_FY2025": -0.2778
+      "Q3_FY2025": -0.0168,
+      "Q1_FY2026": 0.0968,
+      "Q2_FY2024": -0.1577,
+      "Q2_FY2025": 0.3988,
+      "Q4_FY2024": 0.3909,
+      "Q1_FY2025": 0.2097
     }
   },
   "balance_sheet": {
@@ -310,78 +311,78 @@
         "Q2_FY2025": 804.0,
         "Q3_FY2025": 1507.0,
         "Q4_FY2025": 1481.0,
-        "Q2_FY2026": 1442.0,
-        "Q3_FY2026": 1539.0
+        "Q1_FY2026": 1442.0,
+        "Q2_FY2026": 1539.0
       },
       "accounts_receivable": {
         "Q2_FY2025": 904.0,
         "Q3_FY2025": 979.0,
         "Q4_FY2025": 1068.0,
-        "Q2_FY2026": 1193.0,
-        "Q3_FY2026": 1239.0
+        "Q1_FY2026": 1193.0,
+        "Q2_FY2026": 1239.0
       },
       "inventories": {
         "Q2_FY2025": 2172.0,
         "Q3_FY2025": 2160.0,
         "Q4_FY2025": 2079.0,
-        "Q2_FY2026": 1907.0,
-        "Q3_FY2026": 1970.0
+        "Q1_FY2026": 1907.0,
+        "Q2_FY2026": 1970.0
       },
       "other_current_assets": {
         "Q2_FY2025": 568.0,
         "Q3_FY2025": 391.0,
         "Q4_FY2025": 392.0,
-        "Q2_FY2026": 370.0,
-        "Q3_FY2026": 357.0
+        "Q1_FY2026": 370.0,
+        "Q2_FY2026": 357.0
       },
       "total_current_assets": {
         "Q2_FY2025": 4456.0,
         "Q3_FY2025": 5090.0,
         "Q4_FY2025": 5086.0,
-        "Q2_FY2026": 4984.0,
-        "Q3_FY2026": 5150.0
+        "Q1_FY2026": 4984.0,
+        "Q2_FY2026": 5150.0
       },
       "property_plant_equipment_net": {
         "Q2_FY2025": 579.0,
         "Q3_FY2025": 603.0,
         "Q4_FY2025": 619.0,
-        "Q2_FY2026": 630.0,
-        "Q3_FY2026": 631.0
+        "Q1_FY2026": 630.0,
+        "Q2_FY2026": 631.0
       },
       "operating_lease_rou_asset": {
         "Q2_FY2025": 191.0,
         "Q3_FY2025": 216.0,
         "Q4_FY2025": 214.0,
-        "Q2_FY2026": 207.0,
-        "Q3_FY2026": 203.0
+        "Q1_FY2026": 207.0,
+        "Q2_FY2026": 203.0
       },
       "goodwill": {
         "Q2_FY2025": 6825.0,
         "Q3_FY2025": 4997.0,
         "Q4_FY2025": 4999.0,
-        "Q2_FY2026": 4998.0,
-        "Q3_FY2026": 4995.0
+        "Q1_FY2026": 4998.0,
+        "Q2_FY2026": 4995.0
       },
       "deferred_tax_assets": {
         "Q2_FY2025": 96.0,
         "Q3_FY2025": 51.0,
         "Q4_FY2025": 58.0,
-        "Q2_FY2026": 57.0,
-        "Q3_FY2026": 62.0
+        "Q1_FY2026": 57.0,
+        "Q2_FY2026": 62.0
       },
       "other_noncurrent_assets": {
         "Q2_FY2025": 1394.0,
         "Q3_FY2025": 1478.0,
         "Q4_FY2025": 1489.0,
-        "Q2_FY2026": 1417.0,
-        "Q3_FY2026": 1385.0
+        "Q1_FY2026": 1417.0,
+        "Q2_FY2026": 1385.0
       },
       "total_assets": {
         "Q2_FY2025": 14234.0,
         "Q3_FY2025": 12960.0,
         "Q4_FY2025": 12985.0,
-        "Q2_FY2026": 12749.0,
-        "Q3_FY2026": 12998.0
+        "Q1_FY2026": 12749.0,
+        "Q2_FY2026": 12998.0
       }
     },
     "liabilities": {
@@ -389,96 +390,89 @@
         "Q2_FY2025": 438.0,
         "Q3_FY2025": 446.0,
         "Q4_FY2025": 425.0,
-        "Q2_FY2026": 382.0,
-        "Q3_FY2026": 393.0
+        "Q1_FY2026": 382.0,
+        "Q2_FY2026": 393.0
       },
       "current_debt": {
         "Q3_FY2025": 20.0,
         "Q4_FY2025": 20.0,
-        "Q2_FY2026": 20.0,
-        "Q3_FY2026": 20.0
-      },
-      "other_current_liabilities": {
-        "Q2_FY2025": 188.0,
-        "Q3_FY2025": 114.0,
-        "Q4_FY2025": 173.0,
-        "Q2_FY2026": 208.0,
-        "Q3_FY2026": 273.0
+        "Q1_FY2026": 20.0,
+        "Q2_FY2026": 20.0
       },
       "total_current_liabilities": {
         "Q2_FY2025": 1873.0,
         "Q3_FY2025": 1375.0,
         "Q4_FY2025": 1427.0,
-        "Q2_FY2026": 1516.0,
-        "Q3_FY2026": 1654.0
+        "Q1_FY2026": 1516.0,
+        "Q2_FY2026": 1654.0
       },
       "long_term_debt": {
         "Q3_FY2025": 1927.0,
         "Q4_FY2025": 1829.0,
-        "Q2_FY2026": 1331.0,
-        "Q3_FY2026": 583.0
+        "Q1_FY2026": 1331.0,
+        "Q2_FY2026": 583.0
       },
       "operating_lease_noncurrent": {
         "Q2_FY2025": 179.0,
         "Q3_FY2025": 196.0,
         "Q4_FY2025": 193.0,
-        "Q2_FY2026": 188.0,
-        "Q3_FY2026": 186.0
+        "Q1_FY2026": 188.0,
+        "Q2_FY2026": 186.0
       },
       "other_noncurrent_liabilities": {
         "Q2_FY2025": 307.0,
         "Q3_FY2025": 480.0,
         "Q4_FY2025": 496.0,
-        "Q2_FY2026": 493.0,
-        "Q3_FY2026": 526.0
+        "Q1_FY2026": 493.0,
+        "Q2_FY2026": 526.0
       },
       "total_liabilities": {
         "Q2_FY2025": 2233.0,
         "Q3_FY2025": 3799.0,
         "Q4_FY2025": 3769.0,
-        "Q2_FY2026": 3368.0,
-        "Q3_FY2026": 2785.0
+        "Q1_FY2026": 3368.0,
+        "Q2_FY2026": 2785.0
       }
     },
     "equity": {
       "common_stock": {
         "Q3_FY2025": 1.0,
         "Q4_FY2025": 1.0,
-        "Q2_FY2026": 1.0,
-        "Q3_FY2026": 1.0
+        "Q1_FY2026": 1.0,
+        "Q2_FY2026": 1.0
       },
       "additional_paid_in_capital": {
         "Q3_FY2025": 11227.0,
         "Q4_FY2025": 11248.0,
-        "Q2_FY2026": 11286.0,
-        "Q3_FY2026": 11336.0
+        "Q1_FY2026": 11286.0,
+        "Q2_FY2026": 11336.0
       },
       "retained_earnings": {
         "Q3_FY2025": -1761.0,
         "Q4_FY2025": -1784.0,
-        "Q2_FY2026": -1672.0,
-        "Q3_FY2026": -869.0
+        "Q1_FY2026": -1672.0,
+        "Q2_FY2026": -869.0
       },
       "aoci": {
         "Q2_FY2025": -434.0,
         "Q3_FY2025": -306.0,
         "Q4_FY2025": -249.0,
-        "Q2_FY2026": -234.0,
-        "Q3_FY2026": -255.0
+        "Q1_FY2026": -234.0,
+        "Q2_FY2026": -255.0
       },
       "total_equity": {
         "Q2_FY2025": 12001.0,
         "Q3_FY2025": 9161.0,
         "Q4_FY2025": 9216.0,
-        "Q2_FY2026": 9381.0,
-        "Q3_FY2026": 10213.0
+        "Q1_FY2026": 9381.0,
+        "Q2_FY2026": 10213.0
       },
       "total_liabilities_and_equity": {
         "Q2_FY2025": 14234.0,
         "Q3_FY2025": 12960.0,
         "Q4_FY2025": 12985.0,
-        "Q2_FY2026": 12749.0,
-        "Q3_FY2026": 12998.0
+        "Q1_FY2026": 12749.0,
+        "Q2_FY2026": 12998.0
       }
     }
   },
@@ -490,15 +484,16 @@
         "Q1_FY2025": 211.0,
         "Q2_FY2025": 104.0,
         "Q3_FY2025": -1933.0,
-        "Q2_FY2026": 112.0,
-        "Q3_FY2026": 803.0,
+        "Q1_FY2026": 112.0,
+        "Q2_FY2026": 803.0,
         "Q4_FY2024": 120.0,
         "Q4_FY2025": -23.0
       },
       "depreciation_and_amortization": {
         "Q1_FY2025": 54.0,
-        "Q2_FY2026": 36.0,
+        "Q1_FY2026": 36.0,
         "Q2_FY2025": 36.0,
+        "Q2_FY2026": 38.0,
         "Q3_FY2024": 56.0,
         "Q3_FY2025": 37.0,
         "Q4_FY2024": 54.0,
@@ -506,19 +501,20 @@
       },
       "share_based_compensation": {
         "Q1_FY2025": 41.0,
-        "Q2_FY2026": 53.0,
+        "Q1_FY2026": 53.0,
         "Q2_FY2025": 48.0,
+        "Q2_FY2026": 58.0,
         "Q3_FY2024": 38.0,
         "Q3_FY2025": 44.0,
         "Q4_FY2024": 34.0,
         "Q4_FY2025": 49.0,
-        "Q2_FY2024": 37.0,
-        "Q3_FY2026": 58.0
+        "Q2_FY2024": 37.0
       },
       "deferred_income_tax": {
         "Q1_FY2025": -5.0,
-        "Q2_FY2026": 3.0,
+        "Q1_FY2026": 3.0,
         "Q2_FY2025": 28.0,
+        "Q2_FY2026": -13.0,
         "Q3_FY2024": 2.0,
         "Q3_FY2025": -16.0,
         "Q4_FY2024": -19.0,
@@ -530,15 +526,16 @@
         "Q1_FY2025": 0.0,
         "Q2_FY2025": 0.0,
         "Q3_FY2025": 1830.0,
+        "Q1_FY2026": 0.0,
         "Q2_FY2026": 0.0,
-        "Q3_FY2026": 0.0,
         "Q4_FY2024": 0.0,
         "Q4_FY2025": 0.0
       },
       "change_in_receivables": {
         "Q1_FY2025": 102.0,
-        "Q2_FY2026": 125.0,
+        "Q1_FY2026": 125.0,
         "Q2_FY2025": -133.0,
+        "Q2_FY2026": 46.0,
         "Q3_FY2024": 130.0,
         "Q3_FY2025": 42.0,
         "Q4_FY2024": 120.0,
@@ -546,8 +543,9 @@
       },
       "change_in_inventories": {
         "Q1_FY2025": 149.0,
-        "Q2_FY2026": -172.0,
+        "Q1_FY2026": -172.0,
         "Q2_FY2025": 103.0,
+        "Q2_FY2026": 63.0,
         "Q3_FY2024": 118.0,
         "Q3_FY2025": -11.0,
         "Q4_FY2024": 225.0,
@@ -555,8 +553,9 @@
       },
       "change_in_accounts_payable": {
         "Q1_FY2025": 33.0,
-        "Q2_FY2026": 30.0,
+        "Q1_FY2026": 30.0,
         "Q2_FY2025": 24.0,
+        "Q2_FY2026": 45.0,
         "Q3_FY2024": -20.0,
         "Q3_FY2025": 42.0,
         "Q4_FY2024": -48.0,
@@ -564,8 +563,9 @@
       },
       "change_in_accrued_liabilities": {
         "Q1_FY2025": -172.0,
-        "Q2_FY2026": -43.0,
+        "Q1_FY2026": -43.0,
         "Q2_FY2025": 185.0,
+        "Q2_FY2026": 5.0,
         "Q3_FY2024": -6.0,
         "Q3_FY2025": -10.0,
         "Q4_FY2024": 45.0,
@@ -573,8 +573,9 @@
       },
       "net_cash_from_operating": {
         "Q1_FY2025": -131.0,
-        "Q2_FY2026": 488.0,
+        "Q1_FY2026": 488.0,
         "Q2_FY2025": 95.0,
+        "Q2_FY2026": 1019.0,
         "Q3_FY2024": -12.0,
         "Q3_FY2025": 26.0,
         "Q4_FY2024": -130.0,
@@ -584,8 +585,9 @@
     "investing_activities": {
       "capital_expenditures": {
         "Q1_FY2025": 67.0,
-        "Q2_FY2026": 50.0,
+        "Q1_FY2026": 50.0,
         "Q2_FY2025": 48.0,
+        "Q2_FY2026": 39.0,
         "Q3_FY2024": 29.0,
         "Q3_FY2025": 44.0,
         "Q4_FY2024": 38.0,
@@ -593,8 +595,9 @@
       },
       "net_cash_from_investing": {
         "Q1_FY2025": -19.0,
-        "Q2_FY2026": -15.0,
+        "Q1_FY2026": -15.0,
         "Q2_FY2025": 188.0,
+        "Q2_FY2026": -165.0,
         "Q3_FY2024": 100.0,
         "Q3_FY2025": 404.0,
         "Q4_FY2024": -3.0,
@@ -608,13 +611,15 @@
       },
       "repayments_of_debt": {
         "Q1_FY2025": 0.0,
-        "Q2_FY2026": 500.0,
-        "Q2_FY2025": 0.0
+        "Q1_FY2026": 500.0,
+        "Q2_FY2025": 0.0,
+        "Q2_FY2026": 750.0
       },
       "net_cash_from_financing": {
         "Q1_FY2025": 214.0,
-        "Q2_FY2026": -515.0,
+        "Q1_FY2026": -515.0,
         "Q2_FY2025": 130.0,
+        "Q2_FY2026": -758.0,
         "Q3_FY2024": -135.0,
         "Q3_FY2025": 276.0,
         "Q4_FY2024": 85.0,
@@ -625,8 +630,8 @@
       "Q2_FY2025": 804.0,
       "Q3_FY2025": 1507.0,
       "Q4_FY2025": 1481.0,
-      "Q2_FY2026": 1442.0,
-      "Q3_FY2026": 1539.0
+      "Q1_FY2026": 1442.0,
+      "Q2_FY2026": 1539.0
     },
     "free_cash_flow": {
       "Q3_FY2024": -41.0,
@@ -635,12 +640,14 @@
       "Q2_FY2025": 47.0,
       "Q3_FY2025": -18.0,
       "Q4_FY2025": 49.0,
-      "Q2_FY2026": 438.0
+      "Q1_FY2026": 438.0,
+      "Q2_FY2026": 980.0
     },
     "fx_effect": {
       "Q1_FY2025": 1.0,
-      "Q2_FY2026": 3.0,
+      "Q1_FY2026": 3.0,
       "Q2_FY2025": -2.0,
+      "Q2_FY2026": 1.0,
       "Q3_FY2024": -1.0,
       "Q3_FY2025": -3.0,
       "Q4_FY2024": -1.0,
@@ -648,8 +655,9 @@
     },
     "net_change_in_cash": {
       "Q1_FY2025": -6.0,
-      "Q2_FY2026": -39.0,
+      "Q1_FY2026": -39.0,
       "Q2_FY2025": 482.0,
+      "Q2_FY2026": 97.0,
       "Q3_FY2024": -48.0,
       "Q3_FY2025": 703.0,
       "Q4_FY2024": -49.0,
@@ -657,39 +665,106 @@
     }
   },
   "financial_ratios": {
+    "Q2_FY2024": {
+      "gross_margin_pct": 0.0967,
+      "operating_margin_pct": -0.1471,
+      "net_margin_pct": -0.1808,
+      "interest_coverage": -22.27
+    },
+    "Q3_FY2024": {
+      "gross_margin_pct": 0.2716,
+      "operating_margin_pct": 0.0381,
+      "net_margin_pct": 0.0158,
+      "interest_coverage": 7.22,
+      "fcf_margin_pct": -0.024
+    },
+    "Q4_FY2024": {
+      "gross_margin_pct": 0.3614,
+      "operating_margin_pct": 0.1131,
+      "net_margin_pct": 0.0682,
+      "interest_coverage": 22.11,
+      "fcf_margin_pct": -0.0955
+    },
+    "Q1_FY2025": {
+      "gross_margin_pct": 0.3856,
+      "operating_margin_pct": 0.1545,
+      "net_margin_pct": 0.1121,
+      "interest_coverage": 145.5,
+      "fcf_margin_pct": -0.1052
+    },
     "Q2_FY2025": {
       "current_ratio": 2.38,
       "quick_ratio": 1.22,
       "debt_to_equity": 0.19,
-      "equity_ratio": 0.8431
+      "equity_ratio": 0.8431,
+      "gross_margin_pct": 0.323,
+      "operating_margin_pct": 0.1039,
+      "net_margin_pct": 0.0554,
+      "roe": 0.0087,
+      "roa": 0.0073,
+      "asset_turnover": 0.1318,
+      "interest_coverage": 48.75,
+      "fcf_margin_pct": 0.0251
     },
     "Q3_FY2025": {
       "current_ratio": 3.7,
       "quick_ratio": 2.13,
       "debt_to_equity": 0.41,
       "net_debt_to_equity": 0.05,
-      "equity_ratio": 0.7069
+      "equity_ratio": 0.7069,
+      "gross_margin_pct": 0.2254,
+      "operating_margin_pct": -1.1097,
+      "net_margin_pct": -1.1404,
+      "roe": -0.211,
+      "roa": -0.1492,
+      "asset_turnover": 0.1308,
+      "interest_coverage": -117.56,
+      "fcf_margin_pct": -0.0106
     },
     "Q4_FY2025": {
       "current_ratio": 3.56,
       "quick_ratio": 2.11,
       "debt_to_equity": 0.41,
       "net_debt_to_equity": 0.04,
-      "equity_ratio": 0.7097
+      "equity_ratio": 0.7097,
+      "gross_margin_pct": 0.262,
+      "operating_margin_pct": 0.0095,
+      "net_margin_pct": -0.0121,
+      "roe": -0.0025,
+      "roa": -0.0018,
+      "asset_turnover": 0.1464,
+      "interest_coverage": 0.44,
+      "fcf_margin_pct": 0.0258
     },
-    "Q2_FY2026": {
+    "Q1_FY2026": {
       "current_ratio": 3.29,
       "quick_ratio": 2.03,
       "debt_to_equity": 0.36,
       "net_debt_to_equity": -0.01,
-      "equity_ratio": 0.7358
+      "equity_ratio": 0.7358,
+      "gross_margin_pct": 0.2977,
+      "operating_margin_pct": 0.0763,
+      "net_margin_pct": 0.0485,
+      "roe": 0.0119,
+      "roa": 0.0088,
+      "asset_turnover": 0.181,
+      "interest_coverage": 4.4,
+      "fcf_margin_pct": 0.1898
     },
-    "Q3_FY2026": {
+    "Q2_FY2026": {
       "current_ratio": 3.11,
       "quick_ratio": 1.92,
       "debt_to_equity": 0.27,
       "net_debt_to_equity": -0.09,
-      "equity_ratio": 0.7857
+      "equity_ratio": 0.7857,
+      "gross_margin_pct": 0.5094,
+      "operating_margin_pct": 0.3521,
+      "net_margin_pct": 0.2655,
+      "roe": 0.0786,
+      "roa": 0.0618,
+      "asset_turnover": 0.2327,
+      "interest_coverage": 42.6,
+      "fcf_margin_pct": 0.324
     }
   },
   "classification_audit": {
@@ -702,33 +777,15 @@
           "confidence": 1.0,
           "periods": [
             "Q1_FY2025",
+            "Q1_FY2026",
             "Q2_FY2024",
             "Q2_FY2025",
             "Q2_FY2026",
             "Q3_FY2024",
             "Q3_FY2025",
-            "Q3_FY2026",
             "Q4_FY2024",
             "Q4_FY2025"
           ]
-        }
-      ]
-    },
-    "other_current_liabilities": {
-      "tags": [
-        {
-          "tag": "EmployeeRelatedLiabilitiesCurrent",
-          "label": "Employee-related Liabilities, Current",
-          "method": "llm_inference",
-          "confidence": 0.7,
-          "periods": [
-            "Q2_FY2025",
-            "Q2_FY2026",
-            "Q3_FY2025",
-            "Q3_FY2026",
-            "Q4_FY2025"
-          ],
-          "reasoning": "Employee-related liabilities are a common component of other current liabilities on balance sheets"
         }
       ]
     },
@@ -740,8 +797,7 @@
           "method": "known",
           "confidence": 1.0,
           "periods": [
-            "Q2_FY2024",
-            "Q3_FY2026"
+            "Q2_FY2024"
           ]
         },
         {
@@ -751,6 +807,7 @@
           "confidence": 1.0,
           "periods": [
             "Q1_FY2025",
+            "Q1_FY2026",
             "Q2_FY2025",
             "Q2_FY2026",
             "Q3_FY2024",
@@ -773,22 +830,10 @@
         "Q1_FY2025": "InterestExpenseNonoperating",
         "Q2_FY2025": "InterestExpenseNonoperating",
         "Q3_FY2025": "InterestExpenseNonoperating",
+        "Q1_FY2026": "InterestExpenseNonoperating",
         "Q2_FY2026": "InterestExpenseNonoperating",
-        "Q3_FY2026": "InterestExpenseNonoperating",
         "Q4_FY2024": "InterestExpenseNonoperating",
         "Q4_FY2025": "InterestExpenseNonoperating"
-      }
-    },
-    "other_current_liabilities": {
-      "tags_used": [
-        "EmployeeRelatedLiabilitiesCurrent"
-      ],
-      "tag_by_period": {
-        "Q2_FY2025": "EmployeeRelatedLiabilitiesCurrent",
-        "Q3_FY2025": "EmployeeRelatedLiabilitiesCurrent",
-        "Q4_FY2025": "EmployeeRelatedLiabilitiesCurrent",
-        "Q2_FY2026": "EmployeeRelatedLiabilitiesCurrent",
-        "Q3_FY2026": "EmployeeRelatedLiabilitiesCurrent"
       }
     },
     "share_based_compensation": {
@@ -798,14 +843,14 @@
       ],
       "tag_by_period": {
         "Q1_FY2025": "ShareBasedCompensation",
-        "Q2_FY2026": "ShareBasedCompensation",
+        "Q1_FY2026": "ShareBasedCompensation",
         "Q2_FY2025": "ShareBasedCompensation",
+        "Q2_FY2026": "ShareBasedCompensation",
         "Q3_FY2024": "ShareBasedCompensation",
         "Q3_FY2025": "ShareBasedCompensation",
         "Q4_FY2024": "ShareBasedCompensation",
         "Q4_FY2025": "ShareBasedCompensation",
-        "Q2_FY2024": "AllocatedShareBasedCompensationExpense",
-        "Q3_FY2026": "AllocatedShareBasedCompensationExpense"
+        "Q2_FY2024": "AllocatedShareBasedCompensationExpense"
       }
     }
   },
@@ -868,7 +913,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "revenue",
@@ -876,7 +921,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "revenue",
@@ -940,7 +985,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "cost_of_goods_sold",
@@ -948,7 +993,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "cost_of_goods_sold",
@@ -1012,7 +1057,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "gross_profit",
@@ -1020,7 +1065,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "gross_profit",
@@ -1084,7 +1129,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "research_and_development",
@@ -1092,7 +1137,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "research_and_development",
@@ -1156,7 +1201,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "selling_general_administrative",
@@ -1164,7 +1209,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "selling_general_administrative",
@@ -1228,7 +1273,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "restructuring_charges",
@@ -1236,7 +1281,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "restructuring_charges",
@@ -1300,7 +1345,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "operating_income",
@@ -1308,7 +1353,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "operating_income",
@@ -1372,7 +1417,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "interest_expense",
@@ -1380,7 +1425,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "interest_expense",
@@ -1444,7 +1489,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "interest_income",
@@ -1452,7 +1497,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "interest_income",
@@ -1516,7 +1561,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "other_nonoperating_income_expense",
@@ -1524,7 +1569,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "other_nonoperating_income_expense",
@@ -1588,7 +1633,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "income_before_taxes",
@@ -1596,7 +1641,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "income_before_taxes",
@@ -1660,7 +1705,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "income_tax_expense",
@@ -1668,7 +1713,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "income_tax_expense",
@@ -1724,11 +1769,19 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "equity_method_investments",
       "value": -27.0,
+      "unit": "USD_millions"
+    },
+    {
+      "period": "Q2_FY2026",
+      "period_end": "2026-01-02",
+      "statement": "income_statement",
+      "metric": "equity_method_investments",
+      "value": -19.0,
       "unit": "USD_millions"
     },
     {
@@ -1788,7 +1841,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "net_income",
@@ -1796,7 +1849,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "net_income",
@@ -1852,7 +1905,7 @@
       "unit": "USD_per_share"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "eps_basic",
@@ -1860,7 +1913,7 @@
       "unit": "USD_per_share"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "eps_basic",
@@ -1916,7 +1969,7 @@
       "unit": "USD_per_share"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "eps_diluted",
@@ -1924,7 +1977,7 @@
       "unit": "USD_per_share"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "eps_diluted",
@@ -1980,7 +2033,7 @@
       "unit": "millions_shares"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "shares_basic_millions",
@@ -1988,7 +2041,7 @@
       "unit": "millions_shares"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "shares_basic_millions",
@@ -2044,7 +2097,7 @@
       "unit": "millions_shares"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
@@ -2052,7 +2105,7 @@
       "unit": "millions_shares"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "shares_diluted_millions",
@@ -2116,7 +2169,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "gross_margin_pct",
@@ -2124,7 +2177,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "gross_margin_pct",
@@ -2188,7 +2241,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "operating_margin_pct",
@@ -2196,7 +2249,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "operating_margin_pct",
@@ -2260,7 +2313,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "net_margin_pct",
@@ -2268,7 +2321,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "net_margin_pct",
@@ -2332,7 +2385,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "income_statement",
       "metric": "effective_tax_rate",
@@ -2340,7 +2393,7 @@
       "unit": "pct"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "income_statement",
       "metric": "effective_tax_rate",
@@ -2372,7 +2425,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "cash_and_cash_equivalents",
@@ -2380,7 +2433,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "cash_and_cash_equivalents",
@@ -2412,7 +2465,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "accounts_receivable",
@@ -2420,7 +2473,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "accounts_receivable",
@@ -2452,7 +2505,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "inventories",
@@ -2460,7 +2513,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "inventories",
@@ -2492,7 +2545,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "other_current_assets",
@@ -2500,7 +2553,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "other_current_assets",
@@ -2532,7 +2585,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "total_current_assets",
@@ -2540,7 +2593,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "total_current_assets",
@@ -2572,7 +2625,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "property_plant_equipment_net",
@@ -2580,7 +2633,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "property_plant_equipment_net",
@@ -2612,7 +2665,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "operating_lease_rou_asset",
@@ -2620,7 +2673,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "operating_lease_rou_asset",
@@ -2652,7 +2705,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "goodwill",
@@ -2660,7 +2713,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "goodwill",
@@ -2692,7 +2745,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "deferred_tax_assets",
@@ -2700,7 +2753,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "deferred_tax_assets",
@@ -2732,7 +2785,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "other_noncurrent_assets",
@@ -2740,7 +2793,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "other_noncurrent_assets",
@@ -2772,7 +2825,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_assets",
       "metric": "total_assets",
@@ -2780,7 +2833,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_assets",
       "metric": "total_assets",
@@ -2812,7 +2865,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_liabilities",
       "metric": "accrued_liabilities",
@@ -2820,7 +2873,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_liabilities",
       "metric": "accrued_liabilities",
@@ -2844,7 +2897,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_liabilities",
       "metric": "current_debt",
@@ -2852,51 +2905,11 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_liabilities",
       "metric": "current_debt",
       "value": 20.0,
-      "unit": "USD_millions"
-    },
-    {
-      "period": "Q2_FY2025",
-      "period_end": "2024-12-27",
-      "statement": "balance_sheet_liabilities",
-      "metric": "other_current_liabilities",
-      "value": 188.0,
-      "unit": "USD_millions"
-    },
-    {
-      "period": "Q3_FY2025",
-      "period_end": "2025-03-28",
-      "statement": "balance_sheet_liabilities",
-      "metric": "other_current_liabilities",
-      "value": 114.0,
-      "unit": "USD_millions"
-    },
-    {
-      "period": "Q4_FY2025",
-      "period_end": "2025-06-27",
-      "statement": "balance_sheet_liabilities",
-      "metric": "other_current_liabilities",
-      "value": 173.0,
-      "unit": "USD_millions"
-    },
-    {
-      "period": "Q2_FY2026",
-      "period_end": "2025-10-03",
-      "statement": "balance_sheet_liabilities",
-      "metric": "other_current_liabilities",
-      "value": 208.0,
-      "unit": "USD_millions"
-    },
-    {
-      "period": "Q3_FY2026",
-      "period_end": "2026-01-02",
-      "statement": "balance_sheet_liabilities",
-      "metric": "other_current_liabilities",
-      "value": 273.0,
       "unit": "USD_millions"
     },
     {
@@ -2924,7 +2937,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_liabilities",
       "metric": "total_current_liabilities",
@@ -2932,7 +2945,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_liabilities",
       "metric": "total_current_liabilities",
@@ -2956,7 +2969,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_liabilities",
       "metric": "long_term_debt",
@@ -2964,7 +2977,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_liabilities",
       "metric": "long_term_debt",
@@ -2996,7 +3009,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_liabilities",
       "metric": "operating_lease_noncurrent",
@@ -3004,7 +3017,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_liabilities",
       "metric": "operating_lease_noncurrent",
@@ -3036,7 +3049,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_liabilities",
       "metric": "other_noncurrent_liabilities",
@@ -3044,7 +3057,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_liabilities",
       "metric": "other_noncurrent_liabilities",
@@ -3076,7 +3089,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_liabilities",
       "metric": "total_liabilities",
@@ -3084,7 +3097,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_liabilities",
       "metric": "total_liabilities",
@@ -3108,7 +3121,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_equity",
       "metric": "common_stock",
@@ -3116,7 +3129,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_equity",
       "metric": "common_stock",
@@ -3140,7 +3153,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_equity",
       "metric": "additional_paid_in_capital",
@@ -3148,7 +3161,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_equity",
       "metric": "additional_paid_in_capital",
@@ -3172,7 +3185,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_equity",
       "metric": "retained_earnings",
@@ -3180,7 +3193,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_equity",
       "metric": "retained_earnings",
@@ -3212,7 +3225,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_equity",
       "metric": "aoci",
@@ -3220,7 +3233,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_equity",
       "metric": "aoci",
@@ -3252,7 +3265,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_equity",
       "metric": "total_equity",
@@ -3260,7 +3273,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_equity",
       "metric": "total_equity",
@@ -3292,7 +3305,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q2_FY2026",
+      "period": "Q1_FY2026",
       "period_end": "2025-10-03",
       "statement": "balance_sheet_equity",
       "metric": "total_liabilities_and_equity",
@@ -3300,7 +3313,7 @@
       "unit": "USD_millions"
     },
     {
-      "period": "Q3_FY2026",
+      "period": "Q2_FY2026",
       "period_end": "2026-01-02",
       "statement": "balance_sheet_equity",
       "metric": "total_liabilities_and_equity",

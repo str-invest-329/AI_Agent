@@ -197,10 +197,6 @@
         <div class="card-label">成交量</div>
         <div class="card-value" id="card-volume"></div>
       </div>
-      <div class="card">
-        <div class="card-label">RSI(14)</div>
-        <div class="card-value" id="card-rsi"></div>
-      </div>
     </div>
 
     <!-- Sparkline + Indicator Table -->
@@ -387,12 +383,6 @@ $("card-week-chg").className   = "card-value " + (wchg == null ? "nil" : wchg > 
 
 $("card-volume").textContent = fmtVol(td.volume);
 $("card-volume").className   = "card-value neu";
-
-const rsiVal = td.rsi;
-let rsiCls = "neu";
-if (rsiVal != null) rsiCls = rsiVal >= 70 ? "down" : rsiVal <= 30 ? "up" : "neu";
-$("card-rsi").textContent = rsiVal == null ? "—" : rsiVal.toFixed(1);
-$("card-rsi").className   = "card-value " + rsiCls;
 
 // ── Sparkline ─────────────────────────────────────────────────
 $("sparkline-title").textContent =

@@ -20,7 +20,6 @@ const technicalData = {
     MA20: 185.98,
     MA60: 184.91,
   },
-  rsi: 41.1,
   macd: {
     macd:   0.4016,
     signal: 0.9047,

@@ -8,6 +8,7 @@ watchlist:
   us:           # 美股
     - "NVDA"
     - "AAPL"
+    - "SNDK"
 
 # 報告週期（往回幾天）
 report_period_days: 7
@@ -15,7 +16,6 @@ report_period_days: 7
 # 技術指標設定
 technical:
   ma_periods: [5, 20, 60]   # 均線週期
-  rsi_period: 14
   macd:
     fast: 12
     slow: 26

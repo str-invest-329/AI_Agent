@@ -128,7 +128,6 @@ def write_data_js(dest: Path, payload: dict) -> None:
         f"    MA20: {js_value(td.get('MA20'))},",
         f"    MA60: {js_value(td.get('MA60'))},",
         f"  }},",
-        f"  rsi: {js_value(td.get('RSI'))},",
         f"  macd: {{",
         f"    macd:   {js_value(td.get('MACD', {}).get('macd'))},",
         f"    signal: {js_value(td.get('MACD', {}).get('signal'))},",
@@ -212,14 +211,15 @@ def fetch_and_write(ticker: str, market: str, week: str, config: dict) -> None:
 
     tech_cfg = config.get("technical", {})
 
-    yf_fetcher   = YFinanceFetcher(market=market)
     news_fetcher = NewsFetcher(market=market)
     tech_analyzer = TechnicalAnalyzer(tech_cfg)
     chips_analyzer = ChipsAnalyzer()
 
     # ── 價格資料 ──────────────────────────────────────────────
     print(f"[{ticker}] 取得價格資料...")
+    yf_fetcher = YFinanceFetcher(market=market)
     price_data = yf_fetcher.get_price_history(ticker, days=90)
+
     df = price_data["df"]
     company_name = price_data["longName"]
 

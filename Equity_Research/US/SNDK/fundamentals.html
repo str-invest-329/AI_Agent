@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNDK 基本面研究</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Helvetica Neue", Arial, "PingFang TC", "Noto Sans TC", sans-serif;
+      background: #F8F4F4;
+      color: #2C1517;
+      line-height: 1.8;
+    }
+
+    /* ── Layout ── */
+    .page-wrapper { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 1px solid #E0D8D8;
+      padding-bottom: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    header h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: 0.02em; }
+    header h1 span { color: #C02734; }
+    .report-meta { font-size: 0.85rem; color: #8B7E80; margin-top: 0.35rem; }
+
+    /* ── Table of Contents ── */
+    .toc {
+      background: #FFFFFF;
+      border: 1px solid #E0D8D8;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 1px 4px rgba(44,21,23,0.06);
+    }
+    .toc h2 { font-size: 0.9rem; color: #8B7E80; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+    .toc ol { padding-left: 1.25rem; }
+    .toc li { margin-bottom: 0.35rem; font-size: 0.92rem; }
+    .toc a { color: #2C1517; text-decoration: none; }
+    .toc a:hover { color: #C02734; text-decoration: underline; }
+
+    /* ── Section ── */
+    section { margin-bottom: 3rem; }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #C02734;
+      border-left: 3px solid #C02734;
+      padding-left: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Content blocks ── */
+    .content-box {
+      background: #FFFFFF;
+      border: 1px solid #E0D8D8;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 4px rgba(44,21,23,0.06);
+    }
+    .content-box h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2C1517;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #F0EAEA;
+    }
+    .content-box p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .content-box ul, .content-box ol { font-size: 0.9rem; padding-left: 1.25rem; margin-bottom: 0.75rem; }
+    .content-box li { margin-bottom: 0.35rem; }
+
+    /* ── Key-Value Cards ── */
+    .kv-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-bottom: 1rem; }
+    .kv-card {
+      background: #FFFFFF;
+      border: 1px solid #E0D8D8;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 1px 4px rgba(44,21,23,0.06);
+    }
+    .kv-label { font-size: 0.75rem; color: #8B7E80; text-transform: uppercase; letter-spacing: 0.06em; }
+    .kv-value { font-size: 1.4rem; font-weight: 700; margin-top: 0.25rem; }
+    .kv-sub { font-size: 0.8rem; color: #6B5E60; margin-top: 0.2rem; }
+
+    /* ── Tables ── */
+    .data-table { width: 100%; border-collapse: collapse; margin-bottom: 0.75rem; }
+    .data-table th, .data-table td {
+      padding: 0.55rem 1rem;
+      font-size: 0.88rem;
+      border-bottom: 1px solid #E0D8D8;
+      text-align: left;
+    }
+    .data-table th { color: #8B7E80; font-weight: 400; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .data-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .data-table th.num { text-align: right; }
+
+    /* ── Placeholder ── */
+    .placeholder {
+      color: #B0A0A2;
+      font-style: italic;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    /* ── Source tag ── */
+    .source { font-size: 0.75rem; color: #B0A0A2; margin-top: 0.5rem; }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid #E0D8D8; padding-top: 1rem; font-size: 0.75rem; color: #B0A0A2; }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <header>
+    <h1><span>SNDK</span> 基本面研究</h1>
+    <div class="report-meta">Sandisk Corp · 最後更新：2026-03-09</div>
+  </header>
+
+  <!-- Table of Contents -->
+  <nav class="toc">
+    <h2>目錄</h2>
+    <ol>
+      <li><a href="#sec-overview">企業概述</a></li>
+      <li><a href="#sec-business-model">商業模式</a></li>
+      <li><a href="#sec-products">產品與應用場景</a></li>
+      <li><a href="#sec-market">市場規模與成長趨勢</a></li>
+      <li><a href="#sec-competition">競爭格局</a></li>
+      <li><a href="#sec-moat">競爭優勢 / Moat</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 · 企業概述 -->
+  <section id="sec-overview">
+    <div class="section-title">01 · 企業概述</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：公司背景、WDC 分拆歷程、組織架構、管理層</p>
+    </div>
+  </section>
+
+  <!-- 02 · 商業模式 -->
+  <section id="sec-business-model">
+    <div class="section-title">02 · 商業模式</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：營收結構、獲利模式、客戶類型、銷售通路</p>
+    </div>
+  </section>
+
+  <!-- 03 · 產品與應用場景 -->
+  <section id="sec-products">
+    <div class="section-title">03 · 產品與應用場景</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：NAND Flash / SSD 產品線、終端市場分佈、技術節點</p>
+    </div>
+  </section>
+
+  <!-- 04 · 市場規模與成長趨勢 -->
+  <section id="sec-market">
+    <div class="section-title">04 · 市場規模與成長趨勢</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：TAM、各細分市場規模、CAGR、需求驅動因素</p>
+    </div>
+  </section>
+
+  <!-- 05 · 競爭格局 -->
+  <section id="sec-competition">
+    <div class="section-title">05 · 競爭格局</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：Market Share、主要競爭者比較（Samsung、SK Hynix、Micron、Kioxia）</p>
+    </div>
+  </section>
+
+  <!-- 06 · 競爭優勢 / Moat -->
+  <section id="sec-moat">
+    <div class="section-title">06 · 競爭優勢 / Moat</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：技術壁壘、成本優勢、品牌、專利、轉換成本</p>
+    </div>
+  </section>
+
+  <footer>
+    Equity Research · SNDK Fundamentals · 2026-03-09
+  </footer>
+
+</div>
+</body>
+</html>

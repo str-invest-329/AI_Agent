@@ -17,7 +17,6 @@ const technicalData = {
   volume: null,
   date: "",
   ma: { MA5: null, MA20: null, MA60: null },
-  rsi: null,
   macd: { macd: null, signal: null, hist: null },
   bollinger: { upper: null, mid: null, lower: null },
   weeklyLabels: [],

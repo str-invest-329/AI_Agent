@@ -1,4 +1,4 @@
-"""技術面分析：均線、RSI、MACD、布林通道"""
+"""技術面分析：均線、MACD、布林通道"""
 
 import pandas as pd
 
@@ -6,7 +6,6 @@ import pandas as pd
 class TechnicalAnalyzer:
     def __init__(self, config: dict):
         self.ma_periods = config.get("ma_periods", [5, 20, 60])
-        self.rsi_period = config.get("rsi_period", 14)
         macd_cfg = config.get("macd", {})
         self.macd_fast = macd_cfg.get("fast", 12)
         self.macd_slow = macd_cfg.get("slow", 26)
@@ -26,9 +25,6 @@ class TechnicalAnalyzer:
         for p in self.ma_periods:
             if len(close) >= p:
                 result[f"MA{p}"] = round(close.rolling(p).mean().iloc[-1], 2)
-
-        # --- RSI ---
-        result["RSI"] = round(self._rsi(close, self.rsi_period), 2)
 
         # --- MACD ---
         macd_line, signal_line, hist = self._macd(close)
@@ -61,14 +57,6 @@ class TechnicalAnalyzer:
         return result
 
     # ── 私有計算方法 ──────────────────────────────────────────────────────────
-
-    def _rsi(self, series: pd.Series, period: int) -> float:
-        delta = series.diff()
-        gain = delta.clip(lower=0).rolling(period).mean()
-        loss = (-delta.clip(upper=0)).rolling(period).mean()
-        rs = gain / loss.replace(0, float("nan"))
-        rsi = 100 - 100 / (1 + rs)
-        return rsi.iloc[-1]
 
     def _macd(self, series: pd.Series) -> tuple[float, float, float]:
         ema_fast = series.ewm(span=self.macd_fast, adjust=False).mean()
