@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SNDK 基本面研究</title>
+  <title>SNDK 個股研究</title>
   <style>
     /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,13 +37,30 @@
       box-shadow: 0 1px 4px rgba(44,21,23,0.06);
     }
     .toc h2 { font-size: 0.9rem; color: #8B7E80; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
-    .toc ol { padding-left: 1.25rem; }
-    .toc li { margin-bottom: 0.35rem; font-size: 0.92rem; }
+    .toc > ol { padding-left: 1.25rem; }
+    .toc li { margin-bottom: 0.3rem; font-size: 0.92rem; }
+    .toc ol ol { padding-left: 1.25rem; margin-top: 0.25rem; }
+    .toc ol ol li { font-size: 0.85rem; color: #6B5E60; }
     .toc a { color: #2C1517; text-decoration: none; }
     .toc a:hover { color: #C02734; text-decoration: underline; }
+    .toc ol ol a { color: #6B5E60; }
+    .toc ol ol a:hover { color: #C02734; }
 
-    /* ── Section ── */
-    section { margin-bottom: 3rem; }
+    /* ── Chapter (top-level: 基本面 / 財務面 / ...) ── */
+    .chapter { margin-bottom: 4rem; }
+    .chapter-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #2C1517;
+      padding-bottom: 0.6rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #C02734;
+    }
+    .chapter-title span { color: #C02734; }
+
+    /* ── Section (sub-level: 01 企業概述 / 02 商業模式 / ...) ── */
+    section { margin-bottom: 2.5rem; }
     .section-title {
       font-size: 1.1rem;
       font-weight: 600;
@@ -112,6 +129,50 @@
 
     /* ── Source tag ── */
     .source { font-size: 0.75rem; color: #B0A0A2; margin-top: 0.5rem; }
+    .source a { color: #B0A0A2; text-decoration: none; }
+    .source a:hover { color: #C02734; text-decoration: underline; }
+    .sources-list { list-style: none; padding: 0; margin: 0.4rem 0 0 0; }
+    .sources-list li { font-size: 0.75rem; color: #B0A0A2; margin-bottom: 0.15rem; }
+    .sources-list li::before { content: "["; }
+    .sources-list li::after { content: "]"; }
+    .sources-list a { color: #8B7E80; text-decoration: none; }
+    .sources-list a:hover { color: #C02734; text-decoration: underline; }
+    .back-link { display:inline-block; margin-bottom:0.75rem; color:#C02734; text-decoration:none; font-size:0.85rem; font-weight:600; opacity:0.7; transition:opacity .2s; }
+
+    /* ── Floating Side TOC ── */
+    .side-toc {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      right: calc((100vw - 960px) / 2 - 200px);
+      width: 180px;
+      font-size: 0.76rem;
+      line-height: 1.5;
+      z-index: 100;
+    }
+    .side-toc ul { list-style: none; padding: 0; margin: 0; border-left: 2px solid #E0D8D8; }
+    .side-toc li { padding: 0.25rem 0 0.25rem 0.75rem; }
+    .side-toc li.chapter-item { font-weight: 600; color: #2C1517; padding-top: 0.6rem; }
+    .side-toc li.chapter-item:first-child { padding-top: 0.25rem; }
+    .side-toc li.sub-item { padding-left: 1.25rem; font-weight: 400; }
+    .side-toc a {
+      color: #8B7E80;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .side-toc li.chapter-item > a { color: #2C1517; }
+    .side-toc a:hover { color: #C02734; }
+    .side-toc a.active {
+      color: #C02734;
+      font-weight: 600;
+    }
+    .side-toc li.active-indicator {
+      border-left: 2px solid #C02734;
+      margin-left: -2px;
+    }
+    @media (max-width: 1440px) {
+      .side-toc { display: none; }
+    }
 
     /* ── Footer ── */
     footer { border-top: 1px solid #E0D8D8; padding-top: 1rem; font-size: 0.75rem; color: #B0A0A2; }
@@ -120,77 +181,384 @@
 <body>
 <div class="page-wrapper">
 
+  <a class="back-link" href="../../index.html" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">&larr; Equity Research</a>
+
   <!-- Header -->
   <header>
-    <h1><span>SNDK</span> 基本面研究</h1>
-    <div class="report-meta">Sandisk Corp · 最後更新：2026-03-09</div>
+    <h1><span>SNDK</span> 個股研究</h1>
+    <div class="report-meta">Sandisk Corp · 最後更新：2026-03-10</div>
   </header>
 
   <!-- Table of Contents -->
   <nav class="toc">
     <h2>目錄</h2>
     <ol>
-      <li><a href="#sec-overview">企業概述</a></li>
-      <li><a href="#sec-business-model">商業模式</a></li>
-      <li><a href="#sec-products">產品與應用場景</a></li>
-      <li><a href="#sec-market">市場規模與成長趨勢</a></li>
-      <li><a href="#sec-competition">競爭格局</a></li>
-      <li><a href="#sec-moat">競爭優勢 / Moat</a></li>
+      <li>
+        <a href="#ch-fundamental">基本面</a>
+        <ol>
+          <li><a href="#sec-overview">企業概述</a></li>
+          <li><a href="#sec-business-model">商業模式</a></li>
+          <li><a href="#sec-products">產品與應用場景</a></li>
+          <li><a href="#sec-market">市場規模與成長趨勢</a></li>
+          <li><a href="#sec-competition">競爭格局</a></li>
+          <li><a href="#sec-moat">競爭優勢 / Moat</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch-financial">財務面</a></li>
+      <li><a href="#ch-flow">籌碼面</a></li>
+      <li><a href="#ch-technical">技術面</a></li>
+      <li><a href="#ch-valuation">估值模型</a></li>
     </ol>
   </nav>
 
-  <!-- 01 · 企業概述 -->
-  <section id="sec-overview">
-    <div class="section-title">01 · 企業概述</div>
-    <div class="content-box">
-      <p class="placeholder">待填入：公司背景、WDC 分拆歷程、組織架構、管理層</p>
-    </div>
-  </section>
+  <!-- ============================================================ -->
+  <!-- CHAPTER: 基本面                                               -->
+  <!-- ============================================================ -->
+  <div class="chapter" id="ch-fundamental">
+    <div class="chapter-title"><span>I.</span> 基本面</div>
 
-  <!-- 02 · 商業模式 -->
-  <section id="sec-business-model">
-    <div class="section-title">02 · 商業模式</div>
-    <div class="content-box">
-      <p class="placeholder">待填入：營收結構、獲利模式、客戶類型、銷售通路</p>
-    </div>
-  </section>
+    <!-- 01 · 企業概述 -->
+    <section id="sec-overview">
+      <div class="section-title">01 · 企業概述</div>
 
-  <!-- 03 · 產品與應用場景 -->
-  <section id="sec-products">
-    <div class="section-title">03 · 產品與應用場景</div>
-    <div class="content-box">
-      <p class="placeholder">待填入：NAND Flash / SSD 產品線、終端市場分佈、技術節點</p>
-    </div>
-  </section>
+      <div class="kv-grid">
+        <div class="kv-card">
+          <div class="kv-label">Ticker</div>
+          <div class="kv-value">SNDK</div>
+          <div class="kv-sub">Nasdaq</div>
+        </div>
+        <div class="kv-card">
+          <div class="kv-label">總部</div>
+          <div class="kv-value" style="font-size:1.1rem;">Milpitas, CA</div>
+          <div class="kv-sub">951 Sandisk Drive</div>
+        </div>
+        <div class="kv-card">
+          <div class="kv-label">員工數</div>
+          <div class="kv-value">~11,000</div>
+        </div>
+        <div class="kv-card">
+          <div class="kv-label">上市日期</div>
+          <div class="kv-value" style="font-size:1.1rem;">2025/02/24</div>
+          <div class="kv-sub">WDC 分拆重新上市</div>
+        </div>
+        <div class="kv-card">
+          <div class="kv-label">財年</div>
+          <div class="kv-value" style="font-size:1.1rem;">7 月 ~ 6 月</div>
+          <div class="kv-sub">FY2025 截至 2025/06/27</div>
+        </div>
+      </div>
 
-  <!-- 04 · 市場規模與成長趨勢 -->
-  <section id="sec-market">
-    <div class="section-title">04 · 市場規模與成長趨勢</div>
-    <div class="content-box">
-      <p class="placeholder">待填入：TAM、各細分市場規模、CAGR、需求驅動因素</p>
-    </div>
-  </section>
+      <div class="content-box">
+        <h3>公司背景</h3>
+        <p>Sandisk Corporation 是全球領先的 NAND Flash 儲存解決方案供應商，開發、製造並銷售 SSD、嵌入式儲存、記憶卡及 USB 隨身碟等產品，應用於資料中心、PC、行動裝置、遊戲主機、車用及 IoT 終端市場。</p>
+        <p>SanDisk 品牌最早由 Eli Harari、Sanjay Mehrotra 與 Jack Yuan 於 1988 年創立，是 Flash 儲存產業的先驅。2016 年被 Western Digital（WDC）以約 190 億美元收購，整併為 WDC 旗下的 Flash 事業群。</p>
+        <div class="source">Sources:
+          <ul class="sources-list">
+            <li><a href="https://investor.sandisk.com/news-releases/news-release-details/sandisk-celebrates-nasdaq-listing-after-completing-separation" target="_blank" rel="noopener">Sandisk IR — Celebrates Nasdaq Listing After Completing Separation (2025/02/24)</a></li>
+            <li><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002023554&type=10-K" target="_blank" rel="noopener">SEC EDGAR — SNDK 10-K Filing</a></li>
+          </ul>
+        </div>
+      </div>
 
-  <!-- 05 · 競爭格局 -->
-  <section id="sec-competition">
-    <div class="section-title">05 · 競爭格局</div>
-    <div class="content-box">
-      <p class="placeholder">待填入：Market Share、主要競爭者比較（Samsung、SK Hynix、Micron、Kioxia）</p>
-    </div>
-  </section>
+      <div class="content-box">
+        <h3>WDC 分拆歷程</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>時間</th><th>事件</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2016 年 5 月</td><td>Western Digital 以 ~$19B 收購 SanDisk，SanDisk 從 Nasdaq 下市</td></tr>
+            <tr><td>2023 年 10 月</td><td>WDC 宣布將 HDD 與 Flash 事業分拆為兩家獨立上市公司</td></tr>
+            <tr><td>2025 年 2 月 24 日</td><td>分拆完成，Sandisk 以 SNDK 重新於 Nasdaq 掛牌交易</td></tr>
+          </tbody>
+        </table>
+        <p>分拆後，原 WDC 旗下所有 Flash 儲存產品（含 Western Digital、WD_BLACK、SanDisk、SanDisk Professional 品牌的 SSD / 記憶卡 / 隨身碟）歸入 Sandisk；HDD 產品則留在 Western Digital。</p>
+        <div class="source">Sources:
+          <ul class="sources-list">
+            <li><a href="https://www.westerndigital.com/company/newsroom/press-releases/2025/2025-02-24-western-digital-completes-planned-company-separation" target="_blank" rel="noopener">WDC — Completes Planned Company Separation (2025/02/24)</a></li>
+            <li><a href="https://www.sandisk.com/sandisk-separation-faqs" target="_blank" rel="noopener">Sandisk — Corporate Separation and Brand FAQ</a></li>
+          </ul>
+        </div>
+      </div>
 
-  <!-- 06 · 競爭優勢 / Moat -->
-  <section id="sec-moat">
-    <div class="section-title">06 · 競爭優勢 / Moat</div>
+      <div class="content-box">
+        <h3>製造：與 Kioxia 的合資關係</h3>
+        <p>Sandisk 與 Kioxia（前身為 Toshiba Memory）維持超過 20 年的 NAND Flash 製造合資關係，共同運營位於日本的晶圓廠：</p>
+        <ul>
+          <li><strong>四日市工廠（Yokkaichi）</strong> — 位於三重縣，為歷史最悠久的合資廠區。2026 年 1 月雙方將合資協議延長至 2034 年底。</li>
+          <li><strong>北上工廠（Kitakami）</strong> — 位於岩手縣。Fab2（K2）於 2025 年 9 月啟用，具備生產第八代 218 層 3D NAND（CBA 技術）能力，產能將於 2026 年上半年開始放量。</li>
+        </ul>
+        <p>合資產能約 80% 由 Kioxia 與 Sandisk 平分，其餘 20% 為 Kioxia 獨有。此合資模式讓 Sandisk 無需獨資建廠即可取得先進 NAND 產能，顯著降低資本支出負擔。</p>
+        <div class="source">Sources:
+          <ul class="sources-list">
+            <li><a href="https://investor.sandisk.com/news-releases/news-release-details/kioxia-and-sandisk-extend-yokkaichi-joint-venture-agreement" target="_blank" rel="noopener">Sandisk IR — Kioxia and Sandisk Extend Yokkaichi JV Through 2034 (2026/01/29)</a></li>
+            <li><a href="https://www.sandisk.com/company/newsroom/press-releases/2025/2025-09-29-kioxia-and-sandisk-announce-beginning-of-operation-of-fab2-at-kitakami-plant-japan-to-meet-the-market-demand-driven-by-ai" target="_blank" rel="noopener">Sandisk — Kioxia and Sandisk Announce Fab2 at Kitakami (2025/09/29)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>管理層</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>職位</th><th>姓名</th><th>背景</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CEO & Chairman</td>
+              <td>David V. Goeckeler</td>
+              <td>原 WDC CEO，主導分拆</td>
+            </tr>
+            <tr>
+              <td>CFO</td>
+              <td>Luis Felipe Visoso</td>
+              <td>前 Unity Software CFO；曾任 Palo Alto Networks、AWS CFO</td>
+            </tr>
+            <tr>
+              <td>CTO</td>
+              <td>Alper Ilkbahar</td>
+              <td>負責 NAND 技術開發與次世代技術；前 WDC SVP / Intel Optane GM</td>
+            </tr>
+            <tr>
+              <td>COO</td>
+              <td>Don Angspatt</td>
+              <td>負責全球營運、晶圓廠、封測、供應鏈、採購、IT</td>
+            </tr>
+            <tr>
+              <td>CRO</td>
+              <td>Jim Elliott</td>
+              <td>負責營收成長與市場拓展</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>董事會由 8 名董事組成，其中 7 名為外部獨立董事。</p>
+      </div>
+    </section>
+
+    <!-- 02 · 商業模式 -->
+    <section id="sec-business-model">
+      <div class="section-title">02 · 商業模式</div>
+
+      <div class="content-box">
+        <h3>獲利模式</h3>
+        <p>Sandisk 的核心業務是設計、製造並銷售基於 NAND Flash 技術的儲存產品。公司透過與 Kioxia 的合資工廠生產 NAND 晶圓，再自行封裝、測試為成品（SSD、記憶卡、嵌入式儲存等），銷售給 OEM 客戶與終端消費者。</p>
+        <p>這種「合資製造 + 自有品牌銷售」的模式讓 Sandisk 兼具 IDM 的產能保障與 Fabless 的資本效率——晶圓廠投資由兩家公司分攤，降低了週期性產業中的資本風險。</p>
+        <div class="source">Sources:
+          <ul class="sources-list">
+            <li><a href="https://last10k.com/sec-filings/sndk/0002023554-25-000034.htm" target="_blank" rel="noopener">SEC — SNDK 10-K Annual Report (FY2025)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>營收結構：三大終端市場</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>終端市場</th>
+              <th>說明</th>
+              <th class="num">FY2025 營收</th>
+              <th class="num">佔比</th>
+              <th class="num">Q2 FY2026</th>
+              <th class="num">佔比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Edge</strong>（原 Client）</td>
+              <td>PC / 筆電 / 遊戲主機 / 車用 / 行動裝置 SSD 與嵌入式儲存</td>
+              <td class="num">$4,127M</td>
+              <td class="num">56.1%</td>
+              <td class="num">$1,700M</td>
+              <td class="num">56.1%</td>
+            </tr>
+            <tr>
+              <td><strong>Consumer</strong></td>
+              <td>記憶卡、USB 隨身碟、可攜式 SSD 等零售產品</td>
+              <td class="num">$2,268M</td>
+              <td class="num">30.8%</td>
+              <td class="num">$907M</td>
+              <td class="num">29.9%</td>
+            </tr>
+            <tr>
+              <td><strong>Datacenter</strong>（原 Cloud）</td>
+              <td>企業級 SSD、AI 推論儲存、超大規模資料中心</td>
+              <td class="num">$960M</td>
+              <td class="num">13.1%</td>
+              <td class="num">$440M</td>
+              <td class="num">14.5%</td>
+            </tr>
+            <tr style="font-weight:600; border-top:2px solid #E0D8D8;">
+              <td>合計</td>
+              <td></td>
+              <td class="num">$7,355M</td>
+              <td class="num">100%</td>
+              <td class="num">$3,030M</td>
+              <td class="num">100%</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><strong>趨勢觀察：</strong>Datacenter 是成長最快的板塊（FY2025 YoY +195%，Q2 FY2026 YoY +76%），受惠於 AI 推論與超大規模客戶需求。Edge 仍為營收主力，佔比穩定在 ~56%。Consumer 受惠品牌力與 Nintendo Switch 2 合作，營收穩健。</p>
+        <div class="source">FY2025 = 截至 2025/06/27 財年；Q2 FY2026 = 截至 2026/01/02 季度
+          <ul class="sources-list">
+            <li><a href="https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-fourth-quarter-2025-financial-results" target="_blank" rel="noopener">Sandisk IR — Q4 & Full Year FY2025 Financial Results (2025/08/14)</a></li>
+            <li><a href="https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-second-quarter-2026-financial-results" target="_blank" rel="noopener">Sandisk IR — Q2 FY2026 Financial Results (2026/01/29)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>客戶與通路</h3>
+        <ul>
+          <li><strong>OEM 客戶：</strong>PC 廠商、手機廠商、遊戲主機廠（Nintendo）、車用 Tier 1、雲端超大規模業者（Hyperscalers）。Q1 FY2026 揭露有 2 家 Hyperscaler 正在認證中，第 3 家及大型 OEM 預計 CY2026 加入。</li>
+          <li><strong>通路 / 零售：</strong>Consumer 產品透過零售通路（Amazon、Best Buy 等）與經銷商銷售，SanDisk 品牌知名度為主要競爭優勢。</li>
+          <li><strong>客戶集中度：</strong>前 10 大客戶佔營收約 40%（Q1 FY2026），分散度尚可。</li>
+        </ul>
+        <div class="source">Sources:
+          <ul class="sources-list">
+            <li><a href="https://investor.sandisk.com/static-files/62694580-addb-49ee-b362-762ba5029a34" target="_blank" rel="noopener">SEC — SNDK 10-Q (Q1 FY2026, filed 2025/11/07)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-box">
+        <h3>品牌組合</h3>
+        <p>分拆後 Sandisk 保留以下 Flash 相關品牌：</p>
+        <ul>
+          <li><strong>SanDisk / SanDisk Professional</strong> — 消費者與專業用戶記憶卡、隨身碟、可攜式 SSD</li>
+          <li><strong>Western Digital / WD</strong> — 內接式 SSD（PC / NAS）</li>
+          <li><strong>WD_BLACK</strong> — 電競取向高效能 SSD</li>
+        </ul>
+        <div class="source">Sources:
+          <ul class="sources-list">
+            <li><a href="https://www.sandisk.com/sandisk-separation-faqs" target="_blank" rel="noopener">Sandisk — Corporate Separation and Brand FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · 產品與應用場景 -->
+    <section id="sec-products">
+      <div class="section-title">03 · 產品與應用場景</div>
+      <div class="content-box">
+        <p class="placeholder">待填入：NAND Flash / SSD 產品線、終端市場分佈、技術節點</p>
+      </div>
+    </section>
+
+    <!-- 04 · 市場規模與成長趨勢 -->
+    <section id="sec-market">
+      <div class="section-title">04 · 市場規模與成長趨勢</div>
+      <div class="content-box">
+        <p class="placeholder">待填入：TAM、各細分市場規模、CAGR、需求驅動因素</p>
+      </div>
+    </section>
+
+    <!-- 05 · 競爭格局 -->
+    <section id="sec-competition">
+      <div class="section-title">05 · 競爭格局</div>
+      <div class="content-box">
+        <p class="placeholder">待填入：Market Share、主要競爭者比較（Samsung、SK Hynix、Micron、Kioxia）</p>
+      </div>
+    </section>
+
+    <!-- 06 · 競爭優勢 / Moat -->
+    <section id="sec-moat">
+      <div class="section-title">06 · 競爭優勢 / Moat</div>
+      <div class="content-box">
+        <p class="placeholder">待填入：技術壁壘、成本優勢、品牌、專利、轉換成本</p>
+      </div>
+    </section>
+
+  </div><!-- /ch-fundamental -->
+
+  <!-- ============================================================ -->
+  <!-- CHAPTER: 財務面                                               -->
+  <!-- ============================================================ -->
+  <div class="chapter" id="ch-financial">
+    <div class="chapter-title"><span>II.</span> 財務面</div>
     <div class="content-box">
-      <p class="placeholder">待填入：技術壁壘、成本優勢、品牌、專利、轉換成本</p>
+      <p class="placeholder">待填入：三表分析、毛利率趨勢、營運槓桿、現金流、資本結構</p>
     </div>
-  </section>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CHAPTER: 籌碼面                                               -->
+  <!-- ============================================================ -->
+  <div class="chapter" id="ch-flow">
+    <div class="chapter-title"><span>III.</span> 籌碼面</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：機構持股、Short Interest、內部人交易、ETF 持倉</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CHAPTER: 技術面                                               -->
+  <!-- ============================================================ -->
+  <div class="chapter" id="ch-technical">
+    <div class="chapter-title"><span>IV.</span> 技術面</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：趨勢、均線、量能、關鍵支撐壓力</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CHAPTER: 估值模型                                             -->
+  <!-- ============================================================ -->
+  <div class="chapter" id="ch-valuation">
+    <div class="chapter-title"><span>V.</span> 估值模型</div>
+    <div class="content-box">
+      <p class="placeholder">待填入：DCF、Comps、歷史本益比、目標價</p>
+    </div>
+  </div>
 
   <footer>
-    Equity Research · SNDK Fundamentals · 2026-03-09
+    Equity Research · SNDK · 2026-03-10
   </footer>
 
 </div>
+
+<!-- Floating Side TOC -->
+<nav class="side-toc" id="side-toc">
+  <ul>
+    <li class="chapter-item"><a href="#ch-fundamental">I. 基本面</a></li>
+    <li class="sub-item"><a href="#sec-overview">企業概述</a></li>
+    <li class="sub-item"><a href="#sec-business-model">商業模式</a></li>
+    <li class="sub-item"><a href="#sec-products">產品</a></li>
+    <li class="sub-item"><a href="#sec-market">市場規模</a></li>
+    <li class="sub-item"><a href="#sec-competition">競爭格局</a></li>
+    <li class="sub-item"><a href="#sec-moat">Moat</a></li>
+    <li class="chapter-item"><a href="#ch-financial">II. 財務面</a></li>
+    <li class="chapter-item"><a href="#ch-flow">III. 籌碼面</a></li>
+    <li class="chapter-item"><a href="#ch-technical">IV. 技術面</a></li>
+    <li class="chapter-item"><a href="#ch-valuation">V. 估值模型</a></li>
+  </ul>
+</nav>
+
+<script>
+// ── Side TOC scroll tracking ──
+(function() {
+  const toc = document.getElementById('side-toc');
+  if (!toc) return;
+  const links = toc.querySelectorAll('a');
+  const targets = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+  function update() {
+    let active = targets[0];
+    const offset = window.scrollY + window.innerHeight * 0.25;
+    for (const t of targets) {
+      if (t.offsetTop <= offset) active = t;
+    }
+    links.forEach(a => {
+      const li = a.parentElement;
+      const isActive = a.getAttribute('href') === '#' + active.id;
+      a.classList.toggle('active', isActive);
+      li.classList.toggle('active-indicator', isActive);
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 </body>
 </html>
