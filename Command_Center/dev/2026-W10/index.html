@@ -103,6 +103,7 @@
       line-height: 1.7;
     }
     .chart-box h3 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .box-label { font-size: 0.88rem; font-weight: 600; color: var(--text-muted); }
     .chart-box canvas { width: 100% !important; }
 
     /* ── Fed Watch bar ── */
@@ -127,6 +128,36 @@
     }
     .eq-table th { color: var(--text-muted); font-weight: 400; font-size: 0.78rem; text-transform: uppercase; }
     .eq-table td:first-child, .eq-table th:first-child { text-align: left; }
+
+    /* ── Dollar Volume toggle & sort ── */
+    .dv-toggle { display: inline-flex; gap: 2px; background: var(--bg-page); border-radius: 6px; padding: 2px; }
+    .dv-btn {
+      border: none; background: none; padding: 3px 10px; font-size: 0.72rem; font-weight: 600;
+      color: var(--text-muted); border-radius: 4px; cursor: pointer; transition: all 0.15s;
+    }
+    .dv-btn:hover { color: var(--text); }
+    .dv-btn.active { background: var(--bg-card); color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .dv-etf-toggle {
+      border: 1px solid var(--border); background: var(--bg-card); padding: 3px 10px;
+      font-size: 0.72rem; font-weight: 600; color: var(--text-muted); border-radius: 4px;
+      cursor: pointer; transition: all 0.15s; margin-left: 4px;
+    }
+    .dv-etf-toggle:hover { border-color: var(--primary); color: var(--text); }
+    .dv-etf-toggle.show-etf { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .dv-sortable th { cursor: pointer; user-select: none; transition: color 0.15s; white-space: nowrap; }
+    .dv-sortable th:hover { color: var(--primary); }
+    .dv-sort-active { color: var(--primary) !important; }
+    .dv-ticker-cell { display: flex; align-items: center; gap: 6px; }
+    .dv-logo { width: 20px; height: 20px; border-radius: 4px; object-fit: contain; background: var(--bg-page); flex-shrink: 0; }
+    .dv-industry { font-size: 0.75rem; color: var(--text-muted); }
+    .dv-title-wrap { position: relative; display: inline-block; cursor: help; border-bottom: 1px dashed var(--text-faint); }
+    .dv-tooltip {
+      display: none; position: absolute; left: 0; top: 1.6em; z-index: 50;
+      background: var(--text); color: #fff; font-size: 0.72rem; line-height: 1.5;
+      padding: 8px 12px; border-radius: 6px; width: 280px; white-space: normal;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .dv-title-wrap:hover .dv-tooltip { display: block; }
 
     /* ── N/A display ── */
     .na-val { color: var(--text-faint); font-style: italic; }
@@ -477,11 +508,42 @@
     </div><!-- end grid -->
     <div class="chart-box">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-        <span style="font-size:0.78rem; color:var(--text-muted);">以 ETF 追蹤（DIA / SPY / QQQ / IWM / UUP）· 每 30 分鐘自動更新</span>
+        <span class="box-label">以 ETF 追蹤（DIA / SPY / QQQ / IWM / UUP）· 每 30 分鐘自動更新</span>
         <span id="market-meta" style="font-size:0.75rem; color:var(--text-faint);"></span>
       </div>
       <table class="eq-table" id="eq-table">
         <thead><tr><th>ETF</th><th>追蹤指數</th><th>ETF 價格</th><th>日漲跌 %</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Dollar Volume Top 20 -->
+    <div class="chart-box" style="margin-top:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <span class="dv-title-wrap box-label">Dollar Volume Top 20<span class="dv-tooltip">Dollar Volume = Daily Close Price × Daily Volume，逐日加總。<br>資料來源：Finviz（候選池）+ Yahoo Finance（歷史價量）。<br>排名取 volume 前 400 支標的計算。</span></span>
+          <div class="dv-toggle" id="dv-toggle">
+            <button class="dv-btn" data-days="1">1D</button>
+            <button class="dv-btn" data-days="5">5D</button>
+            <button class="dv-btn active" data-days="10">10D</button>
+          </div>
+          <button class="dv-etf-toggle" id="dv-etf-toggle">ETF</button>
+        </div>
+        <span id="dv-meta" style="font-size:0.75rem; color:var(--text-faint);"></span>
+      </div>
+      <table class="eq-table dv-sortable" id="dv-table">
+        <thead>
+          <tr>
+            <th data-col="rank" data-type="num">#</th>
+            <th data-col="ticker" data-type="str">Ticker</th>
+            <th data-col="industry" data-type="str">Industry</th>
+            <th data-col="last_price" data-type="num">Price</th>
+            <th data-col="total_volume" data-type="num">Vol</th>
+            <th data-col="dollar_volume" data-type="num" class="dv-sort-active">$ Vol ▼</th>
+            <th data-col="avg_daily_dv" data-type="num">Avg/Day</th>
+            <th data-col="is_etf" data-type="str">Type</th>
+          </tr>
+        </thead>
         <tbody></tbody>
       </table>
     </div>
@@ -927,6 +989,132 @@ async function loadMarket() {
 }
 loadMarket();
 setInterval(loadMarket, 30 * 60 * 1000);
+
+// ── Dollar Volume Top 20 ────────────────────────────────────────
+let dvData = null;          // cached JSON
+let dvDays = "10";          // current timeframe
+let dvSortCol = "dollar_volume";
+let dvSortAsc = false;
+let dvHideEtf = true;
+
+function fmtLargeNum(n) {
+  if (n == null) return "—";
+  if (n >= 1e9) return (n / 1e9).toFixed(2) + "B";
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
+  if (n >= 1e3) return (n / 1e3).toFixed(0) + "K";
+  return n.toFixed(0);
+}
+
+function fmtDollarLarge(n) {
+  if (n == null) return "—";
+  if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
+  if (n >= 1e6) return "$" + (n / 1e6).toFixed(1) + "M";
+  if (n >= 1e3) return "$" + (n / 1e3).toFixed(0) + "K";
+  return "$" + n.toFixed(0);
+}
+
+function renderDvTable() {
+  const tbody = $("dv-table").querySelector("tbody");
+  const metaEl = $("dv-meta");
+  const colSpan = 8;
+  if (!dvData || !dvData.timeframes[dvDays]) {
+    tbody.innerHTML = `<tr><td colspan="${colSpan}" class="na-placeholder">Dollar Volume 數據尚未載入</td></tr>`;
+    return;
+  }
+
+  const tf = dvData.timeframes[dvDays];
+  let rows = [...tf.rankings];
+
+  // ETF filter, then take top 20
+  if (dvHideEtf) rows = rows.filter(r => !r.is_etf);
+  rows = rows.slice(0, 20);
+
+  // Sort
+  rows.sort((a, b) => {
+    let va = a[dvSortCol], vb = b[dvSortCol];
+    if (dvSortCol === "ticker" || dvSortCol === "is_etf" || dvSortCol === "industry") {
+      va = dvSortCol === "is_etf" ? (a.is_etf ? "ETF" : "Stock") : String(va || "");
+      vb = dvSortCol === "is_etf" ? (b.is_etf ? "ETF" : "Stock") : String(vb || "");
+      return dvSortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+    }
+    return dvSortAsc ? va - vb : vb - va;
+  });
+
+  const logoUrl = t => `https://assets.parqet.com/logos/symbol/${t}`;
+
+  tbody.innerHTML = "";
+  rows.forEach((item, i) => {
+    tbody.insertAdjacentHTML("beforeend", `<tr>
+      <td style="text-align:center; color:var(--text-faint);">${i + 1}</td>
+      <td><div class="dv-ticker-cell"><img class="dv-logo" src="${logoUrl(item.ticker)}" alt="" onerror="this.style.display='none'"><strong>${item.ticker}</strong></div></td>
+      <td class="dv-industry">${item.industry || "—"}</td>
+      <td>${item.last_price.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+      <td>${fmtLargeNum(item.total_volume)}</td>
+      <td>${fmtDollarLarge(item.dollar_volume)}</td>
+      <td>${fmtDollarLarge(item.avg_daily_dv)}</td>
+      <td style="font-size:0.75rem; color:var(--text-faint);">${item.is_etf ? "ETF" : "Stock"}</td>
+    </tr>`);
+  });
+
+  if (metaEl) metaEl.textContent = tf.period || "";
+
+  // Update header arrows
+  const labels = {rank:"#", ticker:"Ticker", industry:"Industry", last_price:"Price",
+                  total_volume:"Vol", dollar_volume:"$ Vol", avg_daily_dv:"Avg/Day", is_etf:"Type"};
+  $("dv-table").querySelectorAll("thead th").forEach(th => {
+    const col = th.dataset.col;
+    th.classList.toggle("dv-sort-active", col === dvSortCol);
+    const base = labels[col] || "";
+    th.textContent = col === dvSortCol ? base + (dvSortAsc ? " ▲" : " ▼") : base;
+  });
+}
+
+async function loadDollarVolume() {
+  try {
+    const resp = await fetch("dollar_volume.json?_=" + Date.now());
+    if (!resp.ok) throw new Error(resp.status);
+    dvData = await resp.json();
+    renderDvTable();
+  } catch (e) {
+    $("dv-table").querySelector("tbody").innerHTML =
+      `<tr><td colspan="8" class="na-placeholder">Dollar Volume 數據尚未載入</td></tr>`;
+  }
+}
+
+// Toggle buttons (1D / 5D / 10D)
+$("dv-toggle").addEventListener("click", e => {
+  const btn = e.target.closest(".dv-btn");
+  if (!btn) return;
+  $("dv-toggle").querySelectorAll(".dv-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  dvDays = btn.dataset.days;
+  renderDvTable();
+});
+
+// ETF toggle
+$("dv-etf-toggle").addEventListener("click", () => {
+  dvHideEtf = !dvHideEtf;
+  const btn = $("dv-etf-toggle");
+  btn.classList.toggle("show-etf", !dvHideEtf);
+  btn.textContent = "ETF";
+  renderDvTable();
+});
+
+// Sortable headers
+$("dv-table").querySelector("thead").addEventListener("click", e => {
+  const th = e.target.closest("th");
+  if (!th || !th.dataset.col) return;
+  const col = th.dataset.col;
+  if (col === dvSortCol) {
+    dvSortAsc = !dvSortAsc;
+  } else {
+    dvSortCol = col;
+    dvSortAsc = th.dataset.type === "str";  // strings default asc, numbers default desc
+  }
+  renderDvTable();
+});
+
+loadDollarVolume();
 
 // ── Leading Indicators ──────────────────────────────────────────
 if (DEBUG) {
