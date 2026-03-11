@@ -677,7 +677,7 @@ export default function Dashboard() {
 
         {/* ── Top Ticker Bar ──────────────────────────────────── */}
         {marketData && (
-          <div className="flex items-center gap-5 bg-[#F8F4F4] border border-[#E2D8D8] rounded-t-lg px-5 py-2 font-mono text-[0.78rem] tabular-nums overflow-x-auto">
+          <div className="flex items-center gap-5 bg-[#F8F4F4] px-5 py-2 font-mono text-[0.78rem] tabular-nums overflow-x-auto">
             {marketData.indices.filter(i => ["sp500", "nasdaq", "dow_jones"].includes(i.id)).map((idx) => (
               <div key={idx.id} className="flex items-center gap-2 whitespace-nowrap">
                 <span className="text-[#7A5860] font-semibold">{idx.name}</span>
