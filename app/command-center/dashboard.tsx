@@ -96,6 +96,14 @@ const TYPE_COLORS: Record<string, string> = {
 };
 
 /* ── Helpers ──────────────────────────────────────────────────── */
+function isUSMarketOpen(now: Date): boolean {
+  const et = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+  const day = et.getDay();
+  if (day === 0 || day === 6) return false;
+  const mins = et.getHours() * 60 + et.getMinutes();
+  return mins >= 570 && mins < 960; // 9:30 - 16:00 ET
+}
+
 const isNA = (val: string | number | null | undefined): boolean =>
   val == null || val === "—";
 
@@ -457,6 +465,7 @@ export default function Dashboard() {
 
   // News
   const [newsItems, setNewsItems] = useState<import("@/app/components/news/types").NewsItem[]>([]);
+  const [newsUpdatedAt, setNewsUpdatedAt] = useState<string | null>(null);
 
   // Live clock
   const [now, setNow] = useState(new Date());
@@ -511,7 +520,10 @@ export default function Dashboard() {
         if (!r.ok) throw new Error(String(r.status));
         return r.json();
       })
-      .then((d: { items: import("./types").NewsItem[] }) => setNewsItems(d.items || []))
+      .then((d: { items: import("./types").NewsItem[]; updated_at?: string }) => {
+        setNewsItems(d.items || []);
+        setNewsUpdatedAt(d.updated_at || null);
+      })
       .catch(() => {});
   }, []);
 
@@ -663,9 +675,19 @@ export default function Dashboard() {
               {debug && <span className="inline-flex items-center gap-1 bg-[#D97706] text-white text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded ml-2 align-middle">&#9873; debug</span>}
             </h1>
           </div>
-          <div className="text-right text-[0.8rem] text-[#7A5860] font-mono tabular-nums leading-snug">
-            <div><span className="text-[#B09898] text-xs mr-1.5">ET</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
-            <div><span className="text-[#B09898] text-xs mr-1.5">TW</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
+          <div className="text-right font-mono tabular-nums leading-snug">
+            <div className="flex items-center justify-end gap-2 mb-1">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="text-[0.7rem] font-semibold tracking-wider text-green-600 uppercase">Live</span>
+              <span className={`text-[0.65rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isUSMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-[#F8F4F4] text-[#B09898]"}`}>
+                {isUSMarketOpen(now) ? "Market Open" : "Market Closed"}
+              </span>
+            </div>
+            <div className="text-[0.8rem]"><span className="text-[#B09898] text-xs mr-1.5">ET</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
+            <div className="text-[0.8rem]"><span className="text-[#B09898] text-xs mr-1.5">TW</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
           </div>
         </header>
 
@@ -683,7 +705,12 @@ export default function Dashboard() {
 
         {/* ── Section 01: News ────────────────────────────────── */}
         <section id="sec-news" className="mb-12">
-          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">01 &middot; News</div>
+          <div className="flex items-baseline justify-between mb-5">
+            <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3">01 &middot; News</div>
+            {newsUpdatedAt && (
+              <div className="text-xs text-[#B09898] font-mono">Last scan: {newsUpdatedAt}</div>
+            )}
+          </div>
           {debug && <DebugSectionNotes sectionId="sec-news" />}
           <NewsTable items={newsItems} />
         </section>
