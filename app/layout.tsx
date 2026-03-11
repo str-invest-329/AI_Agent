@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-TW">
-      <body>{children}</body>
+      <body className="bg-[var(--bg-page)]">{children}</body>
     </html>
   );
 }

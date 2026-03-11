@@ -14,8 +14,11 @@
   --radius: 10px;
 }
 
-body {
-  font-family: "Helvetica Neue", Arial, "PingFang TC", "Noto Sans TC", sans-serif;
-  color: var(--text);
-  line-height: 1.6;
+@layer base {
+  body {
+    font-family: "Helvetica Neue", Arial, "PingFang TC", "Noto Sans TC", sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text);
+    line-height: 1.6;
+  }
 }
