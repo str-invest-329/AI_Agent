@@ -1,3 +1,6 @@
+import type { NewsItem } from "@/app/components/news/types";
+export type { NewsItem };
+
 export interface ReportData {
   REPORT_DATE: string;
   REPORT_WEEK: string;
@@ -43,12 +46,6 @@ export interface Indicator {
   date: string;
   nextUpdate: string;
   history?: { labels: string[]; values: number[] };
-}
-
-export interface NewsItem {
-  date: string;
-  headline: string;
-  summary: string;
 }
 
 export interface MarketIndex {

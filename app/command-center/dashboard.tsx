@@ -25,6 +25,7 @@ import type {
   Indicator,
 } from "./types";
 import { DEBUG_NOTES } from "./types";
+import { NewsTable } from "@/app/components/news";
 
 ChartJS.register(
   CategoryScale,
@@ -454,6 +455,9 @@ export default function Dashboard() {
   const [dvSortAsc, setDvSortAsc] = useState(false);
   const [dvHideEtf, setDvHideEtf] = useState(true);
 
+  // News
+  const [newsItems, setNewsItems] = useState<import("@/app/components/news/types").NewsItem[]>([]);
+
   /* ── Data fetching ──────────────────────────────────────────── */
   useEffect(() => {
     fetch("/data/command-center/data.json")
@@ -490,6 +494,17 @@ export default function Dashboard() {
         return r.json();
       })
       .then((d: DvData) => setDvData(d))
+      .catch(() => {});
+  }, []);
+
+  // News data
+  useEffect(() => {
+    fetch("/data/command-center/news.json?_=" + Date.now())
+      .then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json();
+      })
+      .then((d: { items: import("./types").NewsItem[] }) => setNewsItems(d.items || []))
       .catch(() => {});
   }, []);
 
@@ -583,7 +598,6 @@ export default function Dashboard() {
     employmentData,
     leadingIndicators,
     riskIndicators,
-    newsItems,
   } = data;
 
   /* ── Unemployment chart datasets ────────────────────────────── */
@@ -662,9 +676,16 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* ── Section 01: Macro ───────────────────────────────── */}
+        {/* ── Section 01: News ────────────────────────────────── */}
+        <section id="sec-news" className="mb-12">
+          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">01 &middot; News</div>
+          {debug && <DebugSectionNotes sectionId="sec-news" />}
+          <NewsTable items={newsItems} />
+        </section>
+
+        {/* ── Section 02: Macro ───────────────────────────────── */}
         <section id="sec-macro" className="mb-12">
-          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">01 &middot; 通膨 &middot; 利率 &middot; 就業</div>
+          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">02 &middot; 通膨 &middot; 利率 &middot; 就業</div>
           {debug && <DebugSectionNotes sectionId="sec-inflation" />}
           {debug && <DebugSectionNotes sectionId="sec-rates" />}
           {debug && <DebugSectionNotes sectionId="sec-employment" />}
@@ -929,9 +950,9 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* ── Section 04: Equity ──────────────────────────────── */}
+        {/* ── Section 03: Equity ──────────────────────────────── */}
         <section id="sec-equity" className="mb-12">
-          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">04 &middot; 股市指數</div>
+          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">03 &middot; 股市指數</div>
           {debug && <DebugSectionNotes sectionId="sec-equity" />}
 
           {/* TradingView widgets */}
@@ -1108,9 +1129,9 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* ── Section 05: Leading Indicators ──────────────────── */}
+        {/* ── Section 04: Leading Indicators ──────────────────── */}
         <section id="sec-leading" className="mb-12">
-          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">05 &middot; 先期指標</div>
+          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">04 &middot; 先期指標</div>
           {debug && <DebugSectionNotes sectionId="sec-leading" />}
           <IndicatorTable
             indicators={leadingIndicators}
@@ -1119,9 +1140,9 @@ export default function Dashboard() {
           />
         </section>
 
-        {/* ── Section 06: Risk Indicators ─────────────────────── */}
+        {/* ── Section 05: Risk Indicators ─────────────────────── */}
         <section id="sec-risk" className="mb-12">
-          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">06 &middot; 風險指標</div>
+          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">05 &middot; 風險指標</div>
           {debug && <DebugSectionNotes sectionId="sec-risk" />}
           <IndicatorTable
             indicators={riskIndicators}
@@ -1130,43 +1151,9 @@ export default function Dashboard() {
           />
         </section>
 
-        {/* ── Section 07: News ────────────────────────────────── */}
-        <section id="sec-news" className="mb-12">
-          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">07 &middot; News</div>
-          {debug && <DebugSectionNotes sectionId="sec-news" />}
-          <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
-            <table className="w-full border-collapse text-[0.88rem]">
-              <thead>
-                <tr>
-                  <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">日期</th>
-                  <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">標題</th>
-                  <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">彙整</th>
-                </tr>
-              </thead>
-              <tbody>
-                {newsItems && newsItems.length > 0 ? (
-                  newsItems.map((item, i) => (
-                    <tr key={i}>
-                      <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top whitespace-nowrap text-[#B09898] w-[90px]">{item.date}</td>
-                      <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top">{item.headline}</td>
-                      <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top">{item.summary}</td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={3} className="text-center text-[#B09898] py-8">
-                      目前無新聞
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* ── Section 08: Industry Map ────────────────────────── */}
+        {/* ── Section 06: Industry Map ────────────────────────── */}
         <section id="sec-industry" className="mb-12">
-          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">08 &middot; 產業領域</div>
+          <div className="text-lg font-semibold uppercase tracking-wide text-[#C02734] border-l-[3px] border-[#C02734] pl-3 mb-5">06 &middot; 產業領域</div>
           <div className="flex items-stretch">
             {INDUSTRY_MAP.map((sector, sIdx) => (
               <IndustryMapSector key={sector.titleEn} sector={sector} index={sIdx} total={INDUSTRY_MAP.length} />

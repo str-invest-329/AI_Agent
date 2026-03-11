@@ -1,0 +1,16 @@
+export interface NewsItem {
+  date: string;
+  headline: string;
+  summary: string;
+  url?: string;
+  ticker?: string;
+  sentiment?: "bullish" | "bearish" | "neutral";
+}
+
+export interface FeedbackTarget {
+  index: number;
+  headline: string;
+  url?: string;
+  ticker?: string;
+  sentiment?: string;
+}
