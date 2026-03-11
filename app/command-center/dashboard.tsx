@@ -458,6 +458,13 @@ export default function Dashboard() {
   // News
   const [newsItems, setNewsItems] = useState<import("@/app/components/news/types").NewsItem[]>([]);
 
+  // Live clock
+  const [now, setNow] = useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   /* ── Data fetching ──────────────────────────────────────────── */
   useEffect(() => {
     fetch("/data/command-center/data.json")
@@ -656,11 +663,11 @@ export default function Dashboard() {
               {debug && <span className="inline-flex items-center gap-1 bg-[#D97706] text-white text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded ml-2 align-middle">&#9873; debug</span>}
             </h1>
           </div>
-          <div className="text-right text-[0.85rem] text-[#7A5860]">
-            <div>
-              <strong className="text-[#2C1517]">{REPORT_WEEK}</strong>
+          <div className="text-right text-[0.85rem] text-[#7A5860] font-mono">
+            <div className="text-[#2C1517] font-semibold tabular-nums">
+              {now.toLocaleString("zh-TW", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}
             </div>
-            <div>{REPORT_DATE}</div>
+            <div className="text-xs">ET</div>
           </div>
         </header>
 
