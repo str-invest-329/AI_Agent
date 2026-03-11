@@ -1,13 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { readFileSync, readdirSync } from "fs";
+import { join } from "path";
+import { Suspense } from "react";
 import Report from "./report";
 
-const TICKER_META: Record<string, { title: string; name: string; updated: string }> = {
-  SNDK: { title: "SNDK 個股研究", name: "Sandisk Corp", updated: "2026-03-10" },
-};
+const DATA_DIR = join(process.cwd(), "public/data/equity-research");
+
+function getTickers() {
+  try {
+    return readdirSync(DATA_DIR)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => f.replace(".json", ""));
+  } catch {
+    return [];
+  }
+}
 
 export function generateStaticParams() {
-  return Object.keys(TICKER_META).map((ticker) => ({ ticker }));
+  return getTickers().map((ticker) => ({ ticker }));
 }
 
 export async function generateMetadata({
@@ -16,18 +27,25 @@ export async function generateMetadata({
   params: Promise<{ ticker: string }>;
 }): Promise<Metadata> {
   const { ticker } = await params;
-  const meta = TICKER_META[ticker.toUpperCase()];
-  return { title: meta?.title ?? `${ticker} — Equity Research` };
+  return { title: `${ticker} — 個股研究` };
 }
 
-export default async function TickerPage({
+export default async function ReportPage({
   params,
 }: {
   params: Promise<{ ticker: string }>;
 }) {
   const { ticker } = await params;
-  const key = ticker.toUpperCase();
-  if (!TICKER_META[key]) notFound();
-  const meta = TICKER_META[key];
-  return <Report ticker={key} name={meta.name} updated={meta.updated} />;
+  const filePath = join(DATA_DIR, `${ticker}.json`);
+  let data;
+  try {
+    data = JSON.parse(readFileSync(filePath, "utf8"));
+  } catch {
+    notFound();
+  }
+  return (
+    <Suspense>
+      <Report data={data} />
+    </Suspense>
+  );
 }
