@@ -49,9 +49,11 @@ export interface Indicator {
 }
 
 export interface MarketIndex {
+  id: string;
   symbol: string;
   name: string;
   price: number;
+  change: number;
   change_pct: number;
 }
 
