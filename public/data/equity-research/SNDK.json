@@ -163,41 +163,50 @@
       "title": "估值模型",
       "numeral": "V",
       "sections": [],
-      "valuation": {
-        "peLabels": ["災難事件", "悲觀估值", "中間估值", "樂觀估值"],
-        "versions": [
-          {
-            "id": "v2",
-            "date": "2026-03-11",
-            "label": "FY2026 · Q2後更新",
-            "trigger": "Q2 FY2026 財報公布 (2026/01/29)",
-            "note": "Q2 毛利率 51.1% 大幅超預期，Datacenter QoQ +64%。上修全年 EPS 預估。",
-            "peRatios": [21.34, 28.97, 38.47, 48.53],
-            "eps": { "bear": 18.90, "base": 19.90, "bull": 20.90, "ttm": 5.06 },
-            "quarterly": [
-              { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
-              { "label": "Q2", "bear": 5.15, "base": 5.15, "bull": 5.15, "isActual": true },
-              { "label": "Q3", "bear": 6.00, "base": 6.50, "bull": 7.00, "isActual": false },
-              { "label": "Q4", "bear": 7.00, "base": 7.50, "bull": 8.00, "isActual": false }
-            ]
-          },
-          {
-            "id": "v1",
-            "date": "2026-01-15",
-            "label": "FY2026 · Q1後初估",
-            "trigger": "Q1 FY2026 財報公布",
-            "note": "初始建模。分拆後首季，基期低、能見度有限。",
-            "peRatios": [21.34, 28.97, 38.47, 48.53],
-            "eps": { "bear": 7.15, "base": 7.08, "bull": 7.23, "ttm": 6.17 },
-            "quarterly": [
-              { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
-              { "label": "Q2", "bear": 1.60, "base": 1.58, "bull": 1.62, "isActual": false },
-              { "label": "Q3", "bear": 2.20, "base": 2.15, "bull": 2.20, "isActual": false },
-              { "label": "Q4", "bear": 2.60, "base": 2.60, "bull": 2.66, "isActual": false }
-            ]
-          }
-        ]
-      }
+      "valuations": [
+        {
+          "type": "pe",
+          "title": "P/E",
+          "peLabels": ["災難事件", "悲觀估值", "中間估值", "樂觀估值"],
+          "versions": [
+            {
+              "id": "v2",
+              "date": "2026-03-11",
+              "label": "FY2026 · Q2後更新",
+              "trigger": "Q2 FY2026 財報公布 (2026/01/29)",
+              "note": "Q2 毛利率 51.1% 大幅超預期，Datacenter QoQ +64%。上修全年 EPS 預估。",
+              "peRatios": [5, 10, 12, 15],
+              "eps": { "bear": 32.71, "base": 36.85, "bull": 40.05, "ttm": 5.06 },
+              "quarterly": [
+                { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
+                { "label": "Q2", "bear": 5.15, "base": 5.15, "bull": 5.15, "isActual": true },
+                { "label": "Q3", "bear": 12.12, "base": 14.02, "bull": 14.91, "isActual": false },
+                { "label": "Q4", "bear": 14.69, "base": 16.93, "bull": 19.24, "isActual": false }
+              ]
+            },
+            {
+              "id": "v1",
+              "date": "2026-01-15",
+              "label": "FY2026 · Q1後初估",
+              "trigger": "Q1 FY2026 財報公布",
+              "note": "初始建模。分拆後首季，基期低、能見度有限。",
+              "peRatios": [21.34, 28.97, 38.47, 48.53],
+              "eps": { "bear": 7.15, "base": 7.08, "bull": 7.23, "ttm": 6.17 },
+              "quarterly": [
+                { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
+                { "label": "Q2", "bear": 1.60, "base": 1.58, "bull": 1.62, "isActual": false },
+                { "label": "Q3", "bear": 2.20, "base": 2.15, "bull": 2.20, "isActual": false },
+                { "label": "Q4", "bear": 2.60, "base": 2.60, "bull": 2.66, "isActual": false }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "dcf",
+          "title": "DCF",
+          "placeholder": "待建模"
+        }
+      ]
     }
   ]
 }

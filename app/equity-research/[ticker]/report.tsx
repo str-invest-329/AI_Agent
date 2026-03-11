@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, type ReactNode } from "react";
+import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
 import Link from "next/link";
 
 /* ================================================================
@@ -63,9 +63,13 @@ interface ValuationVersion {
   quarterly: QuarterEPS[];
 }
 
-interface ValuationData {
-  peLabels: string[];
-  versions: ValuationVersion[];
+interface ValuationModel {
+  type: string;
+  title: string;
+  placeholder?: string;
+  // PE-specific fields
+  peLabels?: string[];
+  versions?: ValuationVersion[];
 }
 
 interface Chapter {
@@ -74,7 +78,7 @@ interface Chapter {
   numeral: string;
   sections: Section[];
   placeholder?: string;
-  valuation?: ValuationData;
+  valuations?: ValuationModel[];
 }
 
 export interface ReportData {
@@ -360,13 +364,54 @@ function LightboxModal({
    ================================================================ */
 const EPS_LABELS = ["悲觀估值", "中間估值", "樂觀估值", "TTM\n(剔除一次性)"] as const;
 
-function PEGrid({ v, peLabels }: { v: ValuationVersion; peLabels: string[] }) {
+function PEGrid({
+  v,
+  peLabels,
+  currentPrice,
+  onLabelClick,
+}: {
+  v: ValuationVersion;
+  peLabels: string[];
+  currentPrice?: number | null;
+  onLabelClick?: () => void;
+}) {
   const epsRows: { label: string; value: number }[] = [
     { label: "悲觀估值", value: v.eps.bear },
     { label: "中間估值", value: v.eps.base },
     { label: "樂觀估值", value: v.eps.bull },
     { label: "TTM (剔除一次性)", value: v.eps.ttm },
   ];
+
+  // Find the two cells that bracket the current price (one ≤, one ≥)
+  // If price is outside the range, only one cell flashes
+  const breatheKeys = new Set<string>();
+  if (currentPrice && currentPrice > 0) {
+    const allCells: { key: string; price: number }[] = [];
+    epsRows.forEach((row, ri) => {
+      v.peRatios.forEach((pe, ci) => {
+        allCells.push({ key: `${ri}-${ci}`, price: row.value * pe });
+      });
+    });
+
+    // Sort by target price
+    const sorted = [...allCells].sort((a, b) => a.price - b.price);
+
+    // Find floor (highest price ≤ currentPrice) and ceiling (lowest price ≥ currentPrice)
+    let floor: typeof sorted[0] | null = null;
+    let ceiling: typeof sorted[0] | null = null;
+    for (const c of sorted) {
+      if (c.price <= currentPrice) floor = c;
+    }
+    for (const c of sorted) {
+      if (c.price >= currentPrice && !ceiling) ceiling = c;
+    }
+
+    if (floor) breatheKeys.add(floor.key);
+    if (ceiling && ceiling.key !== floor?.key) breatheKeys.add(ceiling.key);
+    // If no floor (price below all), just ceiling; if no ceiling (price above all), just floor
+    if (!floor && ceiling) breatheKeys.add(ceiling.key);
+    if (!ceiling && floor) breatheKeys.add(floor.key);
+  }
 
   const cell =
     "border border-[var(--border)] px-3 py-2 text-sm text-right tabular-nums";
@@ -379,7 +424,16 @@ function PEGrid({ v, peLabels }: { v: ValuationVersion; peLabels: string[] }) {
         <thead>
           <tr>
             <th className={`${hdr} bg-[#f5f0f0] text-left`} colSpan={2}>
-              {v.label}
+              {onLabelClick ? (
+                <button
+                  onClick={onLabelClick}
+                  className="text-[var(--primary)] hover:underline"
+                >
+                  {v.label} ↓
+                </button>
+              ) : (
+                v.label
+              )}
             </th>
             <th className={`${hdr} bg-[#f5f0f0]`} colSpan={4}>
               P/E Ratio
@@ -413,6 +467,7 @@ function PEGrid({ v, peLabels }: { v: ValuationVersion; peLabels: string[] }) {
               {v.peRatios.map((pe, ci) => {
                 const price = (row.value * pe).toFixed(1);
                 const isBase = ri === 1 && ci === 2;
+                const isBreathe = breatheKeys.has(`${ri}-${ci}`);
                 return (
                   <td
                     key={ci}
@@ -421,6 +476,11 @@ function PEGrid({ v, peLabels }: { v: ValuationVersion; peLabels: string[] }) {
                         ? "bg-[#FDE7E7] font-bold text-[var(--primary)]"
                         : ""
                     }`}
+                    style={
+                      isBreathe
+                        ? { animation: "breathe 2.5s ease-in-out infinite" }
+                        : undefined
+                    }
                   >
                     {price}
                   </td>
@@ -430,6 +490,11 @@ function PEGrid({ v, peLabels }: { v: ValuationVersion; peLabels: string[] }) {
           ))}
         </tbody>
       </table>
+      {currentPrice && (
+        <p className="mt-2 text-sm text-[var(--text-muted)]">
+          現價 <span className="text-base font-bold text-[var(--primary)]">${currentPrice.toFixed(2)}</span>
+        </p>
+      )}
     </div>
   );
 }
@@ -508,11 +573,14 @@ function QuarterlyEPS({ v }: { v: ValuationVersion }) {
 function VersionHistory({
   versions,
   peLabels,
+  openId,
+  onToggle,
 }: {
   versions: ValuationVersion[];
   peLabels: string[];
+  openId: string | null;
+  onToggle: (id: string | null) => void;
 }) {
-  const [openId, setOpenId] = useState<string | null>(null);
 
   return (
     <div className="space-y-2">
@@ -525,7 +593,7 @@ function VersionHistory({
           >
             <button
               className="flex w-full items-center justify-between px-4 py-3 text-left text-sm hover:bg-[#fdfafa]"
-              onClick={() => setOpenId(isOpen ? null : v.id)}
+              onClick={() => onToggle(isOpen ? null : v.id)}
             >
               <div>
                 <span className="mr-2 font-mono text-xs text-[var(--text-faint)]">
@@ -571,8 +639,28 @@ function VersionHistory({
   );
 }
 
-function ValuationChapter({ valuation }: { valuation: ValuationData }) {
-  const latest = valuation.versions[0];
+function PEValuation({
+  model,
+  ticker,
+  currentPrice,
+}: {
+  model: ValuationModel;
+  ticker: string;
+  currentPrice: number | null;
+}) {
+  const versions = model.versions || [];
+  const peLabels = model.peLabels || [];
+  const latest = versions[0];
+  const [historyOpenId, setHistoryOpenId] = useState<string | null>(null);
+  const historyRef = useRef<HTMLDivElement>(null);
+
+  const scrollToHistory = useCallback((versionId: string) => {
+    setHistoryOpenId(versionId);
+    setTimeout(() => {
+      historyRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  }, []);
+
   if (!latest) return null;
 
   return (
@@ -594,7 +682,12 @@ function ValuationChapter({ valuation }: { valuation: ValuationData }) {
             <p className="mb-1.5 text-xs font-semibold text-[var(--text-muted)]">
               P/E 估值矩陣（目標股價 = EPS × P/E）
             </p>
-            <PEGrid v={latest} peLabels={valuation.peLabels} />
+            <PEGrid
+              v={latest}
+              peLabels={peLabels}
+              currentPrice={currentPrice}
+              onLabelClick={versions.length > 1 ? () => scrollToHistory(versions[1].id) : undefined}
+            />
           </div>
           <div className="lg:col-span-2">
             <p className="mb-1.5 text-xs font-semibold text-[var(--text-muted)]">
@@ -605,17 +698,62 @@ function ValuationChapter({ valuation }: { valuation: ValuationData }) {
         </div>
       </ContentBox>
 
-      {valuation.versions.length > 1 && (
-        <ContentBox title="版本紀錄">
-          <p className="mb-3 text-xs text-[var(--text-faint)]">
-            每次財報公布或重大消息調整估價時，會新增一個版本。展開可查看當時的估價快照。
-          </p>
-          <VersionHistory
-            versions={valuation.versions.slice(1)}
-            peLabels={valuation.peLabels}
-          />
-        </ContentBox>
+      {versions.length > 1 && (
+        <div ref={historyRef}>
+          <ContentBox title="版本紀錄">
+            <p className="mb-3 text-xs text-[var(--text-faint)]">
+              每次財報公布或重大消息調整估價時，會新增一個版本。展開可查看當時的估價快照。
+            </p>
+            <VersionHistory
+              versions={versions.slice(1)}
+              peLabels={peLabels}
+              openId={historyOpenId}
+              onToggle={setHistoryOpenId}
+            />
+          </ContentBox>
+        </div>
       )}
+    </>
+  );
+}
+
+function ValuationChapter({
+  valuations,
+  ticker,
+}: {
+  valuations: ValuationModel[];
+  ticker: string;
+}) {
+  const [currentPrice, setCurrentPrice] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch(`/api/quote?ticker=${ticker}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.price) setCurrentPrice(d.price);
+      })
+      .catch(() => {});
+  }, [ticker]);
+
+  return (
+    <>
+      {valuations.map((model, i) => (
+        <section key={i} className="mb-10">
+          <SectionTitle>{model.title}</SectionTitle>
+
+          {model.type === "pe" && (
+            <PEValuation model={model} ticker={ticker} currentPrice={currentPrice} />
+          )}
+
+          {model.placeholder && model.type !== "pe" && (
+            <ContentBox>
+              <p className="p-4 text-center text-sm italic text-[var(--text-faint)]">
+                {model.placeholder}
+              </p>
+            </ContentBox>
+          )}
+        </section>
+      ))}
     </>
   );
 }
@@ -723,9 +861,9 @@ export default function Report({ data }: { data: ReportData }) {
             <span className="text-[var(--primary)]">{ch.numeral}.</span> {ch.title}
           </div>
 
-          {ch.valuation && <ValuationChapter valuation={ch.valuation} />}
+          {ch.valuations && <ValuationChapter valuations={ch.valuations} ticker={ticker} />}
 
-          {ch.placeholder && ch.sections.length === 0 && !ch.valuation && (
+          {ch.placeholder && ch.sections.length === 0 && !ch.valuations && (
             <p className="p-4 text-center text-sm italic text-[var(--text-faint)]">
               {ch.placeholder}
             </p>
