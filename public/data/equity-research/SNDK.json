@@ -163,6 +163,12 @@
       "title": "估值模型",
       "numeral": "V",
       "sections": [],
+      "chronicle": {
+        "title": "股價大紀事",
+        "description": "標示股價走勢中的重要事件節點，作為估值倍數設定的參考。",
+        "href": "https://www.tradingview.com/chart/ZBqcxKmQ/",
+        "linkLabel": "在 TradingView 開啟"
+      },
       "valuations": [
         {
           "type": "pe",
@@ -175,6 +181,9 @@
               "label": "FY2026 · Q2後更新",
               "trigger": "Q2 FY2026 財報公布 (2026/01/29)",
               "note": "Q2 毛利率 51.1% 大幅超預期，Datacenter QoQ +64%。上修全年 EPS 預估。",
+              "details": [
+                "（待補充推估依據）"
+              ],
               "peRatios": [5, 10, 15, 20],
               "eps": { "bear": 32.71, "base": 36.85, "bull": 40.05, "ttm": 5.06 },
               "quarterly": [

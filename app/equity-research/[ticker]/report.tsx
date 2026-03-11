@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, type ReactNode } from "react";
+import { useState, useEffect, useCallback, type ReactNode } from "react";
 import Link from "next/link";
 
 /* ================================================================
@@ -58,6 +58,7 @@ interface ValuationVersion {
   label: string;
   trigger: string;
   note: string;
+  details?: string[];
   peRatios: [number, number, number, number];
   eps: { bear: number; base: number; bull: number; ttm: number };
   quarterly: QuarterEPS[];
@@ -72,12 +73,20 @@ interface ValuationModel {
   versions?: ValuationVersion[];
 }
 
+interface Chronicle {
+  title: string;
+  description: string;
+  href: string;
+  linkLabel?: string;
+}
+
 interface Chapter {
   id: string;
   title: string;
   numeral: string;
   sections: Section[];
   placeholder?: string;
+  chronicle?: Chronicle;
   valuations?: ValuationModel[];
 }
 
@@ -368,12 +377,10 @@ function PEGrid({
   v,
   peLabels,
   currentPrice,
-  onLabelClick,
 }: {
   v: ValuationVersion;
   peLabels: string[];
   currentPrice?: number | null;
-  onLabelClick?: () => void;
 }) {
   const epsRows: { label: string; value: number }[] = [
     { label: "悲觀估值", value: v.eps.bear },
@@ -423,17 +430,8 @@ function PEGrid({
       <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th className={`${hdr} bg-[#f5f0f0] text-left`} colSpan={2}>
-              {onLabelClick ? (
-                <button
-                  onClick={onLabelClick}
-                  className="text-[var(--primary)] hover:underline"
-                >
-                  {v.label} ↓
-                </button>
-              ) : (
-                v.label
-              )}
+            <th className={`${hdr} bg-[#f5f0f0]`} colSpan={2}>
+              {v.label}
             </th>
             <th className={`${hdr} bg-[#f5f0f0]`} colSpan={4}>
               P/E Ratio
@@ -639,6 +637,30 @@ function VersionHistory({
   );
 }
 
+function DetailsToggle({ details }: { details: string[] }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mt-6 border-t border-[var(--border)] pt-3">
+      <button
+        className="flex w-full items-center justify-between text-left text-[0.85rem] font-semibold hover:text-[var(--primary)]"
+        onClick={() => setOpen(!open)}
+      >
+        估值邏輯
+        <span className="text-xs text-[var(--text-faint)]">{open ? "▲" : "▼"}</span>
+      </button>
+      {open && (
+        <div className="mt-3">
+          {details.map((p, i) => (
+            <p key={i} className="mb-3 text-sm">
+              {renderInline(p)}
+            </p>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function PEValuation({
   model,
   ticker,
@@ -652,14 +674,6 @@ function PEValuation({
   const peLabels = model.peLabels || [];
   const latest = versions[0];
   const [historyOpenId, setHistoryOpenId] = useState<string | null>(null);
-  const historyRef = useRef<HTMLDivElement>(null);
-
-  const scrollToHistory = useCallback((versionId: string) => {
-    setHistoryOpenId(versionId);
-    setTimeout(() => {
-      historyRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  }, []);
 
   if (!latest) return null;
 
@@ -686,7 +700,6 @@ function PEValuation({
               v={latest}
               peLabels={peLabels}
               currentPrice={currentPrice}
-              onLabelClick={versions.length > 1 ? () => scrollToHistory(versions[1].id) : undefined}
             />
           </div>
           <div className="lg:col-span-2">
@@ -696,33 +709,61 @@ function PEValuation({
             <QuarterlyEPS v={latest} />
           </div>
         </div>
+        {latest.details && latest.details.length > 0 && (
+          <DetailsToggle details={latest.details} />
+        )}
       </ContentBox>
 
       {versions.length > 1 && (
-        <div ref={historyRef}>
-          <ContentBox title="版本紀錄">
-            <p className="mb-3 text-xs text-[var(--text-faint)]">
-              每次財報公布或重大消息調整估價時，會新增一個版本。展開可查看當時的估價快照。
-            </p>
-            <VersionHistory
-              versions={versions.slice(1)}
-              peLabels={peLabels}
-              openId={historyOpenId}
-              onToggle={setHistoryOpenId}
-            />
-          </ContentBox>
-        </div>
+        <ContentBox title="版本紀錄">
+          <p className="mb-3 text-xs text-[var(--text-faint)]">
+            每次財報公布或重大消息調整估價時，會新增一個版本。展開可查看當時的估價快照。
+          </p>
+          <VersionHistory
+            versions={versions.slice(1)}
+            peLabels={peLabels}
+            openId={historyOpenId}
+            onToggle={setHistoryOpenId}
+          />
+        </ContentBox>
       )}
     </>
+  );
+}
+
+function ChronicleCard({ chronicle }: { chronicle: Chronicle }) {
+  return (
+    <div className="mb-10">
+      <SectionTitle>{chronicle.title}</SectionTitle>
+      <a
+        href={chronicle.href}
+        target="_blank"
+        rel="noopener"
+        className="group block rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm transition-colors hover:border-[var(--primary-lt)]"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-[var(--text-muted)]">
+              {chronicle.description}
+            </p>
+          </div>
+          <span className="ml-4 shrink-0 rounded-md bg-[var(--tag-bg)] px-3 py-1.5 text-xs font-semibold text-[var(--primary)] transition-colors group-hover:bg-[var(--primary)] group-hover:text-white">
+            {chronicle.linkLabel || "開啟"} ↗
+          </span>
+        </div>
+      </a>
+    </div>
   );
 }
 
 function ValuationChapter({
   valuations,
   ticker,
+  chronicle,
 }: {
   valuations: ValuationModel[];
   ticker: string;
+  chronicle?: Chronicle;
 }) {
   const [currentPrice, setCurrentPrice] = useState<number | null>(null);
 
@@ -737,6 +778,8 @@ function ValuationChapter({
 
   return (
     <>
+      {chronicle && <ChronicleCard chronicle={chronicle} />}
+
       {valuations.map((model, i) => (
         <section key={i} className="mb-10">
           <SectionTitle>{model.title}</SectionTitle>
@@ -861,7 +904,7 @@ export default function Report({ data }: { data: ReportData }) {
             <span className="text-[var(--primary)]">{ch.numeral}.</span> {ch.title}
           </div>
 
-          {ch.valuations && <ValuationChapter valuations={ch.valuations} ticker={ticker} />}
+          {ch.valuations && <ValuationChapter valuations={ch.valuations} ticker={ticker} chronicle={ch.chronicle} />}
 
           {ch.placeholder && ch.sections.length === 0 && !ch.valuations && (
             <p className="p-4 text-center text-sm italic text-[var(--text-faint)]">
