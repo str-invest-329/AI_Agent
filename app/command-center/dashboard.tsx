@@ -677,46 +677,47 @@ export default function Dashboard() {
 
         {/* ── Top Ticker Bar ──────────────────────────────────── */}
         {marketData && (
-          <div className="flex items-center gap-5 bg-[#2C1517] text-white rounded-t-lg px-5 py-2 font-mono text-[0.78rem] tabular-nums overflow-x-auto">
+          <div className="flex items-center gap-5 bg-[#F8F4F4] border border-[#E2D8D8] rounded-t-lg px-5 py-2 font-mono text-[0.78rem] tabular-nums overflow-x-auto">
             {marketData.indices.filter(i => ["sp500", "nasdaq", "dow_jones"].includes(i.id)).map((idx) => (
               <div key={idx.id} className="flex items-center gap-2 whitespace-nowrap">
-                <span className="text-[#B09898] font-semibold">{idx.name}</span>
-                <span className="font-bold">{idx.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                <span className={idx.change_pct >= 0 ? "text-green-400" : "text-red-400"}>
+                <span className="text-[#7A5860] font-semibold">{idx.name}</span>
+                <span className="text-[#2C1517] font-bold">{idx.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <span className={idx.change_pct >= 0 ? "text-green-700" : "text-red-700"}>
                   {idx.change_pct >= 0 ? "+" : ""}{idx.change_pct.toFixed(2)}%
                 </span>
               </div>
             ))}
-            <div className="ml-auto text-[0.65rem] text-[#7A5860]">
-              {marketData.fetched_at ? new Date(marketData.fetched_at).toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }) + " ET" : ""}
-            </div>
           </div>
         )}
 
         {/* ── Header ──────────────────────────────────────────── */}
         <header className={`flex justify-between items-end border-b-2 border-[#C02734] pb-5 mb-8 ${marketData ? "pt-4" : ""}`}>
-          <div>
+          <div className="flex items-center gap-3">
             <h1 className="text-[1.8rem] font-bold tracking-wide">
               Command <span className="text-[#C02734]">Center</span>
               {debug && <span className="inline-flex items-center gap-1 bg-[#D97706] text-white text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded ml-2 align-middle">&#9873; debug</span>}
             </h1>
+            <span className="relative flex h-2 w-2 ml-1">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span className="text-[0.7rem] font-semibold tracking-wider text-green-600 uppercase font-mono">Live</span>
           </div>
-          <div className="text-right font-mono tabular-nums leading-snug">
-            <div className="flex items-center justify-end gap-2 mb-1.5">
-              <span className={`text-[0.65rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isUSMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-[#F8F4F4] text-[#B09898]"}`}>
-                {isUSMarketOpen(now) ? "US Market Open" : "US Market Closed"}
+          <div className="text-right font-mono tabular-nums leading-relaxed text-[0.8rem]">
+            <div className="flex items-center justify-end gap-2">
+              <span className={`text-[0.6rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isUSMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-[#F8F4F4] text-[#B09898]"}`}>
+                {isUSMarketOpen(now) ? "US Open" : "US Closed"}
               </span>
-              <span className={`text-[0.65rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isTWMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-[#F8F4F4] text-[#B09898]"}`}>
-                {isTWMarketOpen(now) ? "TW Market Open" : "TW Market Closed"}
-              </span>
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              <span className="text-[0.7rem] font-semibold tracking-wider text-green-600 uppercase">Live</span>
+              <span className="text-[#B09898] text-xs">ET</span>
+              <span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span>
             </div>
-            <div className="text-[0.8rem]"><span className="text-[#B09898] text-xs mr-1.5">ET</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
-            <div className="text-[0.8rem]"><span className="text-[#B09898] text-xs mr-1.5">TW</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
+            <div className="flex items-center justify-end gap-2">
+              <span className={`text-[0.6rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isTWMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-[#F8F4F4] text-[#B09898]"}`}>
+                {isTWMarketOpen(now) ? "TW Open" : "TW Closed"}
+              </span>
+              <span className="text-[#B09898] text-xs">TW</span>
+              <span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span>
+            </div>
           </div>
         </header>
 
