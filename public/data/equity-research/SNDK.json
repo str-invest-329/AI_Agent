@@ -1,0 +1,203 @@
+{
+  "ticker": "SNDK",
+  "name": "Sandisk Corporation",
+  "market": "US",
+  "updated": "2026-03-08",
+  "chapters": [
+    {
+      "id": "ch-fundamental",
+      "title": "基本面",
+      "numeral": "I",
+      "sections": [
+        {
+          "id": "sec-overview",
+          "title": "01 · 企業概述",
+          "kvCards": [
+            { "label": "Ticker", "value": "SNDK", "sub": "Nasdaq" },
+            { "label": "總部", "value": "Milpitas, CA", "sub": "951 Sandisk Drive", "valueClass": "text-lg" },
+            { "label": "員工數", "value": "~11,000" },
+            { "label": "上市日期", "value": "2025/02/24", "sub": "WDC 分拆重新上市", "valueClass": "text-lg" },
+            { "label": "財年", "value": "7 月 ~ 6 月", "sub": "FY2025 截至 2025/06/27", "valueClass": "text-lg" }
+          ],
+          "blocks": [
+            {
+              "type": "content-box",
+              "title": "公司背景",
+              "paragraphs": [
+                "Sandisk Corporation 是全球領先的 NAND Flash 儲存解決方案供應商，開發、製造並銷售 SSD、嵌入式儲存、記憶卡及 USB 隨身碟等產品，應用於資料中心、PC、行動裝置、遊戲主機、車用及 IoT 終端市場。",
+                "SanDisk 品牌最早由 Eli Harari、Sanjay Mehrotra 與 Jack Yuan 於 1988 年創立，是 Flash 儲存產業的先驅。2016 年被 Western Digital（WDC）以約 190 億美元收購，整併為 WDC 旗下的 Flash 事業群。"
+              ],
+              "sources": [
+                {
+                  "label": "Sandisk IR — Celebrates Nasdaq Listing After Completing Separation (2025/02/24)",
+                  "href": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-celebrates-nasdaq-listing-after-completing-separation"
+                },
+                {
+                  "label": "SEC EDGAR — SNDK 10-K Filing",
+                  "href": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002023554&type=10-K"
+                }
+              ]
+            },
+            {
+              "type": "content-box",
+              "title": "WDC 分拆歷程",
+              "table": {
+                "headers": ["時間", "事件"],
+                "alignRight": [],
+                "rows": [
+                  ["2016 年 5 月", "Western Digital 以 ~$19B 收購 SanDisk，SanDisk 從 Nasdaq 下市"],
+                  ["2023 年 10 月", "WDC 宣布將 HDD 與 Flash 事業分拆為兩家獨立上市公司"],
+                  ["2025 年 2 月 24 日", "分拆完成，Sandisk 以 SNDK 重新於 Nasdaq 掛牌交易"]
+                ]
+              },
+              "paragraphs": [
+                "分拆後，原 WDC 旗下所有 Flash 儲存產品（含 Western Digital、WD_BLACK、SanDisk、SanDisk Professional 品牌的 SSD / 記憶卡 / 隨身碟）歸入 Sandisk；HDD 產品則留在 Western Digital。"
+              ],
+              "sources": [
+                {
+                  "label": "WDC — Completes Planned Company Separation (2025/02/24)",
+                  "href": "https://www.westerndigital.com/company/newsroom/press-releases/2025/2025-02-24-western-digital-completes-planned-company-separation"
+                },
+                {
+                  "label": "Sandisk — Corporate Separation and Brand FAQ",
+                  "href": "https://www.sandisk.com/sandisk-separation-faqs"
+                }
+              ]
+            },
+            {
+              "type": "content-box",
+              "title": "管理層",
+              "table": {
+                "headers": ["職位", "姓名", "背景"],
+                "alignRight": [],
+                "rows": [
+                  ["CEO & Chairman", "David V. Goeckeler", "原 WDC CEO，主導分拆"],
+                  ["CFO", "Luis Felipe Visoso", "前 Unity Software CFO；曾任 Palo Alto Networks、AWS CFO"],
+                  ["CTO", "Alper Ilkbahar", "負責 NAND 技術開發與次世代技術；前 WDC SVP / Intel Optane GM"],
+                  ["COO", "Don Angspatt", "負責全球營運、晶圓廠、封測、供應鏈、採購、IT"],
+                  ["CRO", "Jim Elliott", "負責營收成長與市場拓展"]
+                ]
+              },
+              "paragraphs": [
+                "董事會由 8 名董事組成，其中 7 名為外部獨立董事。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sec-business-model",
+          "title": "02 · 商業模式",
+          "blocks": [
+            {
+              "type": "content-box",
+              "title": "核心流程",
+              "image": {
+                "src": "/images/equity-research/SNDK/business-model-simple.png",
+                "alt": "SanDisk 商業模式（核心流程）"
+              },
+              "paragraphs": [
+                "完整版（含 Flash Ventures JV 財務細節）請見下方「供應鏈與 JV 架構」。"
+              ],
+              "sources": [
+                {
+                  "label": "SEC — SNDK 10-K Annual Report (FY2025)",
+                  "href": "https://last10k.com/sec-filings/sndk/0002023554-25-000034.htm"
+                }
+              ]
+            },
+            {
+              "type": "content-box",
+              "title": "營收結構：三大終端市場",
+              "table": {
+                "headers": ["終端市場", "說明", "FY2025 營收", "佔比", "Q2 FY2026", "佔比"],
+                "alignRight": [2, 3, 4, 5],
+                "rows": [
+                  ["**Edge**（原 Client）", "PC / 筆電 / 遊戲主機 / 車用 / 行動裝置 SSD 與嵌入式儲存", "$4,127M", "56.1%", "$1,700M", "56.1%"],
+                  ["**Consumer**", "記憶卡、USB 隨身碟、可攜式 SSD 等零售產品", "$2,268M", "30.8%", "$907M", "29.9%"],
+                  ["**Datacenter**（原 Cloud）", "企業級 SSD、AI 推論儲存、超大規模資料中心", "$960M", "13.1%", "$440M", "14.5%"],
+                  ["__合計__", "", "$7,355M", "100%", "$3,030M", "100%"]
+                ]
+              },
+              "paragraphs": [
+                "**趨勢觀察：**Datacenter 是成長最快的板塊（FY2025 YoY +195%，Q2 FY2026 YoY +76%），受惠於 AI 推論與超大規模客戶需求。Edge 仍為營收主力，佔比穩定在 ~56%。Consumer 受惠品牌力與 Nintendo Switch 2 合作，營收穩健。"
+              ],
+              "footnote": "FY2025 = 截至 2025/06/27 財年；Q2 FY2026 = 截至 2026/01/02 季度",
+              "sources": [
+                {
+                  "label": "Sandisk IR — Q4 & Full Year FY2025 Financial Results (2025/08/14)",
+                  "href": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-fourth-quarter-2025-financial-results"
+                },
+                {
+                  "label": "Sandisk IR — Q2 FY2026 Financial Results (2026/01/29)",
+                  "href": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-second-quarter-2026-financial-results"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch-financial",
+      "title": "財務面",
+      "numeral": "II",
+      "sections": [],
+      "placeholder": "待補充"
+    },
+    {
+      "id": "ch-flow",
+      "title": "籌碼面",
+      "numeral": "III",
+      "sections": [],
+      "placeholder": "待補充"
+    },
+    {
+      "id": "ch-technical",
+      "title": "技術面",
+      "numeral": "IV",
+      "sections": [],
+      "placeholder": "待補充"
+    },
+    {
+      "id": "ch-valuation",
+      "title": "估值模型",
+      "numeral": "V",
+      "sections": [],
+      "valuation": {
+        "peLabels": ["災難事件", "悲觀估值", "中間估值", "樂觀估值"],
+        "versions": [
+          {
+            "id": "v2",
+            "date": "2026-03-11",
+            "label": "FY2026 · Q2後更新",
+            "trigger": "Q2 FY2026 財報公布 (2026/01/29)",
+            "note": "Q2 毛利率 51.1% 大幅超預期，Datacenter QoQ +64%。上修全年 EPS 預估。",
+            "peRatios": [21.34, 28.97, 38.47, 48.53],
+            "eps": { "bear": 18.90, "base": 19.90, "bull": 20.90, "ttm": 5.06 },
+            "quarterly": [
+              { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
+              { "label": "Q2", "bear": 5.15, "base": 5.15, "bull": 5.15, "isActual": true },
+              { "label": "Q3", "bear": 6.00, "base": 6.50, "bull": 7.00, "isActual": false },
+              { "label": "Q4", "bear": 7.00, "base": 7.50, "bull": 8.00, "isActual": false }
+            ]
+          },
+          {
+            "id": "v1",
+            "date": "2026-01-15",
+            "label": "FY2026 · Q1後初估",
+            "trigger": "Q1 FY2026 財報公布",
+            "note": "初始建模。分拆後首季，基期低、能見度有限。",
+            "peRatios": [21.34, 28.97, 38.47, 48.53],
+            "eps": { "bear": 7.15, "base": 7.08, "bull": 7.23, "ttm": 6.17 },
+            "quarterly": [
+              { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
+              { "label": "Q2", "bear": 1.60, "base": 1.58, "bull": 1.62, "isActual": false },
+              { "label": "Q3", "bear": 2.20, "base": 2.15, "bull": 2.20, "isActual": false },
+              { "label": "Q4", "bear": 2.60, "base": 2.60, "bull": 2.66, "isActual": false }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

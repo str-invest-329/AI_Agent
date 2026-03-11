@@ -20,38 +20,63 @@ const SECTIONS = [
   { id: "ch-valuation", label: "V. 估值模型", isChapter: true },
 ];
 
-const MERMAID_BUSINESS_MODEL = `flowchart LR
-  subgraph JV["🏭 Kioxia JV<br/>(四日市 + 北上)"]
-    FAB["NAND 晶圓製造<br/>3D NAND / BiCS"]
-  end
+/* ================================================================
+   Valuation data
+   ================================================================ */
+interface QuarterEPS {
+  label: string;
+  bear: number;
+  base: number;
+  bull: number;
+  isActual: boolean;
+}
 
-  subgraph SK["🔧 SanDisk"]
-    RD["R&D<br/>技術設計"]
-    PKG["封裝 / 測試<br/>成品製造"]
-  end
+interface ValuationVersion {
+  id: string;
+  date: string;
+  label: string;
+  trigger: string;
+  note: string;
+  peRatios: [number, number, number, number]; // [災難, 悲觀, 中間, 樂觀]
+  eps: { bear: number; base: number; bull: number; ttm: number };
+  quarterly: QuarterEPS[];
+}
 
-  subgraph MKT["📦 終端市場"]
-    EDGE["Edge 56%<br/>PC・車用・行動"]
-    CONS["Consumer 31%<br/>記憶卡・USB・SSD"]
-    DC["Datacenter 13%<br/>企業 SSD・AI 推論"]
-  end
+const SNDK_VALUATIONS: ValuationVersion[] = [
+  {
+    id: "v2",
+    date: "2026-03-11",
+    label: "FY2026 · Q2後更新",
+    trigger: "Q2 FY2026 財報公布 (2026/01/29)",
+    note: "Q2 毛利率 51.1% 大幅超預期，Datacenter QoQ +64%。上修全年 EPS 預估。",
+    peRatios: [21.34, 28.97, 38.47, 48.53],
+    eps: { bear: 18.90, base: 19.90, bull: 20.90, ttm: 5.06 },
+    quarterly: [
+      { label: "Q1", bear: 0.75, base: 0.75, bull: 0.75, isActual: true },
+      { label: "Q2", bear: 5.15, base: 5.15, bull: 5.15, isActual: true },
+      { label: "Q3", bear: 6.00, base: 6.50, bull: 7.00, isActual: false },
+      { label: "Q4", bear: 7.00, base: 7.50, bull: 8.00, isActual: false },
+    ],
+  },
+  {
+    id: "v1",
+    date: "2026-01-15",
+    label: "FY2026 · Q1後初估",
+    trigger: "Q1 FY2026 財報公布",
+    note: "初始建模。分拆後首季，基期低、能見度有限。",
+    peRatios: [21.34, 28.97, 38.47, 48.53],
+    eps: { bear: 7.15, base: 7.08, bull: 7.23, ttm: 6.17 },
+    quarterly: [
+      { label: "Q1", bear: 0.75, base: 0.75, bull: 0.75, isActual: true },
+      { label: "Q2", bear: 1.60, base: 1.58, bull: 1.62, isActual: false },
+      { label: "Q3", bear: 2.20, base: 2.15, bull: 2.20, isActual: false },
+      { label: "Q4", bear: 2.60, base: 2.60, bull: 2.66, isActual: false },
+    ],
+  },
+];
 
-  subgraph REV["💰 資金流"]
-    OEM["OEM / 零售客戶"]
-    REVENUE["營收 $7.4B/年"]
-  end
-
-  RD -->|"共同研發"| FAB
-  FAB -->|"晶圓分配<br/>(按投資比例)"| PKG
-  PKG --> EDGE
-  PKG --> CONS
-  PKG --> DC
-  EDGE --> OEM
-  CONS --> OEM
-  DC --> OEM
-  OEM --> REVENUE
-  REVENUE -->|"JV 付款<br/>$291M/年"| FAB
-  REVENUE -->|"R&D 投資"| RD`;
+const PE_LABELS = ["災難事件", "悲觀估值", "中間估值", "樂觀估值"] as const;
+const EPS_LABELS = ["悲觀估值", "中間估值", "樂觀估值", "TTM\n(剔除一次性)"] as const;
 
 /* ── Table cell class constants ── */
 const TH =
@@ -63,41 +88,6 @@ const TD_R = TD + " text-right tabular-nums";
 /* ================================================================
    Sub-components
    ================================================================ */
-
-function Mermaid({ chart }: { chart: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const rendered = useRef(false);
-
-  useEffect(() => {
-    if (rendered.current) return;
-    rendered.current = true;
-
-    import("mermaid").then(async (mod) => {
-      mod.default.initialize({
-        startOnLoad: false,
-        theme: "base",
-        themeVariables: {
-          primaryColor: "#FDE7E7",
-          primaryBorderColor: "#C02734",
-          primaryTextColor: "#2C1517",
-          lineColor: "#C02734",
-          secondaryColor: "#F3EDED",
-          tertiaryColor: "#FDFAFA",
-          fontFamily:
-            '"Helvetica Neue", Arial, "PingFang TC", sans-serif',
-          fontSize: "13px",
-        },
-        flowchart: { curve: "basis", padding: 15 },
-      });
-
-      const id = `mermaid-${Date.now()}`;
-      const { svg } = await mod.default.render(id, chart);
-      if (ref.current) ref.current.innerHTML = svg;
-    });
-  }, [chart]);
-
-  return <div ref={ref} className="my-4 text-center" />;
-}
 
 function LightboxModal({
   html,
@@ -234,6 +224,214 @@ function Placeholder({ text }: { text: string }) {
   );
 }
 
+/* ── Valuation: P/E Grid (4×4) ── */
+function PEGrid({ v }: { v: ValuationVersion }) {
+  const epsRows: { label: string; value: number }[] = [
+    { label: "悲觀估值", value: v.eps.bear },
+    { label: "中間估值", value: v.eps.base },
+    { label: "樂觀估值", value: v.eps.bull },
+    { label: "TTM (剔除一次性)", value: v.eps.ttm },
+  ];
+
+  const cell =
+    "border border-[var(--border)] px-3 py-2 text-sm text-right tabular-nums";
+  const hdr =
+    "border border-[var(--border)] px-3 py-2 text-xs font-semibold text-center";
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse">
+        <thead>
+          <tr>
+            <th className={`${hdr} bg-[#f5f0f0] text-left`} colSpan={2}>
+              {v.label}
+            </th>
+            <th className={`${hdr} bg-[#f5f0f0]`} colSpan={4}>
+              P/E Ratio
+            </th>
+          </tr>
+          <tr>
+            <th className={`${hdr} bg-[#fafafa]`} colSpan={2}>
+              全年 EPS
+            </th>
+            {PE_LABELS.map((label, i) => (
+              <th key={i} className={`${hdr} bg-[#fafafa]`}>
+                <div className="text-[0.7rem] text-[var(--text-muted)]">
+                  {label}
+                </div>
+                <div className="mt-0.5 text-sm font-bold">
+                  {v.peRatios[i].toFixed(2)}
+                </div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {epsRows.map((row, ri) => (
+            <tr key={ri}>
+              <td
+                className={`${cell} text-left font-medium ${ri === 3 ? "text-xs" : ""}`}
+              >
+                {row.label}
+              </td>
+              <td className={`${cell} font-semibold`}>{row.value.toFixed(2)}</td>
+              {v.peRatios.map((pe, ci) => {
+                const price = (row.value * pe).toFixed(1);
+                const isBase = ri === 1 && ci === 2;
+                return (
+                  <td
+                    key={ci}
+                    className={`${cell} ${
+                      isBase
+                        ? "bg-[#FDE7E7] font-bold text-[var(--primary)]"
+                        : ""
+                    }`}
+                  >
+                    {price}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ── Valuation: Quarterly EPS Table ── */
+function QuarterlyEPS({ v }: { v: ValuationVersion }) {
+  const total = {
+    bear: v.quarterly.reduce((s, q) => s + q.bear, 0),
+    base: v.quarterly.reduce((s, q) => s + q.base, 0),
+    bull: v.quarterly.reduce((s, q) => s + q.bull, 0),
+  };
+  const cell =
+    "border border-[var(--border)] px-3 py-2 text-sm text-right tabular-nums";
+  const hdr =
+    "border border-[var(--border)] px-3 py-2 text-xs font-semibold text-center bg-[#fafafa]";
+
+  const renderRow = (
+    label: string,
+    bear: number,
+    base: number,
+    bull: number,
+    isActual: boolean,
+    isBold = false,
+  ) => (
+    <tr className={isBold ? "font-semibold bg-[#fafafa]" : ""}>
+      <td
+        className={`${cell} text-left ${isBold ? "font-semibold" : "font-medium"}`}
+      >
+        {label}
+      </td>
+      <td className={cell}>
+        ${bear.toFixed(2)}
+        {isActual && !isBold && (
+          <span className="ml-1 text-[0.65rem] text-green-600">✓</span>
+        )}
+      </td>
+      <td className={cell}>
+        ${base.toFixed(2)}
+        {isActual && !isBold && (
+          <span className="ml-1 text-[0.65rem] text-green-600">✓</span>
+        )}
+      </td>
+      <td className={cell}>
+        ${bull.toFixed(2)}
+        {isActual && !isBold && (
+          <span className="ml-1 text-[0.65rem] text-green-600">✓</span>
+        )}
+      </td>
+    </tr>
+  );
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse">
+        <thead>
+          <tr>
+            <th className={hdr}>Quarter</th>
+            <th className={hdr}>Bear</th>
+            <th className={hdr}>Base</th>
+            <th className={hdr}>Bull</th>
+          </tr>
+        </thead>
+        <tbody>
+          {v.quarterly.map((q) =>
+            renderRow(q.label, q.bear, q.base, q.bull, q.isActual),
+          )}
+          {renderRow("Total", total.bear, total.base, total.bull, false, true)}
+        </tbody>
+      </table>
+      <p className="mt-1 text-[0.65rem] text-[var(--text-faint)]">
+        <span className="text-green-600">✓</span> = 已公布實際值
+      </p>
+    </div>
+  );
+}
+
+/* ── Valuation: Version History Toggle ── */
+function VersionHistory({ versions }: { versions: ValuationVersion[] }) {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  return (
+    <div className="space-y-2">
+      {versions.map((v) => {
+        const isOpen = openId === v.id;
+        return (
+          <div
+            key={v.id}
+            className="rounded-lg border border-[var(--border)] bg-white"
+          >
+            <button
+              className="flex w-full items-center justify-between px-4 py-3 text-left text-sm hover:bg-[#fdfafa]"
+              onClick={() => setOpenId(isOpen ? null : v.id)}
+            >
+              <div>
+                <span className="mr-2 font-mono text-xs text-[var(--text-faint)]">
+                  {v.id}
+                </span>
+                <span className="font-semibold">{v.label}</span>
+                <span className="ml-2 text-xs text-[var(--text-muted)]">
+                  {v.date}
+                </span>
+              </div>
+              <span className="text-[var(--text-faint)]">
+                {isOpen ? "▲" : "▼"}
+              </span>
+            </button>
+            {isOpen && (
+              <div className="border-t border-[var(--border)] px-4 pb-4 pt-3">
+                <p className="mb-1 text-xs font-medium text-[var(--text-muted)]">
+                  觸發事件：{v.trigger}
+                </p>
+                <p className="mb-4 text-xs text-[var(--text-faint)]">
+                  {v.note}
+                </p>
+                <div className="grid gap-4 lg:grid-cols-2">
+                  <div>
+                    <p className="mb-1.5 text-xs font-semibold text-[var(--text-muted)]">
+                      P/E 估值矩陣
+                    </p>
+                    <PEGrid v={v} />
+                  </div>
+                  <div>
+                    <p className="mb-1.5 text-xs font-semibold text-[var(--text-muted)]">
+                      每季 EPS 預估
+                    </p>
+                    <QuarterlyEPS v={v} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
     <div className="mb-5 border-l-[3px] border-[var(--primary)] pl-3 text-lg font-semibold uppercase tracking-wider text-[var(--primary)]">
@@ -256,6 +454,7 @@ export default function Report({
 }) {
   const [activeId, setActiveId] = useState(SECTIONS[0].id);
   const [lightboxHtml, setLightboxHtml] = useState<string | null>(null);
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
 
   useEffect(() => {
     const targets = SECTIONS.map((s) => document.getElementById(s.id)).filter(
@@ -639,16 +838,23 @@ export default function Report({
         <section id="sec-business-model" className="mb-10">
           <SectionTitle>02 · 商業模式</SectionTitle>
 
-          <ContentBox title="獲利模式">
+          <ContentBox title="核心流程">
             <div
-              className="relative cursor-zoom-in"
-              onClick={(e) => openLightbox(e.currentTarget)}
+              className="relative my-2 cursor-zoom-in"
+              onClick={() => setLightboxImg("/images/equity-research/SNDK/business-model-simple.png")}
             >
-              <Mermaid chart={MERMAID_BUSINESS_MODEL} />
+              <img
+                src="/images/equity-research/SNDK/business-model-simple.png"
+                alt="SanDisk 商業模式（核心流程）"
+                className="w-full rounded-lg"
+              />
               <span className="absolute bottom-1 right-2 text-[0.68rem] text-[var(--text-faint)] pointer-events-none">
                 click to expand
               </span>
             </div>
+            <p className="mt-3 mb-1 text-xs text-[var(--text-faint)]">
+              完整版（含 Flash Ventures JV 財務細節）請見下方「供應鏈與 JV 架構」。
+            </p>
             <Sources
               list={[
                 {
@@ -796,6 +1002,35 @@ export default function Report({
                 {
                   label: "Sandisk — Corporate Separation and Brand FAQ",
                   href: "https://www.sandisk.com/sandisk-separation-faqs",
+                },
+              ]}
+            />
+          </ContentBox>
+
+          <ContentBox title="供應鏈與 JV 架構（完整版）">
+            <div
+              className="relative my-2 cursor-zoom-in"
+              onClick={() => setLightboxImg("/images/equity-research/SNDK/business-model-full.png")}
+            >
+              <img
+                src="/images/equity-research/SNDK/business-model-full.png"
+                alt="SanDisk 商業模式（完整版：Flash Ventures JV 財務細節）"
+                className="w-full rounded-lg"
+              />
+              <span className="absolute bottom-1 right-2 text-[0.68rem] text-[var(--text-faint)] pointer-events-none">
+                click to expand
+              </span>
+            </div>
+            <Sources
+              list={[
+                {
+                  label: "SEC — SNDK 10-Q (Q2 FY2026, filed 2026/02/11)",
+                  href: "https://investor.sandisk.com/sec-filings/quarterly-reports",
+                },
+                {
+                  label:
+                    "Sandisk IR — Q2 FY2026 Earnings Call Transcript (2026/01/29)",
+                  href: "https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-second-quarter-2026-financial-results",
                 },
               ]}
             />
@@ -1345,9 +1580,52 @@ export default function Report({
         <div className="mb-8 border-b-2 border-[var(--primary)] pb-2 text-xl font-bold tracking-wide">
           <span className="text-[var(--primary)]">V.</span> 估值模型
         </div>
-        <ContentBox>
-          <Placeholder text="待填入：DCF、Comps、歷史本益比、目標價" />
-        </ContentBox>
+
+        {/* ── Latest Valuation ── */}
+        {(() => {
+          const latest = SNDK_VALUATIONS[0];
+          return (
+            <>
+              <ContentBox title={`最新估價 — ${latest.label}`}>
+                <div className="mb-1 flex items-baseline gap-3">
+                  <span className="text-xs font-mono text-[var(--text-faint)]">
+                    {latest.id}
+                  </span>
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {latest.date} · {latest.trigger}
+                  </span>
+                </div>
+                <p className="mb-4 text-sm text-[var(--text-muted)]">
+                  {latest.note}
+                </p>
+                <div className="grid gap-6 lg:grid-cols-5">
+                  <div className="lg:col-span-3">
+                    <p className="mb-1.5 text-xs font-semibold text-[var(--text-muted)]">
+                      P/E 估值矩陣（目標股價 = EPS × P/E）
+                    </p>
+                    <PEGrid v={latest} />
+                  </div>
+                  <div className="lg:col-span-2">
+                    <p className="mb-1.5 text-xs font-semibold text-[var(--text-muted)]">
+                      每季 EPS 預估
+                    </p>
+                    <QuarterlyEPS v={latest} />
+                  </div>
+                </div>
+              </ContentBox>
+            </>
+          );
+        })()}
+
+        {/* ── Version History ── */}
+        {SNDK_VALUATIONS.length > 1 && (
+          <ContentBox title="版本紀錄">
+            <p className="mb-3 text-xs text-[var(--text-faint)]">
+              每次財報公布或重大消息調整估價時，會新增一個版本。展開可查看當時的估價快照。
+            </p>
+            <VersionHistory versions={SNDK_VALUATIONS.slice(1)} />
+          </ContentBox>
+        )}
       </div>
 
       {/* ── Footer ── */}
@@ -1363,6 +1641,19 @@ export default function Report({
         html={lightboxHtml}
         onClose={() => setLightboxHtml(null)}
       />
+      {lightboxImg && (
+        <div
+          className="fixed inset-0 z-[9999] flex cursor-zoom-out items-center justify-center bg-[rgba(44,21,23,0.55)] backdrop-blur-sm"
+          onClick={() => setLightboxImg(null)}
+        >
+          <img
+            src={lightboxImg}
+            alt=""
+            className="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }
