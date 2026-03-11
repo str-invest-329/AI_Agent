@@ -175,7 +175,7 @@
               "label": "FY2026 · Q2後更新",
               "trigger": "Q2 FY2026 財報公布 (2026/01/29)",
               "note": "Q2 毛利率 51.1% 大幅超預期，Datacenter QoQ +64%。上修全年 EPS 預估。",
-              "peRatios": [5, 10, 12, 15],
+              "peRatios": [5, 10, 15, 20],
               "eps": { "bear": 32.71, "base": 36.85, "bull": 40.05, "ttm": 5.06 },
               "quarterly": [
                 { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
