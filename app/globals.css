@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --bg-page: #f8f4f4;
+  --bg-card: #ffffff;
+  --border: #e2d8d8;
+  --primary: #c02734;
+  --primary-dk: #8b1a22;
+  --primary-lt: #e05562;
+  --text: #2c1517;
+  --text-muted: #7a5860;
+  --text-faint: #b09898;
+  --tag-bg: #fde8ea;
+  --radius: 10px;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "PingFang TC", "Noto Sans TC", sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+}
