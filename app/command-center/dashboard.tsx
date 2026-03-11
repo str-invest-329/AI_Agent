@@ -663,11 +663,9 @@ export default function Dashboard() {
               {debug && <span className="inline-flex items-center gap-1 bg-[#D97706] text-white text-[0.65rem] font-bold uppercase tracking-wider px-2 py-0.5 rounded ml-2 align-middle">&#9873; debug</span>}
             </h1>
           </div>
-          <div className="text-right text-[0.85rem] text-[#7A5860] font-mono">
-            <div className="text-[#2C1517] font-semibold tabular-nums">
-              {now.toLocaleString("zh-TW", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}
-            </div>
-            <div className="text-xs">ET</div>
+          <div className="text-right text-[0.8rem] text-[#7A5860] font-mono tabular-nums leading-snug">
+            <div><span className="text-[#B09898] text-xs mr-1.5">ET</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
+            <div><span className="text-[#B09898] text-xs mr-1.5">TW</span><span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span></div>
           </div>
         </header>
 
