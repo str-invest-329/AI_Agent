@@ -675,18 +675,21 @@ export default function Dashboard() {
           &larr; Portal
         </Link>
 
-        {/* ── Top Ticker Bar ──────────────────────────────────── */}
+        {/* ── Top Ticker Bar (marquee) ─────────────────────────── */}
         {marketData && (
-          <div className="flex items-center gap-5 bg-[#F8F4F4] px-5 py-2 font-mono text-[0.78rem] tabular-nums overflow-x-auto">
-            {marketData.indices.filter(i => ["sp500", "nasdaq", "dow_jones"].includes(i.id)).map((idx) => (
-              <div key={idx.id} className="flex items-center gap-2 whitespace-nowrap">
-                <span className="text-[#7A5860] font-semibold">{idx.name}</span>
-                <span className="text-[#2C1517] font-bold">{idx.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                <span className={idx.change_pct >= 0 ? "text-green-700" : "text-red-700"}>
-                  {idx.change_pct >= 0 ? "+" : ""}{idx.change_pct.toFixed(2)}%
-                </span>
-              </div>
-            ))}
+          <div className="bg-[#F8F4F4] overflow-hidden py-2">
+            <div className="flex animate-marquee whitespace-nowrap font-mono text-[0.78rem] tabular-nums">
+              {[...marketData.indices, ...marketData.indices].map((idx, i) => (
+                <div key={`${idx.id}-${i}`} className="flex items-center gap-2 mx-5 shrink-0">
+                  <span className="text-[#7A5860] font-semibold">{idx.name}</span>
+                  <span className="text-[#2C1517] font-bold">{idx.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span className={idx.change_pct >= 0 ? "text-green-700" : "text-red-700"}>
+                    {idx.change_pct >= 0 ? "+" : ""}{idx.change_pct.toFixed(2)}%
+                  </span>
+                  <span className="text-[#E2D8D8]">|</span>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 

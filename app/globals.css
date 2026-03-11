@@ -27,3 +27,12 @@
   0%, 100% { box-shadow: inset 0 0 0 2px rgba(192, 39, 52, 0.3); }
   50% { box-shadow: inset 0 0 12px 2px rgba(192, 39, 52, 0.45); }
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
