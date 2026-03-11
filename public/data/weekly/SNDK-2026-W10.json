@@ -1,0 +1,128 @@
+{
+  "reportDate": "2026-03-09",
+  "reportWeek": "2026-W10",
+  "ticker": "SNDK",
+  "company": "Sandisk Corp",
+  "market": "us",
+  "technical": {
+    "close": 527.33,
+    "weekChangePct": -17,
+    "volume": 16010500,
+    "date": "2026-03-06",
+    "ma": {
+      "MA5": 575.29,
+      "MA20": 607.12,
+      "MA60": 447.14
+    },
+    "macd": {
+      "macd": 19.1005,
+      "signal": 38.772,
+      "hist": -19.6715
+    },
+    "bollinger": {
+      "upper": 681.46,
+      "mid": 607.12,
+      "lower": 532.78
+    },
+    "weeklyLabels": [
+      "Feb 08",
+      "Feb 15",
+      "Feb 22",
+      "Mar 01",
+      "Mar 08"
+    ],
+    "weeklyClose": [
+      597.95,
+      626.56,
+      649.97,
+      635.36,
+      527.33
+    ]
+  },
+  "chips": {
+    "market": "us",
+    "tw": {
+      "institutional": {
+        "date": "",
+        "foreign_net": null,
+        "trust_net": null,
+        "dealer_net": null,
+        "foreign_5d_net": null
+      },
+      "margin": {
+        "date": "",
+        "margin_balance": null,
+        "short_balance": null,
+        "margin_change": null,
+        "short_change": null
+      }
+    },
+    "us": {
+      "shortInterest": null,
+      "institutionalOwnership": null
+    }
+  },
+  "news": [
+    {
+      "date": "2026-03-08",
+      "headline": "5 big analyst AI moves: Buy Samsung pullback, Nvidia back as top chip pick",
+      "link": "https://finance.yahoo.com/news/5-big-analyst-ai-moves-093002308.html"
+    },
+    {
+      "date": "2026-03-07",
+      "headline": "Billionaire Stanley Druckenmiller Sells Sandisk Stock and Buys an AI Stock Up 223,000% Since Its IPO",
+      "link": "https://www.fool.com/investing/2026/03/07/stanley-druckenmiller-sell-sandisk-buy-ai-stock/"
+    },
+    {
+      "date": "2026-03-07",
+      "headline": "Investing.com’s stocks of the week",
+      "link": "https://finance.yahoo.com/news/investing-com-stocks-week-093002493.html"
+    },
+    {
+      "date": "2026-03-06",
+      "headline": "Sandisk Joins HBF Consortium As AI Memory Role And Valuation Draw Focus",
+      "link": "https://finance.yahoo.com/news/sandisk-joins-hbf-consortium-ai-151034181.html"
+    },
+    {
+      "date": "2026-03-05",
+      "headline": "3 Red Hot AI Stocks Sporting Favorable Zacks Ranks: SNDK, WDC, TER",
+      "link": "https://finance.yahoo.com/news/3-red-hot-ai-stocks-231100396.html"
+    },
+    {
+      "date": "2026-03-05",
+      "headline": "Why This Analyst Is Betting on $100 in EPS for Sandisk Stock in 2026",
+      "link": "https://www.barchart.com/story/news/590229/why-this-analyst-is-betting-on-100-in-eps-for-sandisk-stock-in-2026"
+    },
+    {
+      "date": "2026-03-05",
+      "headline": "Super Micro (SMCI) Down 3.3% Since Last Earnings Report: Can It Rebound?",
+      "link": "https://finance.yahoo.com/news/super-micro-smci-down-3-163013768.html"
+    },
+    {
+      "date": "2026-03-05",
+      "headline": "Sandisk Trades at 15.83x Discounted P/E: Time to Buy the Stock?",
+      "link": "https://finance.yahoo.com/news/sandisk-trades-15-83x-discounted-152800011.html"
+    }
+  ],
+  "debug": {
+    "sec-technical": {
+      "notes": [],
+      "api": {
+        "yfinance": "ok"
+      }
+    },
+    "sec-chips": {
+      "notes": [],
+      "api": {
+        "finmind": "ok",
+        "fintel": "ok"
+      }
+    },
+    "sec-news": {
+      "notes": [],
+      "api": {
+        "yfinance_news": "ok"
+      }
+    }
+  }
+}

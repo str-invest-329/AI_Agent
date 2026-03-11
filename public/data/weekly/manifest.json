@@ -1,0 +1,18 @@
+[
+  {
+    "id": "SNDK-2026-W10",
+    "ticker": "SNDK",
+    "company": "Sandisk Corp",
+    "week": "2026-W10",
+    "date": "2026-03-09",
+    "market": "us"
+  },
+  {
+    "id": "NVDA-2026-W10",
+    "ticker": "NVDA",
+    "company": "NVIDIA Corporation",
+    "week": "2026-W10",
+    "date": "2026-03-02",
+    "market": "us"
+  }
+]
