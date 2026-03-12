@@ -1,0 +1,226 @@
+{
+  "metadata": {
+    "company": "Sandisk Corporation",
+    "ticker": "SNDK",
+    "last_updated": "2026-03-12",
+    "notes": "Non-GAAP EPS from NotebookLM (earnings call transcripts). Segment data from SEC EDGAR inline XBRL Instance files. Product segment naming changed in FY2026: Client->Edge, Cloud->Datacenter. Values shown here use the new naming for all periods."
+  },
+  "non_gaap": {
+    "adjusted_eps_diluted": {
+      "Q4_FY2025": {
+        "value": 0.29,
+        "source": "Sandisk Corporation Earnings Call Transcript Q1 2026 — SNDK — Roic AI"
+      },
+      "Q1_FY2026": {
+        "value": 1.22,
+        "source": "Sandisk Corporation Earnings Call Transcript Q1 2026 — SNDK — Roic AI"
+      },
+      "Q2_FY2026": {
+        "value": 6.2,
+        "source": "Sandisk Corporation Earnings Call Transcripts — SNDK — Roic AI"
+      }
+    }
+  },
+  "segments": {
+    "revenue_by_product": {
+      "Q1_FY2025": {
+        "Datacenter": {
+          "value": 300,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "Edge": {
+          "value": 1069,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "Consumer": {
+          "value": 514,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        }
+      },
+      "Q1_FY2026": {
+        "Datacenter": {
+          "value": 269,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "Edge": {
+          "value": 1387,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "Consumer": {
+          "value": 652,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        }
+      },
+      "Q2_FY2024": {
+        "Datacenter": {
+          "value": 40,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        },
+        "Edge": {
+          "value": 970,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        },
+        "Consumer": {
+          "value": 655,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        }
+      },
+      "Q2_FY2025": {
+        "Datacenter": {
+          "value": 250,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        },
+        "Edge": {
+          "value": 1028,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        },
+        "Consumer": {
+          "value": 598,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        }
+      },
+      "Q2_FY2026": {
+        "Datacenter": {
+          "value": 440,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        },
+        "Edge": {
+          "value": 1678,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        },
+        "Consumer": {
+          "value": 907,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        }
+      },
+      "Q3_FY2024": {
+        "Datacenter": {
+          "value": 97,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "Edge": {
+          "value": 1035,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "Consumer": {
+          "value": 573,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        }
+      },
+      "Q3_FY2025": {
+        "Datacenter": {
+          "value": 197,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "Edge": {
+          "value": 927,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "Consumer": {
+          "value": 571,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        }
+      }
+    },
+    "revenue_by_geography": {
+      "Q1_FY2025": {
+        "Asia": {
+          "value": 1150,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "Americas": {
+          "value": 443,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "EMEA": {
+          "value": 290,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        }
+      },
+      "Q1_FY2026": {
+        "Asia": {
+          "value": 1515,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "Americas": {
+          "value": 406,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        },
+        "EMEA": {
+          "value": 387,
+          "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        }
+      },
+      "Q2_FY2024": {
+        "Asia": {
+          "value": 1112,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        },
+        "Americas": {
+          "value": 257,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        },
+        "EMEA": {
+          "value": 296,
+          "source": "SEC EDGAR inline XBRL — sndk-20241227_htm.xml"
+        }
+      },
+      "Q2_FY2025": {
+        "Asia": {
+          "value": 1086,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        },
+        "Americas": {
+          "value": 389,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        },
+        "EMEA": {
+          "value": 401,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        }
+      },
+      "Q2_FY2026": {
+        "Asia": {
+          "value": 2063,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        },
+        "Americas": {
+          "value": 513,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        },
+        "EMEA": {
+          "value": 449,
+          "source": "SEC EDGAR inline XBRL — sndk-20260102_htm.xml"
+        }
+      },
+      "Q3_FY2024": {
+        "Asia": {
+          "value": 1140,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "Americas": {
+          "value": 272,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "EMEA": {
+          "value": 293,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        }
+      },
+      "Q3_FY2025": {
+        "Asia": {
+          "value": 1038,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "Americas": {
+          "value": 375,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        },
+        "EMEA": {
+          "value": 282,
+          "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        }
+      }
+    }
+  }
+}
