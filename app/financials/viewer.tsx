@@ -467,6 +467,311 @@ function TagAuditPanel({ data }: { data: FinData }) {
   );
 }
 
+/* ── Segment Panel ── */
+function SegmentPanel({ suppData }: { suppData: any }) {
+  const [segType, setSegType] = useState<"revenue_by_product" | "revenue_by_geography">("revenue_by_product");
+
+  if (!suppData?.segments)
+    return <div className="p-10 text-center text-sm text-[#7f8c8d]">No segment data available for this ticker.</div>;
+
+  const segments = suppData.segments[segType];
+  if (!segments || !Object.keys(segments).length)
+    return <div className="p-10 text-center text-sm text-[#7f8c8d]">No {segType === "revenue_by_product" ? "product" : "geography"} segment data.</div>;
+
+  const periods = sortPeriods(Object.keys(segments));
+  // Collect all segment names across periods
+  const segNames = new Set<string>();
+  for (const p of periods) for (const name of Object.keys(segments[p])) segNames.add(name);
+  const names = Array.from(segNames);
+
+  // Chart data: stacked bar
+  const chartData = {
+    labels: periods,
+    datasets: names.map((name, i) => ({
+      label: name,
+      data: periods.map((p) => segments[p]?.[name]?.value ?? 0),
+      borderColor: CHART_COLORS[i % CHART_COLORS.length],
+      backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + "cc",
+      tension: 0.3,
+      pointRadius: 3,
+    })),
+  };
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: "index" as const, intersect: false },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (ctx: any) => `${ctx.dataset.label}: $${ctx.parsed.y}M`,
+        },
+      },
+      legend: { position: "bottom" as const, labels: { boxWidth: 12, font: { size: 11 } } },
+    },
+    scales: {
+      x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
+      y: {
+        ticks: {
+          font: { size: 10 },
+          callback: (v: any) => `$${v}M`,
+        },
+      },
+    },
+  };
+
+  return (
+    <>
+      {/* Segment type toggle */}
+      <div className="mb-3 flex gap-1">
+        {([
+          ["revenue_by_product", "By Product"],
+          ["revenue_by_geography", "By Geography"],
+        ] as const).map(([key, label]) => (
+          <button
+            key={key}
+            onClick={() => setSegType(key)}
+            className={`rounded border px-3 py-1.5 text-xs font-semibold transition-all select-none ${
+              segType === key
+                ? "border-[var(--primary)] bg-[var(--primary)] text-white"
+                : "border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:border-[var(--primary)]"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {/* Chart */}
+      <div className="mb-4 rounded-md bg-[var(--bg-card)] p-4 shadow-sm">
+        <div className="relative h-[320px]">
+          <Line data={chartData} options={chartOptions} />
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto rounded-md shadow-sm">
+        <table className="w-full border-collapse bg-[var(--bg-card)] text-xs">
+          <thead>
+            <tr>
+              <th className="sticky left-0 z-[11] min-w-[180px] border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-left font-semibold text-white">
+                Segment
+              </th>
+              {periods.map((p) => (
+                <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white whitespace-nowrap">
+                  {p}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {names.map((name, i) => (
+              <tr key={name}>
+                <td className={`sticky left-0 z-[5] border border-[var(--border)] px-3 py-1.5 text-left font-medium ${
+                  i % 2 === 0 ? "bg-[var(--bg-subtle)]" : "bg-[var(--bg-card)]"
+                }`}>
+                  {name}
+                </td>
+                {periods.map((p) => {
+                  const entry = segments[p]?.[name];
+                  const val = entry?.value;
+                  return (
+                    <td
+                      key={p}
+                      title={entry?.source || ""}
+                      className={`border border-[var(--border)] px-3 py-1.5 text-right tabular-nums ${
+                        i % 2 === 0 ? "bg-[var(--bg-subtle)]" : "bg-[var(--bg-card)]"
+                      }`}
+                    >
+                      {val != null ? `$${val.toLocaleString()}M` : "—"}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+            {/* Total row */}
+            <tr>
+              <td className="sticky left-0 z-[5] border border-[var(--border)] bg-[var(--bg-highlight)] px-3 py-1.5 text-left font-bold text-[#7b3f00]">
+                Total
+              </td>
+              {periods.map((p) => {
+                const total = names.reduce((sum, name) => sum + (segments[p]?.[name]?.value ?? 0), 0);
+                return (
+                  <td key={p} className="border border-[var(--border)] bg-[var(--bg-highlight)] px-3 py-1.5 text-right font-bold tabular-nums text-[#7b3f00]">
+                    ${total.toLocaleString()}M
+                  </td>
+                );
+              })}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* Source footnote */}
+      <div className="mt-2 text-[10px] text-[var(--text-faint)]">
+        Source: {segType === "revenue_by_product" ? "SEC EDGAR inline XBRL" : "SEC EDGAR inline XBRL"} · hover over cells for detailed source
+      </div>
+    </>
+  );
+}
+
+/* ── Non-GAAP Panel ── */
+function NonGaapPanel({ suppData, gaapData }: { suppData: any; gaapData: FinData }) {
+  if (!suppData?.non_gaap || !Object.keys(suppData.non_gaap).length)
+    return <div className="p-10 text-center text-sm text-[#7f8c8d]">No Non-GAAP data available for this ticker.</div>;
+
+  const nonGaap = suppData.non_gaap;
+
+  // Adjusted EPS section
+  const adjEps = nonGaap.adjusted_eps_diluted;
+  if (!adjEps || !Object.keys(adjEps).length)
+    return <div className="p-10 text-center text-sm text-[#7f8c8d]">No adjusted EPS data available.</div>;
+
+  // Get periods (only quarterly, skip FY)
+  const allPeriods = sortPeriods(Object.keys(adjEps));
+  const quarterlyPeriods = allPeriods.filter((p) => p.startsWith("Q"));
+  const annualPeriods = allPeriods.filter((p) => p.startsWith("FY"));
+
+  // Get GAAP EPS for comparison
+  const gaapEps = gaapData?.income_statement?.eps_diluted || {};
+
+  return (
+    <div>
+      <h3 className="mb-3 text-sm font-bold text-[var(--text)]">Adjusted EPS (Diluted) — GAAP vs Non-GAAP</h3>
+
+      {/* Quarterly comparison table */}
+      {quarterlyPeriods.length > 0 && (
+        <>
+          <div className="mb-2 text-xs font-semibold text-[var(--text-muted)]">Quarterly</div>
+          <div className="mb-4 overflow-x-auto rounded-md shadow-sm">
+            <table className="w-full border-collapse bg-[var(--bg-card)] text-xs">
+              <thead>
+                <tr>
+                  <th className="sticky left-0 z-[11] min-w-[200px] border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-left font-semibold text-white">
+                    Metric
+                  </th>
+                  {quarterlyPeriods.map((p) => (
+                    <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white whitespace-nowrap">
+                      {p}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {/* GAAP EPS row */}
+                <tr>
+                  <td className="sticky left-0 z-[5] border border-[var(--border)] bg-[var(--bg-subtle)] px-3 py-1.5 text-left font-medium">
+                    GAAP EPS (Diluted)
+                  </td>
+                  {quarterlyPeriods.map((p) => {
+                    const v = gaapEps[p];
+                    return (
+                      <td key={p} className={`border border-[var(--border)] bg-[var(--bg-subtle)] px-3 py-1.5 text-right tabular-nums ${
+                        v != null && v < 0 ? "text-[#c0392b]" : ""
+                      }`}>
+                        {v != null ? `$${Number(v).toFixed(2)}` : "—"}
+                      </td>
+                    );
+                  })}
+                </tr>
+                {/* Non-GAAP EPS row */}
+                <tr>
+                  <td className="sticky left-0 z-[5] border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-left font-medium">
+                    Adjusted EPS (Non-GAAP)
+                  </td>
+                  {quarterlyPeriods.map((p) => {
+                    const entry = adjEps[p];
+                    const v = entry?.value;
+                    return (
+                      <td
+                        key={p}
+                        title={entry?.source || ""}
+                        className={`border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-right tabular-nums ${
+                          v != null && v < 0 ? "text-[#c0392b]" : ""
+                        }`}
+                      >
+                        {v != null ? `$${Number(v).toFixed(2)}` : "—"}
+                      </td>
+                    );
+                  })}
+                </tr>
+                {/* Delta row */}
+                <tr>
+                  <td className="sticky left-0 z-[5] border border-[var(--border)] bg-[var(--bg-highlight)] px-3 py-1.5 text-left font-bold text-[#7b3f00]">
+                    Δ (Non-GAAP − GAAP)
+                  </td>
+                  {quarterlyPeriods.map((p) => {
+                    const gaap = gaapEps[p];
+                    const nonGaapV = adjEps[p]?.value;
+                    const delta = gaap != null && nonGaapV != null ? nonGaapV - Number(gaap) : null;
+                    return (
+                      <td key={p} className={`border border-[var(--border)] bg-[var(--bg-highlight)] px-3 py-1.5 text-right font-bold tabular-nums ${
+                        delta != null && delta < 0 ? "text-[#c0392b]" : delta != null && delta > 0 ? "text-[#27ae60]" : "text-[#7b3f00]"
+                      }`}>
+                        {delta != null ? `${delta >= 0 ? "+" : ""}${delta.toFixed(2)}` : "—"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      {/* Annual summary */}
+      {annualPeriods.length > 0 && (
+        <>
+          <div className="mb-2 text-xs font-semibold text-[var(--text-muted)]">Annual</div>
+          <div className="mb-4 overflow-x-auto rounded-md shadow-sm">
+            <table className="w-full border-collapse bg-[var(--bg-card)] text-xs">
+              <thead>
+                <tr>
+                  <th className="sticky left-0 z-[11] min-w-[200px] border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-left font-semibold text-white">
+                    Metric
+                  </th>
+                  {annualPeriods.map((p) => (
+                    <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white whitespace-nowrap">
+                      {p}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="sticky left-0 z-[5] border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-left font-medium">
+                    Adjusted EPS (Non-GAAP)
+                  </td>
+                  {annualPeriods.map((p) => {
+                    const entry = adjEps[p];
+                    const v = entry?.value;
+                    return (
+                      <td
+                        key={p}
+                        title={entry?.source || ""}
+                        className={`border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-right tabular-nums ${
+                          v != null && v < 0 ? "text-[#c0392b]" : ""
+                        }`}
+                      >
+                        {v != null ? `$${Number(v).toFixed(2)}` : "—"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      {/* Source footnote */}
+      <div className="mt-2 text-[10px] text-[var(--text-faint)]">
+        Source: NotebookLM (SEC filings / earnings call transcripts) · hover over cells for detailed source
+      </div>
+    </div>
+  );
+}
+
 /* ================================================================
    Main Viewer
    ================================================================ */
@@ -475,6 +780,8 @@ const TABS = [
   { id: "bs", label: "Balance Sheet" },
   { id: "cf", label: "Cash Flow" },
   { id: "ratios", label: "Financial Ratios" },
+  { id: "segments", label: "Segments" },
+  { id: "non-gaap", label: "Non-GAAP" },
   { id: "audit", label: "Tag Audit" },
 ];
 
@@ -484,6 +791,7 @@ export default function Viewer() {
   const [tab, setTab] = useState("is");
   const [viewMode, setViewMode] = useState<"quarterly" | "annual">("quarterly");
   const [rawData, setRawData] = useState<FinData | null>(null);
+  const [suppData, setSuppData] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
 
   // Load ticker list
@@ -494,13 +802,16 @@ export default function Viewer() {
       .catch(() => setTickers(["SNDK", "MU", "LEU"]));
   }, []);
 
-  // Load financials on ticker change
+  // Load financials + supplemental on ticker change
   useEffect(() => {
     if (!ticker) {
       setRawData(null);
+      setSuppData(null);
       return;
     }
     setLoading(true);
+    setSuppData(null);
+
     fetch(`/data/financials/${ticker}/${ticker}_financials.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -515,6 +826,12 @@ export default function Viewer() {
         setLoading(false);
         alert(`Failed to load ${ticker}: ${e.message}`);
       });
+
+    // Supplemental is optional — silently ignore if missing
+    fetch(`/data/financials/${ticker}/${ticker}_supplemental.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setSuppData(d))
+      .catch(() => setSuppData(null));
   }, [ticker]);
 
   const displayData = useMemo(() => {
@@ -599,6 +916,8 @@ export default function Viewer() {
             {tab === "bs" && <BalanceSheet data={displayData} />}
             {tab === "cf" && <CashFlowStatement data={displayData} />}
             {tab === "ratios" && <RatiosPanel data={displayData} />}
+            {tab === "segments" && <SegmentPanel suppData={suppData} />}
+            {tab === "non-gaap" && <NonGaapPanel suppData={suppData} gaapData={displayData} />}
             {tab === "audit" && <TagAuditPanel data={displayData} />}
           </>
         )}
