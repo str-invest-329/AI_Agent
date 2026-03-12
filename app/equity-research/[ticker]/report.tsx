@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import ThemeToggle from "@/app/components/ThemeToggle";
 
 const RatioChart = dynamic(() => import("@/app/components/financials/RatioChart"), { ssr: false });
+const FinancialTable = dynamic(() => import("@/app/components/financials/FinancialTable"), { ssr: false });
 
 /* ================================================================
    Types — matches the JSON schema
@@ -50,7 +51,16 @@ interface FinancialChartBlock {
   defaultView?: "quarterly" | "annual";
 }
 
-type Block = ContentBoxBlock | FinancialChartBlock;
+interface FinancialTableBlock {
+  type: "financial-table";
+  title?: string;
+  statement: "income_statement" | "balance_sheet" | "cash_flow_statement";
+  metrics?: string[];
+  maxPeriods?: number;
+  defaultView?: "quarterly" | "annual";
+}
+
+type Block = ContentBoxBlock | FinancialChartBlock | FinancialTableBlock;
 
 interface Section {
   id: string;
@@ -939,26 +949,45 @@ export default function Report({ data }: { data: ReportData }) {
               )}
 
               {/* Blocks */}
-              {sec.blocks.map((block, i) =>
-                block.type === "financial-chart" ? (
-                  <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
-                    {block.title && (
-                      <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
-                        {block.title}
-                      </h3>
-                    )}
-                    <RatioChart
-                      ticker={ticker}
-                      metrics={block.metrics}
-                      defaultSelected={block.defaultSelected}
-                      height={block.height}
-                      defaultView={block.defaultView}
-                    />
-                  </div>
-                ) : (
-                  <BlockRenderer key={i} block={block} onImageClick={openLightbox} />
-                )
-              )}
+              {sec.blocks.map((block, i) => {
+                if (block.type === "financial-chart") {
+                  return (
+                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
+                      {block.title && (
+                        <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
+                          {block.title}
+                        </h3>
+                      )}
+                      <RatioChart
+                        ticker={ticker}
+                        metrics={block.metrics}
+                        defaultSelected={block.defaultSelected}
+                        height={block.height}
+                        defaultView={block.defaultView}
+                      />
+                    </div>
+                  );
+                }
+                if (block.type === "financial-table") {
+                  return (
+                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
+                      {block.title && (
+                        <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
+                          {block.title}
+                        </h3>
+                      )}
+                      <FinancialTable
+                        ticker={ticker}
+                        statement={block.statement}
+                        metrics={block.metrics}
+                        maxPeriods={block.maxPeriods}
+                        defaultView={block.defaultView}
+                      />
+                    </div>
+                  );
+                }
+                return <BlockRenderer key={i} block={block as ContentBoxBlock} onImageClick={openLightbox} />;
+              })}
             </section>
           ))}
         </div>

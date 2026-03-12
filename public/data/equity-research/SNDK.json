@@ -143,8 +143,22 @@
       "numeral": "II",
       "sections": [
         {
+          "id": "sec-income-summary",
+          "title": "01 · 損益表摘要",
+          "blocks": [
+            {
+              "type": "financial-table",
+              "title": "損益表（關鍵指標）",
+              "statement": "income_statement",
+              "metrics": ["revenue", "gross_profit", "gross_margin_pct", "operating_income", "operating_margin_pct", "net_income", "net_margin_pct", "eps_diluted"],
+              "maxPeriods": 6,
+              "defaultView": "quarterly"
+            }
+          ]
+        },
+        {
           "id": "sec-profitability",
-          "title": "01 · 獲利能力",
+          "title": "02 · 獲利能力",
           "blocks": [
             {
               "type": "financial-chart",
@@ -158,7 +172,7 @@
         },
         {
           "id": "sec-returns",
-          "title": "02 · 資本報酬",
+          "title": "03 · 資本報酬",
           "blocks": [
             {
               "type": "financial-chart",
@@ -172,7 +186,7 @@
         },
         {
           "id": "sec-liquidity",
-          "title": "03 · 流動性與槓桿",
+          "title": "04 · 流動性與槓桿",
           "blocks": [
             {
               "type": "financial-chart",
