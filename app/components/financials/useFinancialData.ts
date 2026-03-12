@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
-import type { FinData, ValMap } from "./constants";
+import { getIncompleteFYs, type FinData, type ValMap } from "./constants";
 
 /* ================================================================
    Annual aggregation (extracted from financials/viewer.tsx)
@@ -143,8 +143,12 @@ export function toAnnualData(data: FinData): FinData {
     if (q4 && data.filings?.[q4]) annFilings[fy] = data.filings[q4];
   }
 
+  // Detect incomplete FYs (< 4 quarters)
+  const allQuarterly = [...(data.metadata.periods_income_statement || []), ...(data.metadata.periods_balance_sheet || [])];
+  const incompleteFYs = Object.fromEntries(getIncompleteFYs(allQuarterly));
+
   return {
-    metadata: { ...data.metadata, periods_income_statement: fys, periods_balance_sheet: fys },
+    metadata: { ...data.metadata, periods_income_statement: fys, periods_balance_sheet: fys, incomplete_fys: incompleteFYs },
     filings: annFilings,
     income_statement: annIS,
     balance_sheet: annBS,

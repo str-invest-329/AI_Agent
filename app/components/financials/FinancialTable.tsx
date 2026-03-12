@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
-  TOTAL_KEYS, sortPeriods, fmtVal, labelFor,
+  TOTAL_KEYS, sortPeriods, fmtVal, labelFor, isPct,
   type ValMap, type FinData,
+  type GrowthMode, prevQoQ, prevYoY, growthPct, fmtGrowth, skipGrowthForKey,
+  getIncompleteFYs,
 } from "./constants";
 import { useFinancialData, toAnnualData } from "./useFinancialData";
 
@@ -83,6 +85,37 @@ function getPeriodsKey(statement: string) {
 }
 
 /* ================================================================
+   Growth Toggle Component
+   ================================================================ */
+function GrowthToggle({ mode, setMode, isAnnual }: { mode: GrowthMode; setMode: (m: GrowthMode) => void; isAnnual: boolean }) {
+  const options: { key: GrowthMode; label: string; disabled: boolean }[] = [
+    { key: "value", label: "Value", disabled: false },
+    { key: "qoq", label: "QoQ %", disabled: isAnnual },
+    { key: "yoy", label: "YoY %", disabled: false },
+  ];
+  return (
+    <div className="flex gap-1">
+      {options.map(({ key, label, disabled }) => (
+        <button
+          key={key}
+          onClick={() => !disabled && setMode(key)}
+          disabled={disabled}
+          className={`rounded border px-2.5 py-1 text-[11px] font-semibold transition-all select-none ${
+            disabled
+              ? "cursor-not-allowed border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-faint)] opacity-40"
+              : mode === key
+                ? "border-[var(--text)] bg-[var(--text)] text-[var(--bg-card)]"
+                : "border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:border-[var(--text-muted)]"
+          }`}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/* ================================================================
    FinancialTable Component
    ================================================================ */
 
@@ -103,11 +136,22 @@ export default function FinancialTable({
 }: FinancialTableProps) {
   const { data: rawData, loading, error } = useFinancialData(ticker);
   const [viewMode, setViewMode] = useState<"quarterly" | "annual">(defaultView);
+  const [growthMode, setGrowthMode] = useState<GrowthMode>("value");
+
+  // Reset QoQ to Value when switching to Annual
+  useEffect(() => { if (viewMode === "annual" && growthMode === "qoq") setGrowthMode("value"); }, [viewMode]);
 
   const displayData = useMemo(() => {
     if (!rawData) return null;
     return viewMode === "annual" ? toAnnualData(rawData) : rawData;
   }, [rawData, viewMode]);
+
+  // Detect incomplete FYs in annual mode (must be before early returns)
+  const incompleteFYs = useMemo(() => {
+    if (viewMode !== "annual" || !rawData) return new Map<string, number>();
+    const qPeriods = rawData.metadata[getPeriodsKey(statement)] || [];
+    return getIncompleteFYs(qPeriods);
+  }, [viewMode, rawData, statement]);
 
   if (loading) {
     return (
@@ -134,17 +178,13 @@ export default function FinancialTable({
   if (metrics && metrics.length > 0) {
     const metricSet = new Set(metrics);
     allRows = allRows.filter((row) => {
-      if (row.type === "section") {
-        // Keep section headers only if they have visible data rows after them
-        return true;
-      }
+      if (row.type === "section") return true;
       return metricSet.has(row.key);
     });
-    // Remove orphan section headers (no data rows follow)
+    // Remove orphan section headers
     const cleaned: TableRow[] = [];
     for (let i = 0; i < allRows.length; i++) {
       if (allRows[i].type === "section") {
-        // Check if any data row follows before next section
         let hasData = false;
         for (let j = i + 1; j < allRows.length; j++) {
           if (allRows[j].type === "section") break;
@@ -169,23 +209,30 @@ export default function FinancialTable({
     return <div className="py-6 text-center text-sm text-[var(--text-faint)]">無數據</div>;
   }
 
+  const isGrowth = growthMode !== "value";
+  const prevFn = growthMode === "qoq" ? prevQoQ : prevYoY;
+  const hasIncomplete = viewMode === "annual" && incompleteFYs.size > 0;
+
   return (
     <div>
-      {/* View mode toggle */}
-      <div className="mb-3 flex justify-end gap-1">
-        {(["quarterly", "annual"] as const).map((m) => (
-          <button
-            key={m}
-            onClick={() => setViewMode(m)}
-            className={`rounded border px-2.5 py-1 text-xs font-semibold transition-all select-none ${
-              viewMode === m
-                ? "border-[var(--primary)] bg-[var(--primary)] text-white"
-                : "border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:border-[var(--primary)]"
-            }`}
-          >
-            {m === "quarterly" ? "季度" : "年度"}
-          </button>
-        ))}
+      {/* Controls: view toggle + growth toggle */}
+      <div className="mb-3 flex items-center justify-between">
+        <GrowthToggle mode={growthMode} setMode={setGrowthMode} isAnnual={viewMode === "annual"} />
+        <div className="flex gap-1">
+          {(["quarterly", "annual"] as const).map((m) => (
+            <button
+              key={m}
+              onClick={() => setViewMode(m)}
+              className={`rounded border px-2.5 py-1 text-xs font-semibold transition-all select-none ${
+                viewMode === m
+                  ? "border-[var(--primary)] bg-[var(--primary)] text-white"
+                  : "border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:border-[var(--primary)]"
+              }`}
+            >
+              {m === "quarterly" ? "季度" : "年度"}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Table */}
@@ -198,9 +245,11 @@ export default function FinancialTable({
               </th>
               {periods.map((p) => {
                 const end = displayData.filings?.[p]?.period_end ?? "";
+                const qCount = incompleteFYs.get(p);
                 return (
                   <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white whitespace-nowrap">
                     {p}
+                    {qCount && <span className="ml-1 inline-block rounded bg-amber-500/80 px-1 py-px text-[9px] font-normal leading-tight text-white" title={`僅 ${qCount} 季數據`}>{qCount}Q</span>}
                     {end && <span className="block text-[10px] font-normal text-white/70">{end}</span>}
                   </th>
                 );
@@ -228,12 +277,35 @@ export default function FinancialTable({
                   ? "bg-[var(--bg-subtle)]"
                   : "bg-[var(--bg-card)]";
               const textCls = isTotal ? "font-bold text-[#7b3f00]" : "";
+              const showGrowth = isGrowth && !skipGrowthForKey(row.key);
               return (
                 <tr key={row.key + i}>
                   <td className={`sticky left-0 z-[5] border border-[var(--border)] px-3 py-1.5 text-left font-medium whitespace-nowrap ${bgBase} ${textCls}`}>
                     {row.label}
                   </td>
                   {periods.map((p) => {
+                    if (showGrowth) {
+                      const curr = row.vals?.[p];
+                      const pk = prevFn(p);
+                      const prev = pk ? row.vals?.[pk] : null;
+                      const g = growthPct(curr, prev);
+                      const f = fmtGrowth(g);
+                      const isPartial = incompleteFYs.has(p) || (pk ? incompleteFYs.has(pk) : false);
+                      return (
+                        <td
+                          key={p}
+                          title={isPartial ? "數據未完整，僅部分季度" : undefined}
+                          className={`border border-[var(--border)] px-3 py-1.5 tabular-nums ${bgBase} ${
+                            f.cls === "negative" ? "text-right text-[#c0392b]"
+                              : f.cls === "positive" ? "text-right text-[#27ae60]"
+                              : f.cls === "null-val" ? "text-center text-[#7f8c8d]"
+                              : "text-right"
+                          }`}
+                        >
+                          {f.text}{isPartial && f.cls !== "null-val" && <span className="ml-0.5 text-[9px] text-amber-500">*</span>}
+                        </td>
+                      );
+                    }
                     const v = row.vals?.[p];
                     const f = fmtVal(v, row.key);
                     return (
@@ -257,6 +329,11 @@ export default function FinancialTable({
           </tbody>
         </table>
       </div>
+      {hasIncomplete && (
+        <div className="mt-1.5 text-right text-[10px] text-amber-600">
+          * 數據未完整（僅部分季度），YoY 比較可能失真
+        </div>
+      )}
     </div>
   );
 }

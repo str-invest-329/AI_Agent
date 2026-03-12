@@ -7,6 +7,7 @@ import ThemeToggle from "@/app/components/ThemeToggle";
 
 const RatioChart = dynamic(() => import("@/app/components/financials/RatioChart"), { ssr: false });
 const FinancialTable = dynamic(() => import("@/app/components/financials/FinancialTable"), { ssr: false });
+const SegmentTable = dynamic(() => import("@/app/components/financials/SegmentTable"), { ssr: false });
 
 /* ================================================================
    Types — matches the JSON schema
@@ -60,7 +61,15 @@ interface FinancialTableBlock {
   defaultView?: "quarterly" | "annual";
 }
 
-type Block = ContentBoxBlock | FinancialChartBlock | FinancialTableBlock;
+interface SegmentTableBlock {
+  type: "segment-table";
+  title?: string;
+  maxPeriods?: number;
+  defaultView?: "quarterly" | "annual";
+  defaultCategory?: string;
+}
+
+type Block = ContentBoxBlock | FinancialChartBlock | FinancialTableBlock | SegmentTableBlock;
 
 interface Section {
   id: string;
@@ -734,19 +743,21 @@ function PEValuation({
         )}
       </ContentBox>
 
-      {versions.length > 1 && (
-        <ContentBox title="版本紀錄">
-          <p className="mb-3 text-xs text-[var(--text-faint)]">
-            每次財報公布或重大消息調整估價時，會新增一個版本。展開可查看當時的估價快照。
-          </p>
+      <ContentBox title="版本紀錄">
+        <p className="mb-3 text-xs text-[var(--text-faint)]">
+          每次財報公布或重大消息調整估價時，會新增一個版本。展開可查看當時的估價快照。
+        </p>
+        {versions.length > 1 ? (
           <VersionHistory
             versions={versions.slice(1)}
             peLabels={peLabels}
             openId={historyOpenId}
             onToggle={setHistoryOpenId}
           />
-        </ContentBox>
-      )}
+        ) : (
+          <p className="py-4 text-center text-xs text-[var(--text-faint)]">尚無歷史版本</p>
+        )}
+      </ContentBox>
     </>
   );
 }
@@ -982,6 +993,23 @@ export default function Report({ data }: { data: ReportData }) {
                         metrics={block.metrics}
                         maxPeriods={block.maxPeriods}
                         defaultView={block.defaultView}
+                      />
+                    </div>
+                  );
+                }
+                if (block.type === "segment-table") {
+                  return (
+                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
+                      {block.title && (
+                        <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
+                          {block.title}
+                        </h3>
+                      )}
+                      <SegmentTable
+                        ticker={ticker}
+                        maxPeriods={block.maxPeriods}
+                        defaultView={block.defaultView}
+                        defaultCategory={block.defaultCategory}
                       />
                     </div>
                   );

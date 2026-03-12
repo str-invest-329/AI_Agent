@@ -16,6 +16,7 @@ import { Line } from "react-chartjs-2";
 import {
   LABEL_MAP, TOTAL_KEYS, RATIO_ORDER, RATIO_DEFINITIONS, CHART_COLORS,
   PERIOD_ORDER_WEIGHT, sortPeriods, isPct, isEps, fmtVal, labelFor,
+  getIncompleteFYs,
   type ValMap, type FinData,
 } from "@/app/components/financials/constants";
 import { toAnnualData } from "@/app/components/financials/useFinancialData";
@@ -31,6 +32,73 @@ ChartJS.register(
 
 function getPeriodEnd(data: FinData, period: string) {
   return data.filings?.[period]?.period_end ?? "";
+}
+
+/* ================================================================
+   Growth rate helpers (QoQ / YoY)
+   ================================================================ */
+type GrowthMode = "value" | "qoq" | "yoy";
+
+/** Parse "Q2_FY2025" → { q: 2, fy: 2025 } or "FY2025" → { q: 0, fy: 2025 } */
+function parsePeriod(p: string): { q: number; fy: number } | null {
+  const qm = p.match(/^Q(\d)_FY(\d{4})$/);
+  if (qm) return { q: Number(qm[1]), fy: Number(qm[2]) };
+  const fm = p.match(/^FY(\d{4})$/);
+  if (fm) return { q: 0, fy: Number(fm[1]) };
+  return null;
+}
+
+/** Get the previous period key for QoQ (previous quarter) */
+function prevQoQ(p: string): string | null {
+  const pp = parsePeriod(p);
+  if (!pp || pp.q === 0) return null; // annual → no QoQ
+  if (pp.q === 1) return `Q4_FY${pp.fy - 1}`;
+  return `Q${pp.q - 1}_FY${pp.fy}`;
+}
+
+/** Get the same-quarter-last-year key for YoY */
+function prevYoY(p: string): string | null {
+  const pp = parsePeriod(p);
+  if (!pp) return null;
+  if (pp.q === 0) return `FY${pp.fy - 1}`;
+  return `Q${pp.q}_FY${pp.fy - 1}`;
+}
+
+/** Compute growth % between two values. Returns null if either is missing or prev is 0. */
+function growthPct(curr: number | null | undefined, prev: number | null | undefined): number | null {
+  if (curr == null || prev == null || prev === 0) return null;
+  return (curr - prev) / Math.abs(prev);
+}
+
+/** Format growth as percentage string */
+function fmtGrowth(pct: number | null): { text: string; cls: string } {
+  if (pct === null) return { text: "—", cls: "null-val" };
+  const text = (pct >= 0 ? "+" : "") + (pct * 100).toFixed(1) + "%";
+  return { text, cls: pct < 0 ? "negative" : pct > 0 ? "positive" : "" };
+}
+
+/** Reusable toggle for Value / QoQ / YoY */
+function GrowthToggle({ mode, setMode, showQoQ = true }: { mode: GrowthMode; setMode: (m: GrowthMode) => void; showQoQ?: boolean }) {
+  const options: [GrowthMode, string][] = showQoQ
+    ? [["value", "Value"], ["qoq", "QoQ %"], ["yoy", "YoY %"]]
+    : [["value", "Value"], ["yoy", "YoY %"]];
+  return (
+    <div className="flex gap-1">
+      {options.map(([key, label]) => (
+        <button
+          key={key}
+          onClick={() => setMode(key)}
+          className={`rounded border px-2.5 py-1 text-[11px] font-semibold transition-all select-none ${
+            mode === key
+              ? "border-[var(--text)] bg-[var(--text)] text-[var(--bg-card)]"
+              : "border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:border-[var(--text-muted)]"
+          }`}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 /* ================================================================
@@ -58,89 +126,150 @@ function DataTable({
   periods,
   rows,
   data,
+  growthMode = "value",
+  incompleteFYs = new Map(),
 }: {
   periods: string[];
   rows: TableRow[];
   data: FinData;
+  growthMode?: GrowthMode;
+  incompleteFYs?: Map<string, number>;
 }) {
   if (!rows.length) return <div className="p-10 text-center text-sm text-[#7f8c8d]">No data available.</div>;
+
+  const isGrowth = growthMode !== "value";
+  const prevFn = growthMode === "qoq" ? prevQoQ : prevYoY;
+  const hasIncomplete = incompleteFYs.size > 0;
+
   return (
-    <div className="overflow-x-auto rounded-md shadow-sm">
-      <table className="w-full border-collapse bg-[var(--bg-card)] text-xs">
-        <thead>
-          <tr>
-            <th className="sticky left-0 z-[11] min-w-[260px] border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-left font-semibold text-white">
-              Metric
-            </th>
-            {periods.map((p) => {
-              const end = getPeriodEnd(data, p);
+    <>
+      <div className="overflow-x-auto rounded-md shadow-sm">
+        <table className="w-full border-collapse bg-[var(--bg-card)] text-xs">
+          <thead>
+            <tr>
+              <th className="sticky left-0 z-[11] min-w-[260px] border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-left font-semibold text-white">
+                Metric
+              </th>
+              {periods.map((p) => {
+                const end = getPeriodEnd(data, p);
+                const qCount = incompleteFYs.get(p);
+                return (
+                  <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white">
+                    {p}
+                    {qCount && <span className="ml-1 inline-block rounded bg-amber-500/80 px-1 py-px text-[9px] font-normal leading-tight text-white" title={`僅 ${qCount} 季數據`}>{qCount}Q</span>}
+                    {end && <span className="block text-[10px] font-normal text-white/70">{end}</span>}
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => {
+              if (row.type === "section") {
+                return (
+                  <tr key={`sec-${i}`}>
+                    <td
+                      colSpan={periods.length + 1}
+                      className="border border-[var(--border)] bg-[#d6e4f0] px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-[#1f4e79]"
+                    >
+                      {row.label}
+                    </td>
+                  </tr>
+                );
+              }
+              const isTotal = TOTAL_KEYS.has(row.key);
+              const bgBase = isTotal
+                ? "bg-[var(--bg-highlight)]"
+                : i % 2 === 0
+                  ? "bg-[var(--bg-subtle)]"
+                  : "bg-[var(--bg-card)]";
+              const textCls = isTotal ? "font-bold text-[#7b3f00]" : "";
+              // Skip growth for percentage/ratio rows — growth of a margin % is misleading
+              const skipGrowth = isGrowth && (isPct(row.key) || row.key.includes("ratio") || row.key === "debt_to_equity" || row.key === "net_debt_to_equity");
               return (
-                <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white">
-                  {p}
-                  {end && <span className="block text-[10px] font-normal text-white/70">{end}</span>}
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, i) => {
-            if (row.type === "section") {
-              return (
-                <tr key={`sec-${i}`}>
-                  <td
-                    colSpan={periods.length + 1}
-                    className="border border-[var(--border)] bg-[#d6e4f0] px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-[#1f4e79]"
-                  >
+                <tr key={row.key + i}>
+                  <td className={`sticky left-0 z-[5] border border-[var(--border)] px-3 py-1.5 text-left font-medium ${bgBase} ${textCls}`}>
                     {row.label}
                   </td>
+                  {periods.map((p) => {
+                    if (isGrowth && !skipGrowth) {
+                      const curr = row.vals?.[p];
+                      const prevKey = prevFn(p);
+                      const prev = prevKey ? row.vals?.[prevKey] : null;
+                      const g = growthPct(curr, prev);
+                      const f = fmtGrowth(g);
+                      const isPartial = incompleteFYs.has(p) || (prevKey ? incompleteFYs.has(prevKey) : false);
+                      return (
+                        <td
+                          key={p}
+                          title={isPartial ? "數據未完整，僅部分季度" : undefined}
+                          className={`border border-[var(--border)] px-3 py-1.5 tabular-nums ${bgBase} ${
+                            f.cls === "negative"
+                              ? "text-right text-[#c0392b]"
+                              : f.cls === "positive"
+                                ? "text-right text-[#27ae60]"
+                                : f.cls === "null-val"
+                                  ? "text-center text-[#7f8c8d]"
+                                  : "text-right"
+                          }`}
+                        >
+                          {f.text}{isPartial && f.cls !== "null-val" && <span className="ml-0.5 text-[9px] text-amber-500">*</span>}
+                        </td>
+                      );
+                    }
+                    const v = row.vals?.[p];
+                    const f = fmtVal(v, row.key);
+                    return (
+                      <td
+                        key={p}
+                        className={`border border-[var(--border)] px-3 py-1.5 tabular-nums ${bgBase} ${textCls} ${
+                          f.cls === "negative"
+                            ? "text-right text-[#c0392b]"
+                            : f.cls === "null-val"
+                              ? "text-center text-[#7f8c8d]"
+                              : "text-right"
+                        }`}
+                      >
+                        {f.text}
+                      </td>
+                    );
+                  })}
                 </tr>
               );
-            }
-            const isTotal = TOTAL_KEYS.has(row.key);
-            const bgBase = isTotal
-              ? "bg-[var(--bg-highlight)]"
-              : i % 2 === 0
-                ? "bg-[var(--bg-subtle)]"
-                : "bg-[var(--bg-card)]";
-            const textCls = isTotal ? "font-bold text-[#7b3f00]" : "";
-            return (
-              <tr key={row.key + i}>
-                <td className={`sticky left-0 z-[5] border border-[var(--border)] px-3 py-1.5 text-left font-medium ${bgBase} ${textCls}`}>
-                  {row.label}
-                </td>
-                {periods.map((p) => {
-                  const v = row.vals?.[p];
-                  const f = fmtVal(v, row.key);
-                  return (
-                    <td
-                      key={p}
-                      className={`border border-[var(--border)] px-3 py-1.5 tabular-nums ${bgBase} ${textCls} ${
-                        f.cls === "negative"
-                          ? "text-right text-[#c0392b]"
-                          : f.cls === "null-val"
-                            ? "text-center text-[#7f8c8d]"
-                            : "text-right"
-                      }`}
-                    >
-                      {f.text}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+            })}
+          </tbody>
+        </table>
+      </div>
+      {hasIncomplete && (
+        <div className="mt-1.5 text-right text-[10px] text-amber-600">
+          * 數據未完整（僅部分季度），YoY 比較可能失真
+        </div>
+      )}
+    </>
   );
 }
 
 /* ── Income Statement ── */
-function IncomeStatement({ data }: { data: FinData }) {
+function IncomeStatement({ data, viewMode }: { data: FinData; viewMode: "quarterly" | "annual" }) {
+  const [growthMode, setGrowthMode] = useState<GrowthMode>("value");
+  // Reset QoQ to Value when switching to Annual
+  useEffect(() => { if (viewMode === "annual" && growthMode === "qoq") setGrowthMode("value"); }, [viewMode]);
   const periods = sortPeriods(data.metadata.periods_income_statement || []);
   const rows = buildRows(data.income_statement || {});
-  return <DataTable periods={periods} rows={rows} data={data} />;
+  // Incomplete FYs from toAnnualData metadata (only present in annual mode)
+  const incompleteFYs = useMemo(() => {
+    if (viewMode !== "annual") return new Map<string, number>();
+    const raw = data.metadata?.incomplete_fys;
+    return raw ? new Map(Object.entries(raw).map(([k, v]) => [k, v as number])) : new Map<string, number>();
+  }, [data, viewMode]);
+  return (
+    <>
+      <div className="mb-3">
+        <GrowthToggle mode={growthMode} setMode={setGrowthMode} showQoQ={viewMode === "quarterly"} />
+      </div>
+      <DataTable periods={periods} rows={rows} data={data} growthMode={growthMode} incompleteFYs={incompleteFYs} />
+    </>
+  );
 }
 
 /* ── Balance Sheet ── */
@@ -493,6 +622,9 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
   ].filter(([key]) => suppData?.segments?.[key] && Object.keys(suppData.segments[key]).length > 0) as [string, string][];
 
   const [segType, setSegType] = useState(segOptions[0]?.[0] ?? "revenue_by_product");
+  const [growthMode, setGrowthMode] = useState<GrowthMode>("value");
+  // Reset QoQ to Value when switching to Annual
+  useEffect(() => { if (viewMode === "annual" && growthMode === "qoq") setGrowthMode("value"); }, [viewMode]);
 
   if (!suppData?.segments || segOptions.length === 0)
     return <div className="p-10 text-center text-sm text-[#7f8c8d]">No segment data available for this ticker.</div>;
@@ -503,6 +635,13 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
 
   const segments = viewMode === "annual" ? aggregateSegmentsAnnual(rawSegments) : rawSegments;
   const periods = sortPeriods(Object.keys(segments));
+  // Detect incomplete FYs for segment data
+  const segIncompleteFYs = useMemo(() => {
+    if (viewMode !== "annual") return new Map<string, number>();
+    const qPeriods = Object.keys(rawSegments).filter((p) => /^Q\d_FY\d{4}$/.test(p));
+    return getIncompleteFYs(qPeriods);
+  }, [rawSegments, viewMode]);
+  const hasIncomplete = viewMode === "annual" && segIncompleteFYs.size > 0;
   // Collect all segment names across periods
   const segNames = new Set<string>();
   for (const p of periods) for (const name of Object.keys(segments[p])) segNames.add(name);
@@ -546,21 +685,24 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
 
   return (
     <>
-      {/* Segment type toggle */}
-      <div className="mb-3 flex gap-1">
-        {segOptions.map(([key, label]) => (
-          <button
-            key={key}
-            onClick={() => setSegType(key)}
-            className={`rounded border px-3 py-1.5 text-xs font-semibold transition-all select-none ${
-              segType === key
-                ? "border-[var(--primary)] bg-[var(--primary)] text-white"
-                : "border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:border-[var(--primary)]"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
+      {/* Segment type toggle + Growth toggle */}
+      <div className="mb-3 flex items-center gap-4">
+        <div className="flex gap-1">
+          {segOptions.map(([key, label]) => (
+            <button
+              key={key}
+              onClick={() => setSegType(key)}
+              className={`rounded border px-3 py-1.5 text-xs font-semibold transition-all select-none ${
+                segType === key
+                  ? "border-[var(--primary)] bg-[var(--primary)] text-white"
+                  : "border-[var(--border)] bg-[var(--bg-subtle)] text-[var(--text-muted)] hover:border-[var(--primary)]"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <GrowthToggle mode={growthMode} setMode={setGrowthMode} showQoQ={viewMode === "quarterly"} />
       </div>
 
       {/* Chart */}
@@ -578,38 +720,64 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
               <th className="sticky left-0 z-[11] min-w-[180px] border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-left font-semibold text-white">
                 Segment
               </th>
-              {periods.map((p) => (
-                <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white whitespace-nowrap">
-                  {p}
-                </th>
-              ))}
+              {periods.map((p) => {
+                const qCount = segIncompleteFYs.get(p);
+                return (
+                  <th key={p} className="border border-[var(--border)] bg-[#1f4e79] px-3 py-1.5 text-center font-semibold text-white whitespace-nowrap">
+                    {p}
+                    {qCount && <span className="ml-1 inline-block rounded bg-amber-500/80 px-1 py-px text-[9px] font-normal leading-tight text-white" title={`僅 ${qCount} 季數據`}>{qCount}Q</span>}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
-            {names.map((name, i) => (
-              <tr key={name}>
-                <td className={`sticky left-0 z-[5] border border-[var(--border)] px-3 py-1.5 text-left font-medium ${
-                  i % 2 === 0 ? "bg-[var(--bg-subtle)]" : "bg-[var(--bg-card)]"
-                }`}>
-                  {name}
-                </td>
-                {periods.map((p) => {
-                  const entry = segments[p]?.[name];
-                  const val = entry?.value;
-                  return (
-                    <td
-                      key={p}
-                      title={entry?.source || ""}
-                      className={`border border-[var(--border)] px-3 py-1.5 text-right tabular-nums ${
-                        i % 2 === 0 ? "bg-[var(--bg-subtle)]" : "bg-[var(--bg-card)]"
-                      }`}
-                    >
-                      {val != null ? `$${val.toLocaleString()}M` : "—"}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
+            {names.map((name, i) => {
+              const isGrowth = growthMode !== "value";
+              const gPrevFn = growthMode === "qoq" ? prevQoQ : prevYoY;
+              const bgBase = i % 2 === 0 ? "bg-[var(--bg-subtle)]" : "bg-[var(--bg-card)]";
+              return (
+                <tr key={name}>
+                  <td className={`sticky left-0 z-[5] border border-[var(--border)] px-3 py-1.5 text-left font-medium ${bgBase}`}>
+                    {name}
+                  </td>
+                  {periods.map((p) => {
+                    const entry = segments[p]?.[name];
+                    const val = entry?.value ?? null;
+                    if (isGrowth) {
+                      const prevKey = gPrevFn(p);
+                      const prevVal = prevKey ? (segments[prevKey]?.[name]?.value ?? null) : null;
+                      const g = growthPct(val, prevVal);
+                      const f = fmtGrowth(g);
+                      const isPartial = segIncompleteFYs.has(p) || (prevKey ? segIncompleteFYs.has(prevKey) : false);
+                      return (
+                        <td
+                          key={p}
+                          title={isPartial ? "數據未完整，僅部分季度" : entry?.source || ""}
+                          className={`border border-[var(--border)] px-3 py-1.5 tabular-nums ${bgBase} ${
+                            f.cls === "negative" ? "text-right text-[#c0392b]"
+                              : f.cls === "positive" ? "text-right text-[#27ae60]"
+                              : f.cls === "null-val" ? "text-center text-[#7f8c8d]"
+                              : "text-right"
+                          }`}
+                        >
+                          {f.text}{isPartial && f.cls !== "null-val" && <span className="ml-0.5 text-[9px] text-amber-500">*</span>}
+                        </td>
+                      );
+                    }
+                    return (
+                      <td
+                        key={p}
+                        title={entry?.source || ""}
+                        className={`border border-[var(--border)] px-3 py-1.5 text-right tabular-nums ${bgBase}`}
+                      >
+                        {val != null ? `$${val.toLocaleString()}M` : "—"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
             {/* Total row */}
             <tr>
               <td className="sticky left-0 z-[5] border border-[var(--border)] bg-[var(--bg-highlight)] px-3 py-1.5 text-left font-bold text-[#7b3f00]">
@@ -617,6 +785,21 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
               </td>
               {periods.map((p) => {
                 const total = names.reduce((sum, name) => sum + (segments[p]?.[name]?.value ?? 0), 0);
+                if (growthMode !== "value") {
+                  const gPrevFn = growthMode === "qoq" ? prevQoQ : prevYoY;
+                  const prevKey = gPrevFn(p);
+                  const prevTotal = prevKey ? names.reduce((sum, name) => sum + (segments[prevKey]?.[name]?.value ?? 0), 0) : null;
+                  const g = growthPct(total, prevTotal);
+                  const f = fmtGrowth(g);
+                  const isPartial = segIncompleteFYs.has(p) || (prevKey ? segIncompleteFYs.has(prevKey) : false);
+                  return (
+                    <td key={p} title={isPartial ? "數據未完整，僅部分季度" : undefined} className={`border border-[var(--border)] bg-[var(--bg-highlight)] px-3 py-1.5 text-right font-bold tabular-nums ${
+                      f.cls === "negative" ? "text-[#c0392b]" : f.cls === "positive" ? "text-[#27ae60]" : "text-[#7b3f00]"
+                    }`}>
+                      {f.text}{isPartial && f.cls !== "null-val" && <span className="ml-0.5 text-[9px] text-amber-500">*</span>}
+                    </td>
+                  );
+                }
                 return (
                   <td key={p} className="border border-[var(--border)] bg-[var(--bg-highlight)] px-3 py-1.5 text-right font-bold tabular-nums text-[#7b3f00]">
                     ${total.toLocaleString()}M
@@ -629,8 +812,9 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
       </div>
 
       {/* Source footnote */}
-      <div className="mt-2 text-[10px] text-[var(--text-faint)]">
-        Source: {segType === "revenue_by_product" ? "SEC EDGAR inline XBRL" : "SEC EDGAR inline XBRL"} · hover over cells for detailed source
+      <div className="mt-2 flex justify-between text-[10px]">
+        {hasIncomplete && <span className="text-amber-600">* 數據未完整（僅部分季度），YoY 比較可能失真</span>}
+        <span className="ml-auto text-[var(--text-faint)]">Source: NotebookLM / SEC EDGAR · hover over cells for detailed source</span>
       </div>
     </>
   );
@@ -932,7 +1116,7 @@ export default function Viewer() {
         )}
         {!loading && displayData && (
           <>
-            {tab === "is" && <IncomeStatement data={displayData} />}
+            {tab === "is" && <IncomeStatement data={displayData} viewMode={viewMode} />}
             {tab === "bs" && <BalanceSheet data={displayData} />}
             {tab === "cf" && <CashFlowStatement data={displayData} />}
             {tab === "ratios" && <RatiosPanel data={displayData} />}

@@ -205,3 +205,63 @@ export function fmtVal(val: number | null | undefined, key: string) {
 export function labelFor(key: string) {
   return LABEL_MAP[key] || key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+/* ================================================================
+   Growth rate helpers (QoQ / YoY)
+   ================================================================ */
+export type GrowthMode = "value" | "qoq" | "yoy";
+
+/** Get previous quarter key for QoQ */
+export function prevQoQ(p: string): string | null {
+  const m = p.match(/^Q(\d)_FY(\d{4})$/);
+  if (!m) return null;
+  const q = Number(m[1]), fy = Number(m[2]);
+  return q === 1 ? `Q4_FY${fy - 1}` : `Q${q - 1}_FY${fy}`;
+}
+
+/** Get same-quarter-last-year key for YoY */
+export function prevYoY(p: string): string | null {
+  const qm = p.match(/^Q(\d)_FY(\d{4})$/);
+  if (qm) return `Q${qm[1]}_FY${Number(qm[2]) - 1}`;
+  const fm = p.match(/^FY(\d{4})$/);
+  if (fm) return `FY${Number(fm[1]) - 1}`;
+  return null;
+}
+
+/** Compute growth % */
+export function growthPct(curr: number | null | undefined, prev: number | null | undefined): number | null {
+  if (curr == null || prev == null || prev === 0) return null;
+  return (curr - prev) / Math.abs(prev);
+}
+
+/** Format growth as percentage */
+export function fmtGrowth(pct: number | null): { text: string; cls: string } {
+  if (pct === null) return { text: "—", cls: "null-val" };
+  const text = (pct >= 0 ? "+" : "") + (pct * 100).toFixed(1) + "%";
+  return { text, cls: pct < 0 ? "negative" : pct > 0 ? "positive" : "" };
+}
+
+/** Should skip growth calculation for this metric type */
+export function skipGrowthForKey(key: string): boolean {
+  return isPct(key) || key.includes("ratio") || key === "debt_to_equity" || key === "net_debt_to_equity";
+}
+
+/* ================================================================
+   Incomplete FY detection (for annual mode)
+   ================================================================ */
+
+/** Given quarterly periods like ["Q1_FY2025","Q2_FY2025",...], return FYs with < 4 quarters */
+export function getIncompleteFYs(quarterlyPeriods: string[]): Map<string, number> {
+  const fyCount = new Map<string, number>();
+  for (const p of quarterlyPeriods) {
+    const m = p.match(/^Q\d_FY(\d{4})$/);
+    if (!m) continue;
+    const fy = `FY${m[1]}`;
+    fyCount.set(fy, (fyCount.get(fy) || 0) + 1);
+  }
+  const incomplete = new Map<string, number>();
+  for (const [fy, count] of fyCount) {
+    if (count < 4) incomplete.set(fy, count);
+  }
+  return incomplete;
+}

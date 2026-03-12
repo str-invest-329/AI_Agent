@@ -157,8 +157,21 @@
           ]
         },
         {
+          "id": "sec-segment-revenue",
+          "title": "02 · Segment 營收",
+          "blocks": [
+            {
+              "type": "segment-table",
+              "title": "Segment 營收明細",
+              "maxPeriods": 8,
+              "defaultView": "quarterly",
+              "defaultCategory": "revenue_by_product"
+            }
+          ]
+        },
+        {
           "id": "sec-profitability",
-          "title": "02 · 獲利能力",
+          "title": "03 · 獲利能力",
           "blocks": [
             {
               "type": "financial-chart",
@@ -172,7 +185,7 @@
         },
         {
           "id": "sec-returns",
-          "title": "03 · 資本報酬",
+          "title": "04 · 資本報酬",
           "blocks": [
             {
               "type": "financial-chart",
@@ -186,7 +199,7 @@
         },
         {
           "id": "sec-liquidity",
-          "title": "04 · 流動性與槓桿",
+          "title": "05 · 流動性與槓桿",
           "blocks": [
             {
               "type": "financial-chart",
@@ -232,7 +245,7 @@
           "peLabels": ["災難事件", "悲觀估值", "中間估值", "樂觀估值"],
           "versions": [
             {
-              "id": "v2",
+              "id": "v1",
               "date": "2026-03-12",
               "label": "FY2026 · Q2後更新",
               "trigger": "Q2 FY2026 財報公布 (2026/01/29)",
@@ -248,21 +261,6 @@
                 { "label": "Q2", "bear": 5.15, "base": 5.15, "bull": 5.15, "isActual": true },
                 { "label": "Q3", "bear": 12.12, "base": 14.02, "bull": 14.91, "isActual": false },
                 { "label": "Q4", "bear": 14.69, "base": 16.93, "bull": 19.24, "isActual": false }
-              ]
-            },
-            {
-              "id": "v1",
-              "date": "2026-01-15",
-              "label": "FY2026 · Q1後初估",
-              "trigger": "Q1 FY2026 財報公布",
-              "note": "初始建模。分拆後首季，基期低、能見度有限。",
-              "peRatios": [21.34, 28.97, 38.47, 48.53],
-              "eps": { "bear": 7.15, "base": 7.08, "bull": 7.23, "ttm": 6.17 },
-              "quarterly": [
-                { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
-                { "label": "Q2", "bear": 1.60, "base": 1.58, "bull": 1.62, "isActual": false },
-                { "label": "Q3", "bear": 2.20, "base": 2.15, "bull": 2.20, "isActual": false },
-                { "label": "Q4", "bear": 2.60, "base": 2.60, "bull": 2.66, "isActual": false }
               ]
             }
           ]
