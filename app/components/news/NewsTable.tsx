@@ -22,7 +22,7 @@ export default function NewsTable({ items }: NewsTableProps) {
     <>
       <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
         <table className="w-full border-collapse text-[0.88rem]">
-          <thead>
+          <thead className="sticky top-0 z-10">
             <tr>
               <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left w-[90px]">日期</th>
               <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left w-[70px]">標的</th>
@@ -32,6 +32,9 @@ export default function NewsTable({ items }: NewsTableProps) {
               <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-center w-[44px]"></th>
             </tr>
           </thead>
+        </table>
+        <div className="max-h-[480px] overflow-y-auto">
+        <table className="w-full border-collapse text-[0.88rem]">
           <tbody>
             {items.length > 0 ? (
               items.filter((_, i) => !dismissedNews.has(i)).map((item, i) => (
@@ -65,6 +68,7 @@ export default function NewsTable({ items }: NewsTableProps) {
             )}
           </tbody>
         </table>
+        </div>
       </div>
 
       {feedbackTarget && (
