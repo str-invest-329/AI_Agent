@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "./components/ThemeToggle";
 
 const featured = [
   {
@@ -107,6 +108,9 @@ export default function Portal() {
         <div className="h-8 w-px bg-[var(--border)]" />
         <div className="text-[0.9rem] tracking-[0.04em] text-[var(--text-muted)]">
           研究工具入口
+        </div>
+        <div className="ml-auto">
+          <ThemeToggle />
         </div>
       </header>
 

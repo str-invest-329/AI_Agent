@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import ThemeToggle from "@/app/components/ThemeToggle";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -106,7 +107,7 @@ function KvCard({
   valueClass?: string;
 }) {
   return (
-    <div className="rounded-lg border border-[var(--border)] bg-white px-5 py-4 shadow-sm">
+    <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-5 py-4 shadow-sm">
       <div className="text-xs uppercase tracking-wide text-[var(--text-muted)]">
         {label}
       </div>
@@ -262,9 +263,12 @@ export default function Dashboard({ data }: { data: ReportData }) {
           </h1>
           <div className="mt-1 text-sm text-[#6B5E60]">{data.company}</div>
         </div>
-        <div className="text-right text-sm text-[var(--text-muted)]">
-          <div className="font-bold text-[var(--text)]">{data.reportWeek}</div>
-          <div>{data.reportDate}</div>
+        <div className="flex items-end gap-4">
+          <div className="text-right text-sm text-[var(--text-muted)]">
+            <div className="font-bold text-[var(--text)]">{data.reportWeek}</div>
+            <div>{data.reportDate}</div>
+          </div>
+          <ThemeToggle />
         </div>
       </header>
 
@@ -290,7 +294,7 @@ export default function Dashboard({ data }: { data: ReportData }) {
         </div>
 
         {/* Sparkline */}
-        <div className="mb-4 rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm">
+        <div className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm">
           <h3 className="mb-4 text-sm text-[#6B5E60]">
             {data.ticker} 近 5 週收盤走勢
           </h3>
@@ -304,7 +308,7 @@ export default function Dashboard({ data }: { data: ReportData }) {
         </div>
 
         {/* Indicator Table */}
-        <div className="rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm">
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm">
           <table className="w-full border-collapse">
             <thead>
               <tr>
@@ -347,7 +351,7 @@ export default function Dashboard({ data }: { data: ReportData }) {
             {/* 三大法人 */}
             <div className="mb-4">
               <div className="mb-2 text-xs text-[var(--text-muted)]">三大法人</div>
-              <div className="rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm">
+              <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm">
                 {data.chips.tw.institutional.foreign_net != null ? (
                   <table className="w-full border-collapse">
                     <thead>
@@ -384,7 +388,7 @@ export default function Dashboard({ data }: { data: ReportData }) {
             {/* 融資融券 */}
             <div className="mb-4">
               <div className="mb-2 text-xs text-[var(--text-muted)]">融資融券</div>
-              <div className="rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm">
+              <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm">
                 {data.chips.tw.margin.margin_balance != null ? (
                   <table className="w-full border-collapse">
                     <thead>
@@ -451,7 +455,7 @@ export default function Dashboard({ data }: { data: ReportData }) {
         )}
 
         {market !== "tw" && market !== "us" && (
-          <div className="rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm">
+          <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm">
             <p className="py-4 text-center text-sm italic text-[var(--text-faint)]">
               無籌碼資料（請設定 API Key）
             </p>
@@ -467,7 +471,7 @@ export default function Dashboard({ data }: { data: ReportData }) {
           03 · 消息面
         </SectionTitle>
 
-        <div className="rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm">
+        <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm">
           <table className="w-full border-collapse">
             <thead>
               <tr>

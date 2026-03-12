@@ -141,8 +141,50 @@
       "id": "ch-financial",
       "title": "財務面",
       "numeral": "II",
-      "sections": [],
-      "placeholder": "待補充"
+      "sections": [
+        {
+          "id": "sec-profitability",
+          "title": "01 · 獲利能力",
+          "blocks": [
+            {
+              "type": "financial-chart",
+              "title": "獲利能力趨勢",
+              "metrics": ["gross_margin_pct", "operating_margin_pct", "net_margin_pct", "fcf_margin_pct"],
+              "defaultSelected": ["gross_margin_pct", "operating_margin_pct"],
+              "height": 300,
+              "defaultView": "quarterly"
+            }
+          ]
+        },
+        {
+          "id": "sec-returns",
+          "title": "02 · 資本報酬",
+          "blocks": [
+            {
+              "type": "financial-chart",
+              "title": "資本報酬趨勢",
+              "metrics": ["roe", "roa", "asset_turnover"],
+              "defaultSelected": ["roe", "roa"],
+              "height": 300,
+              "defaultView": "quarterly"
+            }
+          ]
+        },
+        {
+          "id": "sec-liquidity",
+          "title": "03 · 流動性與槓桿",
+          "blocks": [
+            {
+              "type": "financial-chart",
+              "title": "流動性與槓桿趨勢",
+              "metrics": ["current_ratio", "quick_ratio", "debt_to_equity", "net_debt_to_equity", "equity_ratio", "interest_coverage"],
+              "defaultSelected": ["current_ratio", "quick_ratio", "debt_to_equity"],
+              "height": 300,
+              "defaultView": "quarterly"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "ch-flow",
@@ -185,7 +227,7 @@
               "details": [
                 "（待補充推估依據）"
               ],
-              "peRatios": [5, 10, 15, 20],
+              "peRatios": [0, 0, 0, 0],
               "eps": { "bear": 32.71, "base": 36.85, "bull": 40.05, "ttm": 5.06 },
               "quarterly": [
                 { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },

@@ -2,6 +2,10 @@
 
 import { useState, useEffect, useCallback, type ReactNode } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import ThemeToggle from "@/app/components/ThemeToggle";
+
+const RatioChart = dynamic(() => import("@/app/components/financials/RatioChart"), { ssr: false });
 
 /* ================================================================
    Types — matches the JSON schema
@@ -26,7 +30,7 @@ interface BulletList {
   items: string[];
 }
 
-interface Block {
+interface ContentBoxBlock {
   type: "content-box";
   title?: string;
   paragraphs?: string[];
@@ -36,6 +40,17 @@ interface Block {
   footnote?: string;
   sources?: Source[];
 }
+
+interface FinancialChartBlock {
+  type: "financial-chart";
+  title?: string;
+  metrics: string[];
+  defaultSelected?: string[];
+  height?: number;
+  defaultView?: "quarterly" | "annual";
+}
+
+type Block = ContentBoxBlock | FinancialChartBlock;
 
 interface Section {
   id: string;
@@ -135,7 +150,7 @@ function Sources({ list }: { list: Source[] }) {
 
 function ContentBox({ title, children }: { title?: string; children: ReactNode }) {
   return (
-    <div className="mb-4 rounded-lg border border-[var(--border)] bg-white p-6 shadow-sm">
+    <div className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
       {title && (
         <h3 className="mb-3 border-b border-[#F0EAEA] pb-1.5 text-[0.95rem] font-semibold">
           {title}
@@ -158,7 +173,7 @@ function KvCard({
   valueClass?: string;
 }) {
   return (
-    <div className="rounded-lg border border-[var(--border)] bg-white px-5 py-4 shadow-sm">
+    <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-5 py-4 shadow-sm">
       <div className="text-xs uppercase tracking-wide text-[var(--text-muted)]">{label}</div>
       <div className={`mt-1 text-2xl font-bold ${valueClass ?? ""}`}>{value}</div>
       {sub && <div className="mt-0.5 text-xs text-[#6B5E60]">{sub}</div>}
@@ -254,7 +269,7 @@ function BlockRenderer({
   block,
   onImageClick,
 }: {
-  block: Block;
+  block: ContentBoxBlock;
   onImageClick: (src: string) => void;
 }) {
   return (
@@ -360,7 +375,7 @@ function LightboxModal({
       onClick={onClose}
     >
       <div
-        className="max-h-[90vh] w-[85vw] max-w-[1200px] cursor-default overflow-auto rounded-xl bg-white p-8 shadow-2xl"
+        className="max-h-[90vh] w-[85vw] max-w-[1200px] cursor-default overflow-auto rounded-xl bg-[var(--bg-card)] p-8 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <img src={src} alt="Expanded view" className="w-full" />
@@ -431,19 +446,19 @@ function PEGrid({
       <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th className={`${hdr} bg-[#f5f0f0]`} colSpan={2}>
+            <th className={`${hdr} bg-[var(--bg-subtle)]`} colSpan={2}>
               {v.label}
             </th>
-            <th className={`${hdr} bg-[#f5f0f0]`} colSpan={4}>
+            <th className={`${hdr} bg-[var(--bg-subtle)]`} colSpan={4}>
               P/E Ratio
             </th>
           </tr>
           <tr>
-            <th className={`${hdr} bg-[#fafafa]`} colSpan={2}>
+            <th className={`${hdr} bg-[var(--bg-subtle)]`} colSpan={2}>
               全年 EPS
             </th>
             {peLabels.map((label, i) => (
-              <th key={i} className={`${hdr} bg-[#fafafa]`}>
+              <th key={i} className={`${hdr} bg-[var(--bg-subtle)]`}>
                 <div className="text-[0.7rem] text-[var(--text-muted)]">
                   {label}
                 </div>
@@ -472,7 +487,7 @@ function PEGrid({
                     key={ci}
                     className={`${cell} ${
                       isBase
-                        ? "bg-[#FDE7E7] font-bold text-[var(--primary)]"
+                        ? "bg-[var(--bg-highlight)] font-bold text-[var(--primary)]"
                         : ""
                     }`}
                     style={
@@ -507,7 +522,7 @@ function QuarterlyEPS({ v }: { v: ValuationVersion }) {
   const cell =
     "border border-[var(--border)] px-3 py-2 text-sm text-right tabular-nums";
   const hdr =
-    "border border-[var(--border)] px-3 py-2 text-xs font-semibold text-center bg-[#fafafa]";
+    "border border-[var(--border)] px-3 py-2 text-xs font-semibold text-center bg-[var(--bg-subtle)]";
 
   const renderRow = (
     label: string,
@@ -517,7 +532,7 @@ function QuarterlyEPS({ v }: { v: ValuationVersion }) {
     isActual: boolean,
     isBold = false,
   ) => (
-    <tr key={label} className={isBold ? "font-semibold bg-[#fafafa]" : ""}>
+    <tr key={label} className={isBold ? "font-semibold bg-[var(--bg-subtle)]" : ""}>
       <td
         className={`${cell} text-left ${isBold ? "font-semibold" : "font-medium"}`}
       >
@@ -588,10 +603,10 @@ function VersionHistory({
         return (
           <div
             key={v.id}
-            className="rounded-lg border border-[var(--border)] bg-white"
+            className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)]"
           >
             <button
-              className="flex w-full items-center justify-between px-4 py-3 text-left text-sm hover:bg-[#fdfafa]"
+              className="flex w-full items-center justify-between px-4 py-3 text-left text-sm hover:bg-[var(--bg-subtle)]"
               onClick={() => onToggle(isOpen ? null : v.id)}
             >
               <div>
@@ -734,7 +749,7 @@ function ChronicleCard({ chronicle }: { chronicle: Chronicle }) {
         href={chronicle.href}
         target="_blank"
         rel="noopener"
-        className="group block rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm transition-colors hover:border-[var(--primary-lt)]"
+        className="group block rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm transition-colors hover:border-[var(--primary-lt)]"
       >
         <div className="flex items-center justify-between">
           <div>
@@ -847,17 +862,20 @@ export default function Report({ data }: { data: ReportData }) {
       </Link>
 
       {/* Header */}
-      <header className="mb-10 border-b border-[var(--border)] pb-5">
-        <h1 className="text-3xl font-bold tracking-wide">
-          <span className="text-[var(--primary)]">{ticker}</span> 個股研究
-        </h1>
-        <div className="mt-1 text-sm text-[var(--text-muted)]">
-          {name} · 最後更新：{updated}
+      <header className="mb-10 flex items-start justify-between border-b border-[var(--border)] pb-5">
+        <div>
+          <h1 className="text-3xl font-bold tracking-wide">
+            <span className="text-[var(--primary)]">{ticker}</span> 個股研究
+          </h1>
+          <div className="mt-1 text-sm text-[var(--text-muted)]">
+            {name} · 最後更新：{updated}
+          </div>
         </div>
+        <ThemeToggle />
       </header>
 
       {/* TOC */}
-      <nav className="mb-10 rounded-lg border border-[var(--border)] bg-white px-6 py-5 shadow-sm">
+      <nav className="mb-10 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-6 py-5 shadow-sm">
         <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
           目錄
         </h2>
@@ -921,9 +939,26 @@ export default function Report({ data }: { data: ReportData }) {
               )}
 
               {/* Blocks */}
-              {sec.blocks.map((block, i) => (
-                <BlockRenderer key={i} block={block} onImageClick={openLightbox} />
-              ))}
+              {sec.blocks.map((block, i) =>
+                block.type === "financial-chart" ? (
+                  <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
+                    {block.title && (
+                      <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
+                        {block.title}
+                      </h3>
+                    )}
+                    <RatioChart
+                      ticker={ticker}
+                      metrics={block.metrics}
+                      defaultSelected={block.defaultSelected}
+                      height={block.height}
+                      defaultView={block.defaultView}
+                    />
+                  </div>
+                ) : (
+                  <BlockRenderer key={i} block={block} onImageClick={openLightbox} />
+                )
+              )}
             </section>
           ))}
         </div>

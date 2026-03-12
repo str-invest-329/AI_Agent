@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ThemeToggle from "@/app/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Equity Research — 個股研究報告",
@@ -19,7 +20,7 @@ const US_TICKERS = [
 const TAG_STYLE: Record<string, string> = {
   wip: "bg-yellow-100 text-yellow-800",
   ready: "bg-green-100 text-green-800",
-  default: "bg-[#F0EAEA] text-[var(--text-muted)]",
+  default: "bg-[var(--bg-subtle)] text-[var(--text-muted)]",
 };
 
 export default function EquityResearchPage() {
@@ -32,13 +33,16 @@ export default function EquityResearchPage() {
         ← Portal
       </Link>
 
-      <header className="mb-10">
-        <h1 className="text-3xl font-bold tracking-wide">
-          <span className="text-[var(--primary)]">Equity</span> Research
-        </h1>
-        <p className="mt-1 text-sm text-[var(--text-muted)]">
-          個股基本面研究報告
-        </p>
+      <header className="mb-10 flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-wide">
+            <span className="text-[var(--primary)]">Equity</span> Research
+          </h1>
+          <p className="mt-1 text-sm text-[var(--text-muted)]">
+            個股基本面研究報告
+          </p>
+        </div>
+        <ThemeToggle />
       </header>
 
       {/* US Stocks */}
@@ -51,7 +55,7 @@ export default function EquityResearchPage() {
             <Link
               key={t.symbol}
               href={`/equity-research/${t.symbol}`}
-              className="rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm transition-all hover:border-[var(--primary)] hover:shadow-md"
+              className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm transition-all hover:border-[var(--primary)] hover:shadow-md"
             >
               <div className="text-xl font-bold text-[var(--primary)]">
                 {t.symbol}

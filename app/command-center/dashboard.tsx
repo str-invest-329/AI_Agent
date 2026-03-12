@@ -26,6 +26,7 @@ import type {
 } from "./types";
 import { DEBUG_NOTES } from "./types";
 import { NewsTable } from "@/app/components/news";
+import ThemeToggle from "@/app/components/ThemeToggle";
 
 ChartJS.register(
   CategoryScale,
@@ -300,20 +301,20 @@ function IndicatorTable({
       .indicators || {};
 
   return (
-    <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
       <table className="w-full border-collapse text-[0.88rem]">
         <thead>
           <tr>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-center">#</th>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-left">指標名稱</th>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-center">類型</th>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-center">前值</th>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-center">最新數據</th>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-center">變動(%)</th>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-center">數據日期</th>
-            <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-center">下次更新</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-center">#</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-left">指標名稱</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-center">類型</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-center">前值</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-center">最新數據</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-center">變動(%)</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-center">數據日期</th>
+            <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-center">下次更新</th>
             {debug && (
-              <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] whitespace-nowrap font-medium text-left min-w-[160px]">
+              <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] whitespace-nowrap font-medium text-left min-w-[160px]">
                 資料狀態
               </th>
             )}
@@ -395,9 +396,9 @@ function IndicatorTableRowGroup({
 
   return (
     <>
-      <tr className={na ? "text-[#B8B0B0] bg-[#F5F2F2]" : undefined}>
-        <td className="px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-center text-[#B09898]">{ind.id}</td>
-        <td className="px-3 py-2 border-b border-[#E2D8D8] text-left">
+      <tr className={na ? "text-[var(--text-faint)] bg-[var(--bg-subtle)]" : undefined}>
+        <td className="px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-center text-[#B09898]">{ind.id}</td>
+        <td className="px-3 py-2 border-b border-[var(--border)] text-left">
           {hasHistory ? (
             <button
               className="inline-flex items-center gap-1.5 bg-transparent border-none p-0 font-inherit text-inherit text-left cursor-pointer"
@@ -412,22 +413,22 @@ function IndicatorTableRowGroup({
             </span>
           )}
         </td>
-        <td className="px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-center">
+        <td className="px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-center">
           <span className={`inline-block px-2 py-0.5 rounded text-[0.72rem] font-medium ${typeBadgeColor} ${na ? "opacity-45" : ""}`}>{ind.type}</span>
         </td>
-        <td className="px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-center">{isNA(ind.prev) ? <span className="text-[#C8C0C0]">N/A</span> : String(ind.prev)}</td>
-        <td className={`px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-center font-bold ${na ? "text-[#B8B0B0]" : ""}`}>
+        <td className="px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-center">{isNA(ind.prev) ? <span className="text-[#C8C0C0]">N/A</span> : String(ind.prev)}</td>
+        <td className={`px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-center font-bold ${na ? "text-[var(--text-faint)]" : ""}`}>
           {na ? (
             <span className="text-[#C8C0C0]">N/A</span>
           ) : (
             <span className={DIR_CLASS[chgCls] || ""}>{String(ind.latest)}</span>
           )}
         </td>
-        <td className={`px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-center ${DIR_CLASS[chgCls] || ""}`}>{chgStr}</td>
-        <td className="px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-center">{isNA(ind.date as string) ? "—" : ind.date}</td>
-        <td className="px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-center">{ind.nextUpdate}</td>
+        <td className={`px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-center ${DIR_CLASS[chgCls] || ""}`}>{chgStr}</td>
+        <td className="px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-center">{isNA(ind.date as string) ? "—" : ind.date}</td>
+        <td className="px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-center">{ind.nextUpdate}</td>
         {debug && (
-          <td className="px-3 py-2 border-b border-[#E2D8D8] whitespace-nowrap text-left">
+          <td className="px-3 py-2 border-b border-[var(--border)] whitespace-nowrap text-left">
             <span className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded text-[0.7rem] font-semibold whitespace-nowrap ${apiClasses[api] || ""}`}>
               {API_LABEL[api] || api}
             </span>
@@ -444,7 +445,7 @@ function IndicatorTableRowGroup({
         <tr>
           <td
             colSpan={debug ? 9 : 8}
-            className="px-4 pb-4 pl-10 bg-[#FAF7F7] border-b border-[#E2D8D8]"
+            className="px-4 pb-4 pl-10 bg-[var(--bg-subtle)] border-b border-[var(--border)]"
           >
             <IndicatorDetailChart indicator={ind} />
           </td>
@@ -608,8 +609,8 @@ export default function Dashboard() {
   /* ── Render nothing while loading ───────────────────────────── */
   if (loading || !data) {
     return (
-      <div className="fixed inset-0 bg-[#F8F4F4] flex flex-col items-center justify-center gap-4 z-[9999] text-[0.9rem] text-[#7A5860]">
-        <div className="w-9 h-9 border-[3px] border-[#E2D8D8] border-t-[#C02734] rounded-full animate-spin" />
+      <div className="fixed inset-0 bg-[var(--bg-page)] flex flex-col items-center justify-center gap-4 z-[9999] text-[0.9rem] text-[var(--text-muted)]">
+        <div className="w-9 h-9 border-[3px] border-[var(--border)] border-t-[#C02734] rounded-full animate-spin" />
         <span>資料載入中…</span>
       </div>
     );
@@ -665,7 +666,7 @@ export default function Dashboard() {
     : "";
 
   return (
-    <div className="font-['Helvetica_Neue',Arial,'PingFang_TC','Noto_Sans_TC',sans-serif] bg-[#F8F4F4] text-[#2C1517] leading-relaxed min-h-screen">
+    <div className="font-['Helvetica_Neue',Arial,'PingFang_TC','Noto_Sans_TC',sans-serif] bg-[var(--bg-page)] text-[var(--text)] leading-relaxed min-h-screen">
       <div className="max-w-[1280px] mx-auto px-6 py-8 pb-16">
         {/* Back link */}
         <Link
@@ -677,12 +678,12 @@ export default function Dashboard() {
 
         {/* ── Top Ticker Bar (marquee) ─────────────────────────── */}
         {marketData && (
-          <div className="bg-[#F8F4F4] overflow-hidden py-2">
+          <div className="bg-[var(--bg-page)] overflow-hidden py-2">
             <div className="flex animate-marquee whitespace-nowrap font-mono text-[0.78rem] tabular-nums">
               {[...marketData.indices, ...marketData.indices].map((idx, i) => (
                 <div key={`${idx.id}-${i}`} className="flex items-center gap-2 mx-5 shrink-0">
-                  <span className="text-[#7A5860] font-semibold">{idx.name}</span>
-                  <span className="text-[#2C1517] font-bold">{idx.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span className="text-[var(--text-muted)] font-semibold">{idx.name}</span>
+                  <span className="text-[var(--text)] font-bold">{idx.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   <span className={idx.change_pct >= 0 ? "text-green-700" : "text-red-700"}>
                     {idx.change_pct >= 0 ? "+" : ""}{idx.change_pct.toFixed(2)}%
                   </span>
@@ -706,21 +707,24 @@ export default function Dashboard() {
             </span>
             <span className="text-[0.7rem] font-semibold tracking-wider text-green-600 uppercase font-mono">Live</span>
           </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
           <div className="text-right font-mono tabular-nums leading-relaxed text-[0.8rem]">
             <div className="flex items-center justify-end gap-2">
-              <span className={`text-[0.6rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isUSMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-[#F8F4F4] text-[#B09898]"}`}>
+              <span className={`text-[0.6rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isUSMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-red-50 text-red-600"}`}>
                 {isUSMarketOpen(now) ? "US Open" : "US Closed"}
               </span>
               <span className="text-[#B09898] text-xs">ET</span>
-              <span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span>
+              <span className="text-[var(--text)] font-semibold">{now.toLocaleString("en-US", { timeZone: "America/New_York", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span>
             </div>
             <div className="flex items-center justify-end gap-2">
-              <span className={`text-[0.6rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isTWMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-[#F8F4F4] text-[#B09898]"}`}>
+              <span className={`text-[0.6rem] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded ${isTWMarketOpen(now) ? "bg-green-50 text-green-700" : "bg-red-50 text-red-600"}`}>
                 {isTWMarketOpen(now) ? "TW Open" : "TW Closed"}
               </span>
               <span className="text-[#B09898] text-xs">TW</span>
-              <span className="text-[#2C1517] font-semibold">{now.toLocaleString("en-US", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span>
+              <span className="text-[var(--text)] font-semibold">{now.toLocaleString("en-US", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false })}</span>
             </div>
+          </div>
           </div>
         </header>
 
@@ -758,8 +762,8 @@ export default function Dashboard() {
           {/* Inflation charts */}
           <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(480px,1fr))]">
             {/* CPI chart */}
-            <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
-              <h3 className="text-[0.88rem] text-[#2C1517] font-semibold mb-3">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+              <h3 className="text-[0.88rem] text-[var(--text)] font-semibold mb-3">
                 CPI YoY vs Core CPI YoY（%）
                 <UpdateChip date={dataFreshness?.cpi} />
               </h3>
@@ -802,8 +806,8 @@ export default function Dashboard() {
             </div>
 
             {/* PCE chart */}
-            <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
-              <h3 className="text-[0.88rem] text-[#2C1517] font-semibold mb-3">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+              <h3 className="text-[0.88rem] text-[var(--text)] font-semibold mb-3">
                 PCE YoY vs Core PCE YoY（%）
                 <UpdateChip date={dataFreshness?.pce} />
               </h3>
@@ -851,8 +855,8 @@ export default function Dashboard() {
 
           {/* Fed Funds Rate card */}
           <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(220px,1fr))] mt-6 mb-4">
-            <div className="bg-white border border-[#E2D8D8] rounded-lg px-5 py-4 shadow-[0_1px_3px_rgba(44,21,23,0.06)]">
-              <div className="text-xs text-[#7A5860] uppercase tracking-wider">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg px-5 py-4 shadow-[0_1px_3px_rgba(44,21,23,0.06)]">
+              <div className="text-xs text-[var(--text-muted)] uppercase tracking-wider">
                 Fed Funds Rate
                 <UpdateChip date={dataFreshness?.ffr} />
               </div>
@@ -861,7 +865,7 @@ export default function Dashboard() {
                   ? fedFundsRate.current.toFixed(2) + "%"
                   : "N/A"}
               </div>
-              <div className="text-sm text-[#7A5860] mt-0.5">
+              <div className="text-sm text-[var(--text-muted)] mt-0.5">
                 Target: {fedFundsRate.target ?? "N/A"}
               </div>
             </div>
@@ -869,8 +873,8 @@ export default function Dashboard() {
 
           {/* Yield Curve chart */}
           <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(480px,1fr))]">
-            <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
-              <h3 className="text-[0.88rem] text-[#2C1517] font-semibold mb-3">美債殖利率曲線（本週 vs 上週）</h3>
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+              <h3 className="text-[0.88rem] text-[var(--text)] font-semibold mb-3">美債殖利率曲線（本週 vs 上週）</h3>
               <LatestVals
                 items={[
                   {
@@ -920,8 +924,8 @@ export default function Dashboard() {
 
           {/* JOLTS card */}
           <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(220px,1fr))] mt-6 mb-4">
-            <div className="bg-white border border-[#E2D8D8] rounded-lg px-5 py-4 shadow-[0_1px_3px_rgba(44,21,23,0.06)]">
-              <div className="text-xs text-[#7A5860] uppercase tracking-wider">JOLTS（百萬）</div>
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg px-5 py-4 shadow-[0_1px_3px_rgba(44,21,23,0.06)]">
+              <div className="text-xs text-[var(--text-muted)] uppercase tracking-wider">JOLTS（百萬）</div>
               <div className="text-[1.6rem] font-bold mt-1 text-[#B07A20]">
                 {employmentData.joltsCurrent != null
                   ? employmentData.joltsCurrent.toFixed(2) + "M"
@@ -932,8 +936,8 @@ export default function Dashboard() {
 
           {/* NFP + Unemployment charts */}
           <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(480px,1fr))]">
-            <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
-              <h3 className="text-[0.88rem] text-[#2C1517] font-semibold mb-3">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+              <h3 className="text-[0.88rem] text-[var(--text)] font-semibold mb-3">
                 非農就業（千人）
                 <UpdateChip date={dataFreshness?.nfp} />
               </h3>
@@ -962,8 +966,8 @@ export default function Dashboard() {
               />
             </div>
 
-            <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
-              <h3 className="text-[0.88rem] text-[#2C1517] font-semibold mb-3">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+              <h3 className="text-[0.88rem] text-[var(--text)] font-semibold mb-3">
                 失業率（%）&amp; 平均時薪年增（%）
                 <UpdateChip date={dataFreshness?.unemployment} />
               </h3>
@@ -1022,15 +1026,15 @@ export default function Dashboard() {
 
           {/* TradingView widgets */}
           <div className="mb-4">
-            <div className="bg-white border border-[#E2D8D8] rounded-lg shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative p-0 overflow-hidden h-[480px]">
+            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative p-0 overflow-hidden h-[480px]">
               <TradingViewWidget symbol="OANDA:SPX500USD" />
             </div>
           </div>
 
           {/* ETF tracking table */}
-          <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-[0.82rem] font-semibold text-[#2C1517]">
+              <span className="text-[0.82rem] font-semibold text-[var(--text)]">
                 以 ETF 追蹤（DIA / SPY / QQQ / IWM / UUP）&middot; 每 30 分鐘自動更新
               </span>
               <span className="text-[0.75rem] text-[#B09898]">
@@ -1040,10 +1044,10 @@ export default function Dashboard() {
             <table className="w-full border-collapse text-[0.88rem]">
               <thead>
                 <tr>
-                  <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">ETF</th>
-                  <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">追蹤指數</th>
-                  <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">ETF 價格</th>
-                  <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">日漲跌 %</th>
+                  <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left">ETF</th>
+                  <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left">追蹤指數</th>
+                  <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left">ETF 價格</th>
+                  <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left">日漲跌 %</th>
                 </tr>
               </thead>
               <tbody>
@@ -1058,17 +1062,17 @@ export default function Dashboard() {
                     const sign = idx.change_pct > 0 ? "+" : "";
                     return (
                       <tr key={idx.symbol}>
-                        <td className="px-3 py-2 border-b border-[#E2D8D8]">
+                        <td className="px-3 py-2 border-b border-[var(--border)]">
                           <strong>{idx.symbol}</strong>
                         </td>
-                        <td className="px-3 py-2 border-b border-[#E2D8D8]">{idx.name}</td>
-                        <td className="px-3 py-2 border-b border-[#E2D8D8]">
+                        <td className="px-3 py-2 border-b border-[var(--border)]">{idx.name}</td>
+                        <td className="px-3 py-2 border-b border-[var(--border)]">
                           {idx.price.toLocaleString(undefined, {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                           })}
                         </td>
-                        <td className={`px-3 py-2 border-b border-[#E2D8D8] ${DIR_CLASS[cls] || ""}`}>
+                        <td className={`px-3 py-2 border-b border-[var(--border)] ${DIR_CLASS[cls] || ""}`}>
                           {sign}
                           {idx.change_pct.toFixed(2)}%
                         </td>
@@ -1077,7 +1081,7 @@ export default function Dashboard() {
                   })
                 ) : (
                   <tr>
-                    <td colSpan={4} className="px-3 py-2 border-b border-[#E2D8D8] text-center">
+                    <td colSpan={4} className="px-3 py-2 border-b border-[var(--border)] text-center">
                       <span className="text-[#C8C0C0]">N/A</span> 股市指數數據
                     </td>
                   </tr>
@@ -1087,10 +1091,10 @@ export default function Dashboard() {
           </div>
 
           {/* Dollar Volume Top 20 */}
-          <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative mt-4">
+          <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative mt-4">
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center gap-3">
-                <span className="relative cursor-help group text-[0.82rem] font-semibold text-[#2C1517]">
+                <span className="relative cursor-help group text-[0.82rem] font-semibold text-[var(--text)]">
                   Dollar Volume Top 20
                   <span className="hidden group-hover:block absolute bottom-full left-0 bg-[#2D3748] text-white px-3 py-2 rounded-md text-xs font-normal w-max max-w-[340px] z-10 leading-relaxed">
                     Dollar Volume = Daily Close Price &times; Daily Volume，逐日加總。
@@ -1104,7 +1108,7 @@ export default function Dashboard() {
                   {(["1", "5", "10"] as const).map((d) => (
                     <button
                       key={d}
-                      className={`border-none bg-transparent px-2.5 py-0.5 text-[0.76rem] font-semibold cursor-pointer rounded text-[#4A5568] ${dvDays === d ? "bg-white shadow-sm !text-[#C02734]" : ""}`}
+                      className={`border-none bg-transparent px-2.5 py-0.5 text-[0.76rem] font-semibold cursor-pointer rounded text-[#4A5568] ${dvDays === d ? "bg-[var(--bg-card)] shadow-sm !text-[#C02734]" : ""}`}
                       onClick={() => setDvDays(d)}
                     >
                       {d}D
@@ -1112,7 +1116,7 @@ export default function Dashboard() {
                   ))}
                 </div>
                 <button
-                  className={`border border-[#CBD5E0] bg-white px-2.5 py-0.5 text-[0.76rem] font-semibold cursor-pointer rounded text-[#4A5568] ${!dvHideEtf ? "!bg-[#C02734] !text-white !border-[#C02734]" : ""}`}
+                  className={`border border-[#CBD5E0] bg-[var(--bg-card)] px-2.5 py-0.5 text-[0.76rem] font-semibold cursor-pointer rounded text-[#4A5568] ${!dvHideEtf ? "!bg-[#C02734] !text-white !border-[#C02734]" : ""}`}
                   onClick={() => setDvHideEtf(!dvHideEtf)}
                 >
                   ETF
@@ -1134,7 +1138,7 @@ export default function Dashboard() {
                     return (
                       <th
                         key={col}
-                        className={`px-3 py-2 bg-[#F8F4F4] text-xs uppercase border-b border-[#E2D8D8] text-left cursor-pointer select-none hover:text-[#C02734] ${isActive ? "text-[#C02734]" : "text-[#7A5860]"}`}
+                        className={`px-3 py-2 bg-[var(--bg-subtle)] text-xs uppercase border-b border-[var(--border)] text-left cursor-pointer select-none hover:text-[#C02734] ${isActive ? "text-[#C02734]" : "text-[var(--text-muted)]"}`}
                         onClick={() => handleDvSort(col, type)}
                       >
                         {label}
@@ -1147,10 +1151,10 @@ export default function Dashboard() {
                 {dvRows.length > 0 ? (
                   dvRows.map((item, i) => (
                     <tr key={item.ticker + "-" + i}>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8] text-center text-[#B09898]">
+                      <td className="px-3 py-2 border-b border-[var(--border)] text-center text-[#B09898]">
                         {i + 1}
                       </td>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8]">
+                      <td className="px-3 py-2 border-b border-[var(--border)]">
                         <div className="flex items-center gap-1.5">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
@@ -1165,26 +1169,26 @@ export default function Dashboard() {
                           <strong>{item.ticker}</strong>
                         </div>
                       </td>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8] text-xs text-[#7A5860] max-w-[160px] whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-3 py-2 border-b border-[var(--border)] text-xs text-[var(--text-muted)] max-w-[160px] whitespace-nowrap overflow-hidden text-ellipsis">
                         {item.industry || "—"}
                       </td>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8]">
+                      <td className="px-3 py-2 border-b border-[var(--border)]">
                         {item.last_price.toLocaleString(undefined, {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}
                       </td>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8]">{fmtLargeNum(item.total_volume)}</td>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8]">{fmtDollarLarge(item.dollar_volume)}</td>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8]">{fmtDollarLarge(item.avg_daily_dv)}</td>
-                      <td className="px-3 py-2 border-b border-[#E2D8D8] text-[0.75rem] text-[#B09898]">
+                      <td className="px-3 py-2 border-b border-[var(--border)]">{fmtLargeNum(item.total_volume)}</td>
+                      <td className="px-3 py-2 border-b border-[var(--border)]">{fmtDollarLarge(item.dollar_volume)}</td>
+                      <td className="px-3 py-2 border-b border-[var(--border)]">{fmtDollarLarge(item.avg_daily_dv)}</td>
+                      <td className="px-3 py-2 border-b border-[var(--border)] text-[0.75rem] text-[#B09898]">
                         {item.is_etf ? "ETF" : "Stock"}
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={8} className="px-3 py-2 border-b border-[#E2D8D8] text-center">
+                    <td colSpan={8} className="px-3 py-2 border-b border-[var(--border)] text-center">
                       Dollar Volume 數據尚未載入
                     </td>
                   </tr>
@@ -1227,7 +1231,7 @@ export default function Dashboard() {
         </section>
 
         {/* ── Footer ──────────────────────────────────────────── */}
-        <footer className="border-t border-[#E2D8D8] pt-4 text-[0.75rem] text-[#B09898]">
+        <footer className="border-t border-[var(--border)] pt-4 text-[0.75rem] text-[#B09898]">
           Data sources: CME FedWatch &middot; BLS &middot; FRED &middot; FinViz
           &middot; Fintel &middot; barchart
         </footer>
@@ -1250,19 +1254,19 @@ function IndustryMapSector({
     <>
       <div className="flex-1 min-w-0 flex flex-col">
         <div className="text-center px-1.5 pb-3.5">
-          <div className="text-lg font-bold text-[#2C1517]">{sector.titleEn}</div>
-          <div className="text-[0.83rem] text-[#7A5860] mt-0.5">{sector.titleZh}</div>
+          <div className="text-lg font-bold text-[var(--text)]">{sector.titleEn}</div>
+          <div className="text-[0.83rem] text-[var(--text-muted)] mt-0.5">{sector.titleZh}</div>
         </div>
-        <div className="flex-1 flex rounded-lg overflow-hidden border-[1.5px] border-[#E2D8D8]">
+        <div className="flex-1 flex rounded-lg overflow-hidden border-[1.5px] border-[var(--border)]">
           {/* In Pool */}
-          <div className="flex-1 px-2.5 py-3 pt-3 flex flex-col gap-3.5 bg-[rgba(99,179,237,0.1)] border-r-[1.5px] border-[#E2D8D8]">
-            <div className="text-[0.68rem] font-bold text-[#7A5860] uppercase tracking-wider text-center pb-1.5 border-b border-[#E2D8D8]">In Pool</div>
+          <div className="flex-1 px-2.5 py-3 pt-3 flex flex-col gap-3.5 bg-[rgba(99,179,237,0.1)] border-r-[1.5px] border-[var(--border)]">
+            <div className="text-[0.68rem] font-bold text-[var(--text-muted)] uppercase tracking-wider text-center pb-1.5 border-b border-[var(--border)]">In Pool</div>
             {sector.inPool.map((group) => (
               <div className="flex flex-col gap-1.5" key={group.cat}>
                 <span className="block bg-[#3D4B5C] text-white text-[0.8rem] font-semibold px-2 py-1 rounded-[5px] text-center">{group.cat}</span>
                 <div className="flex flex-col gap-[0.28rem]">
                   {group.tickers.map((t) => (
-                    <span className="inline-block bg-white text-[#2C1517] text-xs font-bold font-mono px-2 py-0.5 rounded border border-[#E2D8D8] w-fit hover:shadow-md hover:border-[#63B3ED] transition-all" key={t}>
+                    <span className="inline-block bg-[var(--bg-card)] text-[var(--text)] text-xs font-bold font-mono px-2 py-0.5 rounded border border-[var(--border)] w-fit hover:shadow-md hover:border-[#63B3ED] transition-all" key={t}>
                       {t}
                     </span>
                   ))}
@@ -1272,13 +1276,13 @@ function IndustryMapSector({
           </div>
           {/* Observe */}
           <div className="flex-1 px-2.5 py-3 pt-3 flex flex-col gap-3.5 bg-[rgba(160,174,192,0.08)]">
-            <div className="text-[0.68rem] font-bold text-[#7A5860] uppercase tracking-wider text-center pb-1.5 border-b border-[#E2D8D8]">Observe</div>
+            <div className="text-[0.68rem] font-bold text-[var(--text-muted)] uppercase tracking-wider text-center pb-1.5 border-b border-[var(--border)]">Observe</div>
             {sector.observe.map((group) => (
               <div className="flex flex-col gap-1.5" key={group.cat}>
                 <span className="block bg-[#3D4B5C] text-white text-[0.8rem] font-semibold px-2 py-1 rounded-[5px] text-center">{group.cat}</span>
                 <div className="flex flex-col gap-[0.28rem]">
                   {group.tickers.map((t) => (
-                    <span className="inline-block bg-white text-[#2C1517] text-xs font-bold font-mono px-2 py-0.5 rounded border border-[#E2D8D8] w-fit hover:shadow-md hover:border-[#63B3ED] transition-all" key={t}>
+                    <span className="inline-block bg-[var(--bg-card)] text-[var(--text)] text-xs font-bold font-mono px-2 py-0.5 rounded border border-[var(--border)] w-fit hover:shadow-md hover:border-[#63B3ED] transition-all" key={t}>
                       {t}
                     </span>
                   ))}

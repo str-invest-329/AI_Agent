@@ -39,7 +39,7 @@ export default function NewsFeedbackModal({ target, onClose, onSubmitted }: News
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 p-6" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-[var(--bg-card)] rounded-lg shadow-xl w-full max-w-md mx-4 p-6" onClick={(e) => e.stopPropagation()}>
         <h3 className="text-base font-semibold text-[#2C1517] mb-1">標記不符需求</h3>
         <p className="text-sm text-[#7A5860] mb-4 leading-snug">{target.headline}</p>
         {target.ticker && (

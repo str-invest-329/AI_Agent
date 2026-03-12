@@ -22,16 +22,16 @@ export default function NewsTable({ items }: NewsTableProps) {
 
   return (
     <>
-      <div className="bg-white border border-[#E2D8D8] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
+      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-5 shadow-[0_1px_3px_rgba(44,21,23,0.06)] relative">
         <table className="w-full border-collapse text-[0.88rem]">
           <thead className="sticky top-0 z-10">
             <tr>
-              <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left w-[90px]">日期</th>
-              <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left w-[70px]">標的</th>
-              <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">標題</th>
-              <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-left">彙整</th>
-              <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-center w-[60px]">情緒</th>
-              <th className="px-3 py-2 bg-[#F8F4F4] text-[#7A5860] text-xs uppercase border-b border-[#E2D8D8] text-center w-[44px]"></th>
+              <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left w-[90px]">日期</th>
+              <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left w-[70px]">標的</th>
+              <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left">標題</th>
+              <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-left">彙整</th>
+              <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-center w-[60px]">情緒</th>
+              <th className="px-3 py-2 bg-[var(--bg-subtle)] text-[var(--text-muted)] text-xs uppercase border-b border-[var(--border)] text-center w-[44px]"></th>
             </tr>
           </thead>
         </table>
@@ -40,17 +40,17 @@ export default function NewsTable({ items }: NewsTableProps) {
           <tbody>
             {sortedItems.length > 0 ? (
               sortedItems.filter((_, i) => !dismissedNews.has(i)).map((item, i) => (
-                <tr key={i} className="hover:bg-[#FDFBFB] transition-colors">
-                  <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top whitespace-nowrap text-[#B09898]">{item.date}</td>
-                  <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top font-mono text-xs font-semibold text-[#5A3E42]">{item.ticker || "—"}</td>
-                  <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top">
+                <tr key={i} className="hover:bg-[var(--bg-subtle)] transition-colors">
+                  <td className="px-3 py-2.5 border-b border-[var(--border)] align-top whitespace-nowrap text-[#B09898]">{item.date}</td>
+                  <td className="px-3 py-2.5 border-b border-[var(--border)] align-top font-mono text-xs font-semibold text-[#5A3E42]">{item.ticker || "—"}</td>
+                  <td className="px-3 py-2.5 border-b border-[var(--border)] align-top">
                     {item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-[#C02734] hover:underline">{item.headline}</a> : item.headline}
                   </td>
-                  <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top">{item.summary}</td>
-                  <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top text-center">
+                  <td className="px-3 py-2.5 border-b border-[var(--border)] align-top">{item.summary}</td>
+                  <td className="px-3 py-2.5 border-b border-[var(--border)] align-top text-center">
                     {sentimentBadge(item.sentiment)}
                   </td>
-                  <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top text-center">
+                  <td className="px-3 py-2.5 border-b border-[var(--border)] align-top text-center">
                     <button
                       onClick={() => setFeedbackTarget({ index: i, headline: item.headline, url: item.url, ticker: item.ticker, sentiment: item.sentiment })}
                       className="text-[#B09898] hover:text-[#C02734] transition-colors text-lg leading-none"

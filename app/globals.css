@@ -11,7 +11,25 @@
   --text-muted: #7a5860;
   --text-faint: #b09898;
   --tag-bg: #fde8ea;
+  --bg-subtle: #f5f0f0;
+  --bg-highlight: #FDE7E7;
   --radius: 10px;
+}
+
+[data-theme="dark"] {
+  --bg-page: #1a1214;
+  --bg-card: #241a1c;
+  --border: #3d2e30;
+  --primary: #e05562;
+  --primary-dk: #f0838e;
+  --primary-lt: #c02734;
+  --text: #e8e0e0;
+  --text-muted: #b09898;
+  --text-faint: #7a5860;
+  --tag-bg: #3a2024;
+  --bg-subtle: #2e2224;
+  --bg-highlight: #3a2024;
+  color-scheme: dark;
 }
 
 @layer base {

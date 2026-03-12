@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { readFileSync } from "fs";
 import { join } from "path";
+import ThemeToggle from "@/app/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Stock Weekly — 個股週報",
@@ -44,11 +45,14 @@ export default function WeeklyPage() {
         ← Portal
       </Link>
 
-      <header className="mb-10">
-        <h1 className="text-3xl font-bold tracking-wide">
-          <span className="text-[var(--primary)]">Stock</span> Weekly
-        </h1>
-        <p className="mt-1 text-sm text-[var(--text-muted)]">個股週報</p>
+      <header className="mb-10 flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-wide">
+            <span className="text-[var(--primary)]">Stock</span> Weekly
+          </h1>
+          <p className="mt-1 text-sm text-[var(--text-muted)]">個股週報</p>
+        </div>
+        <ThemeToggle />
       </header>
 
       {Object.entries(byTicker).map(([ticker, items]) => (
@@ -61,14 +65,14 @@ export default function WeeklyPage() {
               <Link
                 key={r.id}
                 href={`/weekly/${r.id}`}
-                className="rounded-lg border border-[var(--border)] bg-white p-5 shadow-sm transition-all hover:border-[var(--primary)] hover:shadow-md"
+                className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm transition-all hover:border-[var(--primary)] hover:shadow-md"
               >
                 <div className="text-lg font-bold text-[var(--primary)]">
                   {r.week}
                 </div>
                 <div className="mt-0.5 text-xs text-[#6B5E60]">{r.date}</div>
                 <div className="mt-2">
-                  <span className="rounded bg-[#F0EAEA] px-2 py-0.5 text-[0.68rem] text-[var(--text-muted)]">
+                  <span className="rounded bg-[var(--bg-subtle)] px-2 py-0.5 text-[0.68rem] text-[var(--text-muted)]">
                     {r.market.toUpperCase()}
                   </span>
                 </div>

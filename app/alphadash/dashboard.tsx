@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
+import ThemeToggle from "@/app/components/ThemeToggle";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -47,7 +48,7 @@ const colorClass: Record<string, string> = {
 
 function KpiCard({ label, value, sub, borderColor }: { label: string; value: string; sub: React.ReactNode; borderColor: string }) {
   return (
-    <div className="rounded-[10px] bg-white p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
+    <div className="rounded-[10px] bg-[var(--bg-card)] p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
       <div className={`border-l-[3px] pl-3.5`} style={{ borderColor }}>
         <div className="mb-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.6px] text-[#6c757d]">{label}</div>
         <div className="text-[1.55rem] font-bold leading-tight">{value}</div>
@@ -109,7 +110,7 @@ function TxTable({ accFilter }: { accFilter: string }) {
       <div className="overflow-x-auto">
         <table className="w-full text-[0.82rem]">
           <thead>
-            <tr className="bg-[#f8f9fa] text-[0.78rem] font-semibold text-[#495057]">
+            <tr className="bg-[var(--bg-subtle)] text-[0.78rem] font-semibold text-[var(--text-muted)]">
               <th className="whitespace-nowrap p-2">交易日期</th>
               <th className="whitespace-nowrap p-2">帳戶</th>
               <th className="whitespace-nowrap p-2">股票</th>
@@ -126,7 +127,7 @@ function TxTable({ accFilter }: { accFilter: string }) {
               const a = getAccountObj(t.acc);
               const s = STOCKS[t.code];
               return (
-                <tr key={t.id} className="border-b border-[#dee2e6] hover:bg-[#f8f9fa]">
+                <tr key={t.id} className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)]">
                   <td className="whitespace-nowrap p-2">{t.date}</td>
                   <td className="p-2"><span className="rounded-xl bg-[#e8eef7] px-2 py-0.5 text-[0.76rem] font-semibold text-[#1a3a6b]">{a?.name || t.acc}</span></td>
                   <td className="p-2"><span className="font-bold text-[#2556a0]">{t.code}</span> {s?.name || ""}</td>
@@ -163,7 +164,7 @@ function HoldingsTable({ accFilter }: { accFilter: string }) {
       <div className="overflow-x-auto">
         <table className="w-full text-[0.82rem]">
           <thead>
-            <tr className="bg-[#f8f9fa] text-[0.78rem] font-semibold text-[#495057]">
+            <tr className="bg-[var(--bg-subtle)] text-[0.78rem] font-semibold text-[var(--text-muted)]">
               <th className="whitespace-nowrap p-2">代號</th>
               <th className="whitespace-nowrap p-2">股票名稱</th>
               <th className="whitespace-nowrap p-2 text-right">持有股數</th>
@@ -185,12 +186,12 @@ function HoldingsTable({ accFilter }: { accFilter: string }) {
                 accUnrealized += (s.price - h.avg_cost) * h.qty;
               });
               return [
-                <tr key={`hdr-${a.id}`} className="bg-[#f1f3f8]">
+                <tr key={`hdr-${a.id}`} className="bg-[var(--bg-subtle)]">
                   <td colSpan={9} className="p-2 text-[0.82rem] font-bold text-[#1a3a6b]">
                     {a.name} <span className="font-normal text-[0.78rem] text-[#6c757d]">{a.id} ｜ NAV: ${fmt(accMv)} ｜ 未實現: <span className={colorClass[cls(accUnrealized)]}>{sgn(accUnrealized)}${fmt(accUnrealized)}</span></span>
                   </td>
                 </tr>,
-                <tr key={`cash-${a.id}`} className="border-b border-[#dee2e6] hover:bg-[#f8f9fa]">
+                <tr key={`cash-${a.id}`} className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)]">
                   <td className="p-2 font-bold text-[#2556a0]">CASH</td>
                   <td className="p-2">現金餘額</td>
                   <td className="p-2 text-right">—</td><td className="p-2 text-right">—</td><td className="p-2 text-right">—</td>
@@ -204,7 +205,7 @@ function HoldingsTable({ accFilter }: { accFilter: string }) {
                   const unr = (s.price - h.avg_cost) * h.qty;
                   const unrPct = (unr / costBasis) * 100;
                   return (
-                    <tr key={`${a.id}-${h.code}`} className="border-b border-[#dee2e6] hover:bg-[#f8f9fa]">
+                    <tr key={`${a.id}-${h.code}`} className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)]">
                       <td className="p-2 font-bold text-[#2556a0]">{h.code}</td>
                       <td className="p-2">{s.name} <span className="text-[0.76rem] text-[#6c757d]">{s.sector}</span></td>
                       <td className="p-2 text-right">{fmt(h.qty)}</td>
@@ -239,7 +240,7 @@ function PnlTable({ accFilter, dailyPnl }: { accFilter: string; dailyPnl: Record
         <div className="overflow-x-auto">
           <table className="w-full text-[0.82rem]">
             <thead>
-              <tr className="bg-[#f8f9fa] text-[0.78rem] font-semibold text-[#495057]">
+              <tr className="bg-[var(--bg-subtle)] text-[0.78rem] font-semibold text-[var(--text-muted)]">
                 <th className="p-2">帳戶</th>
                 <th className="p-2 text-right">期初資本</th><th className="p-2 text-right">當前淨值</th>
                 <th className="p-2 text-right">淨值增減</th><th className="p-2 text-right">未實現損益</th>
@@ -265,7 +266,7 @@ function PnlTable({ accFilter, dailyPnl }: { accFilter: string; dailyPnl: Record
                 const todayPnl = dayRows.length > 0 ? dayRows[dayRows.length - 1].daily : 0;
                 const navChg = nav - a.initial_capital;
                 return (
-                  <tr key={a.id} className="border-b border-[#dee2e6] hover:bg-[#f8f9fa]">
+                  <tr key={a.id} className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)]">
                     <td className="p-2"><span className="rounded-xl bg-[#e8eef7] px-2 py-0.5 text-[0.76rem] font-semibold text-[#1a3a6b]">{a.name}</span></td>
                     <td className="p-2 text-right">${fmt(a.initial_capital)}</td>
                     <td className="p-2 text-right">${fmt(nav)}</td>
@@ -289,7 +290,7 @@ function PnlTable({ accFilter, dailyPnl }: { accFilter: string; dailyPnl: Record
       <div className="overflow-x-auto">
         <table className="w-full text-[0.82rem]">
           <thead>
-            <tr className="bg-[#f8f9fa] text-[0.78rem] font-semibold text-[#495057]">
+            <tr className="bg-[var(--bg-subtle)] text-[0.78rem] font-semibold text-[var(--text-muted)]">
               <th className="p-2">日期</th><th className="p-2">帳戶</th>
               <th className="p-2 text-right">當日損益</th><th className="p-2 text-right">累計損益（估）</th>
             </tr>
@@ -301,7 +302,7 @@ function PnlTable({ accFilter, dailyPnl }: { accFilter: string; dailyPnl: Record
                 const rec = (dailyPnl[id] || []).find((d) => d.date === date);
                 if (!rec) return null;
                 return (
-                  <tr key={`${date}-${id}`} className="border-b border-[#dee2e6] hover:bg-[#f8f9fa]">
+                  <tr key={`${date}-${id}`} className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)]">
                     <td className="p-2">{date}</td>
                     <td className="p-2"><span className="rounded-xl bg-[#e8eef7] px-2 py-0.5 text-[0.76rem] font-semibold text-[#1a3a6b]">{a?.name || id}</span></td>
                     <td className={`p-2 text-right ${colorClass[cls(rec.daily)]}`}>{sgn(rec.daily)}${fmt(rec.daily)}</td>
@@ -335,7 +336,7 @@ function StockSummaryTable({ accFilter }: { accFilter: string }) {
       <div className="overflow-x-auto">
         <table className="w-full text-[0.82rem]">
           <thead>
-            <tr className="bg-[#f8f9fa] text-[0.78rem] font-semibold text-[#495057]">
+            <tr className="bg-[var(--bg-subtle)] text-[0.78rem] font-semibold text-[var(--text-muted)]">
               <th className="p-2">代號 ／ 名稱（帳戶）</th>
               <th className="p-2 text-right">持有股數</th>
               <th className="p-2 text-right">均成本 (USD)</th>
@@ -361,7 +362,7 @@ function StockSummaryTable({ accFilter }: { accFilter: string }) {
               grandMktVal += totalMktVal; grandCost += totalCost; grandUnr += totalUnr; grandDiv += totalDiv;
 
               return [
-                <tr key={`g-${code}`} className="bg-[#f1f3f8]">
+                <tr key={`g-${code}`} className="bg-[var(--bg-subtle)]">
                   <td className="p-2 font-bold text-[#1a3a6b]">
                     <span className="font-bold text-[#2556a0]">{code}</span> {s.name}{" "}
                     <span className="text-[0.76rem] text-[#6c757d]">{s.sector}</span>
@@ -386,7 +387,7 @@ function StockSummaryTable({ accFilter }: { accFilter: string }) {
                   const unrPct = h.qty * h.avg_cost > 0 ? (unr / (h.qty * h.avg_cost)) * 100 : 0;
                   const accDiv = DIVIDENDS.filter((d) => d.code === code && d.acc === h.acc).reduce((sum, d) => sum + d.amount, 0);
                   return (
-                    <tr key={`${code}-${h.acc}`} className="border-b border-[#dee2e6] hover:bg-[#f8f9fa]">
+                    <tr key={`${code}-${h.acc}`} className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)]">
                       <td className="p-2 pl-7"><span className="rounded-xl bg-[#e8eef7] px-2 py-0.5 text-[0.76rem] font-semibold text-[#1a3a6b]">{a?.name || h.acc}</span></td>
                       <td className="p-2 text-right">{fmt(h.qty)}</td>
                       <td className="p-2 text-right">${h.avg_cost.toFixed(2)}</td>
@@ -400,7 +401,7 @@ function StockSummaryTable({ accFilter }: { accFilter: string }) {
                 }),
               ];
             })}
-            <tr className="bg-[#f1f3f8] font-bold">
+            <tr className="bg-[var(--bg-subtle)] font-bold">
               <td className="p-2">合計持倉</td><td /><td /><td />
               <td className="p-2 text-right">${fmt(grandMktVal)}</td>
               <td className={`p-2 text-right ${colorClass[cls(grandUnr)]}`}>{sgn(grandUnr)}${fmt(grandUnr)}</td>
@@ -481,22 +482,25 @@ export default function AlphaDashboard() {
           <Link href="/" className="text-[0.85rem] text-white/80 no-underline transition-opacity hover:text-white">← Portal</Link>
           <div className="text-[1.1rem] font-bold tracking-[0.5px]">📊&nbsp; AlphaDash — 財務系統儀表板</div>
         </div>
-        <div className="text-[0.8rem] opacity-65">v1.0 &nbsp;|&nbsp; 資料截止：2026-02-13 &nbsp;|&nbsp; 帳戶數：2 &nbsp;|&nbsp; 幣別：USD</div>
+        <div className="flex items-center gap-3">
+          <div className="text-[0.8rem] opacity-65">v1.0 &nbsp;|&nbsp; 資料截止：2026-02-13 &nbsp;|&nbsp; 帳戶數：2 &nbsp;|&nbsp; 幣別：USD</div>
+          <ThemeToggle />
+        </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="border-b border-[#dee2e6] bg-white px-5 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+      <div className="border-b border-[var(--border)] bg-[var(--bg-card)] px-5 py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
         <div className="flex flex-wrap items-end gap-3">
           <div>
-            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[#495057]">股票帳戶</label>
-            <select className="rounded border border-[#dee2e6] px-2 py-1 text-[0.82rem]" value={accFilter} onChange={(e) => setAccFilter(e.target.value)}>
+            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[var(--text-muted)]">股票帳戶</label>
+            <select className="rounded border border-[var(--border)] px-2 py-1 text-[0.82rem]" value={accFilter} onChange={(e) => setAccFilter(e.target.value)}>
               <option value="ALL">全部帳戶</option>
               {ACCOUNTS.map((a) => <option key={a.id} value={a.id}>{a.name}（{a.id}）</option>)}
             </select>
           </div>
           <div>
-            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[#495057]">時間範圍</label>
-            <select className="rounded border border-[#dee2e6] px-2 py-1 text-[0.82rem]" value={dateRange} onChange={(e) => setDateRange(e.target.value)}>
+            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[var(--text-muted)]">時間範圍</label>
+            <select className="rounded border border-[var(--border)] px-2 py-1 text-[0.82rem]" value={dateRange} onChange={(e) => setDateRange(e.target.value)}>
               <option value="1M">近 1 個月</option>
               <option value="3M">近 3 個月</option>
               <option value="YTD">今年至今</option>
@@ -504,22 +508,22 @@ export default function AlphaDashboard() {
             </select>
           </div>
           <div>
-            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[#495057]">餅圖分組</label>
-            <select className="rounded border border-[#dee2e6] px-2 py-1 text-[0.82rem]" value={groupBy} onChange={(e) => setGroupBy(e.target.value)}>
+            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[var(--text-muted)]">餅圖分組</label>
+            <select className="rounded border border-[var(--border)] px-2 py-1 text-[0.82rem]" value={groupBy} onChange={(e) => setGroupBy(e.target.value)}>
               <option value="stock">依持股</option>
               <option value="account">依帳戶</option>
             </select>
           </div>
           <div>
-            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[#495057]">走勢類型</label>
-            <select className="rounded border border-[#dee2e6] px-2 py-1 text-[0.82rem]" value={trendType} onChange={(e) => setTrendType(e.target.value)}>
+            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[var(--text-muted)]">走勢類型</label>
+            <select className="rounded border border-[var(--border)] px-2 py-1 text-[0.82rem]" value={trendType} onChange={(e) => setTrendType(e.target.value)}>
               <option value="cumulative">累計損益</option>
               <option value="daily">當日損益</option>
             </select>
           </div>
           <div>
-            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[#495057]">損益計入</label>
-            <select className="rounded border border-[#dee2e6] px-2 py-1 text-[0.82rem]" value={realizedType} onChange={(e) => setRealizedType(e.target.value)}>
+            <label className="mb-0.5 block text-[0.82rem] font-semibold text-[var(--text-muted)]">損益計入</label>
+            <select className="rounded border border-[var(--border)] px-2 py-1 text-[0.82rem]" value={realizedType} onChange={(e) => setRealizedType(e.target.value)}>
               <option value="ALL">全部</option>
               <option value="trading">交易</option>
               <option value="interest">利息</option>
@@ -547,7 +551,7 @@ export default function AlphaDashboard() {
 
         {/* Charts */}
         <div className="mb-4 grid grid-cols-1 gap-3 lg:grid-cols-[5fr_8fr]">
-          <div className="rounded-[10px] bg-white p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
+          <div className="rounded-[10px] bg-[var(--bg-card)] p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
             <div className="mb-3.5 text-[0.78rem] font-bold uppercase tracking-[0.8px] text-[#1a3a6b]">{pieTitle}</div>
             <Doughnut
               data={{
@@ -572,7 +576,7 @@ export default function AlphaDashboard() {
               }}
             />
           </div>
-          <div className="rounded-[10px] bg-white p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
+          <div className="rounded-[10px] bg-[var(--bg-card)] p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
             <div className="mb-3.5 text-[0.78rem] font-bold uppercase tracking-[0.8px] text-[#1a3a6b]">{lineTitleMap[trendType] || "損益走勢"}</div>
             <Line
               data={{ labels: lineData.labels, datasets: lineData.datasets }}
@@ -603,8 +607,8 @@ export default function AlphaDashboard() {
         </div>
 
         {/* Tables */}
-        <div className="rounded-[10px] bg-white p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
-          <div className="mb-3.5 flex gap-0 border-b border-[#dee2e6]">
+        <div className="rounded-[10px] bg-[var(--bg-card)] p-[18px_20px] shadow-[0_1px_4px_rgba(0,0,0,0.08)]">
+          <div className="mb-3.5 flex gap-0 border-b border-[var(--border)]">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
