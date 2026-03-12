@@ -35,7 +35,7 @@ export default function NewsTable({ items }: NewsTableProps) {
             </tr>
           </thead>
         </table>
-        <div className="max-h-[480px] overflow-y-auto">
+        <div className="max-h-[480px] overflow-y-auto pr-2">
         <table className="w-full border-collapse text-[0.88rem]">
           <tbody>
             {sortedItems.length > 0 ? (
