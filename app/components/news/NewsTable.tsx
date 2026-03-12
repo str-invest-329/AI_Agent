@@ -12,6 +12,8 @@ export default function NewsTable({ items }: NewsTableProps) {
   const [feedbackTarget, setFeedbackTarget] = useState<FeedbackTarget | null>(null);
   const [dismissedNews, setDismissedNews] = useState<Set<number>>(new Set());
 
+  const sortedItems = [...items].sort((a, b) => b.date.localeCompare(a.date));
+
   const sentimentBadge = (s?: string) => {
     const label = s === "bullish" ? "利多" : s === "bearish" ? "利空" : "中立";
     const color = s === "bullish" ? "text-green-700 bg-green-50" : s === "bearish" ? "text-red-700 bg-red-50" : "text-[#7A5860] bg-[#F8F4F4]";
@@ -36,8 +38,8 @@ export default function NewsTable({ items }: NewsTableProps) {
         <div className="max-h-[480px] overflow-y-auto">
         <table className="w-full border-collapse text-[0.88rem]">
           <tbody>
-            {items.length > 0 ? (
-              items.filter((_, i) => !dismissedNews.has(i)).map((item, i) => (
+            {sortedItems.length > 0 ? (
+              sortedItems.filter((_, i) => !dismissedNews.has(i)).map((item, i) => (
                 <tr key={i} className="hover:bg-[#FDFBFB] transition-colors">
                   <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top whitespace-nowrap text-[#B09898]">{item.date}</td>
                   <td className="px-3 py-2.5 border-b border-[#E2D8D8] align-top font-mono text-xs font-semibold text-[#5A3E42]">{item.ticker || "—"}</td>
