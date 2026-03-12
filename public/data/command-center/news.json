@@ -1,110 +1,134 @@
 {
   "updated_at": "2026-03-12",
-  "strategy_summary": "核心持倉以 AI 基建供應鏈為主（TSM/NVDA/MU/GOOGL/AMZN/ORCL），LEU 則聚焦 HALEU 商業化敘事。當前市場主題：CoWoS 產能擴張、HBM 供需緊缺、雲端 AI 資本支出超級週期。",
+  "strategy_summary": "核心持倉以 AI 基建供應鏈為主（TSM/NVDA/MU/GOOGL/AMZN/ORCL），LEU 聚焦 HALEU 商業化，SNDK 新增買進（NAND 供需失衡）。當前主題：記憶體超級週期、HBM 供需緊缺、雲端 AI 資本支出破 $5000 億、ORCL Q3 FY26 創 15 年最佳有機成長、AVGO AI 營收翻倍、SNDK NAND 結構性短缺、NVDA GTC 2026 即將登場。",
   "items": [
     {
-      "date": "2026-01-06",
-      "ticker": "LEU",
-      "headline": "DOE 撥款 27 億美元擴建 HALEU 及 LEU 濃縮產能 — Centrus 獲 9 億",
-      "summary": "DOE 9 億美元直接支持 Piketon 廠區的 HALEU 商業化擴建，包括新增離心機串級（centrifuge cascade）以提升年產能至 12 噸目標。這筆資金對我們的投資敘事至關重要：Centrus 原先面臨 2029 商業化可能延遲至 2031 的風險，主因之一就是資金到位時程。DOE 資金落地意味著擴建可以實質啟動，直接影響 2029-2031 年能否如期達產的核心變數。此外，General Matter（Paducah）和 Orano 各獲 9 億，代表美國正全面建立自主濃縮能力，但 Centrus 是唯一同時獲得 HALEU + LEU 雙線資金的企業。",
-      "url": "https://www.ans.org/news/article-7652/doe-awards-27b-for-haleu-and-leu-enrichment/",
-      "sentiment": "bullish"
-    },
-    {
-      "date": "2025-12-19",
-      "ticker": "LEU",
-      "headline": "Centrus 啟動商業離心機製造，首批產能預計 2029 上線",
-      "summary": "Centrus 在 Oak Ridge 啟動離心機製造，是 Piketon 擴建從「規劃」進入「實質執行」的里程碑。關鍵數字：23 億美元附條件客戶合約（產能建成才生效）、12 億可轉債融資、16 億現金。韓國 KHNP/POSCO 探索投資。對我們而言，離心機製造啟動 = 產能建設時程開始計時，是追蹤 2029/2031 目標能否達成的關鍵起點。但需注意可轉債稀釋風險。",
-      "url": "https://www.centrusenergy.com/news/centrus-launches-commercial-leu-enrichment-activities/",
-      "sentiment": "bullish"
-    },
-    {
-      "date": "2024-11-18",
-      "ticker": "LEU",
-      "headline": "俄羅斯對美國實施對等鈾出口禁令",
-      "summary": "俄羅斯禁止對美出口濃縮鈾，Tenex 通知 Centrus 出口許可被撤銷。這對 Centrus 是雙面刃：傳統 LEU 代銷業務短期受重創（Tenex 是最大供應商），但長期加速了美國自主 HALEU 濃縮的政策急迫性，反而強化了我們的長線看多邏輯。標記為中立是因為短期傳統業務受損明確，但長期利好 HALEU 敘事。",
-      "url": "https://www.world-nuclear-news.org/articles/russia-places-ban-on-us-uranium-exports",
-      "sentiment": "neutral"
-    },
-    {
-      "date": "2026-02-23",
-      "ticker": "TSM",
-      "headline": "台積電 2026 全面擴產：CoWoS 月產能衝 13 萬片，N2/A16 量產啟動",
-      "summary": "（待填入投資策略後補充推理分析）嘉義 AP7 成全球最大先進封裝基地、高雄 F22 推進 N2/A16。CoWoS 月產能目標年底達 13-15 萬片（較 2024 翻四倍）。NVIDIA 鎖定超過 60% 的 2026 CoWoS 產能。",
-      "url": "https://tspasemiconductor.substack.com/p/tsmc-in-2026-full-power-on-racing",
-      "sentiment": "bullish"
-    },
-    {
-      "date": "2026-01-26",
-      "ticker": "TSM",
-      "headline": "台積電宣布 520-560 億美元資本支出，進入 Capex 超級週期",
-      "summary": "（待填入投資策略後補充推理分析）2026 資本支出 520-560 億美元，主要投入先進製程與 CoWoS 封裝。CoWoS-L 技術突破光罩極限，支援 Rubin 超大尺寸封裝。",
-      "url": "https://www.financialcontent.com/article/tokenring-2026-1-26-the-great-unclogging-tsmc-commits-56-billion-capex-to-double-cowos-capacity-for-nvidias-rubin-era",
-      "sentiment": "bullish"
-    },
-    {
-      "date": "2026-02-14",
-      "ticker": "MU",
-      "headline": "Micron：AI 記憶體需求持續超越供給，HBM4 已開始出貨",
-      "summary": "（待填入投資策略後補充推理分析）DRAM 庫存極低、客戶僅能滿足 50-67% 需求。2026 HBM 產能全數售罄，HBM4 良率達標並提前出貨。供需緊缺預計延續至 2026 年以後。",
-      "url": "https://www.marketbeat.com/instant-alerts/micron-technology-says-ai-memory-demand-still-outstrips-supply-through-2026-hbm4-shipping-early-2026-02-14/",
-      "sentiment": "bullish"
-    },
-    {
-      "date": "2026-01-10",
-      "ticker": "MU",
-      "headline": "Micron HBM3E 產能 100% 預售，2026 營收預估達 740 億美元",
-      "summary": "（待填入投資策略後補充推理分析）分析師預估 2026 營收近 740 億（接近翻倍）。HBM3E 定價合約已鎖定，clean-room 產能受限形成定價權。HBM TAM 預計 2028 年達 1,000 億美元。",
-      "url": "https://www.ainvest.com/news/micron-mu-leveraging-memory-supply-constraints-capture-ai-driven-pricing-power-2026-2601/",
-      "sentiment": "bullish"
-    },
-    {
-      "date": "2026-01-06",
+      "date": "2026-03-11",
       "ticker": "NVDA",
-      "headline": "NVIDIA 於 CES 發表 Rubin 平台：推論成本降至 Blackwell 的 1/10",
-      "summary": "（待填入投資策略後補充推理分析）Rubin 平台含 6 顆新晶片，NVL72 僅用 72 顆 GPU（Blackwell 需 4 倍）。已進入全量產，H2 2026 出貨。Blackwell 仍全速生產中。",
-      "url": "https://www.datacenterknowledge.com/data-center-chips/ces-2026-nvidia-launches-rubin-to-maintain-data-center-stronghold",
+      "headline": "NVIDIA 戰略投資 Thinking Machines Lab 並即將推出 NemoClaw 開源 AI Agent 平台",
+      "summary": "NVIDIA 宣布戰略投資菲律賓 AI 新創 Thinking Machines Lab，合作將部署至少 1 GW 的 Vera Rubin GPU 系統。同時 WIRED 報導 NVIDIA 即將在 GTC 2026 推出開源企業 AI Agent 平台 NemoClaw，延續 OpenClaw 的成功。此舉標誌 NVIDIA 從硬體轉向軟體平台的戰略延伸，可能開創新的營收模式。GTC 2026 主題演講排定 3/16，Jensen Huang 預告將展示「世界從未見過的晶片」。",
+      "url": "https://www.fxleaders.com/news/2026/03/11/nvidia-surges-on-ai-software-push-and-landmark-partnership-with-thinking-machines-lab/",
       "sentiment": "bullish"
     },
     {
-      "date": "2025-11-25",
+      "date": "2026-03-11",
       "ticker": "NVDA",
-      "headline": "NVIDIA Q3 FY26 營收 570 億美元，Blackwell+Rubin 訂單逾 5,000 億",
-      "summary": "（待填入投資策略後補充推理分析）數據中心營收 512 億（YoY +66.5%），佔總營收 90%。管理層確認合計訂單超 5,000 億美元。中國銷售僅佔 5%。Forward P/E 38x。",
-      "url": "https://www.investing.com/analysis/nvidia-gpu-order-backlog-signals-long-multi-year-cycle-200670726",
+      "headline": "NVIDIA 投資 $20 億予 Nebius，擴大 AI 基建合作",
+      "summary": "NVIDIA 宣布對 AI 基礎設施公司 Nebius（前 Yandex 分拆）投資 $20 億，雙方將合作建構大規模 GPU 雲端運算基礎設施。此投資延續 NVIDIA 透過戰略投資擴大生態系的策略，確保 GPU 需求端的長期鎖定。",
+      "url": "https://www.fool.com/investing/2026/03/11/nvidia-gave-2-billion-reasons-for-nebius-sharehold/",
       "sentiment": "bullish"
     },
     {
-      "date": "2026-03-02",
-      "ticker": "GOOGL",
-      "headline": "Google 確認 Wiz 收購 2026 年完成交割，DOJ 已放行",
-      "summary": "（待填入投資策略後補充推理分析）320 億美元收購 Wiz 獲 DOJ 放行，預計 2026 年完成。Wiz 客戶涵蓋逾 50% 的 Fortune 100。Google Cloud Q3 營收 152 億（YoY +34%）。",
-      "url": "https://www.crn.com/news/ai/2025/google-confirms-wiz-acquisition-to-close-in-2026-3-2b-fee-on-the-line",
-      "sentiment": "bullish"
-    },
-    {
-      "date": "2026-02-10",
+      "date": "2026-03-10",
       "ticker": "AMZN",
-      "headline": "AWS Q4 營收創三年最高增速，自研晶片年化營收突破百億美元",
-      "summary": "（待填入投資策略後補充推理分析）AWS Q4 營收 356 億（YoY +24%），積壓訂單 2,440 億（YoY +40%）。Trainium+Graviton 年化破 100 億，三位數增長。2026 資本支出 2,000 億美元。",
-      "url": "https://www.crn.com/news/cloud/2026/andy-jassy-on-aws-244b-backlog-trainium4-and-ai-chips-strategy",
-      "sentiment": "bullish"
+      "headline": "Pentagon 將 Anthropic 列為供應鏈風險，AWS 轉移國防 AI 工作負載",
+      "summary": "美國國防部將 Anthropic 列為供應鏈風險，原因為 Anthropic 拒絕移除 Claude AI 的安全限制。Amazon AWS 隨即將 Pentagon 相關工作負載從 Anthropic Claude 轉移至其他模型。Anthropic 已對政府提起訴訟。其他政府機構與承包商也開始轉離 Anthropic。Amazon 仍為 Anthropic 主要投資者（累計投資達 $80 億），此事件凸顯軍用 AI 倫理與商業利益的張力。",
+      "url": "https://stocktwits.com/news-articles/markets/equity/amazon-stock-pressured-as-anthropic-pentagon-debate-over-military-ai-use/cZRWP16R4MK",
+      "sentiment": "bearish"
     },
     {
-      "date": "2025-12-11",
-      "ticker": "ORCL",
-      "headline": "Oracle FY26 資本支出上修至 500 億美元，雲端基建 IaaS 營收成長 68%",
-      "summary": "（待填入投資策略後補充推理分析）Q2 FY26 營收 161 億（YoY +14%），IaaS YoY +68%，GPU 營收成長 177%。RPO 5,230 億（含 OpenAI 3,000 億合約）。多雲資料庫消費量 YoY +817%。",
-      "url": "https://www.channeldive.com/news/oracle-capex-spike-cloud-ai-data-center/807716/",
+      "date": "2026-03-10",
+      "ticker": "NVDA",
+      "headline": "NVIDIA RTX PRO Server：虛擬化 GPU 遊戲開發，支援分散式團隊",
+      "summary": "NVIDIA 在 GDC 2026 發表 RTX PRO Server，將 GPU 工作負載虛擬化，讓遊戲開發團隊不再綁定桌面 GPU 硬體。支援更大世界場景、更複雜管線和更分散的跨地團隊協作。此為 Professional Visualization 業務延伸，該部門 Q4 FY26 營收 $13 億（YoY +159%）。",
+      "url": "https://blogs.nvidia.com/blog/gdc-2026-virtual-game-development/",
       "sentiment": "neutral"
     },
     {
-      "date": "2026-02-01",
+      "date": "2026-03-10",
+      "ticker": "NVDA",
+      "headline": "NVIDIA Blog：AI Is a 5-Layer Cake — AI 基建架構論述",
+      "summary": "Jensen Huang 發表文章將 AI 定義為五層基礎建設（類比電力與網路），強調 AI 不是單一應用或模型，而是不可或缺的基礎設施。此論述框架支撐 NVIDIA 作為全端 AI 基建供應商的定位。",
+      "url": "https://blogs.nvidia.com/blog/ai-5-layer-cake/",
+      "sentiment": "neutral"
+    },
+    {
+      "date": "2026-03-10",
       "ticker": "ORCL",
-      "headline": "Oracle 計畫 2026 年募資 450-500 億美元支撐 AI 擴建",
-      "summary": "（待填入投資策略後補充推理分析）透過債務+股權融資 450-500 億美元。自由現金流預計 FY29 才轉正，負債超過 850 億美元，資金壓力為主要風險。",
-      "url": "https://www.investing.com/news/stock-market-news/oracle-says-expects-to-raise-between-4550-bln-in-2026-for-ai-buildout-4477730",
+      "headline": "Oracle Q3 FY26 營收 $172 億創 15 年新高：Cloud IaaS +84%、AI 基建營收 +243%",
+      "summary": "Oracle Q3 FY26 全面超預期：營收 $172 億（YoY +22%），雲端 $89 億（+44%），其中 IaaS $49 億（+84%）。AI 基建營收年增 243%。RPO 達 $5530 億（+325%），主要來自大型 AI 合約。首次有機營收與 EPS 同時突破 20% 成長門檻。FY27 營收指引上調至 $900 億。",
+      "url": "https://www.oracle.com/news/announcement/q3fy26-earnings-release-2026-03-10/",
+      "sentiment": "bullish"
+    },
+    {
+      "date": "2026-03-10",
+      "ticker": "QCOM",
+      "headline": "Qualcomm 宣布自動駕駛合作案，跨足車用 AI 晶片市場",
+      "summary": "Qualcomm 宣布新的自動駕駛合作夥伴關係，擴大在車用 AI 晶片的布局。此舉延伸 Qualcomm 在 CES 2026 展示的 Snapdragon Ride 平台與 Dragonwing 車用系列，從手機 AI 晶片跨足至自動駕駛與車載運算市場。",
+      "url": "https://finviz.com/news/335768/why-is-qualcomm-stock-falling-despite-autonomous-driving-deal",
+      "sentiment": "neutral"
+    },
+    {
+      "date": "2026-03-10",
+      "ticker": "TSM",
+      "headline": "TSMC 1-2 月合併營收年增 30%，AI 晶片需求持續強勁",
+      "summary": "TSMC 2026 年 1-2 月合併營收達 NT$7,189 億（YoY +30%），2 月單月營收 NT$3,177 億（YoY +22.2%）。成長主要來自 Apple、Nvidia、AMD 等客戶的 AI 基建晶片需求。董事會核准每季股息 NT$6.0，並撥出 $450 億資本支出用於先進製程擴產。公司表示美中地緣風險目前無重大影響。",
+      "url": "https://pr.tsmc.com/english/news/3290",
+      "sentiment": "bullish"
+    },
+    {
+      "date": "2026-03-09",
+      "ticker": "LEU",
+      "headline": "Oklo-Centrus 宣布成立合資企業：在 Piketon 推進 HALEU 去轉化燃料服務",
+      "summary": "Oklo 與 Centrus 計畫在 Ohio 州 Piketon 成立合資企業，開發 HALEU 去轉化（deconversion）服務，將濃縮鈾轉化為可供燃料製造使用的形態。JV 選址與 Centrus 現有濃縮設施共址，並鄰近 Oklo 規劃中的 1.2 GW 電力園區。此舉意味 Centrus 從濃縮延伸至下游燃料加工，形成垂直整合。",
+      "url": "https://www.centrusenergy.com/news/oklo-centrus-announce-planned-joint-venture-to-advance-nuclear-fuel-services-in-ohio/",
+      "sentiment": "bullish"
+    },
+    {
+      "date": "2026-03-09",
+      "ticker": "OKLO",
+      "headline": "Oklo-Centrus JV：Oklo 與 Centrus 合資推進 HALEU 燃料服務，鄰近 1.2 GW 電力園區",
+      "summary": "Oklo 與 Centrus 宣布計畫在 Ohio 州 Piketon 成立合資企業，開發 HALEU 去轉化服務。JV 鄰近 Oklo 規劃中的 1.2 GW 電力園區，整合 Centrus 現有濃縮設施。對 Oklo 而言，此合作確保未來 Aurora SMR 反應爐的燃料供應鏈，降低上游原料風險。",
+      "url": "https://www.centrusenergy.com/news/oklo-centrus-announce-planned-joint-venture-to-advance-nuclear-fuel-services-in-ohio/",
+      "sentiment": "bullish"
+    },
+    {
+      "date": "2026-03-09",
+      "ticker": "SNDK",
+      "headline": "SanDisk Q2 FY26 營收 $30.3 億（+61%），NAND 結構性短缺推動 EPS 暴增至 $6.20",
+      "summary": "SanDisk Q2 FY26 營收 $30.3 億（YoY +61.3%），Non-GAAP EPS $6.20 大幅超越共識 $3.54。毛利率從 32.3% 躍升至 50.9%。Q3 指引更為驚人：營收 $44-48 億、EPS $12-14、毛利率 65-67%。CEO 表示 AI 數據中心企業 SSD 部署加速，NAND 供需結構性失衡。Nomura 預測數據中心儲存晶片價格可能翻倍，群聯預估 NAND 短缺可能持續十年。",
+      "url": "https://247wallst.com/investing/2026/03/09/sandisk-sndk-stock-soars-11-6-today-micron-technology-mu-and-western-digital-wdc-also-see-strong-gains/",
+      "sentiment": "bullish"
+    },
+    {
+      "date": "2026-03-06",
+      "ticker": "AMD",
+      "headline": "AMD 面臨地緣政治逆風：AI 晶片出口管制政策討論升溫",
+      "summary": "AMD 股價在地緣政治風險與 AI 晶片出口管制政策討論升溫中承壓。美國政府持續審視對中國的 AI 晶片出口限制，AMD 作為主要 AI GPU 供應商之一，面臨政策不確定性。MI400/MI500 系列晶片路線圖持續推進中，但出口管制可能影響部分市場營收。",
+      "url": "https://intellectia.ai/news/stock/amd-shares-rebound-amid-geopolitical-risks-and-ai-chip-export-policy-discussions",
+      "sentiment": "neutral"
+    },
+    {
+      "date": "2026-03-06",
+      "ticker": "OKLO",
+      "headline": "核能股比較：NuScale Power (SMR) vs. Oklo (OKLO) 投資分析",
+      "summary": "Motley Fool 發布 SMR 核能股比較分析，評估 NuScale Power 與 Oklo 的投資前景。Oklo 的 Aurora SMR 反應爐設計採用回收核廢料為燃料，已在 Idaho National Lab 動工。與 NuScale 相比，Oklo 規模較小但技術差異化明顯，且有 DOE 支持與 Centrus HALEU 供應合作。",
+      "url": "https://www.fool.com/investing/2026/03/06/better-nuclear-energy-stock-smr-vs-oklo/",
+      "sentiment": "neutral"
+    },
+    {
+      "date": "2026-03-05",
+      "ticker": "AVGO",
+      "headline": "Broadcom Q1 FY26 AI 營收翻倍至 $84 億，佔總營收 44%",
+      "summary": "Broadcom Q1 FY26 營收 $193 億，超預期。AI 相關營收年增 106% 至 $84 億，佔總營收 44%，主要來自 Google、Meta 定製 AI 加速器出貨及 OpenAI 首顆專用 1GW 運算晶片合作。營業利益率 66.4%（VMware 整合效益）。自由現金流 $80 億，宣布 $100 億回購計畫。",
+      "url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-5-broadcom-avgo-surges-48-as-ai-earnings-beat-expectations-in-volatile-market",
+      "sentiment": "bullish"
+    },
+    {
+      "date": "2026-03-05",
+      "ticker": "GLW",
+      "headline": "Corning 重挫 6.97%：Broadcom CEO 對共封裝光學（CPO）持懷疑態度",
+      "summary": "Corning 股價單日下跌 6.97%，主因 Broadcom CEO 對共封裝光學（co-packaged optics）技術的商業化時程表達懷疑。此技術是 Corning Springboard 計畫中 AI 數據中心光纖需求的核心假設之一。儘管如此，Corning 的 PRIZM TMT 光纖技術仍獲分析師看好，多家券商維持正面評價，認為 AI 數據中心長期需求趨勢不變。",
+      "url": "https://www.ainvest.com/news/corning-6-97-stock-plunge-broadcom-skepticism-optical-networking-trading-volume-ranks-42nd-market-activity-2603/",
       "sentiment": "bearish"
+    },
+    {
+      "date": "2026-03-05",
+      "ticker": "MU",
+      "headline": "Micron HBM4 提前一季量產、2026 全數售罄，3/18 財報預估 EPS $8.58",
+      "summary": "HBM4 於 Q1 2026 進入大量生產，比管理層指引提前一個季度。HBM3E 功耗較競品低 30%，LPDRAM 可將伺服器記憶體能耗降低 60%。2026 年 HBM 產能已在多年合約下全數售罄，客戶僅能滿足 50-67% 需求。數據中心 SSD 年化營收達 $10 億。3/18 盤後公布 Q2 FY26 財報，共識預估 EPS $8.58、營收 $190 億。",
+      "url": "https://www.investing.com/analysis/micron-faces-a-rerating-moment-as-soldout-hbm-supply-reshapes-the-earnings-story-200676155",
+      "sentiment": "bullish"
     }
   ]
 }

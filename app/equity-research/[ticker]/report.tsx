@@ -57,6 +57,7 @@ interface ValuationVersion {
   date: string;
   label: string;
   trigger: string;
+  latestReport?: string;
   note: string;
   details?: string[];
   peRatios: [number, number, number, number];
@@ -679,18 +680,12 @@ function PEValuation({
 
   return (
     <>
-      <ContentBox title={`最新估價 — ${latest.label}`}>
-        <div className="mb-1 flex items-baseline gap-3">
-          <span className="text-xs font-mono text-[var(--text-faint)]">
-            {latest.id}
-          </span>
-          <span className="text-xs text-[var(--text-muted)]">
-            {latest.date} · {latest.trigger}
-          </span>
+      <ContentBox title="最新估價">
+        <div className="mb-4 text-sm text-[var(--text-muted)] space-y-0.5">
+          <p>版本：<span className="font-mono">{latest.id}</span></p>
+          <p>發布日期：{latest.date}</p>
+          {latest.latestReport && <p>最新財報：{latest.latestReport}</p>}
         </div>
-        <p className="mb-4 text-sm text-[var(--text-muted)]">
-          {latest.note}
-        </p>
         <div className="grid gap-6 lg:grid-cols-5">
           <div className="lg:col-span-3">
             <p className="mb-1.5 text-xs font-semibold text-[var(--text-muted)]">
