@@ -84,6 +84,24 @@ export default function EquityResearchPage() {
         <p className="p-2 text-sm italic text-[var(--text-faint)]">尚無標的</p>
       </div>
 
+      {/* SOP */}
+      <div className="mb-8">
+        <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+          Resources
+        </div>
+        <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(180px,1fr))]">
+          <Link
+            href="/equity-research/sop"
+            className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm transition-all hover:border-[var(--primary)] hover:shadow-md"
+          >
+            <div className="text-lg font-bold text-[var(--primary)]">
+              Research SOP
+            </div>
+            <div className="mt-0.5 text-xs text-[#6B5E60]">新標的研究流程</div>
+          </Link>
+        </div>
+      </div>
+
       <footer className="border-t border-[var(--border)] pt-4 text-xs text-[var(--text-faint)]">
         Equity Research Portal
       </footer>

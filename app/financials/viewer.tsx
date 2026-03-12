@@ -486,14 +486,20 @@ function aggregateSegmentsAnnual(segments: Record<string, Record<string, { value
 }
 
 function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarterly" | "annual" }) {
-  const [segType, setSegType] = useState<"revenue_by_product" | "revenue_by_geography">("revenue_by_product");
+  const segOptions: [string, string][] = [
+    ["revenue_by_business", "By Business"],
+    ["revenue_by_product", "By Product"],
+    ["revenue_by_geography", "By Geography"],
+  ].filter(([key]) => suppData?.segments?.[key] && Object.keys(suppData.segments[key]).length > 0) as [string, string][];
 
-  if (!suppData?.segments)
+  const [segType, setSegType] = useState(segOptions[0]?.[0] ?? "revenue_by_product");
+
+  if (!suppData?.segments || segOptions.length === 0)
     return <div className="p-10 text-center text-sm text-[#7f8c8d]">No segment data available for this ticker.</div>;
 
   const rawSegments = suppData.segments[segType];
   if (!rawSegments || !Object.keys(rawSegments).length)
-    return <div className="p-10 text-center text-sm text-[#7f8c8d]">No {segType === "revenue_by_product" ? "product" : "geography"} segment data.</div>;
+    return <div className="p-10 text-center text-sm text-[#7f8c8d]">No segment data for this view.</div>;
 
   const segments = viewMode === "annual" ? aggregateSegmentsAnnual(rawSegments) : rawSegments;
   const periods = sortPeriods(Object.keys(segments));
@@ -542,10 +548,7 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
     <>
       {/* Segment type toggle */}
       <div className="mb-3 flex gap-1">
-        {([
-          ["revenue_by_product", "By Product"],
-          ["revenue_by_geography", "By Geography"],
-        ] as const).map(([key, label]) => (
+        {segOptions.map(([key, label]) => (
           <button
             key={key}
             onClick={() => setSegType(key)}
@@ -657,7 +660,7 @@ function NonGaapPanel({ suppData, gaapData, viewMode }: { suppData: any; gaapDat
       <h3 className="mb-3 text-sm font-bold text-[var(--text)]">Adjusted EPS (Diluted) — GAAP vs Non-GAAP</h3>
 
       {/* Quarterly comparison table */}
-      {viewMode === "quarterly" && quarterlyPeriods.length > 0 && (
+      {quarterlyPeriods.length > 0 && (
         <>
           <div className="mb-2 text-xs font-semibold text-[var(--text-muted)]">Quarterly</div>
           <div className="mb-4 overflow-x-auto rounded-md shadow-sm">
@@ -737,7 +740,7 @@ function NonGaapPanel({ suppData, gaapData, viewMode }: { suppData: any; gaapDat
       )}
 
       {/* Annual summary */}
-      {viewMode === "annual" && annualPeriods.length > 0 && (
+      {annualPeriods.length > 0 && (
         <>
           <div className="mb-2 text-xs font-semibold text-[var(--text-muted)]">Annual</div>
           <div className="mb-4 overflow-x-auto rounded-md shadow-sm">

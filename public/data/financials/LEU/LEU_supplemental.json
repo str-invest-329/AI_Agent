@@ -94,380 +94,104 @@
     }
   },
   "segments": {
-    "revenue_by_product": {
-      "Q1_FY2020": {
-        "SeparativeWorkUnits": {
-          "value": 30,
-          "source": "SEC EDGAR inline XBRL — leu-20210331_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20210331_htm.xml"
-        },
-        "Service": {
-          "value": 14,
-          "source": "SEC EDGAR inline XBRL — leu-20210331_htm.xml"
-        },
-        "Product": {
-          "value": 30,
-          "source": "SEC EDGAR inline XBRL — leu-20210331_htm.xml"
-        }
-      },
-      "Q1_FY2021": {
-        "SeparativeWorkUnits": {
-          "value": 38,
-          "source": "SEC EDGAR inline XBRL — leu-20220331_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20220331_htm.xml"
-        },
-        "Service": {
-          "value": 17,
-          "source": "SEC EDGAR inline XBRL — leu-20220331_htm.xml"
-        },
-        "Product": {
-          "value": 38,
-          "source": "SEC EDGAR inline XBRL — leu-20220331_htm.xml"
-        }
-      },
-      "Q1_FY2022": {
-        "SeparativeWorkUnits": {
-          "value": 12,
-          "source": "SEC EDGAR inline XBRL — leu-20230331_htm.xml"
-        },
-        "Uranium": {
-          "value": 4,
-          "source": "SEC EDGAR inline XBRL — leu-20230331_htm.xml"
-        },
-        "Service": {
-          "value": 17,
-          "source": "SEC EDGAR inline XBRL — leu-20230331_htm.xml"
-        },
-        "Product": {
-          "value": 17,
-          "source": "SEC EDGAR inline XBRL — leu-20230331_htm.xml"
-        }
-      },
+    "revenue_by_business": {
       "Q1_FY2023": {
-        "SeparativeWorkUnits": {
-          "value": 58,
-          "source": "SEC EDGAR inline XBRL — leu-20240331_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20240331_htm.xml"
-        },
-        "Service": {
-          "value": 8,
-          "source": "SEC EDGAR inline XBRL — leu-20240331_htm.xml"
-        },
-        "Product": {
-          "value": 58,
-          "source": "SEC EDGAR inline XBRL — leu-20240331_htm.xml"
-        }
-      },
-      "Q1_FY2024": {
-        "SeparativeWorkUnits": {
-          "value": 23,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        },
-        "Service": {
-          "value": 20,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        },
-        "Product": {
-          "value": 23,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        }
-      },
-      "Q1_FY2025": {
-        "SeparativeWorkUnits": {
-          "value": 51,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        },
-        "Service": {
-          "value": 21,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        },
-        "Product": {
-          "value": 51,
-          "source": "SEC EDGAR inline XBRL — leu-20250331_htm.xml"
-        }
-      },
-      "Q2_FY2020": {
-        "SeparativeWorkUnits": {
-          "value": 58,
-          "source": "SEC EDGAR inline XBRL — leu-20210630_htm.xml"
-        },
-        "Uranium": {
-          "value": 4,
-          "source": "SEC EDGAR inline XBRL — leu-20210630_htm.xml"
-        },
-        "Service": {
-          "value": 12,
-          "source": "SEC EDGAR inline XBRL — leu-20210630_htm.xml"
-        },
-        "Product": {
-          "value": 63,
-          "source": "SEC EDGAR inline XBRL — leu-20210630_htm.xml"
-        }
-      },
-      "Q2_FY2021": {
-        "SeparativeWorkUnits": {
-          "value": 45,
-          "source": "SEC EDGAR inline XBRL — leu-20220630_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20220630_htm.xml"
-        },
-        "Service": {
-          "value": 17,
-          "source": "SEC EDGAR inline XBRL — leu-20220630_htm.xml"
-        },
-        "Product": {
-          "value": 45,
-          "source": "SEC EDGAR inline XBRL — leu-20220630_htm.xml"
-        }
-      },
-      "Q2_FY2022": {
-        "SeparativeWorkUnits": {
-          "value": 85,
-          "source": "SEC EDGAR inline XBRL — leu-20230630_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20230630_htm.xml"
-        },
-        "Service": {
-          "value": 13,
-          "source": "SEC EDGAR inline XBRL — leu-20230630_htm.xml"
-        },
-        "Product": {
-          "value": 85,
-          "source": "SEC EDGAR inline XBRL — leu-20230630_htm.xml"
-        }
+        "LEU Segment": { "value": 58.8, "source": "Centrus 10-Q Q1 2023 — Segment Information" },
+        "Technical Solutions": { "value": 8.1, "source": "Centrus 10-Q Q1 2023 — Segment Information" }
       },
       "Q2_FY2023": {
-        "SeparativeWorkUnits": {
-          "value": 48,
-          "source": "SEC EDGAR inline XBRL — leu-20240630_htm.xml"
-        },
-        "Uranium": {
-          "value": 39,
-          "source": "SEC EDGAR inline XBRL — leu-20240630_htm.xml"
-        },
-        "Service": {
-          "value": 10,
-          "source": "SEC EDGAR inline XBRL — leu-20240630_htm.xml"
-        },
-        "Product": {
-          "value": 87,
-          "source": "SEC EDGAR inline XBRL — leu-20240630_htm.xml"
-        }
-      },
-      "Q2_FY2024": {
-        "SeparativeWorkUnits": {
-          "value": 139,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        },
-        "Uranium": {
-          "value": 29,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        },
-        "Service": {
-          "value": 19,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        },
-        "Product": {
-          "value": 169,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        }
-      },
-      "Q2_FY2025": {
-        "SeparativeWorkUnits": {
-          "value": 125,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        },
-        "Service": {
-          "value": 28,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        },
-        "Product": {
-          "value": 125,
-          "source": "SEC EDGAR inline XBRL — leu-20250630_htm.xml"
-        }
-      },
-      "Q3_FY2019": {
-        "SeparativeWorkUnits": {
-          "value": 75,
-          "source": "SEC EDGAR inline XBRL — leu-20200930_htm.xml"
-        },
-        "Uranium": {
-          "value": 12,
-          "source": "SEC EDGAR inline XBRL — leu-20200930_htm.xml"
-        },
-        "Service": {
-          "value": 16,
-          "source": "SEC EDGAR inline XBRL — leu-20200930_htm.xml"
-        },
-        "Product": {
-          "value": 87,
-          "source": "SEC EDGAR inline XBRL — leu-20200930_htm.xml"
-        }
-      },
-      "Q3_FY2020": {
-        "SeparativeWorkUnits": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20210930_htm.xml"
-        },
-        "Uranium": {
-          "value": 18,
-          "source": "SEC EDGAR inline XBRL — leu-20210930_htm.xml"
-        },
-        "Service": {
-          "value": 14,
-          "source": "SEC EDGAR inline XBRL — leu-20210930_htm.xml"
-        },
-        "Product": {
-          "value": 18,
-          "source": "SEC EDGAR inline XBRL — leu-20210930_htm.xml"
-        }
-      },
-      "Q3_FY2021": {
-        "SeparativeWorkUnits": {
-          "value": 19,
-          "source": "SEC EDGAR inline XBRL — leu-20220930_htm.xml"
-        },
-        "Uranium": {
-          "value": 12,
-          "source": "SEC EDGAR inline XBRL — leu-20220930_htm.xml"
-        },
-        "Service": {
-          "value": 59,
-          "source": "SEC EDGAR inline XBRL — leu-20220930_htm.xml"
-        },
-        "Product": {
-          "value": 32,
-          "source": "SEC EDGAR inline XBRL — leu-20220930_htm.xml"
-        }
-      },
-      "Q3_FY2022": {
-        "SeparativeWorkUnits": {
-          "value": 7,
-          "source": "SEC EDGAR inline XBRL — leu-20230930_htm.xml"
-        },
-        "Uranium": {
-          "value": 12,
-          "source": "SEC EDGAR inline XBRL — leu-20230930_htm.xml"
-        },
-        "Service": {
-          "value": 13,
-          "source": "SEC EDGAR inline XBRL — leu-20230930_htm.xml"
-        },
-        "Product": {
-          "value": 20,
-          "source": "SEC EDGAR inline XBRL — leu-20230930_htm.xml"
-        }
+        "LEU Segment": { "value": 87.6, "source": "Centrus 10-Q Q2 2023 — Segment Information" },
+        "Technical Solutions": { "value": 10.8, "source": "Centrus 10-Q Q2 2023 — Segment Information" }
       },
       "Q3_FY2023": {
-        "SeparativeWorkUnits": {
-          "value": 40,
-          "source": "SEC EDGAR inline XBRL — leu-20240930_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20240930_htm.xml"
-        },
-        "Service": {
-          "value": 10,
-          "source": "SEC EDGAR inline XBRL — leu-20240930_htm.xml"
-        },
-        "Product": {
-          "value": 40,
-          "source": "SEC EDGAR inline XBRL — leu-20240930_htm.xml"
-        }
-      },
-      "Q3_FY2024": {
-        "SeparativeWorkUnits": {
-          "value": 34,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        },
-        "Uranium": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        },
-        "Service": {
-          "value": 22,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        },
-        "Product": {
-          "value": 34,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        }
-      },
-      "Q3_FY2025": {
-        "SeparativeWorkUnits": {
-          "value": 10,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        },
-        "Uranium": {
-          "value": 34,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        },
-        "Service": {
-          "value": 30,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        },
-        "Product": {
-          "value": 44,
-          "source": "SEC EDGAR inline XBRL — leu-20250930_htm.xml"
-        }
-      }
-    },
-    "revenue_by_geography": {
-      "Q4_FY2020": {
-        "BE": {
-          "value": 35,
-          "source": "SEC EDGAR inline XBRL — leu-20201231_htm.xml"
-        }
-      },
-      "Q4_FY2021": {
-        "BE": {
-          "value": 36,
-          "source": "SEC EDGAR inline XBRL — leu-20211231_htm.xml"
-        }
-      },
-      "Q4_FY2022": {
-        "BE": {
-          "value": 38,
-          "source": "SEC EDGAR inline XBRL — leu-20221231_htm.xml"
-        }
+        "LEU Segment": { "value": 40.5, "source": "Centrus 10-Q Q3 2023 — Segment Information" },
+        "Technical Solutions": { "value": 10.8, "source": "Centrus 10-Q Q3 2023 — Segment Information" }
       },
       "Q4_FY2023": {
-        "BE": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20231231_htm.xml"
-        }
+        "LEU Segment": { "value": 82.1, "source": "Centrus 10-K FY2023 (Q4 = FY $269.0M − 9M $186.9M)" },
+        "Technical Solutions": { "value": 21.5, "source": "Centrus 10-K FY2023 (Q4 = FY $51.2M − 9M $29.7M)" }
+      },
+      "Q1_FY2024": {
+        "LEU Segment": { "value": 23.6, "source": "Centrus 10-Q Q1 2024 — Segment Information" },
+        "Technical Solutions": { "value": 20.1, "source": "Centrus 10-Q Q1 2024 — Segment Information" }
+      },
+      "Q2_FY2024": {
+        "LEU Segment": { "value": 169.6, "source": "Centrus 10-Q Q2 2024 — Segment Information" },
+        "Technical Solutions": { "value": 19.4, "source": "Centrus 10-Q Q2 2024 — Segment Information" }
+      },
+      "Q3_FY2024": {
+        "LEU Segment": { "value": 34.8, "source": "Centrus 10-Q Q3 2024 — Segment Information" },
+        "Technical Solutions": { "value": 22.9, "source": "Centrus 10-Q Q3 2024 — Segment Information" }
       },
       "Q4_FY2024": {
-        "BE": {
-          "value": 0,
-          "source": "SEC EDGAR inline XBRL — leu-20241231_htm.xml"
-        }
+        "LEU Segment": { "value": 121.9, "source": "Centrus 10-K FY2024 (Q4 = FY $349.9M − 9M $228.0M)" },
+        "Technical Solutions": { "value": 29.7, "source": "Centrus 10-K FY2024 (Q4 = FY $92.1M − 9M $62.4M)" }
+      },
+      "Q1_FY2025": {
+        "LEU Segment": { "value": 51.3, "source": "Centrus 10-Q Q1 2025 — Segment Information" },
+        "Technical Solutions": { "value": 21.8, "source": "Centrus 10-Q Q1 2025 — Segment Information" }
+      },
+      "Q2_FY2025": {
+        "LEU Segment": { "value": 125.7, "source": "Centrus 10-Q Q2 2025 — Segment Information" },
+        "Technical Solutions": { "value": 28.8, "source": "Centrus 10-Q Q2 2025 — Segment Information" }
+      },
+      "Q3_FY2025": {
+        "LEU Segment": { "value": 44.8, "source": "Centrus 10-Q Q3 2025 — Segment Information" },
+        "Technical Solutions": { "value": 30.1, "source": "Centrus 10-Q Q3 2025 — Segment Information" }
+      },
+      "Q4_FY2025": {
+        "LEU Segment": { "value": 124.4, "source": "Centrus 10-K FY2025 (Q4 = FY $346.2M − 9M $221.8M)" },
+        "Technical Solutions": { "value": 21.8, "source": "Centrus 10-K FY2025 (Q4 = FY $102.5M − 9M $80.7M)" }
+      }
+    },
+    "revenue_by_product": {
+      "Q1_FY2023": {
+        "SWU": { "value": 58.8, "source": "Centrus 10-Q Q1 2023 — LEU Segment Revenue" },
+        "Uranium": { "value": 0, "source": "Centrus 10-Q Q1 2023 — LEU Segment Revenue" }
+      },
+      "Q2_FY2023": {
+        "SWU": { "value": 48.1, "source": "Centrus 10-Q Q2 2023 — LEU Segment Revenue" },
+        "Uranium": { "value": 39.5, "source": "Centrus 10-Q Q2 2023 — LEU Segment Revenue" }
+      },
+      "Q3_FY2023": {
+        "SWU": { "value": 40.5, "source": "Centrus 10-Q Q3 2023 — LEU Segment Revenue" },
+        "Uranium": { "value": 0, "source": "Centrus 10-Q Q3 2023 — LEU Segment Revenue" }
+      },
+      "Q4_FY2023": {
+        "SWU": { "value": 60.8, "source": "Centrus 10-K FY2023 (Q4 = FY $208.2M − 9M $147.4M)" },
+        "Uranium": { "value": 21.3, "source": "Centrus 10-K FY2023 (Q4 = FY $60.8M − 9M $39.5M)" }
+      },
+      "Q1_FY2024": {
+        "SWU": { "value": 23.6, "source": "Centrus 10-Q Q1 2024 — LEU Segment Revenue" },
+        "Uranium": { "value": 0, "source": "Centrus 10-Q Q1 2024 — LEU Segment Revenue" }
+      },
+      "Q2_FY2024": {
+        "SWU": { "value": 139.7, "source": "Centrus 10-Q Q2 2024 — LEU Segment Revenue" },
+        "Uranium": { "value": 29.9, "source": "Centrus 10-Q Q2 2024 — LEU Segment Revenue" }
+      },
+      "Q3_FY2024": {
+        "SWU": { "value": 34.8, "source": "Centrus 10-Q Q3 2024 — LEU Segment Revenue" },
+        "Uranium": { "value": 0, "source": "Centrus 10-Q Q3 2024 — LEU Segment Revenue" }
+      },
+      "Q4_FY2024": {
+        "SWU": { "value": 48.7, "source": "Centrus 10-K FY2024 (Q4 = FY $246.8M − 9M $198.1M)" },
+        "Uranium": { "value": 73.2, "source": "Centrus 10-K FY2024 (Q4 = FY $103.1M − 9M $29.9M)" }
+      },
+      "Q1_FY2025": {
+        "SWU": { "value": 51.3, "source": "Centrus 10-Q Q1 2025 — LEU Segment Revenue" },
+        "Uranium": { "value": 0, "source": "Centrus 10-Q Q1 2025 — LEU Segment Revenue" }
+      },
+      "Q2_FY2025": {
+        "SWU": { "value": 125.7, "source": "Centrus 10-Q Q2 2025 — LEU Segment Revenue" },
+        "Uranium": { "value": 0, "source": "Centrus 10-Q Q2 2025 — LEU Segment Revenue" }
+      },
+      "Q3_FY2025": {
+        "SWU": { "value": 10.7, "source": "Centrus 10-Q Q3 2025 — LEU Segment Revenue" },
+        "Uranium": { "value": 34.1, "source": "Centrus 10-Q Q3 2025 — LEU Segment Revenue" }
+      },
+      "Q4_FY2025": {
+        "SWU": { "value": 111.0, "source": "Centrus 10-K FY2025 (Q4 = FY $298.7M − 9M $187.7M)" },
+        "Uranium": { "value": 13.4, "source": "Centrus 10-K FY2025 (Q4 = FY $47.5M − 9M $34.1M)" }
       }
     }
   }

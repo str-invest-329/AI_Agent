@@ -120,6 +120,20 @@
           "value": 571,
           "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
         }
+      },
+      "Q4_FY2025": {
+        "Datacenter": {
+          "value": 213,
+          "source": "SEC EDGAR inline XBRL — sndk-20250627_htm.xml (Q4 = Annual - Q1-Q3)"
+        },
+        "Edge": {
+          "value": 1103,
+          "source": "SEC EDGAR inline XBRL — sndk-20250627_htm.xml (Q4 = Annual - Q1-Q3)"
+        },
+        "Consumer": {
+          "value": 585,
+          "source": "SEC EDGAR inline XBRL — sndk-20250627_htm.xml (Q4 = Annual - Q1-Q3)"
+        }
       }
     },
     "revenue_by_geography": {
@@ -219,6 +233,20 @@
         "EMEA": {
           "value": 282,
           "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        }
+      },
+      "Q4_FY2025": {
+        "Asia": {
+          "value": 1183,
+          "source": "Sandisk 10-K FY2025 (Q4 = FY $4,457M − Q1-Q3)"
+        },
+        "Americas": {
+          "value": 411,
+          "source": "Sandisk 10-K FY2025 (Q4 = FY $1,618M − Q1-Q3)"
+        },
+        "EMEA": {
+          "value": 307,
+          "source": "Sandisk 10-K FY2025 (Q4 = FY $1,280M − Q1-Q3)"
         }
       }
     }
