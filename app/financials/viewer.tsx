@@ -468,16 +468,34 @@ function TagAuditPanel({ data }: { data: FinData }) {
 }
 
 /* ── Segment Panel ── */
-function SegmentPanel({ suppData }: { suppData: any }) {
+function aggregateSegmentsAnnual(segments: Record<string, Record<string, { value: number; source: string }>>): Record<string, Record<string, { value: number; source: string }>> {
+  const annual: Record<string, Record<string, { value: number; source: string }>> = {};
+  for (const [period, segs] of Object.entries(segments)) {
+    const match = period.match(/Q\d_FY(\d+)/);
+    if (!match) continue;
+    const fy = `FY${match[1]}`;
+    if (!annual[fy]) annual[fy] = {};
+    for (const [name, entry] of Object.entries(segs)) {
+      if (!annual[fy][name]) {
+        annual[fy][name] = { value: 0, source: entry.source };
+      }
+      annual[fy][name].value += entry.value;
+    }
+  }
+  return annual;
+}
+
+function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarterly" | "annual" }) {
   const [segType, setSegType] = useState<"revenue_by_product" | "revenue_by_geography">("revenue_by_product");
 
   if (!suppData?.segments)
     return <div className="p-10 text-center text-sm text-[#7f8c8d]">No segment data available for this ticker.</div>;
 
-  const segments = suppData.segments[segType];
-  if (!segments || !Object.keys(segments).length)
+  const rawSegments = suppData.segments[segType];
+  if (!rawSegments || !Object.keys(rawSegments).length)
     return <div className="p-10 text-center text-sm text-[#7f8c8d]">No {segType === "revenue_by_product" ? "product" : "geography"} segment data.</div>;
 
+  const segments = viewMode === "annual" ? aggregateSegmentsAnnual(rawSegments) : rawSegments;
   const periods = sortPeriods(Object.keys(segments));
   // Collect all segment names across periods
   const segNames = new Set<string>();
@@ -616,7 +634,7 @@ function SegmentPanel({ suppData }: { suppData: any }) {
 }
 
 /* ── Non-GAAP Panel ── */
-function NonGaapPanel({ suppData, gaapData }: { suppData: any; gaapData: FinData }) {
+function NonGaapPanel({ suppData, gaapData, viewMode }: { suppData: any; gaapData: FinData; viewMode: "quarterly" | "annual" }) {
   if (!suppData?.non_gaap || !Object.keys(suppData.non_gaap).length)
     return <div className="p-10 text-center text-sm text-[#7f8c8d]">No Non-GAAP data available for this ticker.</div>;
 
@@ -627,7 +645,6 @@ function NonGaapPanel({ suppData, gaapData }: { suppData: any; gaapData: FinData
   if (!adjEps || !Object.keys(adjEps).length)
     return <div className="p-10 text-center text-sm text-[#7f8c8d]">No adjusted EPS data available.</div>;
 
-  // Get periods (only quarterly, skip FY)
   const allPeriods = sortPeriods(Object.keys(adjEps));
   const quarterlyPeriods = allPeriods.filter((p) => p.startsWith("Q"));
   const annualPeriods = allPeriods.filter((p) => p.startsWith("FY"));
@@ -640,7 +657,7 @@ function NonGaapPanel({ suppData, gaapData }: { suppData: any; gaapData: FinData
       <h3 className="mb-3 text-sm font-bold text-[var(--text)]">Adjusted EPS (Diluted) — GAAP vs Non-GAAP</h3>
 
       {/* Quarterly comparison table */}
-      {quarterlyPeriods.length > 0 && (
+      {viewMode === "quarterly" && quarterlyPeriods.length > 0 && (
         <>
           <div className="mb-2 text-xs font-semibold text-[var(--text-muted)]">Quarterly</div>
           <div className="mb-4 overflow-x-auto rounded-md shadow-sm">
@@ -720,7 +737,7 @@ function NonGaapPanel({ suppData, gaapData }: { suppData: any; gaapData: FinData
       )}
 
       {/* Annual summary */}
-      {annualPeriods.length > 0 && (
+      {viewMode === "annual" && annualPeriods.length > 0 && (
         <>
           <div className="mb-2 text-xs font-semibold text-[var(--text-muted)]">Annual</div>
           <div className="mb-4 overflow-x-auto rounded-md shadow-sm">
@@ -916,8 +933,8 @@ export default function Viewer() {
             {tab === "bs" && <BalanceSheet data={displayData} />}
             {tab === "cf" && <CashFlowStatement data={displayData} />}
             {tab === "ratios" && <RatiosPanel data={displayData} />}
-            {tab === "segments" && <SegmentPanel suppData={suppData} />}
-            {tab === "non-gaap" && <NonGaapPanel suppData={suppData} gaapData={displayData} />}
+            {tab === "segments" && <SegmentPanel suppData={suppData} viewMode={viewMode} />}
+            {tab === "non-gaap" && <NonGaapPanel suppData={suppData} gaapData={displayData} viewMode={viewMode} />}
             {tab === "audit" && <TagAuditPanel data={displayData} />}
           </>
         )}
