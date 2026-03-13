@@ -250,23 +250,72 @@ function DataTable({
 }
 
 /* ── Income Statement ── */
+const IS_CHART_METRICS = [
+  { key: "revenue", label: "Revenue" },
+  { key: "gross_profit", label: "Gross Profit" },
+  { key: "operating_income", label: "Operating Income" },
+  { key: "net_income", label: "Net Income" },
+];
+
 function IncomeStatement({ data, viewMode }: { data: FinData; viewMode: "quarterly" | "annual" }) {
   const [growthMode, setGrowthMode] = useState<GrowthMode>("value");
   // Reset QoQ to Value when switching to Annual
   useEffect(() => { if (viewMode === "annual" && growthMode === "qoq") setGrowthMode("value"); }, [viewMode]);
   const periods = sortPeriods(data.metadata.periods_income_statement || []);
   const rows = buildRows(data.income_statement || {});
+  const is = data.income_statement || {};
   // Incomplete FYs from toAnnualData metadata (only present in annual mode)
   const incompleteFYs = useMemo(() => {
     if (viewMode !== "annual") return new Map<string, number>();
     const raw = data.metadata?.incomplete_fys;
     return raw ? new Map(Object.entries(raw).map(([k, v]) => [k, v as number])) : new Map<string, number>();
   }, [data, viewMode]);
+
+  const chartData = {
+    labels: periods,
+    datasets: IS_CHART_METRICS
+      .filter(({ key }) => is[key])
+      .map(({ key, label }, i) => ({
+        label,
+        data: periods.map((p) => is[key]?.[p] ?? null),
+        borderColor: CHART_COLORS[i % CHART_COLORS.length],
+        backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + "cc",
+        tension: 0.3,
+        pointRadius: 3,
+      })),
+  };
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: "index" as const, intersect: false },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (ctx: any) => `${ctx.dataset.label}: $${ctx.parsed.y?.toLocaleString()}M`,
+        },
+      },
+      legend: { position: "bottom" as const, labels: { boxWidth: 12, font: { size: 11 } } },
+    },
+    scales: {
+      x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
+      y: { ticks: { font: { size: 10 }, callback: (v: any) => `$${v}M` } },
+    },
+  };
+
   return (
     <>
       <div className="mb-3">
         <GrowthToggle mode={growthMode} setMode={setGrowthMode} showQoQ={viewMode === "quarterly"} />
       </div>
+
+      {/* Chart */}
+      <div className="mb-4 rounded-md bg-[var(--bg-card)] p-4 shadow-sm">
+        <div className="relative h-[320px]">
+          <Line data={chartData} options={chartOptions} />
+        </div>
+      </div>
+
       <DataTable periods={periods} rows={rows} data={data} growthMode={growthMode} incompleteFYs={incompleteFYs} />
     </>
   );

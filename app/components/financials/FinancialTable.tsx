@@ -2,12 +2,24 @@
 
 import { useState, useMemo, useEffect } from "react";
 import {
-  TOTAL_KEYS, sortPeriods, fmtVal, labelFor, isPct,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import {
+  TOTAL_KEYS, sortPeriods, fmtVal, labelFor, isPct, CHART_COLORS,
   type ValMap, type FinData,
   type GrowthMode, prevQoQ, prevYoY, growthPct, fmtGrowth, skipGrowthForKey,
   getIncompleteFYs,
 } from "./constants";
 import { useFinancialData, toAnnualData } from "./useFinancialData";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 /* ================================================================
    Row types
@@ -234,6 +246,52 @@ export default function FinancialTable({
           ))}
         </div>
       </div>
+
+      {/* Chart (income statement only) */}
+      {statement === "income_statement" && (() => {
+        const chartMetrics = [
+          { key: "revenue", label: "Revenue" },
+          { key: "gross_profit", label: "Gross Profit" },
+          { key: "operating_income", label: "Operating Income" },
+          { key: "net_income", label: "Net Income" },
+        ].filter(({ key }) => !metrics || metrics.includes(key));
+        const is = displayData[statement] || {};
+        if (!chartMetrics.length) return null;
+        return (
+          <div className="mb-4 rounded-md bg-[var(--bg-card)] p-4 shadow-sm">
+            <div className="relative h-[260px]">
+              <Line
+                data={{
+                  labels: periods,
+                  datasets: chartMetrics
+                    .filter(({ key }) => is[key])
+                    .map(({ key, label }, i) => ({
+                      label,
+                      data: periods.map((p) => is[key]?.[p] ?? null),
+                      borderColor: CHART_COLORS[i % CHART_COLORS.length],
+                      backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + "cc",
+                      tension: 0.3,
+                      pointRadius: 3,
+                    })),
+                }}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  interaction: { mode: "index" as const, intersect: false },
+                  plugins: {
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y?.toLocaleString()}M` } },
+                    legend: { position: "bottom" as const, labels: { boxWidth: 12, font: { size: 11 } } },
+                  },
+                  scales: {
+                    x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
+                    y: { ticks: { font: { size: 10 }, callback: (v) => `$${v}M` } },
+                  },
+                }}
+              />
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Table */}
       <div className="overflow-x-auto rounded-md shadow-sm">
