@@ -505,6 +505,12 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
     });
   };
 
+  // Check if a todo item has any broken anchors
+  const itemHasBrokenAnchor = useCallback((item: TodoItem) => {
+    if (!item.anchor) return false;
+    return item.anchor.some((_, idx) => brokenAnchors.has(`${item.id}-${idx}`));
+  }, [brokenAnchors]);
+
   // Stats
   const openCount = todos.filter((t) => t.status === "open").length;
   const doneCount = todos.filter((t) => t.status === "done").length;
@@ -592,6 +598,9 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
             const sessionOpenCount = session.items.filter(
               (t) => t.status === "open",
             ).length;
+            const sessionErrorCount = session.items.filter(
+              (t) => itemHasBrokenAnchor(t),
+            ).length;
 
             return (
               <div key={date} className="mb-3">
@@ -612,6 +621,11 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
                     )}
                   </div>
                   <div className="flex items-center gap-1.5 text-[0.6rem]">
+                    {sessionErrorCount > 0 && (
+                      <span className="rounded bg-red-50 border border-red-200 px-1.5 py-0.5 font-medium text-red-600 dark:bg-red-950/40 dark:text-red-400 dark:border-red-800">
+                        {sessionErrorCount} error{sessionErrorCount > 1 ? "s" : ""}
+                      </span>
+                    )}
                     {sessionOpenCount > 0 && (
                       <span className="rounded bg-amber-50 border border-amber-200 px-1.5 py-0.5 font-medium text-amber-600 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800">
                         {sessionOpenCount} open
@@ -631,16 +645,19 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
                         item.anchor && item.anchor.length > 0;
                       const isActive = activeItemId === item.id;
                       const isPicking = pickingAnchorForId === item.id;
+                      const hasBroken = itemHasBrokenAnchor(item);
 
                       return (
                         <div
                           key={item.id}
                           className={`rounded-md border px-3 py-2 transition-colors ${
-                            isPicking
-                              ? "border-amber-400 bg-amber-50/50 dark:bg-amber-950/20"
-                              : isActive
-                                ? "border-[var(--primary)] bg-[var(--bg-highlight)]"
-                                : "border-transparent hover:bg-[var(--bg-subtle)]"
+                            hasBroken
+                              ? "border-red-300 bg-red-50/50 dark:border-red-800 dark:bg-red-950/20"
+                              : isPicking
+                                ? "border-amber-400 bg-amber-50/50 dark:bg-amber-950/20"
+                                : isActive
+                                  ? "border-[var(--primary)] bg-[var(--bg-highlight)]"
+                                  : "border-transparent hover:bg-[var(--bg-subtle)]"
                           } ${hasAnchor ? "cursor-pointer" : "cursor-default"}`}
                           onClick={() =>
                             hasAnchor && !isPicking && handleItemClick(item)
@@ -655,11 +672,13 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
                               <Tooltip text={item.content}>
                                 <span
                                   className={`text-xs font-medium ${
-                                    item.status === "done"
-                                      ? "text-[var(--text-muted)] line-through"
-                                      : item.status === "archived"
-                                        ? "text-[var(--text-faint)]"
-                                        : ""
+                                    hasBroken
+                                      ? "text-red-600 dark:text-red-400"
+                                      : item.status === "done"
+                                        ? "text-[var(--text-muted)] line-through"
+                                        : item.status === "archived"
+                                          ? "text-[var(--text-faint)]"
+                                          : ""
                                   }`}
                                 >
                                   {item.title}
