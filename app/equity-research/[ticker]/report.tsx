@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, type ReactNode } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import ThemeToggle from "@/app/components/ThemeToggle";
+import TodoPanel from "@/app/components/TodoPanel";
 
 const RatioChart = dynamic(() => import("@/app/components/financials/RatioChart"), { ssr: false });
 const FinancialTable = dynamic(() => import("@/app/components/financials/FinancialTable"), { ssr: false });
@@ -287,93 +288,101 @@ function renderInline(text: string): ReactNode {
 function BlockRenderer({
   block,
   onImageClick,
+  anchorPrefix,
 }: {
   block: ContentBoxBlock;
   onImageClick: (src: string) => void;
+  anchorPrefix?: string;
 }) {
+  const a = (type: string, idx: number) =>
+    anchorPrefix ? `${anchorPrefix}-${type}-${idx}` : undefined;
+
   return (
-    <ContentBox title={block.title}>
-      {/* Image */}
-      {block.image && (
-        <div
-          className="relative my-2 cursor-zoom-in"
-          onClick={() => onImageClick(block.image!.src)}
-        >
-          <img
-            src={block.image.src}
-            alt={block.image.alt}
-            className="w-full rounded-lg"
-          />
-          <span className="absolute bottom-1 right-2 pointer-events-none text-[0.68rem] text-[var(--text-faint)]">
-            click to expand
-          </span>
-        </div>
-      )}
+    <div data-anchor={anchorPrefix ? `${anchorPrefix}-content-box-0` : undefined}>
+      <ContentBox title={block.title}>
+        {/* Image */}
+        {block.image && (
+          <div
+            className="relative my-2 cursor-zoom-in"
+            data-anchor={a("image", 0)}
+            onClick={() => onImageClick(block.image!.src)}
+          >
+            <img
+              src={block.image.src}
+              alt={block.image.alt}
+              className="w-full rounded-lg"
+            />
+            <span className="absolute bottom-1 right-2 pointer-events-none text-[0.68rem] text-[var(--text-faint)]">
+              click to expand
+            </span>
+          </div>
+        )}
 
-      {/* Table */}
-      {block.table && (
-        <div className="overflow-x-auto">
-          <table className="mb-3 w-full border-collapse">
-            <thead>
-              <tr>
-                {block.table.headers.map((h, i) => (
-                  <th
-                    key={i}
-                    className={block.table!.alignRight?.includes(i) ? TH_R : TH}
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {block.table.rows.map((row, ri) => {
-                const isTotal = row[0]?.startsWith("__");
-                return (
-                  <tr
-                    key={ri}
-                    className={isTotal ? "border-t-2 border-[var(--border)] font-semibold" : ""}
-                  >
-                    {row.map((cell, ci) => (
-                      <td
-                        key={ci}
-                        className={block.table!.alignRight?.includes(ci) ? TD_R : TD}
-                      >
-                        {renderInline(cell)}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      )}
+        {/* Table */}
+        {block.table && (
+          <div className="overflow-x-auto" data-anchor={a("table", 0)}>
+            <table className="mb-3 w-full border-collapse">
+              <thead>
+                <tr>
+                  {block.table.headers.map((h, i) => (
+                    <th
+                      key={i}
+                      className={block.table!.alignRight?.includes(i) ? TH_R : TH}
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.table.rows.map((row, ri) => {
+                  const isTotal = row[0]?.startsWith("__");
+                  return (
+                    <tr
+                      key={ri}
+                      className={isTotal ? "border-t-2 border-[var(--border)] font-semibold" : ""}
+                    >
+                      {row.map((cell, ci) => (
+                        <td
+                          key={ci}
+                          className={block.table!.alignRight?.includes(ci) ? TD_R : TD}
+                        >
+                          {renderInline(cell)}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
 
-      {/* Bullets */}
-      {block.bullets && (
-        <ul className="mb-3 list-disc space-y-1 pl-5 text-[0.95rem]">
-          {block.bullets.items.map((item, i) => (
-            <li key={i}>{renderInline(item)}</li>
-          ))}
-        </ul>
-      )}
+        {/* Bullets */}
+        {block.bullets && (
+          <ul className="mb-3 list-disc space-y-1 pl-5 text-[0.95rem]" data-anchor={a("bullets", 0)}>
+            {block.bullets.items.map((item, i) => (
+              <li key={i}>{renderInline(item)}</li>
+            ))}
+          </ul>
+        )}
 
-      {/* Paragraphs */}
-      {block.paragraphs?.map((p, i) => (
-        <p key={i} className="mb-3 text-[0.95rem] leading-relaxed">
-          {renderInline(p)}
-        </p>
-      ))}
+        {/* Paragraphs */}
+        {block.paragraphs?.map((p, i) => (
+          <p key={i} className="mb-3 text-[0.95rem] leading-relaxed" data-anchor={a("paragraph", i)}>
+            {renderInline(p)}
+          </p>
+        ))}
 
-      {/* Footnote */}
-      {block.footnote && (
-        <div className="text-xs text-[var(--text-faint)]">{block.footnote}</div>
-      )}
+        {/* Footnote */}
+        {block.footnote && (
+          <div className="text-xs text-[var(--text-faint)]">{block.footnote}</div>
+        )}
 
-      {/* Sources */}
-      {block.sources && <Sources list={block.sources} />}
-    </ContentBox>
+        {/* Sources */}
+        {block.sources && <Sources list={block.sources} />}
+      </ContentBox>
+    </div>
   );
 }
 
@@ -875,6 +884,65 @@ export default function Report({ data }: { data: ReportData }) {
 
   return (
     <div className="mx-auto max-w-[1200px] px-8 py-8 pb-16">
+      {/* To-Do Panel */}
+      <TodoPanel ticker={ticker} />
+
+      {/* Highlight styles for To-Do anchors */}
+      <style jsx global>{`
+        .todo-highlight {
+          transition: all 0.3s ease;
+        }
+        /* Text elements: yellow background */
+        p.todo-highlight,
+        ul.todo-highlight,
+        div[data-anchor].todo-highlight > div {
+          background: rgba(250, 204, 21, 0.15);
+          border-radius: 4px;
+        }
+        /* Tables: yellow border */
+        div[data-anchor*="table"].todo-highlight {
+          outline: 2px solid rgba(250, 204, 21, 0.6);
+          outline-offset: 2px;
+          border-radius: 8px;
+        }
+        /* Charts: yellow ring */
+        div[data-anchor*="chart"].todo-highlight,
+        div[data-anchor*="segment"].todo-highlight {
+          outline: 2px solid rgba(250, 204, 21, 0.6);
+          outline-offset: 2px;
+          border-radius: 8px;
+        }
+        /* KV Cards: yellow ring */
+        div[data-anchor*="kvCards"].todo-highlight {
+          outline: 2px solid rgba(250, 204, 21, 0.6);
+          outline-offset: 4px;
+          border-radius: 8px;
+        }
+        /* Content-box: subtle highlight */
+        div[data-anchor*="content-box"].todo-highlight > div {
+          outline: 2px solid rgba(250, 204, 21, 0.4);
+          outline-offset: 0px;
+        }
+        /* Text fragment highlight */
+        mark.todo-text-hl {
+          background: rgba(250, 204, 21, 0.35);
+          border-radius: 2px;
+          padding: 1px 0;
+        }
+        /* Pick-mode: show clickable areas */
+        body.todo-pick-mode [data-anchor] {
+          cursor: crosshair !important;
+          outline: 2px dashed rgba(250, 204, 21, 0.3);
+          outline-offset: 2px;
+          border-radius: 4px;
+          transition: outline-color 0.15s;
+        }
+        body.todo-pick-mode [data-anchor]:hover {
+          outline-color: rgba(250, 204, 21, 0.8);
+          background: rgba(250, 204, 21, 0.08);
+        }
+      `}</style>
+
       <Link
         href="/equity-research"
         className="mb-3 inline-block text-sm font-semibold text-[var(--primary)] opacity-70 transition-opacity hover:opacity-100"
@@ -922,7 +990,10 @@ export default function Report({ data }: { data: ReportData }) {
 
               {/* KV Cards */}
               {sec.kvCards && sec.kvCards.length > 0 && (
-                <div className="mb-4 grid gap-4 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
+                <div
+                  className="mb-4 grid gap-4 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]"
+                  data-anchor={`${sec.id}-0-kvCards-0`}
+                >
                   {sec.kvCards.map((kv, i) => (
                     <KvCard key={i} {...kv} />
                   ))}
@@ -931,9 +1002,10 @@ export default function Report({ data }: { data: ReportData }) {
 
               {/* Blocks */}
               {sec.blocks.map((block, i) => {
+                const ap = `${sec.id}-${i}`;
                 if (block.type === "financial-chart") {
                   return (
-                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
+                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm" data-anchor={`${ap}-chart-0`}>
                       {block.title && (
                         <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
                           {block.title}
@@ -951,7 +1023,7 @@ export default function Report({ data }: { data: ReportData }) {
                 }
                 if (block.type === "financial-table") {
                   return (
-                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
+                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm" data-anchor={`${ap}-financial-table-0`}>
                       {block.title && (
                         <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
                           {block.title}
@@ -969,7 +1041,7 @@ export default function Report({ data }: { data: ReportData }) {
                 }
                 if (block.type === "segment-table") {
                   return (
-                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
+                    <div key={i} className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm" data-anchor={`${ap}-segment-table-0`}>
                       {block.title && (
                         <h3 className="mb-3 border-b border-[var(--bg-subtle)] pb-1.5 text-[0.95rem] font-semibold">
                           {block.title}
@@ -984,7 +1056,7 @@ export default function Report({ data }: { data: ReportData }) {
                     </div>
                   );
                 }
-                return <BlockRenderer key={i} block={block as ContentBoxBlock} onImageClick={openLightbox} />;
+                return <BlockRenderer key={i} block={block as ContentBoxBlock} onImageClick={openLightbox} anchorPrefix={ap} />;
               })}
             </section>
           ))}
