@@ -13,11 +13,33 @@
           "id": "sec-overview",
           "title": "01 · 企業概述",
           "kvCards": [
-            { "label": "Ticker", "value": "SNDK", "sub": "Nasdaq" },
-            { "label": "總部", "value": "Milpitas, CA", "sub": "951 Sandisk Drive", "valueClass": "text-lg" },
-            { "label": "員工數", "value": "~11,000" },
-            { "label": "上市日期", "value": "2025/02/24", "sub": "WDC 分拆重新上市", "valueClass": "text-lg" },
-            { "label": "財年", "value": "7 月 ~ 6 月", "sub": "FY2025 截至 2025/06/27", "valueClass": "text-lg" }
+            {
+              "label": "Ticker",
+              "value": "SNDK",
+              "sub": "Nasdaq"
+            },
+            {
+              "label": "總部",
+              "value": "Milpitas, CA",
+              "sub": "951 Sandisk Drive",
+              "valueClass": "text-lg"
+            },
+            {
+              "label": "員工數",
+              "value": "~11,000"
+            },
+            {
+              "label": "上市日期",
+              "value": "2025/02/24",
+              "sub": "WDC 分拆重新上市",
+              "valueClass": "text-lg"
+            },
+            {
+              "label": "財年",
+              "value": "7 月 ~ 6 月",
+              "sub": "FY2025 截至 2025/06/27",
+              "valueClass": "text-lg"
+            }
           ],
           "blocks": [
             {
@@ -36,18 +58,31 @@
                   "label": "SEC EDGAR — SNDK 10-K Filing",
                   "href": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002023554&type=10-K"
                 }
-              ]
+              ],
+              "id": "blk-company-background"
             },
             {
               "type": "content-box",
               "title": "WDC 分拆歷程",
               "table": {
-                "headers": ["時間", "事件"],
+                "headers": [
+                  "時間",
+                  "事件"
+                ],
                 "alignRight": [],
                 "rows": [
-                  ["2016 年 5 月", "Western Digital 以 ~$19B 收購 SanDisk，SanDisk 從 Nasdaq 下市"],
-                  ["2023 年 10 月", "WDC 宣布將 HDD 與 Flash 事業分拆為兩家獨立上市公司"],
-                  ["2025 年 2 月 24 日", "分拆完成，Sandisk 以 SNDK 重新於 Nasdaq 掛牌交易"]
+                  [
+                    "2016 年 5 月",
+                    "Western Digital 以 ~$19B 收購 SanDisk，SanDisk 從 Nasdaq 下市"
+                  ],
+                  [
+                    "2023 年 10 月",
+                    "WDC 宣布將 HDD 與 Flash 事業分拆為兩家獨立上市公司"
+                  ],
+                  [
+                    "2025 年 2 月 24 日",
+                    "分拆完成，Sandisk 以 SNDK 重新於 Nasdaq 掛牌交易"
+                  ]
                 ]
               },
               "paragraphs": [
@@ -62,25 +97,51 @@
                   "label": "Sandisk — Corporate Separation and Brand FAQ",
                   "href": "https://www.sandisk.com/sandisk-separation-faqs"
                 }
-              ]
+              ],
+              "id": "blk-wdc-spinoff-history"
             },
             {
               "type": "content-box",
               "title": "管理層",
               "table": {
-                "headers": ["職位", "姓名", "背景"],
+                "headers": [
+                  "職位",
+                  "姓名",
+                  "背景"
+                ],
                 "alignRight": [],
                 "rows": [
-                  ["CEO & Chairman", "David V. Goeckeler", "原 WDC CEO，主導分拆"],
-                  ["CFO", "Luis Felipe Visoso", "前 Unity Software CFO；曾任 Palo Alto Networks、AWS CFO"],
-                  ["CTO", "Alper Ilkbahar", "負責 NAND 技術開發與次世代技術；前 WDC SVP / Intel Optane GM"],
-                  ["COO", "Don Angspatt", "負責全球營運、晶圓廠、封測、供應鏈、採購、IT"],
-                  ["CRO", "Jim Elliott", "負責營收成長與市場拓展"]
+                  [
+                    "CEO & Chairman",
+                    "David V. Goeckeler",
+                    "原 WDC CEO，主導分拆"
+                  ],
+                  [
+                    "CFO",
+                    "Luis Felipe Visoso",
+                    "前 Unity Software CFO；曾任 Palo Alto Networks、AWS CFO"
+                  ],
+                  [
+                    "CTO",
+                    "Alper Ilkbahar",
+                    "負責 NAND 技術開發與次世代技術；前 WDC SVP / Intel Optane GM"
+                  ],
+                  [
+                    "COO",
+                    "Don Angspatt",
+                    "負責全球營運、晶圓廠、封測、供應鏈、採購、IT"
+                  ],
+                  [
+                    "CRO",
+                    "Jim Elliott",
+                    "負責營收成長與市場拓展"
+                  ]
                 ]
               },
               "paragraphs": [
                 "董事會由 8 名董事組成，其中 7 名為外部獨立董事。"
-              ]
+              ],
+              "id": "blk-management"
             }
           ]
         },
@@ -103,19 +164,60 @@
                   "label": "SEC — SNDK 10-K Annual Report (FY2025)",
                   "href": "https://last10k.com/sec-filings/sndk/0002023554-25-000034.htm"
                 }
-              ]
+              ],
+              "id": "blk-core-process"
             },
             {
               "type": "content-box",
               "title": "營收結構：三大終端市場",
               "table": {
-                "headers": ["終端市場", "說明", "FY2025 營收", "佔比", "Q2 FY2026", "佔比"],
-                "alignRight": [2, 3, 4, 5],
+                "headers": [
+                  "終端市場",
+                  "說明",
+                  "FY2025 營收",
+                  "佔比",
+                  "Q2 FY2026",
+                  "佔比"
+                ],
+                "alignRight": [
+                  2,
+                  3,
+                  4,
+                  5
+                ],
                 "rows": [
-                  ["**Edge**（原 Client）", "PC / 筆電 / 遊戲主機 / 車用 / 行動裝置 SSD 與嵌入式儲存", "$4,127M", "56.1%", "$1,700M", "56.1%"],
-                  ["**Consumer**", "記憶卡、USB 隨身碟、可攜式 SSD 等零售產品", "$2,268M", "30.8%", "$907M", "29.9%"],
-                  ["**Datacenter**（原 Cloud）", "企業級 SSD、AI 推論儲存、超大規模資料中心", "$960M", "13.1%", "$440M", "14.5%"],
-                  ["__合計__", "", "$7,355M", "100%", "$3,030M", "100%"]
+                  [
+                    "**Edge**（原 Client）",
+                    "PC / 筆電 / 遊戲主機 / 車用 / 行動裝置 SSD 與嵌入式儲存",
+                    "$4,127M",
+                    "56.1%",
+                    "$1,700M",
+                    "56.1%"
+                  ],
+                  [
+                    "**Consumer**",
+                    "記憶卡、USB 隨身碟、可攜式 SSD 等零售產品",
+                    "$2,268M",
+                    "30.8%",
+                    "$907M",
+                    "29.9%"
+                  ],
+                  [
+                    "**Datacenter**（原 Cloud）",
+                    "企業級 SSD、AI 推論儲存、超大規模資料中心",
+                    "$960M",
+                    "13.1%",
+                    "$440M",
+                    "14.5%"
+                  ],
+                  [
+                    "__合計__",
+                    "",
+                    "$7,355M",
+                    "100%",
+                    "$3,030M",
+                    "100%"
+                  ]
                 ]
               },
               "paragraphs": [
@@ -131,7 +233,8 @@
                   "label": "Sandisk IR — Q2 FY2026 Financial Results (2026/01/29)",
                   "href": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-second-quarter-2026-financial-results"
                 }
-              ]
+              ],
+              "id": "blk-revenue-structure"
             }
           ]
         },
@@ -143,16 +246,48 @@
               "type": "content-box",
               "title": "產品線總覽",
               "table": {
-                "headers": ["終端市場", "產品類別", "說明"],
+                "headers": [
+                  "終端市場",
+                  "產品類別",
+                  "說明"
+                ],
                 "alignRight": [],
                 "rows": [
-                  ["**Datacenter**", "Stargate（QLC storage-class eSSD）", "BiCS8 QLC，128TB 正在 qualifying（CY2026），256TB 預計 mid-to-late CY2027 上市"],
-                  ["", "Compute-focused TLC enterprise SSD", "PCIe Gen 5 高效能 TLC drive，已在多家 hyperscaler 完成 qualification，BiCS8 TLC 版本接續導入"],
-                  ["", "HBF（High-Bandwidth Flash）", "針對 AI 推論的高頻寬 Flash 方案，與 SK Hynix 合作；memory late 2026、controller 2027"],
-                  ["**Edge**", "OEM Flash 解決方案", "PC / 筆電 / 行動裝置 / 遊戲主機 / 車用 / VR 的嵌入式 SSD 與儲存模組"],
-                  ["**Consumer**", "Sandisk Optimus NVMe SSD", "CES 2026 發表，重新命名的消費級 NVMe SSD 產品線"],
-                  ["", "microSD / SD 記憶卡", "Nintendo Switch 2 microSD Express（Q1 出貨 90 萬+）、ROG Xbox Ally microSD 等"],
-                  ["", "USB 隨身碟 / 可攜式 SSD", "Extreme Fit USB-C 等零售產品，含 Crayola / FIFA 聯名款"]
+                  [
+                    "**Datacenter**",
+                    "Stargate（QLC storage-class eSSD）",
+                    "BiCS8 QLC，128TB 正在 qualifying（CY2026），256TB 預計 mid-to-late CY2027 上市"
+                  ],
+                  [
+                    "",
+                    "Compute-focused TLC enterprise SSD",
+                    "PCIe Gen 5 高效能 TLC drive，已在多家 hyperscaler 完成 qualification，BiCS8 TLC 版本接續導入"
+                  ],
+                  [
+                    "",
+                    "HBF（High-Bandwidth Flash）",
+                    "針對 AI 推論的高頻寬 Flash 方案，與 SK Hynix 合作；memory late 2026、controller 2027"
+                  ],
+                  [
+                    "**Edge**",
+                    "OEM Flash 解決方案",
+                    "PC / 筆電 / 行動裝置 / 遊戲主機 / 車用 / VR 的嵌入式 SSD 與儲存模組"
+                  ],
+                  [
+                    "**Consumer**",
+                    "Sandisk Optimus NVMe SSD",
+                    "CES 2026 發表，重新命名的消費級 NVMe SSD 產品線"
+                  ],
+                  [
+                    "",
+                    "microSD / SD 記憶卡",
+                    "Nintendo Switch 2 microSD Express（Q1 出貨 90 萬+）、ROG Xbox Ally microSD 等"
+                  ],
+                  [
+                    "",
+                    "USB 隨身碟 / 可攜式 SSD",
+                    "Extreme Fit USB-C 等零售產品，含 Crayola / FIFA 聯名款"
+                  ]
                 ]
               },
               "sources": [
@@ -164,7 +299,8 @@
                   "label": "Sandisk Q2 FY2026 Earnings Call Transcript",
                   "href": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-second-quarter-2026-financial-results"
                 }
-              ]
+              ],
+              "id": "blk-product-lineup"
             },
             {
               "type": "content-box",
@@ -184,7 +320,8 @@
                   "label": "Sandisk Q2 FY2026 Earnings Call Transcript — Stargate qualification & KV Cache demand",
                   "href": "https://investor.sandisk.com/news-releases/news-release-details/sandisk-reports-fiscal-second-quarter-2026-financial-results"
                 }
-              ]
+              ],
+              "id": "blk-key-technology"
             }
           ]
         },
@@ -197,7 +334,8 @@
               "title": "4.1 總體產業成長趨勢",
               "paragraphs": [
                 "（待補充）"
-              ]
+              ],
+              "id": "blk-industry-growth-trend"
             }
           ]
         },
@@ -209,14 +347,62 @@
               "type": "content-box",
               "title": "5.1 NAND 技術世代比較",
               "table": {
-                "headers": ["廠商", "最新節點", "層數", "架構", "Per-Die 容量", "I/O 速率", "量產狀態（截至 2025 Q3）"],
+                "headers": [
+                  "廠商",
+                  "最新節點",
+                  "層數",
+                  "架構",
+                  "Per-Die 容量",
+                  "I/O 速率",
+                  "量產狀態（截至 2025 Q3）"
+                ],
                 "alignRight": [],
                 "rows": [
-                  ["**Samsung**", "V9 (9th-gen)", "~280", "Double-stack", "1Tb (TLC & QLC)", "3.2 Gb/s (Toggle 5.1)", "TLC 量產 (2024/04)；QLC 延遲至 H1 2026（良率問題）"],
-                  ["**Kioxia / Sandisk**", "BiCS8", "218", "CBA + OPS", "1Tb TLC / 2Tb QLC", "3.2 Gb/s", "TLC & QLC 量產中；BiCS8 佔 Sandisk 15% bit shipment (Q1 FY26)"],
-                  ["**Micron**", "G9", "276", "CuA, 6-plane", "1Tb TLC / 2Tb QLC", "3.6 GT/s (ONFi 5.1)", "TLC 量產；G9 QLC 已出貨 OEM"],
-                  ["**SK Hynix**", "321L 4D NAND", "321", "PuC, 6-plane", "2Tb QLC", "未公開（速度倍增）", "全球首家 >300 層 QLC，量產開始 (2025/08)"],
-                  ["**YMTC**", "X4-9070", "232 (294 total)", "Xtacking 4.0", "1TB TLC", "3.6 GT/s", "TLC 量產；受美國出口管制，目標 15% 全球份額"]
+                  [
+                    "**Samsung**",
+                    "V9 (9th-gen)",
+                    "~280",
+                    "Double-stack",
+                    "1Tb (TLC & QLC)",
+                    "3.2 Gb/s (Toggle 5.1)",
+                    "TLC 量產 (2024/04)；QLC 延遲至 H1 2026（良率問題）"
+                  ],
+                  [
+                    "**Kioxia / Sandisk**",
+                    "BiCS8",
+                    "218",
+                    "CBA + OPS",
+                    "1Tb TLC / 2Tb QLC",
+                    "3.2 Gb/s",
+                    "TLC & QLC 量產中；BiCS8 佔 Sandisk 15% bit shipment (Q1 FY26)"
+                  ],
+                  [
+                    "**Micron**",
+                    "G9",
+                    "276",
+                    "CuA, 6-plane",
+                    "1Tb TLC / 2Tb QLC",
+                    "3.6 GT/s (ONFi 5.1)",
+                    "TLC 量產；G9 QLC 已出貨 OEM"
+                  ],
+                  [
+                    "**SK Hynix**",
+                    "321L 4D NAND",
+                    "321",
+                    "PuC, 6-plane",
+                    "2Tb QLC",
+                    "未公開（速度倍增）",
+                    "全球首家 >300 層 QLC，量產開始 (2025/08)"
+                  ],
+                  [
+                    "**YMTC**",
+                    "X4-9070",
+                    "232 (294 total)",
+                    "Xtacking 4.0",
+                    "1TB TLC",
+                    "3.6 GT/s",
+                    "TLC 量產；受美國出口管制，目標 15% 全球份額"
+                  ]
                 ]
               },
               "sources": [
@@ -240,21 +426,64 @@
                   "label": "Tom's Hardware — Inside the Future of 3D NAND: Roadmap to 500 Layers (2025/08/06)",
                   "href": "https://www.tomshardware.com/pc-components/storage/inside-the-future-of-3d-nand-the-roadmap-to-500-layers"
                 }
-              ]
+              ],
+              "id": "blk-nand-tech-comparison"
             },
             {
               "type": "content-box",
               "title": "5.2 次世代 NAND Roadmap",
               "table": {
-                "headers": ["廠商", "次世代節點", "預計層數", "關鍵升級", "預計時程"],
+                "headers": [
+                  "廠商",
+                  "次世代節點",
+                  "預計層數",
+                  "關鍵升級",
+                  "預計時程"
+                ],
                 "alignRight": [],
                 "rows": [
-                  ["**Samsung**", "V10", "400+", "BV NAND（bonding vertical），分離晶圓鍵合；bit density +60%", "H2 2026（TLC）"],
-                  ["**Kioxia / Sandisk**", "BiCS9", "218", "同層數但升級 Toggle DDR 6.0 @ 4.8 GT/s（效能導向）", "2026，Yokkaichi 量產"],
-                  ["**Kioxia / Sandisk**", "BiCS10", "332", "CBA + Toggle DDR 6.0 @ 4.8 GT/s；bit density 29 Gb/mm²，+59%", "2026–2027，Kitakami Fab 2"],
-                  ["**Micron**", "B78 (G10)", "300+（推估）", "4.8 GT/s interface", "H1 2027"],
-                  ["**SK Hynix**", "V10", "400+", "TLC & QLC，4.8 GT/s；244 TB eSSD 目標", "H2 2026–2027"],
-                  ["**YMTC**", "X5-9080", "300+（推估）", "2TB TLC/QLC，4.8 GT/s", "2026"]
+                  [
+                    "**Samsung**",
+                    "V10",
+                    "400+",
+                    "BV NAND（bonding vertical），分離晶圓鍵合；bit density +60%",
+                    "H2 2026（TLC）"
+                  ],
+                  [
+                    "**Kioxia / Sandisk**",
+                    "BiCS9",
+                    "218",
+                    "同層數但升級 Toggle DDR 6.0 @ 4.8 GT/s（效能導向）",
+                    "2026，Yokkaichi 量產"
+                  ],
+                  [
+                    "**Kioxia / Sandisk**",
+                    "BiCS10",
+                    "332",
+                    "CBA + Toggle DDR 6.0 @ 4.8 GT/s；bit density 29 Gb/mm²，+59%",
+                    "2026–2027，Kitakami Fab 2"
+                  ],
+                  [
+                    "**Micron**",
+                    "B78 (G10)",
+                    "300+（推估）",
+                    "4.8 GT/s interface",
+                    "H1 2027"
+                  ],
+                  [
+                    "**SK Hynix**",
+                    "V10",
+                    "400+",
+                    "TLC & QLC，4.8 GT/s；244 TB eSSD 目標",
+                    "H2 2026–2027"
+                  ],
+                  [
+                    "**YMTC**",
+                    "X5-9080",
+                    "300+（推估）",
+                    "2TB TLC/QLC，4.8 GT/s",
+                    "2026"
+                  ]
                 ]
               },
               "paragraphs": [
@@ -277,7 +506,8 @@
                   "label": "NotebookCheck — YMTC Builds Homegrown NAND Line (2025/07/22)",
                   "href": "https://www.notebookcheck.net/YMTC-builds-homegrown-NAND-production-line-to-sidestep-U-S-sanctions.1064510.0.html"
                 }
-              ]
+              ],
+              "id": "blk-nand-roadmap"
             },
             {
               "type": "content-box",
@@ -305,7 +535,8 @@
                   "label": "Sandisk 10-K FY2025 — Competition Section",
                   "href": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002023554&type=10-K"
                 }
-              ]
+              ],
+              "id": "blk-sandisk-competitive-position"
             }
           ]
         },
@@ -329,7 +560,16 @@
               "type": "financial-table",
               "title": "損益表（關鍵指標）",
               "statement": "income_statement",
-              "metrics": ["revenue", "gross_profit", "gross_margin_pct", "operating_income", "operating_margin_pct", "net_income", "net_margin_pct", "eps_diluted"],
+              "metrics": [
+                "revenue",
+                "gross_profit",
+                "gross_margin_pct",
+                "operating_income",
+                "operating_margin_pct",
+                "net_income",
+                "net_margin_pct",
+                "eps_diluted"
+              ],
               "maxPeriods": 6,
               "defaultView": "quarterly"
             }
@@ -355,8 +595,16 @@
             {
               "type": "financial-chart",
               "title": "獲利能力趨勢",
-              "metrics": ["gross_margin_pct", "operating_margin_pct", "net_margin_pct", "fcf_margin_pct"],
-              "defaultSelected": ["gross_margin_pct", "operating_margin_pct"],
+              "metrics": [
+                "gross_margin_pct",
+                "operating_margin_pct",
+                "net_margin_pct",
+                "fcf_margin_pct"
+              ],
+              "defaultSelected": [
+                "gross_margin_pct",
+                "operating_margin_pct"
+              ],
               "height": 300,
               "defaultView": "quarterly"
             }
@@ -369,8 +617,15 @@
             {
               "type": "financial-chart",
               "title": "資本報酬趨勢",
-              "metrics": ["roe", "roa", "asset_turnover"],
-              "defaultSelected": ["roe", "roa"],
+              "metrics": [
+                "roe",
+                "roa",
+                "asset_turnover"
+              ],
+              "defaultSelected": [
+                "roe",
+                "roa"
+              ],
               "height": 300,
               "defaultView": "quarterly"
             }
@@ -383,8 +638,19 @@
             {
               "type": "financial-chart",
               "title": "流動性與槓桿趨勢",
-              "metrics": ["current_ratio", "quick_ratio", "debt_to_equity", "net_debt_to_equity", "equity_ratio", "interest_coverage"],
-              "defaultSelected": ["current_ratio", "quick_ratio", "debt_to_equity"],
+              "metrics": [
+                "current_ratio",
+                "quick_ratio",
+                "debt_to_equity",
+                "net_debt_to_equity",
+                "equity_ratio",
+                "interest_coverage"
+              ],
+              "defaultSelected": [
+                "current_ratio",
+                "quick_ratio",
+                "debt_to_equity"
+              ],
               "height": 300,
               "defaultView": "quarterly"
             }
@@ -421,7 +687,12 @@
         {
           "type": "pe",
           "title": "P/E",
-          "peLabels": ["災難事件", "悲觀估值", "中間估值", "樂觀估值"],
+          "peLabels": [
+            "災難事件",
+            "悲觀估值",
+            "中間估值",
+            "樂觀估值"
+          ],
           "versions": [
             {
               "id": "v1",
@@ -433,13 +704,47 @@
               "details": [
                 "（待補充推估依據）"
               ],
-              "peRatios": [10, 15, 18, 20],
-              "eps": { "bear": 32.71, "base": 36.85, "bull": 40.05, "ttm": 5.06 },
+              "peRatios": [
+                10,
+                15,
+                18,
+                20
+              ],
+              "eps": {
+                "bear": 32.71,
+                "base": 36.85,
+                "bull": 40.05,
+                "ttm": 5.06
+              },
               "quarterly": [
-                { "label": "Q1", "bear": 0.75, "base": 0.75, "bull": 0.75, "isActual": true },
-                { "label": "Q2", "bear": 5.15, "base": 5.15, "bull": 5.15, "isActual": true },
-                { "label": "Q3", "bear": 12.12, "base": 14.02, "bull": 14.91, "isActual": false },
-                { "label": "Q4", "bear": 14.69, "base": 16.93, "bull": 19.24, "isActual": false }
+                {
+                  "label": "Q1",
+                  "bear": 0.75,
+                  "base": 0.75,
+                  "bull": 0.75,
+                  "isActual": true
+                },
+                {
+                  "label": "Q2",
+                  "bear": 5.15,
+                  "base": 5.15,
+                  "bull": 5.15,
+                  "isActual": true
+                },
+                {
+                  "label": "Q3",
+                  "bear": 12.12,
+                  "base": 14.02,
+                  "bull": 14.91,
+                  "isActual": false
+                },
+                {
+                  "label": "Q4",
+                  "bear": 14.69,
+                  "base": 16.93,
+                  "bull": 19.24,
+                  "isActual": false
+                }
               ]
             }
           ]
@@ -450,6 +755,12 @@
           "placeholder": "待建模"
         }
       ]
+    },
+    {
+      "id": "ch-archive",
+      "title": "Archive",
+      "numeral": "VI",
+      "sections": []
     }
   ]
 }

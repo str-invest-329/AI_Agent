@@ -35,6 +35,7 @@ interface BulletList {
 
 interface ContentBoxBlock {
   type: "content-box";
+  id?: string;
   title?: string;
   paragraphs?: string[];
   table?: TableData;
@@ -294,11 +295,15 @@ function BlockRenderer({
   onImageClick: (src: string) => void;
   anchorPrefix?: string;
 }) {
-  const a = (type: string, idx: number) =>
-    anchorPrefix ? `${anchorPrefix}-${type}-${idx}` : undefined;
+  // If block has an id, use it as the primary anchor; otherwise fall back to positional
+  const blockAnchor = block.id || (anchorPrefix ? `${anchorPrefix}-content-box-0` : undefined);
+  const a = (type: string, idx: number) => {
+    if (block.id) return `${block.id}--${type}-${idx}`;
+    return anchorPrefix ? `${anchorPrefix}-${type}-${idx}` : undefined;
+  };
 
   return (
-    <div data-anchor={anchorPrefix ? `${anchorPrefix}-content-box-0` : undefined}>
+    <div data-anchor={blockAnchor}>
       <ContentBox title={block.title}>
         {/* Image */}
         {block.image && (

@@ -7,11 +7,14 @@ import { createPortal } from "react-dom";
    Types
    ---------------------------------------------------------------- */
 interface AnchorPoint {
-  sectionId: string;
-  boxIndex: number;
-  elementType: string;
-  elementIndex: number;
+  blockId?: string;          // preferred: content-level ID (survives moves)
+  sectionId?: string;        // fallback: positional
+  boxIndex?: number;
+  elementType?: string;
+  elementIndex?: number;
+  subAnchor?: string;        // e.g. "table-0" within a blockId
   textFragment?: string;
+  textOffset?: number;        // char offset within element's textContent (disambiguates duplicate fragments)
   label?: string;
 }
 
@@ -49,10 +52,35 @@ function clearAllHighlights() {
   });
 }
 
-function highlightTextInElement(el: Element, fragment: string) {
+function highlightTextInElement(el: Element, fragment: string, textOffset?: number) {
   const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   let node: Text | null;
+  let charsSoFar = 0; // running offset within el.textContent
+
   while ((node = walker.nextNode() as Text | null)) {
+    const nodeLen = node.textContent?.length ?? 0;
+
+    // If we have a precise offset, use it to skip to the right text node
+    if (textOffset != null) {
+      if (charsSoFar + nodeLen <= textOffset) {
+        charsSoFar += nodeLen;
+        continue;
+      }
+      const localIdx = textOffset - charsSoFar;
+      if (node.textContent?.substring(localIdx, localIdx + fragment.length) === fragment) {
+        const range = document.createRange();
+        range.setStart(node, localIdx);
+        range.setEnd(node, localIdx + fragment.length);
+        const mark = document.createElement("mark");
+        mark.className = "todo-text-hl";
+        range.surroundContents(mark);
+        return true;
+      }
+      charsSoFar += nodeLen;
+      continue;
+    }
+
+    // Fallback: no offset, match first occurrence
     const idx = node.textContent?.indexOf(fragment) ?? -1;
     if (idx === -1) continue;
     const range = document.createRange();
@@ -66,14 +94,31 @@ function highlightTextInElement(el: Element, fragment: string) {
   return false;
 }
 
+function resolveAnchorSelector(anchor: AnchorPoint): string | null {
+  // If sub-anchor within a block (e.g. specific table inside a content-box)
+  if (anchor.blockId && anchor.subAnchor) {
+    return `${anchor.blockId}--${anchor.subAnchor}`;
+  }
+  // Block-level anchor
+  if (anchor.blockId) {
+    return anchor.blockId;
+  }
+  // Positional fallback
+  if (anchor.sectionId != null && anchor.boxIndex != null && anchor.elementType && anchor.elementIndex != null) {
+    return `${anchor.sectionId}-${anchor.boxIndex}-${anchor.elementType}-${anchor.elementIndex}`;
+  }
+  return null;
+}
+
 function scrollToAnchor(anchor: AnchorPoint) {
-  const anchorId = `${anchor.sectionId}-${anchor.boxIndex}-${anchor.elementType}-${anchor.elementIndex}`;
-  const el = document.querySelector(`[data-anchor="${anchorId}"]`);
+  const selector = resolveAnchorSelector(anchor);
+  if (!selector) return;
+  const el = document.querySelector(`[data-anchor="${selector}"]`);
   if (!el) return;
 
   el.classList.add("todo-highlight");
   if (anchor.textFragment) {
-    highlightTextInElement(el, anchor.textFragment);
+    highlightTextInElement(el, anchor.textFragment, anchor.textOffset);
   }
   el.scrollIntoView({ behavior: "smooth", block: "center" });
 }
@@ -181,6 +226,40 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
   const [activeItemId, setActiveItemId] = useState<string | null>(null);
   const [pickingAnchorForId, setPickingAnchorForId] = useState<string | null>(null);
   const [lockedItems, setLockedItems] = useState<Set<string>>(new Set());
+  // Track broken anchors: key = "todoId-anchorIdx"
+  const [brokenAnchors, setBrokenAnchors] = useState<Set<string>>(new Set());
+
+  // Validate all anchors against the DOM (element existence + textFragment/textOffset)
+  const validateAnchors = useCallback(() => {
+    const broken = new Set<string>();
+    for (const todo of todos) {
+      if (!todo.anchor) continue;
+      todo.anchor.forEach((a, idx) => {
+        const selector = resolveAnchorSelector(a);
+        if (!selector) { broken.add(`${todo.id}-${idx}`); return; }
+        const el = document.querySelector(`[data-anchor="${selector}"]`);
+        if (!el) { broken.add(`${todo.id}-${idx}`); return; }
+        // Check textFragment + textOffset precision
+        if (a.textFragment && a.textOffset != null) {
+          const text = el.textContent || "";
+          const actual = text.substring(a.textOffset, a.textOffset + a.textFragment.length);
+          if (actual !== a.textFragment) {
+            broken.add(`${todo.id}-${idx}`);
+          }
+        }
+      });
+    }
+    setBrokenAnchors(broken);
+  }, [todos]);
+
+  // Re-validate when todos change or panel opens
+  useEffect(() => {
+    if (isOpen && todos.length > 0) {
+      // Small delay to ensure DOM is rendered
+      const timer = setTimeout(validateAnchors, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, todos, validateAnchors]);
 
   // Fetch todos
   const fetchTodos = useCallback(async () => {
@@ -222,28 +301,68 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
       const panel = (e.target as HTMLElement).closest("[data-todo-panel]");
       if (panel) return;
 
-      const target = (e.target as HTMLElement).closest("[data-anchor]");
+      // Determine target: prefer selection's position for precision, fallback to e.target
+      let target: Element | null = null;
+      let textFragment: string | undefined;
+
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
+        const selected = sel.toString().trim();
+        if (selected.length > 0) {
+          textFragment = selected;
+          // Use selection start to find the most specific anchor element
+          const startNode = sel.getRangeAt(0).startContainer;
+          const startEl = startNode.nodeType === Node.TEXT_NODE
+            ? startNode.parentElement
+            : (startNode as HTMLElement);
+          target = startEl?.closest("[data-anchor]") || null;
+        }
+      }
+
+      // Fallback to click target if no text was selected
+      if (!target) {
+        target = (e.target as HTMLElement).closest("[data-anchor]");
+      }
+
       if (!target) return;
       const anchorId = target.getAttribute("data-anchor");
       if (!anchorId) return;
 
       e.preventDefault();
 
-      const parsed = parseAnchorId(anchorId);
-      if (!parsed) return;
+      // Determine if this is a blockId anchor or a positional anchor
+      const isBlockId = anchorId.startsWith("blk-");
+      const isSubAnchor = anchorId.includes("--");
 
-      // Check if user has selected text within this element
-      let textFragment: string | undefined;
-      const sel = window.getSelection();
-      if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
-        const range = sel.getRangeAt(0);
-        // Verify selection is within (or overlapping) the clicked anchor element
-        if (target.contains(range.startContainer) || target.contains(range.endContainer)) {
-          const selected = sel.toString().trim();
-          if (selected.length > 0) {
-            textFragment = selected;
-          }
+      let anchorData: Partial<AnchorPoint>;
+      if (isBlockId) {
+        if (isSubAnchor) {
+          const [bid, ...subParts] = anchorId.split("--");
+          anchorData = { blockId: bid, subAnchor: subParts.join("--") };
+        } else {
+          anchorData = { blockId: anchorId };
         }
+      } else {
+        const parsed = parseAnchorId(anchorId);
+        if (!parsed) return;
+        anchorData = parsed;
+      }
+
+      // Compute textOffset: char position of the selection within the anchor element's textContent
+      let textOffset: number | undefined;
+      if (textFragment && target) {
+        const sel2 = window.getSelection();
+        if (sel2 && sel2.rangeCount > 0) {
+          const range = sel2.getRangeAt(0);
+          // Create a range from start of anchor element to start of selection
+          const preRange = document.createRange();
+          preRange.setStart(target, 0);
+          preRange.setEnd(range.startContainer, range.startOffset);
+          textOffset = preRange.toString().length;
+        }
+      }
+      if (textOffset != null) {
+        anchorData.textOffset = textOffset;
       }
 
       // Derive label: selected text > element's own text > parent box h3 > section title > elementType
@@ -258,7 +377,6 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
         if (innerH3) label = innerH3.textContent?.slice(0, 30) || "";
       }
       if (!label) {
-        // For text elements (p, li, ul), use content preview
         const tag = target.tagName?.toLowerCase();
         if (["p", "li", "ul", "div"].includes(tag)) {
           const text = target.textContent?.trim() || "";
@@ -268,7 +386,7 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
         }
       }
       if (!label) {
-        const parentBox = target.closest("[data-anchor*='content-box']") || target.closest(".mb-4");
+        const parentBox = target.closest("[data-anchor^='blk-']") || target.closest("[data-anchor*='content-box']") || target.closest(".mb-4");
         const boxH3 = parentBox?.querySelector("h3");
         if (boxH3) label = boxH3.textContent?.slice(0, 30) || "";
       }
@@ -277,9 +395,9 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
         const sectionTitle = section?.querySelector("[class*='border-l-']");
         if (sectionTitle) label = sectionTitle.textContent?.slice(0, 30) || "";
       }
-      if (!label) label = parsed.elementType;
+      if (!label) label = anchorData.blockId || anchorData.elementType || "anchor";
 
-      const newAnchor: AnchorPoint = { ...parsed, label, ...(textFragment ? { textFragment } : {}) };
+      const newAnchor: AnchorPoint = { ...anchorData, label, ...(textFragment ? { textFragment } : {}) } as AnchorPoint;
 
       // Update local state
       setTodos((prev) =>
@@ -287,12 +405,9 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
           if (t.id !== pickingAnchorForId) return t;
           const existing = t.anchor || [];
           // Avoid duplicate
+          const newSel = resolveAnchorSelector(newAnchor);
           const dupe = existing.some(
-            (a) =>
-              a.sectionId === newAnchor.sectionId &&
-              a.boxIndex === newAnchor.boxIndex &&
-              a.elementType === newAnchor.elementType &&
-              a.elementIndex === newAnchor.elementIndex,
+            (a) => resolveAnchorSelector(a) === newSel,
           );
           if (dupe) return t;
           return { ...t, anchor: [...existing, newAnchor] };
@@ -600,24 +715,35 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
                                         <span>{lockedItems.has(item.id) ? "已鎖定" : "未鎖定"}</span>
                                       </button>
                                     )}
-                                    {item.anchor.map((a, ai) => (
+                                    {item.anchor.map((a, ai) => {
+                                      const isBroken = brokenAnchors.has(`${item.id}-${ai}`);
+                                      const brokenTooltip = isBroken
+                                        ? `⚠️ 找不到目標元素\n原始標記：${a.textFragment || a.label || "N/A"}\nanchor: ${resolveAnchorSelector(a) || "unknown"}`
+                                        : null;
+                                      return (
                                       <div
                                         key={ai}
                                         className="group flex items-center gap-1"
                                       >
+                                        <Tooltip text={isBroken ? brokenTooltip : null}>
                                         <button
-                                          className="flex flex-1 items-center gap-1.5 rounded px-1.5 py-0.5 text-left text-[0.65rem] text-[var(--text-muted)] hover:bg-[var(--bg-subtle)] hover:text-[var(--primary)]"
+                                          className={`flex flex-1 items-center gap-1.5 rounded px-1.5 py-0.5 text-left text-[0.65rem] ${
+                                            isBroken
+                                              ? "border border-red-300 bg-red-50 text-red-600 dark:border-red-800 dark:bg-red-950 dark:text-red-400"
+                                              : "text-[var(--text-muted)] hover:bg-[var(--bg-subtle)] hover:text-[var(--primary)]"
+                                          }`}
                                           onClick={(e) => {
                                             e.stopPropagation();
-                                            handleAnchorClick(a);
+                                            if (!isBroken) handleAnchorClick(a);
                                           }}
                                         >
-                                          <span>&#128205;</span>
+                                          <span>{isBroken ? "\u26A0\uFE0F" : "\uD83D\uDCCD"}</span>
                                           <span>
                                             {a.label ||
                                               `\u00A7${a.sectionId} · ${a.elementType}`}
                                           </span>
                                         </button>
+                                        </Tooltip>
                                         {lockedItems.has(item.id) ? (
                                           <span className="px-1 text-[0.6rem] text-[var(--text-faint)]">
                                             &#128274;
@@ -635,7 +761,8 @@ export default function TodoPanel({ ticker }: { ticker: string }) {
                                           </button>
                                         )}
                                       </div>
-                                    ))}
+                                      );
+                                    })}
                                   </div>
                                 )}
 
