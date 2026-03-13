@@ -3,7 +3,7 @@
     "company": "Sandisk Corporation",
     "ticker": "SNDK",
     "last_updated": "2026-03-12",
-    "notes": "Non-GAAP EPS from NotebookLM (earnings call transcripts). Segment data from SEC EDGAR inline XBRL Instance files. Product segment naming changed in FY2026: Client->Edge, Cloud->Datacenter. Values shown here use the new naming for all periods."
+    "notes": "Non-GAAP EPS from NotebookLM (earnings call transcripts). Segment data from SEC EDGAR inline XBRL Instance files + 10-12B:A Registration Statement. Product segment naming changed in FY2026: Client->Edge, Cloud->Datacenter. Values shown here use the new naming for all periods. Q1_FY2024 data from 10-12B:A (original names: Cloud/Client/Consumer). Q4_FY2024 computed as FY2024 annual minus Q1-Q3."
   },
   "non_gaap": {
     "adjusted_eps_diluted": {
@@ -49,6 +49,20 @@
         "Consumer": {
           "value": 652,
           "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        }
+      },
+      "Q1_FY2024": {
+        "Datacenter": {
+          "value": 18,
+          "source": "Sandisk 10-12B:A — Q1 FY2024 (Cloud segment)"
+        },
+        "Edge": {
+          "value": 997,
+          "source": "Sandisk 10-12B:A — Q1 FY2024 (Client segment)"
+        },
+        "Consumer": {
+          "value": 518,
+          "source": "Sandisk 10-12B:A — Q1 FY2024"
         }
       },
       "Q2_FY2024": {
@@ -121,6 +135,20 @@
           "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
         }
       },
+      "Q4_FY2024": {
+        "Datacenter": {
+          "value": 170,
+          "source": "Sandisk 10-12B:A — Q4 FY2024 (FY2024 annual $325M − Q1-Q3)"
+        },
+        "Edge": {
+          "value": 1067,
+          "source": "Sandisk 10-12B:A — Q4 FY2024 (FY2024 annual $4,069M − Q1-Q3)"
+        },
+        "Consumer": {
+          "value": 523,
+          "source": "Sandisk 10-12B:A — Q4 FY2024 (FY2024 annual $2,269M − Q1-Q3)"
+        }
+      },
       "Q4_FY2025": {
         "Datacenter": {
           "value": 213,
@@ -163,6 +191,20 @@
         "EMEA": {
           "value": 387,
           "source": "SEC EDGAR inline XBRL — sndk-20251003_htm.xml"
+        }
+      },
+      "Q1_FY2024": {
+        "Asia": {
+          "value": 1061,
+          "source": "Sandisk 10-12B:A — Q1 FY2024"
+        },
+        "Americas": {
+          "value": 230,
+          "source": "Sandisk 10-12B:A — Q1 FY2024"
+        },
+        "EMEA": {
+          "value": 242,
+          "source": "Sandisk 10-12B:A — Q1 FY2024"
         }
       },
       "Q2_FY2024": {
@@ -233,6 +275,20 @@
         "EMEA": {
           "value": 282,
           "source": "SEC EDGAR inline XBRL — sndk-20250328_htm.xml"
+        }
+      },
+      "Q4_FY2024": {
+        "Asia": {
+          "value": 1197,
+          "source": "Sandisk 10-12B:A — Q4 FY2024 (FY2024 annual $4,510M − Q1-Q3)"
+        },
+        "Americas": {
+          "value": 336,
+          "source": "Sandisk 10-12B:A — Q4 FY2024 (FY2024 annual $1,095M − Q1-Q3)"
+        },
+        "EMEA": {
+          "value": 227,
+          "source": "Sandisk 10-12B:A — Q4 FY2024 (FY2024 annual $1,058M − Q1-Q3)"
         }
       },
       "Q4_FY2025": {
