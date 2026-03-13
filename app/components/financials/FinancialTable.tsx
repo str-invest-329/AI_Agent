@@ -267,7 +267,9 @@ export default function FinancialTable({
                     .filter(({ key }) => is[key])
                     .map(({ key, label }, i) => ({
                       label,
-                      data: periods.map((p) => is[key]?.[p] ?? null),
+                      data: isGrowth
+                        ? periods.map((p) => { const pk = prevFn(p); const g = growthPct(is[key]?.[p], pk ? is[key]?.[pk] : null); return g != null ? +(g * 100).toFixed(1) : null; })
+                        : periods.map((p) => is[key]?.[p] ?? null),
                       borderColor: CHART_COLORS[i % CHART_COLORS.length],
                       backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + "cc",
                       tension: 0.3,
@@ -279,12 +281,12 @@ export default function FinancialTable({
                   maintainAspectRatio: false,
                   interaction: { mode: "index" as const, intersect: false },
                   plugins: {
-                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y?.toLocaleString()}M` } },
+                    tooltip: { callbacks: { label: (ctx) => isGrowth ? `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(1)}%` : `${ctx.dataset.label}: $${ctx.parsed.y?.toLocaleString()}M` } },
                     legend: { position: "bottom" as const, labels: { boxWidth: 12, font: { size: 11 } } },
                   },
                   scales: {
                     x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
-                    y: { ticks: { font: { size: 10 }, callback: (v) => `$${v}M` } },
+                    y: { ticks: { font: { size: 10 }, callback: (v) => isGrowth ? `${v}%` : `$${v}M` } },
                   },
                 }}
               />
@@ -387,11 +389,10 @@ export default function FinancialTable({
           </tbody>
         </table>
       </div>
-      {hasIncomplete && (
-        <div className="mt-1.5 text-right text-[10px] text-amber-600">
-          * 數據未完整（僅部分季度），YoY 比較可能失真
-        </div>
-      )}
+      <div className="mt-1.5 flex justify-between text-[10px]">
+        {hasIncomplete && <span className="text-amber-600">* 數據未完整（僅部分季度），YoY 比較可能失真</span>}
+        <span className="ml-auto text-[var(--text-faint)]">Unit: $M（EPS 除外）</span>
+      </div>
     </div>
   );
 }

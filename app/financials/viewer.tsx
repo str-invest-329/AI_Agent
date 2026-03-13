@@ -13,6 +13,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import SegmentPieChart from "@/app/components/financials/SegmentPieChart";
 import {
   LABEL_MAP, TOTAL_KEYS, RATIO_ORDER, RATIO_DEFINITIONS, CHART_COLORS,
   PERIOD_ORDER_WEIGHT, sortPeriods, isPct, isEps, fmtVal, labelFor,
@@ -271,13 +272,18 @@ function IncomeStatement({ data, viewMode }: { data: FinData; viewMode: "quarter
     return raw ? new Map(Object.entries(raw).map(([k, v]) => [k, v as number])) : new Map<string, number>();
   }, [data, viewMode]);
 
+  const isGrowth = growthMode !== "value";
+  const prevFn = growthMode === "qoq" ? prevQoQ : prevYoY;
+
   const chartData = {
     labels: periods,
     datasets: IS_CHART_METRICS
       .filter(({ key }) => is[key])
       .map(({ key, label }, i) => ({
         label,
-        data: periods.map((p) => is[key]?.[p] ?? null),
+        data: isGrowth
+          ? periods.map((p) => { const pk = prevFn(p); const g = growthPct(is[key]?.[p], pk ? is[key]?.[pk] : null); return g != null ? +(g * 100).toFixed(1) : null; })
+          : periods.map((p) => is[key]?.[p] ?? null),
         borderColor: CHART_COLORS[i % CHART_COLORS.length],
         backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + "cc",
         tension: 0.3,
@@ -292,14 +298,14 @@ function IncomeStatement({ data, viewMode }: { data: FinData; viewMode: "quarter
     plugins: {
       tooltip: {
         callbacks: {
-          label: (ctx: any) => `${ctx.dataset.label}: $${ctx.parsed.y?.toLocaleString()}M`,
+          label: (ctx: any) => isGrowth ? `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(1)}%` : `${ctx.dataset.label}: $${ctx.parsed.y?.toLocaleString()}M`,
         },
       },
       legend: { position: "bottom" as const, labels: { boxWidth: 12, font: { size: 11 } } },
     },
     scales: {
       x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
-      y: { ticks: { font: { size: 10 }, callback: (v: any) => `$${v}M` } },
+      y: { ticks: { font: { size: 10 }, callback: (v: any) => isGrowth ? `${v}%` : `$${v}M` } },
     },
   };
 
@@ -696,12 +702,17 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
   for (const p of periods) for (const name of Object.keys(segments[p])) segNames.add(name);
   const names = Array.from(segNames);
 
-  // Chart data: stacked bar
+  const isGrowth = growthMode !== "value";
+  const gPrevFn = growthMode === "qoq" ? prevQoQ : prevYoY;
+
+  // Chart data: line chart
   const chartData = {
     labels: periods,
     datasets: names.map((name, i) => ({
       label: name,
-      data: periods.map((p) => segments[p]?.[name]?.value ?? 0),
+      data: isGrowth
+        ? periods.map((p) => { const pk = gPrevFn(p); const g = growthPct(segments[p]?.[name]?.value, pk ? segments[pk]?.[name]?.value : null); return g != null ? +(g * 100).toFixed(1) : null; })
+        : periods.map((p) => segments[p]?.[name]?.value ?? 0),
       borderColor: CHART_COLORS[i % CHART_COLORS.length],
       backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + "cc",
       tension: 0.3,
@@ -716,7 +727,7 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
     plugins: {
       tooltip: {
         callbacks: {
-          label: (ctx: any) => `${ctx.dataset.label}: $${ctx.parsed.y}M`,
+          label: (ctx: any) => isGrowth ? `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(1)}%` : `${ctx.dataset.label}: $${ctx.parsed.y}M`,
         },
       },
       legend: { position: "bottom" as const, labels: { boxWidth: 12, font: { size: 11 } } },
@@ -726,7 +737,7 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
       y: {
         ticks: {
           font: { size: 10 },
-          callback: (v: any) => `$${v}M`,
+          callback: (v: any) => isGrowth ? `${v}%` : `$${v}M`,
         },
       },
     },
@@ -754,12 +765,24 @@ function SegmentPanel({ suppData, viewMode }: { suppData: any; viewMode: "quarte
         <GrowthToggle mode={growthMode} setMode={setGrowthMode} showQoQ={viewMode === "quarterly"} />
       </div>
 
-      {/* Chart */}
+      {/* Line Chart */}
       <div className="mb-4 rounded-md bg-[var(--bg-card)] p-4 shadow-sm">
         <div className="relative h-[320px]">
           <Line data={chartData} options={chartOptions} />
         </div>
       </div>
+
+      {/* Pie Chart */}
+      {(() => {
+        const segVals: Record<string, Record<string, number | null>> = {};
+        for (const name of names) {
+          segVals[name] = {};
+          for (const p of periods) {
+            segVals[name][p] = segments[p]?.[name]?.value ?? null;
+          }
+        }
+        return <SegmentPieChart segVals={segVals} periods={periods} />;
+      })()}
 
       {/* Table */}
       <div className="overflow-x-auto rounded-md shadow-sm">

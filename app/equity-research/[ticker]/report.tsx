@@ -137,9 +137,9 @@ export interface ReportData {
    Sub-components
    ================================================================ */
 const TH =
-  "border-b border-[var(--border)] px-4 py-2 text-left text-xs font-normal uppercase tracking-wide text-[var(--text-muted)]";
+  "border-b border-[var(--border)] px-4 py-2 text-left text-sm font-normal uppercase tracking-wide text-[var(--text-muted)]";
 const TH_R = TH + " text-right";
-const TD = "border-b border-[var(--border)] px-4 py-2 text-sm";
+const TD = "border-b border-[var(--border)] px-4 py-2 text-[0.95rem]";
 const TD_R = TD + " text-right tabular-nums";
 
 function Sources({ list }: { list: Source[] }) {
@@ -171,7 +171,7 @@ function ContentBox({ title, children }: { title?: string; children: ReactNode }
   return (
     <div className="mb-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-6 shadow-sm">
       {title && (
-        <h3 className="mb-3 border-b border-[#F0EAEA] pb-1.5 text-[0.95rem] font-semibold">
+        <h3 className="mb-3 border-b border-[#F0EAEA] pb-1.5 text-base font-semibold">
           {title}
         </h3>
       )}
@@ -226,7 +226,7 @@ function SideToc({
   return (
     <nav
       className="fixed top-1/2 z-50 hidden w-[180px] -translate-y-1/2 text-xs leading-relaxed min-[1440px]:block"
-      style={{ right: "calc((100vw - 960px) / 2 - 200px)" }}
+      style={{ right: "calc((100vw - 1200px) / 2 - 200px)" }}
     >
       <ul className="border-l-2 border-[var(--border)]">
         {items.map((s) => {
@@ -352,7 +352,7 @@ function BlockRenderer({
 
       {/* Bullets */}
       {block.bullets && (
-        <ul className="mb-3 list-disc space-y-1 pl-5 text-sm">
+        <ul className="mb-3 list-disc space-y-1 pl-5 text-[0.95rem]">
           {block.bullets.items.map((item, i) => (
             <li key={i}>{renderInline(item)}</li>
           ))}
@@ -361,7 +361,7 @@ function BlockRenderer({
 
       {/* Paragraphs */}
       {block.paragraphs?.map((p, i) => (
-        <p key={i} className="mb-3 text-sm">
+        <p key={i} className="mb-3 text-[0.95rem] leading-relaxed">
           {renderInline(p)}
         </p>
       ))}
@@ -686,7 +686,7 @@ function DetailsToggle({ details }: { details: string[] }) {
       {open && (
         <div className="mt-3">
           {details.map((p, i) => (
-            <p key={i} className="mb-3 text-sm">
+            <p key={i} className="mb-3 text-[0.95rem] leading-relaxed">
               {renderInline(p)}
             </p>
           ))}
@@ -874,7 +874,7 @@ export default function Report({ data }: { data: ReportData }) {
   }, []);
 
   return (
-    <div className="mx-auto max-w-[960px] px-6 py-8 pb-16">
+    <div className="mx-auto max-w-[1200px] px-8 py-8 pb-16">
       <Link
         href="/equity-research"
         className="mb-3 inline-block text-sm font-semibold text-[var(--primary)] opacity-70 transition-opacity hover:opacity-100"
@@ -894,36 +894,6 @@ export default function Report({ data }: { data: ReportData }) {
         </div>
         <ThemeToggle />
       </header>
-
-      {/* TOC */}
-      <nav className="mb-10 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-6 py-5 shadow-sm">
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-          目錄
-        </h2>
-        <ol className="list-decimal space-y-1 pl-5 text-sm">
-          {chapters.map((ch) => (
-            <li key={ch.id}>
-              <a href={`#${ch.id}`} className="hover:text-[var(--primary)] hover:underline">
-                {ch.title}
-              </a>
-              {ch.sections.length > 0 && (
-                <ol className="mt-1 list-decimal space-y-0.5 pl-5 text-xs text-[#6B5E60]">
-                  {ch.sections.map((sec) => (
-                    <li key={sec.id}>
-                      <a
-                        href={`#${sec.id}`}
-                        className="hover:text-[var(--primary)] hover:underline"
-                      >
-                        {sec.title.replace(/^\d+\s*·\s*/, "")}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </li>
-          ))}
-        </ol>
-      </nav>
 
       {/* Side TOC */}
       <SideToc chapters={chapters} activeId={activeId} />

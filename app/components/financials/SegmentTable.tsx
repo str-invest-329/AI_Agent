@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import SegmentPieChart from "./SegmentPieChart";
 import {
   sortPeriods, fmtVal, PERIOD_ORDER_WEIGHT, CHART_COLORS,
   type GrowthMode, prevQoQ, prevYoY, growthPct, fmtGrowth,
@@ -351,7 +352,9 @@ export default function SegmentTable({
               labels: periods,
               datasets: segNames.map((name, i) => ({
                 label: name,
-                data: periods.map((p) => segVals[name]?.[p] ?? 0),
+                data: isGrowth
+                  ? periods.map((p) => { const pk = prevFn(p); const g = growthPct(segVals[name]?.[p], pk ? segVals[name]?.[pk] : null); return g != null ? +(g * 100).toFixed(1) : null; })
+                  : periods.map((p) => segVals[name]?.[p] ?? 0),
                 borderColor: CHART_COLORS[i % CHART_COLORS.length],
                 backgroundColor: CHART_COLORS[i % CHART_COLORS.length] + "cc",
                 tension: 0.3,
@@ -363,17 +366,20 @@ export default function SegmentTable({
               maintainAspectRatio: false,
               interaction: { mode: "index" as const, intersect: false },
               plugins: {
-                tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}M` } },
+                tooltip: { callbacks: { label: (ctx) => isGrowth ? `${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(1)}%` : `${ctx.dataset.label}: $${ctx.parsed.y}M` } },
                 legend: { position: "bottom" as const, labels: { boxWidth: 12, font: { size: 11 } } },
               },
               scales: {
                 x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
-                y: { ticks: { font: { size: 10 }, callback: (v) => `$${v}M` } },
+                y: { ticks: { font: { size: 10 }, callback: (v) => isGrowth ? `${v}%` : `$${v}M` } },
               },
             }}
           />
         </div>
       </div>
+
+      {/* Pie Chart */}
+      <SegmentPieChart segVals={segVals} periods={periods} />
 
       {/* Table */}
       <div className="overflow-x-auto rounded-md shadow-sm">
